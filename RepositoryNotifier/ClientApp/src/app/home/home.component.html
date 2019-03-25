@@ -1,0 +1,84 @@
+<app-nav-menu [isAuthenticated]="isAuthenticated" [username]="username"></app-nav-menu>
+<div class="container homeMain">
+    <div class="jumbotron bg-primary text-white">
+        <h1 class="display-4" *ngIf="isAuthenticated; else showNotAnonymousGreeting">Hello, {{username}}!</h1>
+        <ng-template #showNotAnonymousGreeting>
+            <h1>Hello, there!</h1>
+        </ng-template>
+        <p class="lead">Welcome to RepositoryObserver, a simple service to observe your repositories.</p>
+        <hr class="my-4">
+        <p>RepositoryObserver was built using:</p>
+        <ul>
+            <li><a href='https://get.asp.net/'>ASP.NET Core</a> and <a
+                    href='https://msdn.microsoft.com/en-us/library/67ef8sbd.aspx'>C#</a> for cross-platform server-side
+                code
+            </li>
+            <li><a href='https://angular.io/'>Angular</a> and <a href='http://www.typescriptlang.org/'>TypeScript</a>
+                for
+                client-side code
+            </li>
+            <li><a href='http://getbootstrap.com/'>Bootstrap</a> for layout and styling</li>
+            <li><a href='http://font-awesome.com/'>Font Awesome</a> for icons</li>
+        </ul>
+    </div>
+    <div class="region">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card text-white bg-success mb-3 h-100" >
+                    <div class="card-body">
+                        <h2 class="card-title">RepositoryObserver</h2>
+                        <p class="card-text">
+                            <strong>RepositoryObserver</strong> offers a service to observe your
+                            <code>repositories</code> for
+                            accidentally leaked <code>passwords</code>.<br>
+                            Simply authenticate with your Github account and select the <code>repositories</code> you
+                            want to be
+                            observed.<br>
+                            You can also select a frequency at which the scans are started:
+                        </p>
+                        <ul>
+                            <li>15 minutes</li>
+                            <li>30 minutes</li>
+                            <li>1 hour</li>
+                            <li>3 hours</li>
+                            <li>12 hours</li>
+                            <li>1 day</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card text-white bg-primary mb-3 h-100">
+                    <div class="card-body">
+                        <h2 class="card-title">Inspect SourceCode</h2>
+                        <p class="card-text">This project is open source and its source code can be reviewed <a
+                                href="https://github.com/MorrisMorrison/scrapi">here</a></p>
+                        <p>The Application stores only the username and repository names and accesses them through
+                            Github's public API.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div *ngIf="isAuthenticated" class="region">
+            <app-abonement></app-abonement>
+        </div>
+    
+
+    <div class="region">
+        <app-add-notification [isAuthenticated]="isAuthenticated" [username]="username"></app-add-notification>
+    </div>
+
+
+    <div *ngIf="!isAuthenticated">
+        <h2>Sign Up</h2>
+        <p>
+            By signing up you will be redirected to Github and you need to authenticate with your credentials.
+        </p>
+        <button type="button" class="btn btn-primary" (click)="login()"><i class="fa fa-github"></i> Sign Up</button>
+    </div>
+</div>
+<app-footer>

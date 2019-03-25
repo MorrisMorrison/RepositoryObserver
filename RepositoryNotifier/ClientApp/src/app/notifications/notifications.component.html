@@ -1,0 +1,72 @@
+<app-nav-menu [isAuthenticated]="isAuthenticated" [username]="username"></app-nav-menu>
+<div class="container notificationsMain">
+    <div class="card text-white bg-primary">
+        <div class="card-body">
+            <h1 class="card-title" style="padding-top:10px; padding-bottom:10px;">My Notifications:</h1>
+            <p class="card-text">You can only have only NotificationTask per Frequency, so your maximum number of tasks
+                equals the maximum number
+                of
+                frequencies available.</p>
+            <div *ngIf="notifications.length < 1">
+                <p class="text-info">You haven't created any notifications yet.</p>
+            </div>
+            <div *ngIf="notifications.length > 0">
+                <table class="table table-striped">
+                    <thead class="thead table-success">
+                        <tr>
+                            <th scope="col">Select</th>
+                            <th scope="col">#</th>
+                            <th scope="col">EMail</th>
+                            <th scope="col">Frequency</th>
+                            <th scope="col">Repositories</th>
+                            <th scope="col">Search Keywords</th>
+                            <th scope="col">Last Executed</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-light" *ngFor="let notification of notifications; let i = index"
+                            [attr.data-index]="i">
+                            <td>
+                                <input id="test" name="{{notification.getNotificationTO.id}}" type="checkbox"
+                                    value="{{notification.getNotificationTO.id}}" [(ngModel)]="notification.selected">
+                                <label for="test"></label>
+                            </td>
+                            <th scope="row">{{i+1}}</th>
+                            <td>{{notification.getNotificationTO.email}}</td>
+                            <td>{{notification.getNotificationTO.frequency}} minutes</td>
+                            <td>
+                                <ul>
+                                    <li *ngFor="let repository of notification.getNotificationTO.repositories">
+                                        {{repository}}</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li *ngFor="let searchKeyword of notification.getNotificationTO.searchKeywords">
+                                        {{searchKeyword}}</li>
+                                </ul>
+                            </td>
+                            <td *ngIf="notification.getNotificationTO.status != 'INIT'; else showNever">
+                                {{notification.getNotificationTO.lastExecutedAt.toLocaleString()}}</td>
+                            <ng-template #showNever>
+                                <td>Never</td>
+                            </ng-template>
+                            <td>{{notification.getNotificationTO.status}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button style="margin-right: 1%; width:10%;" type="button" class="btn btn-success"
+                    (click)="editNotification()">Edit</button>
+                <button type="button" style="width:10%;" (click)="deleteNotifications()"
+                    class="btn btn-info">Delete</button>
+            </div>
+        </div>
+    </div>
+    <div class="region">
+        <app-add-notification [isAuthenticated]="isAuthenticated" [username]="username"
+            (notificationCreated)="notificationCreated($event)"></app-add-notification>
+    </div>
+</div>
+<app-footer></app-footer>
+

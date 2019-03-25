@@ -1,0 +1,31 @@
+<header>
+  <nav class='navbar navbar-expand-sm navbar-toggleable-sm bg-primary box-shadow mb-3'>
+    <div class="container">
+      <a class="navbar-brand text-white" [routerLink]='["/"]'><i class="fa fa-search"></i> RepositoryObserver</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-label="Toggle navigation"
+        [attr.aria-expanded]="isExpanded" (click)="toggle()">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse" [ngClass]='{"show": isExpanded}'>
+        <ul class="navbar-nav flex-grow">
+          <li class="nav-item" [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
+            <a class="nav-link text-white" [routerLink]='["/"]'><i class="fa fa-home"></i> Home</a>
+          </li>
+          <li *ngIf="isAuthenticated" class="nav-item" [routerLinkActive]='["link-active"]'>
+            <a class="nav-link text-white" [routerLink]='["/notifications"]'><i class="fa fa-th-list"></i> My Notifications</a>
+          </li>
+          <li *ngIf="isAuthenticated" class="nav-item">
+            <a class="nav-link text-white" [routerLink]='["/fetch-data"]'><i class="fa fa-github"></i> Hello {{username}}</a>
+          </li>
+          <li *ngIf="isAuthenticated" class="nav-item">
+            <button class="btn btn-link" (click)="logout()"><i class="fa fa-sign-out"></i> Logout</button>
+          </li>
+          <li *ngIf="!isAuthenticated" class="nav-item">
+            <button class="btn btn-link" (click)="login()"><i class="fa fa-github"></i> Sign In</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
