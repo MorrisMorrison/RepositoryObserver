@@ -12,7 +12,7 @@ using RepositoryNotifier.Constants;
 // https://developer.paypal.com/docs/checkout/reference/server-integration/
 namespace RepositoryNotifier.Payment.PaymentProvider
 {
-    public class PayPalPaymentProvider
+    public class PayPalPaymentProvider: IPayPalPaymentProvider
     {
         public SandboxEnvironment Environment { get; set; }
         public PayPalHttpClient Client { get; set; }

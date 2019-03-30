@@ -19,6 +19,7 @@ using RepositoryNotifier.GithubAPI;
 using RepositoryNotifier.Persistence;
 using RepositoryNotifier.Service;
 using RepositoryNotifier.TaskScheduler;
+using RepositoryNotifier.Payment.PaymentProvider;
 
 namespace RepositoryNotifier
 {
@@ -127,7 +128,12 @@ namespace RepositoryNotifier
             services.AddSingleton<INotificationTaskDao, NotificationTaskDao>();
             services.AddSingleton<INotificationTaskCrudService, NotificationTaskCrudService>();
             services.AddSingleton<IFrequencyService, FrequencyService>();
-            services.AddSingleton<IEmailManager, EmailManager>();
+            // services.AddSingleton<IPayPalPaymentProvider, PayPalPaymentProvider>();
+            services.AddSingleton<IAbonementService, AbonementService>();
+            services.AddSingleton<IAbonementDao, AbonementDao>();
+            services.AddSingleton<IPremiumPlanService, PremiumPlanService>();
+
+
 
 
             // In production, the Angular files will be served from this directory
