@@ -15,8 +15,8 @@ export class PaymentService {
     this.baseUrl = baseUrl;
   }
 
-  createPayment():Observable<string>{
-    return this.httpClient.get<string>(this.baseUrl +"api/payment/create", {responseType: 'text' as 'json'});
+  createPayment(amount: number):Observable<string>{
+    return this.httpClient.post<string>(this.baseUrl +"api/payment/create", amount, {responseType: 'text' as 'json'});
   }
 
 }

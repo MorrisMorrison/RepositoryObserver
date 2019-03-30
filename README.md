@@ -42,4 +42,5 @@ Go to https://localhost:8080
 * .NET Core
 * Docker
 * MongoDB
-* GithubAPI
+* Github API
+* PayPal API
