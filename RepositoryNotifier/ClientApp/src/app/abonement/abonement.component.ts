@@ -11,8 +11,8 @@ import { PaymentService } from '../service/payment/payment.service';
 })
 export class AbonementComponent implements OnInit {
 
-  private proAboPrice: number = 1;
-  private businessAboPrice: number = 2;
+  private proSubscriptionPrice: number = 1;
+  private businessSubscriptionPrice: number = 2;
 
   constructor(private githubAuthService: GithubauthService,
     @Inject(DOCUMENT) private document: any,
@@ -29,17 +29,25 @@ export class AbonementComponent implements OnInit {
     });
   }
 
-  createProAbo(){
-    this.createPayment(this.proAboPrice);
-  }
-
-  createBusinessAbo(){
-    this.createPayment(this.businessAboPrice);
-  }
 
   createPayment(amount: number) {
     this.paymentService.createPayment(amount).subscribe(redirectUrl => {
       this.document.location.href = redirectUrl;
     });
+  }
+
+  createProSubscription(){
+    this.createSubscription(this.proSubscriptionPrice);
+
+  }
+
+  createBusinessSubscription(){
+    this.createSubscription(this.businessSubscriptionPrice);
+  }
+
+  createSubscription(amount: number){
+    this.paymentService.createSubscription(amount).subscribe(redirectUrl => {
+      this.document.location.href = redirectUrl;
+    })
   }
 }

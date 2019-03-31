@@ -12,7 +12,7 @@ namespace RepositoryNotifier.Controllers
     public class PaymentController : Controller
     {
         private PayPalPaymentProvider _payPalPaymentProvider { get; set; }
-        private IAbonementService _abonementService {get;set;}
+        private IAbonementService _abonementService { get; set; }
         public PaymentController(IConfiguration p_configuration, IAbonementService p_abonementService)
         {
             _payPalPaymentProvider = new PayPalPaymentProvider(p_configuration);
@@ -20,7 +20,7 @@ namespace RepositoryNotifier.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] double p_amount)
+        public async Task<IActionResult> CreatePayment([FromBody] double p_amount)
         {
             PayPal.v1.Payments.Payment result = await _payPalPaymentProvider.CreatePayment(p_amount);
             string approvalUrl = result.Links.FirstOrDefault(p_link => p_link.Rel.Equals("approval_url")).Href;
@@ -28,22 +28,60 @@ namespace RepositoryNotifier.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Success([FromQuery(Name="paymentID")]string p_paymentID, string p_token,[FromQuery(Name="payerID")] string p_payerID)
+        public async Task<IActionResult> SuccessPayment([FromQuery(Name = "paymentID")]string p_paymentID, string p_token, [FromQuery(Name = "payerID")] string p_payerID)
         {
             PayPal.v1.Payments.Payment result = await _payPalPaymentProvider.ExecutePayment(p_paymentID, p_payerID);
 
-            if (result != null){
-            string username = AuthHelper.GetLogin(this.HttpContext);
-            _abonementService.AddAbonement(result, username);
-            return Ok();
+            if (result != null)
+            {
+                string username = AuthHelper.GetLogin(this.HttpContext);
+                _abonementService.AddAbonement(result, username);
+                return Redirect("/");
             }
 
             return BadRequest();
         }
         [HttpGet]
-        public async Task<IActionResult> Cancel()
+        public async Task<IActionResult> CancelPayment()
         {
             return Ok();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateSubscription([FromBody] double p_amount)
+        {
+            PayPal.v1.BillingPlans.Plan subscription = await _payPalPaymentProvider.CreateSubscription(p_amount);
+
+            PayPal.v1.BillingPlans.Plan activatedSubscription =  await _payPalPaymentProvider.ActivateSubscription(subscription);
+            if (activatedSubscription.State.Equals("Activated")){
+                    PayPal.v1.BillingAgreements.Agreement agreement = await _payPalPaymentProvider.CreateAgreement(activatedSubscription);
+
+                    if(agreement != null){
+                                 string approvalUrl = agreement.Links.FirstOrDefault(p_link => p_link.Rel.Equals("approval_url")).Href;
+                                    return Ok(approvalUrl);
+                    }
+            }
+        
+
+            return BadRequest();
+        }
+
+        
+        [HttpGet]
+        public async Task<IActionResult> SuccessSubscription([FromQuery(Name = "paymentID")]string p_paymentID, [FromQuery(Name = "token")]string p_token, [FromQuery(Name = "payerID")] string p_payerID)
+        {
+            PayPal.v1.BillingAgreements.Agreement agreement = await _payPalPaymentProvider.ExecuteAgreement(p_token);
+
+            if (agreement != null)
+            {
+                string username = AuthHelper.GetLogin(this.HttpContext);
+                // _abonementService.AddAbonement(agreement, username);
+                return Redirect("/");
+            }
+
+            return BadRequest();
+        }
+
+
     }
 }
