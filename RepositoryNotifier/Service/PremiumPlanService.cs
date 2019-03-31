@@ -8,8 +8,9 @@ namespace RepositoryNotifier.Service
 
 
  public class PremiumPlanService:IPremiumPlanService {
-
-
+        public PremiumPlanService()
+        {
+        }
 
         public IDictionary<string, double> GetPremiumPlanTypes(){
             return new Dictionary<string, double>(){ 

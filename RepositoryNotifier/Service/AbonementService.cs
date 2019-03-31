@@ -13,7 +13,8 @@ namespace RepositoryNotifier.Service
 
         public AbonementService(IAbonementDao p_abonementDao, IPremiumPlanService p_premiumPlanService)
         {
-
+            _abonementDao = p_abonementDao;
+            _premiumPlanService = p_premiumPlanService;
         }
 
         public bool AbonementExists(string p_username)

@@ -28,7 +28,7 @@ namespace RepositoryNotifier.Payment.PaymentProvider
         }
 
 
-        public async Task<PayPal.v1.Payments.Payment> CreatePayment()
+        public async Task<PayPal.v1.Payments.Payment> CreatePayment(double p_amount)
         {
 
             PayPal.v1.Payments.Payment payment = new PayPal.v1.Payments.Payment()
@@ -40,15 +40,15 @@ namespace RepositoryNotifier.Payment.PaymentProvider
                     {
                         Amount = new Amount()
                         {
-                            Total = "10",
+                            Total = p_amount.ToString(),
                             Currency = "EUR"
                         }
                     }
                 },
                 RedirectUrls = new RedirectUrls()
                 {
-                    CancelUrl = "https://localhost:5001/payment/cancel",
-                    ReturnUrl = "https://localhost:5001/payment/success"
+                    CancelUrl = "https://localhost:5001/api/payment/cancel",
+                    ReturnUrl = "https://localhost:5001/api/payment/success"
                 },
                 Payer = new Payer()
                 {
@@ -74,7 +74,7 @@ namespace RepositoryNotifier.Payment.PaymentProvider
             return result;
         }
 
-        public async Task<PayPal.v1.Payments.Payment> ExecutePayment(string p_payerID, string p_paymentID){
+        public async Task<PayPal.v1.Payments.Payment> ExecutePayment(string p_paymentID, string p_payerID){
             PaymentExecution paymentExecution = new PaymentExecution(){
                 PayerId = p_payerID
             };
@@ -84,6 +84,7 @@ namespace RepositoryNotifier.Payment.PaymentProvider
             };
 
             PaymentExecuteRequest paymentExecuteRequest = new PaymentExecuteRequest(p_paymentID);
+            paymentExecuteRequest.RequestBody(paymentExecution);
             PayPal.v1.Payments.Payment result = new PayPal.v1.Payments.Payment();
             try
             {

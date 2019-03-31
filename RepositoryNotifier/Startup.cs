@@ -163,9 +163,9 @@ namespace RepositoryNotifier
             app.UseHttpsRedirection();
             app.UseAuthentication();
 
-            // app.UseDefaultFiles();
+            app.UseDefaultFiles();
             app.UseStaticFiles();
-            app.UseSpaStaticFiles();
+            // app.UseSpaStaticFiles();
 
 
 
@@ -178,23 +178,23 @@ namespace RepositoryNotifier
                     name: "default",
                     template: "{controller}/{action=Index}/{id?}");
                     // Uncomment if SPA needs to be served by kestrel
-                    // routes.MapSpaFallbackRoute(
-                    //     name: "spa-fallback",
-                    //     defaults: new {controller = "Fallback", action="Index"}
-                    // )
+                    routes.MapSpaFallbackRoute(
+                        name: "spa-fallback",
+                        defaults: new {controller = "Fallback", action="Index"}
+                    );
             });
 
-            app.UseSpa(spa =>
-            {
-                // To learn more about options for serving an Angular SPA from ASP.NET Core,
-                // see https://go.microsoft.com/fwlink/?linkid=864501
-                spa.Options.SourcePath = "ClientApp";
-                if (env.IsDevelopment())
-                {
-                    spa.UseAngularCliServer(npmScript: "start");
-                }
-                // spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
-            });
+            // app.UseSpa(spa =>
+            // {
+            //     // To learn more about options for serving an Angular SPA from ASP.NET Core,
+            //     // see https://go.microsoft.com/fwlink/?linkid=864501
+            //     spa.Options.SourcePath = "ClientApp";
+            //     // if (env.IsDevelopment())
+            //     // {
+            //     //     spa.UseAngularCliServer(npmScript: "start");
+            //     // }
+            //     // spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
+            // });
         }
     }
 }
