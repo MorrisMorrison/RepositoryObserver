@@ -17,7 +17,6 @@ namespace RepositoryNotifier.Payment.PaymentProvider
     {
         public SandboxEnvironment Environment { get; set; }
         public PayPalHttpClient Client { get; set; }
-
         public PayPalConfig PayPalConfig { get; set; }
 
         public PayPalPaymentProvider(IConfiguration p_configuration)
@@ -107,7 +106,7 @@ namespace RepositoryNotifier.Payment.PaymentProvider
 
 
 
-        public async Task<PayPal.v1.BillingPlans.Plan> CreateSubscription(double p_amount)
+        public async Task<PayPal.v1.BillingPlans.Plan> CreateBillingPlan(double p_amount)
         {
             PayPal.v1.BillingPlans.Plan billingPlan = new PayPal.v1.BillingPlans.Plan()
             {
@@ -156,7 +155,7 @@ namespace RepositoryNotifier.Payment.PaymentProvider
             return result;
         }
 
-        public async Task<PayPal.v1.BillingPlans.Plan> ActivateSubscription(PayPal.v1.BillingPlans.Plan p_plan)
+        public async Task<PayPal.v1.BillingPlans.Plan> ActivateBillingPlan(PayPal.v1.BillingPlans.Plan p_plan)
         {
             PayPal.v1.BillingPlans.PlanUpdateRequest<PayPal.v1.BillingPlans.Plan> request = new PayPal.v1.BillingPlans.PlanUpdateRequest<PayPal.v1.BillingPlans.Plan>(p_plan.Id);
             PayPal.v1.BillingPlans.JsonPatch<PayPal.v1.BillingPlans.Plan> patch = new PayPal.v1.BillingPlans.JsonPatch<PayPal.v1.BillingPlans.Plan>()
@@ -190,13 +189,21 @@ namespace RepositoryNotifier.Payment.PaymentProvider
             PayPal.v1.BillingAgreements.Agreement agreement = new PayPal.v1.BillingAgreements.Agreement(){
                 Name="RO Sub",
                 Description ="RO Sub Desc",
-                StartDate = DateTime.Now.ToString(),
+                StartDate = "2019-04-02T01:00:00Z",
                 Plan = new PayPal.v1.BillingAgreements.PlanWithId(){
                     Id = p_plan.Id
                 },
                 Payer = new PayPal.v1.BillingAgreements.Payer(){
                     PaymentMethod ="paypal"
                 },
+                ShippingAddress = new PayPal.v1.BillingAgreements.SimplePostalAddress(){
+                    Line1 ="Line1",
+                    Line2 ="Line2",
+                    City ="City",
+                    CountryCode ="DE",
+                    PostalCode ="66111",
+                    State ="State"
+                }
             };
 
             PayPal.v1.BillingAgreements.AgreementCreateRequest request = new PayPal.v1.BillingAgreements.AgreementCreateRequest(){
@@ -220,8 +227,9 @@ namespace RepositoryNotifier.Payment.PaymentProvider
         }
 
         public async Task<PayPal.v1.BillingAgreements.Agreement> ExecuteAgreement(string p_token){
-            PayPal.v1.BillingAgreements.AgreementExecuteRequest request = new PayPal.v1.BillingAgreements.AgreementExecuteRequest(p_token);
-
+            PayPal.v1.BillingAgreements.AgreementExecuteRequest request = new PayPal.v1.BillingAgreements.AgreementExecuteRequest(p_token){
+                Body = ""
+            };
             PayPal.v1.BillingAgreements.Agreement result = new PayPal.v1.BillingAgreements.Agreement();
             try
             {
@@ -241,6 +249,7 @@ namespace RepositoryNotifier.Payment.PaymentProvider
 
         public void Cancel()
         {
+
         }
 
     }

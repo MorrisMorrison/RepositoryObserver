@@ -50,10 +50,10 @@ namespace RepositoryNotifier.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateSubscription([FromBody] double p_amount)
         {
-            PayPal.v1.BillingPlans.Plan subscription = await _payPalPaymentProvider.CreateSubscription(p_amount);
+            PayPal.v1.BillingPlans.Plan subscription = await _payPalPaymentProvider.CreateBillingPlan(p_amount);
 
-            PayPal.v1.BillingPlans.Plan activatedSubscription =  await _payPalPaymentProvider.ActivateSubscription(subscription);
-            if (activatedSubscription.State.Equals("Activated")){
+            PayPal.v1.BillingPlans.Plan activatedSubscription =  await _payPalPaymentProvider.ActivateBillingPlan(subscription);
+            if (activatedSubscription.State.Equals("ACTIVE")){
                     PayPal.v1.BillingAgreements.Agreement agreement = await _payPalPaymentProvider.CreateAgreement(activatedSubscription);
 
                     if(agreement != null){
@@ -61,14 +61,13 @@ namespace RepositoryNotifier.Controllers
                                     return Ok(approvalUrl);
                     }
             }
-        
 
             return BadRequest();
         }
 
         
         [HttpGet]
-        public async Task<IActionResult> SuccessSubscription([FromQuery(Name = "paymentID")]string p_paymentID, [FromQuery(Name = "token")]string p_token, [FromQuery(Name = "payerID")] string p_payerID)
+        public async Task<IActionResult> SuccessSubscription([FromQuery(Name = "token")]string p_token)
         {
             PayPal.v1.BillingAgreements.Agreement agreement = await _payPalPaymentProvider.ExecuteAgreement(p_token);
 
