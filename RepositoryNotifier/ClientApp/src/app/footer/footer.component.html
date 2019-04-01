@@ -1,5 +1,24 @@
 <footer class="footer bg-primary text-white">
   <div class="container">
-    <a href="#" style="margin-left:1%;">Help</a>
+    <div class="row">
+      <div class="col-2">
+        <a href="#" style="margin-left:1%;">Help</a>
+      </div>
+      <div class="col-7">
+
+      </div>
+      <div class="col-3" style="display: flex;align-items: center;">
+        <div class="input-group">
+          <input type="number" min="1" step="any" class="form-control" [(ngModel)]="amount" placeholder="0">
+          <div class="input-group-append">
+            <span class="input-group-text">€</span>
+          </div>
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" (click)="createDonation()"><i class="fa fa-paypal"></i> Donate</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </footer>

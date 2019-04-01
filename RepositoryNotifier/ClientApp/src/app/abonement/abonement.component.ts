@@ -30,11 +30,7 @@ export class AbonementComponent implements OnInit {
   }
 
 
-  createPayment(amount: number) {
-    this.paymentService.createPayment(amount).subscribe(redirectUrl => {
-      this.document.location.href = redirectUrl;
-    });
-  }
+
 
   createProSubscription(){
     this.createSubscription(this.proSubscriptionPrice);

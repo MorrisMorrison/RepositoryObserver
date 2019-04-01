@@ -13,10 +13,13 @@ namespace RepositoryNotifier.Controllers
     {
         private PayPalPaymentProvider _payPalPaymentProvider { get; set; }
         private IAbonementService _abonementService { get; set; }
-        public PaymentController(IConfiguration p_configuration, IAbonementService p_abonementService)
+        private IDonationService _donationService {get;set;}
+        public PaymentController(IConfiguration p_configuration, IAbonementService p_abonementService, IDonationService p_donationService)
         {
             _payPalPaymentProvider = new PayPalPaymentProvider(p_configuration);
             _abonementService = p_abonementService;
+            _donationService =p_donationService;
+
         }
 
         [HttpPost]
@@ -35,7 +38,8 @@ namespace RepositoryNotifier.Controllers
             if (result != null)
             {
                 string username = AuthHelper.GetLogin(this.HttpContext);
-                _abonementService.AddAbonement(result, username);
+                _donationService.AddDonation(result);
+
                 return Redirect("/");
             }
 

@@ -1,3 +1,5 @@
+using MongoDB.Driver;
+
 namespace RepositoryNotifier.Persistence
 {
     public interface IAbonementDao

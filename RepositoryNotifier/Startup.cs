@@ -131,6 +131,10 @@ namespace RepositoryNotifier
             // services.AddSingleton<IPayPalPaymentProvider, PayPalPaymentProvider>();
             services.AddSingleton<IAbonementService, AbonementService>();
             services.AddSingleton<IAbonementDao, AbonementDao>();
+
+                services.AddSingleton<IDonationService, DonationService>();
+            services.AddSingleton<IDonationDao, DonationDao>();
+
             services.AddSingleton<IPremiumPlanService, PremiumPlanService>();
 
 
