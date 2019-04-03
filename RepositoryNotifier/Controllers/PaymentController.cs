@@ -74,11 +74,12 @@ namespace RepositoryNotifier.Controllers
         public async Task<IActionResult> SuccessSubscription([FromQuery(Name = "token")]string p_token)
         {
             PayPal.v1.BillingAgreements.Agreement agreement = await _payPalPaymentProvider.ExecuteAgreement(p_token);
+            PayPal.v1.BillingPlans.Plan plan = await _payPalPaymentProvider.GetBillingPlan(agreement.Plan.Id);
 
             if (agreement != null)
             {
                 string username = AuthHelper.GetLogin(this.HttpContext);
-                // _abonementService.AddAbonement(agreement, username);
+                _abonementService.AddAbonement(plan, username);
                 return Redirect("/");
             }
 

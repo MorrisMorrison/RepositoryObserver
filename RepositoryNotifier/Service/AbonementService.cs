@@ -24,8 +24,9 @@ namespace RepositoryNotifier.Service
             return false;
         }
 
-        public void AddAbonement(PayPal.v1.Payments.Payment p_payment, string p_username){
-            double amount = double.Parse(p_payment.Transactions[0].Amount.Total);
+        public void AddAbonement(PayPal.v1.BillingPlans.Plan p_plan, string p_username){
+
+            double amount = double.Parse(p_agreement.Plan.Id);
             Persistence.Payment payment = new Persistence.Payment(){
                 Amount = amount,
                 PaymentDate = DateTime.Now

@@ -155,6 +155,26 @@ namespace RepositoryNotifier.Payment.PaymentProvider
             return result;
         }
 
+         public async Task<PayPal.v1.BillingPlans.Plan> GetBillingPlan(string p_planId)
+        {
+            PayPal.v1.BillingPlans.PlanGetRequest request = new PayPal.v1.BillingPlans.PlanGetRequest(p_planId);
+            request.Body = "";
+            PayPal.v1.BillingPlans.Plan result = new PayPal.v1.BillingPlans.Plan();
+            try
+            {
+                HttpResponse response = await Client.Execute(request);
+                var statusCode = response.StatusCode;
+                result = response.Result<PayPal.v1.BillingPlans.Plan>();
+            }
+            catch (HttpException httpException)
+            {
+                var statusCode = httpException.StatusCode;
+                var debugId = httpException.Headers.GetValues("PayPal-Debug-Id").FirstOrDefault();
+            }
+
+            return result;
+        }
+
         public async Task<PayPal.v1.BillingPlans.Plan> ActivateBillingPlan(PayPal.v1.BillingPlans.Plan p_plan)
         {
             PayPal.v1.BillingPlans.PlanUpdateRequest<PayPal.v1.BillingPlans.Plan> request = new PayPal.v1.BillingPlans.PlanUpdateRequest<PayPal.v1.BillingPlans.Plan>(p_plan.Id);
