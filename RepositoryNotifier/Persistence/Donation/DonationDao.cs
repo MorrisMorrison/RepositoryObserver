@@ -18,7 +18,7 @@ namespace RepositoryNotifier.Persistence
 
         public void AddDonation(Donation p_donation)
         {
-            IMongoCollection<Donation> donations = _database.GetCollection<Donation>(DBConnectionConstants.ABONEMENT_COLLECTION);
+            IMongoCollection<Donation> donations = _database.GetCollection<Donation>(DBConnectionConstants.DONATION_COLLECTION);
             donations.InsertOne(p_donation);
         }
 

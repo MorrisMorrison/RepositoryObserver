@@ -8,5 +8,6 @@ namespace RepositoryNotifier.Constants
         public const string DATABASE = "RepositoryNotifier";
         public const string CONNECTION_STRING = "mongodb://localhost:27017";
 
+        public const string DONATION_COLLECTION = "donations";
     }
 }
