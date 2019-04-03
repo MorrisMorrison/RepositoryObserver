@@ -15,10 +15,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Linq;
 using RepositoryNotifier.Constants;
-using RepositoryNotifier.GithubAPI;
 using RepositoryNotifier.Persistence;
 using RepositoryNotifier.Service;
 using RepositoryNotifier.TaskScheduler;
+using RepositoryNotifier.Service.Github;
 
 namespace RepositoryNotifier
 {
