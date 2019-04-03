@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using BraintreeHttp;
 using Microsoft.Extensions.Configuration;
 using PayPal.Core;
+using PayPal.v1.BillingAgreements;
+using PayPal.v1.BillingPlans;
 using PayPal.v1.Payments;
 using RepositoryNotifier.Constants;
 
@@ -106,15 +108,15 @@ namespace RepositoryNotifier.Service.Payment
 
 
 
-        public async Task<PayPal.v1.BillingPlans.Plan> CreateBillingPlan(double p_amount)
+        public async Task<Plan> CreateBillingPlan(double p_amount)
         {
-            PayPal.v1.BillingPlans.Plan billingPlan = new PayPal.v1.BillingPlans.Plan()
+            Plan billingPlan = new Plan()
             {
                 Name = "Plan",
                 Description = "Plan",
                 Type = "fixed",
-                PaymentDefinitions = new List<PayPal.v1.BillingPlans.PaymentDefinition>(){
-                        new PayPal.v1.BillingPlans.PaymentDefinition(){
+                PaymentDefinitions = new List<PaymentDefinition>(){
+                        new PaymentDefinition(){
                             Name="Regular",
                             Type="REGULAR",
                             Frequency ="MONTH",
@@ -127,7 +129,7 @@ namespace RepositoryNotifier.Service.Payment
                         },
                     },
 
-                MerchantPreferences = new PayPal.v1.BillingPlans.MerchantPreferences()
+                MerchantPreferences = new MerchantPreferences()
                 {
                     ReturnUrl = "https://localhost:5001/api/payment/successsubscription",
                     CancelUrl = "https://localhost:5001/api/payment/cancelsubscription",
@@ -137,14 +139,14 @@ namespace RepositoryNotifier.Service.Payment
                 },
             };
 
-            PayPal.v1.BillingPlans.PlanCreateRequest request = new PayPal.v1.BillingPlans.PlanCreateRequest();
+            PlanCreateRequest request = new PlanCreateRequest();
             request.RequestBody(billingPlan);
-            PayPal.v1.BillingPlans.Plan result = new PayPal.v1.BillingPlans.Plan();
+            Plan result = new Plan();
             try
             {
                 HttpResponse response = await Client.Execute(request);
                 var statusCode = response.StatusCode;
-                result = response.Result<PayPal.v1.BillingPlans.Plan>();
+                result = response.Result<Plan>();
             }
             catch (HttpException httpException)
             {
@@ -155,16 +157,16 @@ namespace RepositoryNotifier.Service.Payment
             return result;
         }
 
-         public async Task<PayPal.v1.BillingPlans.Plan> GetBillingPlan(string p_planId)
+         public async Task<Plan> GetBillingPlan(string p_planId)
         {
-            PayPal.v1.BillingPlans.PlanGetRequest request = new PayPal.v1.BillingPlans.PlanGetRequest(p_planId);
+            PlanGetRequest request = new PlanGetRequest(p_planId);
             request.Body = "";
-            PayPal.v1.BillingPlans.Plan result = new PayPal.v1.BillingPlans.Plan();
+            Plan result = new Plan();
             try
             {
                 HttpResponse response = await Client.Execute(request);
                 var statusCode = response.StatusCode;
-                result = response.Result<PayPal.v1.BillingPlans.Plan>();
+                result = response.Result<Plan>();
             }
             catch (HttpException httpException)
             {
@@ -175,16 +177,16 @@ namespace RepositoryNotifier.Service.Payment
             return result;
         }
 
-        public async Task<PayPal.v1.BillingPlans.Plan> ActivateBillingPlan(PayPal.v1.BillingPlans.Plan p_plan)
+        public async Task<Plan> ActivateBillingPlan(Plan p_plan)
         {
-            PayPal.v1.BillingPlans.PlanUpdateRequest<PayPal.v1.BillingPlans.Plan> request = new PayPal.v1.BillingPlans.PlanUpdateRequest<PayPal.v1.BillingPlans.Plan>(p_plan.Id);
-            PayPal.v1.BillingPlans.JsonPatch<PayPal.v1.BillingPlans.Plan> patch = new PayPal.v1.BillingPlans.JsonPatch<PayPal.v1.BillingPlans.Plan>()
+            PlanUpdateRequest<Plan> request = new PayPal.v1.BillingPlans.PlanUpdateRequest<PayPal.v1.BillingPlans.Plan>(p_plan.Id);
+            PayPal.v1.BillingPlans.JsonPatch<Plan> patch = new PayPal.v1.BillingPlans.JsonPatch<Plan>()
             {
                 Op = "replace",
                 Path = "/",
-                Value = new PayPal.v1.BillingPlans.Plan() { State = "ACTIVE" }
+                Value = new Plan() { State = "ACTIVE" }
             };
-            request.RequestBody(new List<PayPal.v1.BillingPlans.JsonPatch<PayPal.v1.BillingPlans.Plan>>(){
+            request.RequestBody(new List<PayPal.v1.BillingPlans.JsonPatch<Plan>>(){
                 patch
             });
 
@@ -205,12 +207,12 @@ namespace RepositoryNotifier.Service.Payment
             return p_plan;
         }
 
-        public async Task<PayPal.v1.BillingAgreements.Agreement> CreateAgreement(PayPal.v1.BillingPlans.Plan p_plan){
-            PayPal.v1.BillingAgreements.Agreement agreement = new PayPal.v1.BillingAgreements.Agreement(){
+        public async Task<Agreement> CreateAgreement(Plan p_plan){
+            Agreement agreement = new Agreement(){
                 Name="RO Sub",
                 Description ="RO Sub Desc",
                 StartDate = "2019-04-02T01:00:00Z",
-                Plan = new PayPal.v1.BillingAgreements.PlanWithId(){
+                Plan = new PlanWithId(){
                     Id = p_plan.Id
                 },
                 Payer = new PayPal.v1.BillingAgreements.Payer(){
@@ -226,16 +228,16 @@ namespace RepositoryNotifier.Service.Payment
                 }
             };
 
-            PayPal.v1.BillingAgreements.AgreementCreateRequest request = new PayPal.v1.BillingAgreements.AgreementCreateRequest(){
+            AgreementCreateRequest request = new AgreementCreateRequest(){
                 Body = agreement
             };
 
-            PayPal.v1.BillingAgreements.Agreement result = new PayPal.v1.BillingAgreements.Agreement();
+            Agreement result = new Agreement();
             try
             {
                 HttpResponse response = await Client.Execute(request);
                 var statusCode = response.StatusCode;
-                result = response.Result<PayPal.v1.BillingAgreements.Agreement>();
+                result = response.Result<Agreement>();
             }
             catch (HttpException httpException)
             {
@@ -246,16 +248,16 @@ namespace RepositoryNotifier.Service.Payment
             return result;
         }
 
-        public async Task<PayPal.v1.BillingAgreements.Agreement> ExecuteAgreement(string p_token){
-            PayPal.v1.BillingAgreements.AgreementExecuteRequest request = new PayPal.v1.BillingAgreements.AgreementExecuteRequest(p_token){
+        public async Task<Agreement> ExecuteAgreement(string p_token){
+            AgreementExecuteRequest request = new AgreementExecuteRequest(p_token){
                 Body = ""
             };
-            PayPal.v1.BillingAgreements.Agreement result = new PayPal.v1.BillingAgreements.Agreement();
+            Agreement result = new Agreement();
             try
             {
                 HttpResponse response = await Client.Execute(request);
                 var statusCode = response.StatusCode;
-                result = response.Result<PayPal.v1.BillingAgreements.Agreement>();
+                result = response.Result<Agreement>();
             }
             catch (HttpException httpException)
             {

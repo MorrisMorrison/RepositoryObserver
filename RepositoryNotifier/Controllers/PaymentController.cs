@@ -2,6 +2,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using PayPal.v1.BillingAgreements;
+using PayPal.v1.BillingPlans;
 using RepositoryNotifier.Helper;
 using RepositoryNotifier.Service;
 using RepositoryNotifier.Service.Payment;
@@ -54,11 +56,11 @@ namespace RepositoryNotifier.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateSubscription([FromBody] double p_amount)
         {
-            PayPal.v1.BillingPlans.Plan subscription = await _payPalPaymentProvider.CreateBillingPlan(p_amount);
+            Plan subscription = await _payPalPaymentProvider.CreateBillingPlan(p_amount);
 
-            PayPal.v1.BillingPlans.Plan activatedSubscription =  await _payPalPaymentProvider.ActivateBillingPlan(subscription);
+            Plan activatedSubscription =  await _payPalPaymentProvider.ActivateBillingPlan(subscription);
             if (activatedSubscription.State.Equals("ACTIVE")){
-                    PayPal.v1.BillingAgreements.Agreement agreement = await _payPalPaymentProvider.CreateAgreement(activatedSubscription);
+                    Agreement agreement = await _payPalPaymentProvider.CreateAgreement(activatedSubscription);
 
                     if(agreement != null){
                                  string approvalUrl = agreement.Links.FirstOrDefault(p_link => p_link.Rel.Equals("approval_url")).Href;
@@ -73,8 +75,8 @@ namespace RepositoryNotifier.Controllers
         [HttpGet]
         public async Task<IActionResult> SuccessSubscription([FromQuery(Name = "token")]string p_token)
         {
-            PayPal.v1.BillingAgreements.Agreement agreement = await _payPalPaymentProvider.ExecuteAgreement(p_token);
-            PayPal.v1.BillingPlans.Plan plan = await _payPalPaymentProvider.GetBillingPlan(agreement.Plan.Id);
+            Agreement agreement = await _payPalPaymentProvider.ExecuteAgreement(p_token);
+            Plan plan = await _payPalPaymentProvider.GetBillingPlan(agreement.Plan.Id);
 
             if (agreement != null)
             {
