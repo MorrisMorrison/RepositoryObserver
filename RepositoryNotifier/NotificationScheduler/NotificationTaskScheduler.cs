@@ -6,9 +6,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Timers;
 using Octokit;
-using RepositoryNotifier.GithubAPI;
 using RepositoryNotifier.Persistence;
 using RepositoryNotifier.Service;
+using RepositoryNotifier.Service.Github;
 
 namespace RepositoryNotifier.TaskScheduler
 {
