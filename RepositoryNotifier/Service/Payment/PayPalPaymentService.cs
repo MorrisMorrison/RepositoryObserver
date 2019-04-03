@@ -52,7 +52,7 @@ namespace RepositoryNotifier.Service.Payment
                     CancelUrl = "https://localhost:5001/api/payment/cancelpayment",
                     ReturnUrl = "https://localhost:5001/api/payment/successpayment"
                 },
-                Payer = new Payer()
+                Payer = new PayPal.v1.Payments.Payer()
                 {
                     PaymentMethod = "paypal"
 
@@ -129,7 +129,7 @@ namespace RepositoryNotifier.Service.Payment
                         },
                     },
 
-                MerchantPreferences = new MerchantPreferences()
+                MerchantPreferences = new PayPal.v1.BillingPlans.MerchantPreferences()
                 {
                     ReturnUrl = "https://localhost:5001/api/payment/successsubscription",
                     CancelUrl = "https://localhost:5001/api/payment/cancelsubscription",
