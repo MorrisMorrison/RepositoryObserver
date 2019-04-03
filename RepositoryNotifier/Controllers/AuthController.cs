@@ -7,8 +7,8 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Octokit;
 using RepositoryNotifier.DTO;
-using RepositoryNotifier.GithubAPI;
 using RepositoryNotifier.Helper;
+using RepositoryNotifier.Service.Github;
 
 namespace RepositoryNotifier.Controllers
 {
@@ -16,9 +16,9 @@ namespace RepositoryNotifier.Controllers
     [EnableCors("AllowDevOrigin")]
     public class AuthController: Controller
     {
-        private IGithubApiAdapter _githubApiAdapter { get; set; }
+        private IGithubApiService _githubApiAdapter { get; set; }
 
-        public AuthController(IGithubApiAdapter p_githubApiAdapter)
+        public AuthController(IGithubApiService p_githubApiAdapter)
         {
             _githubApiAdapter = p_githubApiAdapter;
         }

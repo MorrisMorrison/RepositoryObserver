@@ -16,7 +16,7 @@ namespace RepositoryNotifier.TaskScheduler
     {
         private INotificationTaskCrudService _notificationTaskCrudService { get; }
         private IFrequencyService _frequencyService { get;  }
-        private IGithubApiAdapter _githubApiAdapter { get; }
+        private IGithubApiService _githubApiAdapter { get; }
         private IEmailManager _emailManager { get; }
         private IList<Frequency> _frequencies { get; set; }
         private bool _initRunDone { get; set; }
@@ -24,7 +24,7 @@ namespace RepositoryNotifier.TaskScheduler
         private IList<Timer> _timers { get; set; }
         private Timer _initTimer { get; set; }
 
-        public NotificationTaskScheduler(INotificationTaskCrudService p_notificationTaskCrudService, IGithubApiAdapter p_githubApiAdapter, IFrequencyService p_frequencyService, IEmailManager p_emailManager)
+        public NotificationTaskScheduler(INotificationTaskCrudService p_notificationTaskCrudService, IGithubApiService p_githubApiAdapter, IFrequencyService p_frequencyService, IEmailManager p_emailManager)
         {
             _notificationTaskCrudService = p_notificationTaskCrudService;
             _frequencyService = p_frequencyService;

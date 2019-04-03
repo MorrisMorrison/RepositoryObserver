@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using RepositoryNotifier.Persistence;
 
-namespace RepositoryNotifier.GithubAPI
+namespace RepositoryNotifier.Service.Github
 {
     //https://www.jerriepelser.com/blog/authenticate-oauth-aspnet-core-2/
     public class GithubUser

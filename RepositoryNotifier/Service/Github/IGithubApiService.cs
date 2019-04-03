@@ -4,9 +4,9 @@ using RepositoryNotifier.Persistence;
 using Octokit;
 using Task = System.Threading.Tasks.Task;
 
-namespace RepositoryNotifier.GithubAPI
+namespace RepositoryNotifier.Service.Github
 {
-    public interface IGithubApiAdapter
+    public interface IGithubApiService
     {
         Task<GithubUser> GetGithubUser();
         Task<bool> FindPassword(NotificationTask p_notificationTask);

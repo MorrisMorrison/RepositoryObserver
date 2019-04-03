@@ -122,7 +122,7 @@ namespace RepositoryNotifier
             // Add Singletons
             // Inject dependencies via constructor
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddSingleton<IGithubApiAdapter, GithubApiAdapter>();
+            services.AddSingleton<IGithubApiService, GithubApiService>();
             services.AddSingleton<INotificationTaskScheduler, NotificationTaskScheduler>();
             services.AddSingleton<INotificationTaskDao, NotificationTaskDao>();
             services.AddSingleton<INotificationTaskCrudService, NotificationTaskCrudService>();

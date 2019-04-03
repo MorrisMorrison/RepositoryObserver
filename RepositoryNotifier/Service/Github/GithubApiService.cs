@@ -9,14 +9,14 @@ using RepositoryNotifier.Constants;
 using RepositoryNotifier.Helper;
 
 // https://octokitnet.readthedocs.io/en/latest/search/
-namespace RepositoryNotifier.GithubAPI
+namespace RepositoryNotifier.Service.Github
 {
-    public class GithubApiAdapter: IGithubApiAdapter
+    public class GithubApiService: IGithubApiService
     {
         private IHttpContextAccessor _httpContextAccessor { get;}
         private string _accessToken { get; set; }
         
-        public GithubApiAdapter(IHttpContextAccessor p_httpContextAccessor)
+        public GithubApiService(IHttpContextAccessor p_httpContextAccessor)
         {
             _httpContextAccessor = p_httpContextAccessor;
         }
