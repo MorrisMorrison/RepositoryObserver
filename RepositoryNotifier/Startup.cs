@@ -19,7 +19,6 @@ using RepositoryNotifier.GithubAPI;
 using RepositoryNotifier.Persistence;
 using RepositoryNotifier.Service;
 using RepositoryNotifier.TaskScheduler;
-using RepositoryNotifier.Payment.PaymentProvider;
 
 namespace RepositoryNotifier
 {
