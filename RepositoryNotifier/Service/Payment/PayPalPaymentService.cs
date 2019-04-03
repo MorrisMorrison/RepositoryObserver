@@ -11,15 +11,15 @@ using RepositoryNotifier.Constants;
 // https://github.com/paypal/PayPal-NET-SDK
 // https://medium.com/@pmareke/using-paypal-sdk-with-net-core-full-explanation-66aab76cef66
 // https://developer.paypal.com/docs/checkout/reference/server-integration/
-namespace RepositoryNotifier.Payment.PaymentProvider
+namespace RepositoryNotifier.Service.Payment
 {
-    public class PayPalPaymentProvider : IPayPalPaymentProvider
+    public class PayPalPaymentService : IPayPalPaymentService
     {
         public SandboxEnvironment Environment { get; set; }
         public PayPalHttpClient Client { get; set; }
         public PayPalConfig PayPalConfig { get; set; }
 
-        public PayPalPaymentProvider(IConfiguration p_configuration)
+        public PayPalPaymentService(IConfiguration p_configuration)
         {
             PayPalConfig = new PayPalConfig(p_configuration);
             Environment = new SandboxEnvironment(PayPalConfig.CLIENT_ID,

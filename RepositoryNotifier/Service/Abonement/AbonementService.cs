@@ -25,8 +25,7 @@ namespace RepositoryNotifier.Service
         }
 
         public void AddAbonement(PayPal.v1.BillingPlans.Plan p_plan, string p_username){
-
-            double amount = double.Parse(p_agreement.Plan.Id);
+            double amount = double.Parse(p_plan.PaymentDefinitions[0].Amount.Value);
             Persistence.Payment payment = new Persistence.Payment(){
                 Amount = amount,
                 PaymentDate = DateTime.Now

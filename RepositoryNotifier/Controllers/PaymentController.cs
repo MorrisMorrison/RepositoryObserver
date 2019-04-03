@@ -3,20 +3,20 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using RepositoryNotifier.Helper;
-using RepositoryNotifier.Payment.PaymentProvider;
 using RepositoryNotifier.Service;
+using RepositoryNotifier.Service.Payment;
 
 namespace RepositoryNotifier.Controllers
 {
     [Route("api/[controller]/[action]/")]
     public class PaymentController : Controller
     {
-        private PayPalPaymentProvider _payPalPaymentProvider { get; set; }
+        private IPayPalPaymentService _payPalPaymentProvider { get; set; }
         private IAbonementService _abonementService { get; set; }
         private IDonationService _donationService {get;set;}
         public PaymentController(IConfiguration p_configuration, IAbonementService p_abonementService, IDonationService p_donationService)
         {
-            _payPalPaymentProvider = new PayPalPaymentProvider(p_configuration);
+            _payPalPaymentProvider = new PayPalPaymentService(p_configuration);
             _abonementService = p_abonementService;
             _donationService =p_donationService;
 
