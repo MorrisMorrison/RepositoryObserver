@@ -24,7 +24,6 @@ export class NavMenuComponent {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
-
   collapse() {
     this.isExpanded = false;
   }
@@ -39,6 +38,10 @@ export class NavMenuComponent {
       this.alertifyService.success("Logged out.");
     });
   }
+
+  login() {
+    this.document.location.href = "https://repositoryobserver.herokuapp.com/api/auth/login";
+}
 
 
 }

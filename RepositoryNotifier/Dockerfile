@@ -16,6 +16,8 @@ RUN dotnet restore
 # Copy everything else and build
 COPY . ./
 
+RUN cd ClientApp && ng build
+
 # RUN dotnet build -c Release -o out
 RUN dotnet publish -c Release -o out
 
