@@ -18,11 +18,11 @@ namespace RepositoryNotifier.Middleware
 
         public async Task Invoke(HttpContext httpContext)
         {
-            httpContext.Response.Headers.Add("Access-Control-Allow-Origin", "http://github.com");
+            httpContext.Response.Headers.Add("Access-Control-Allow-Origin", "*");
             // httpContext.Response.Headers.Add("Access-Control-Allow-Credentials", "true");
-            httpContext.Response.Headers.Add("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization, X-Auth-Token");
-            httpContext.Response.Headers.Add("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, HEAD, OPTIONS");
-            httpContext.Response.Headers.Add("Access-Control-Allow-Credentials", "true");
+            // httpContext.Response.Headers.Add("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization, X-Auth-Token");
+            // httpContext.Response.Headers.Add("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, HEAD, OPTIONS");
+            // httpContext.Response.Headers.Add("Access-Control-Allow-Credentials", "true");
 
             // httpContext.Response.Headers.Add("Referrer-Policy", "no-referrer-when-downgrade");
 

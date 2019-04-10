@@ -11,9 +11,9 @@ namespace RepositoryNotifier.Persistence
     {
         private IMongoDatabase _database { get; set; }
 
-        public NotificationTaskDao()
+        public NotificationTaskDao(IDbConnectionProvider p_dbConnectionProvider)
         {
-            _database = DBConnectionHelper.GetDatabaseConnection();
+            _database = p_dbConnectionProvider.GetDatabaseConnection();
         }
 
 

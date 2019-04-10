@@ -13,21 +13,22 @@ namespace RepositoryNotifier.Controllers
     [Route("api/[controller]/[action]/")]
     public class PaymentController : Controller
     {
-        private IPayPalPaymentService _payPalPaymentProvider { get; set; }
+        private IPayPalPaymentService _payPalPaymentService { get; set; }
         private IAbonementService _abonementService { get; set; }
-        private IDonationService _donationService {get;set;}
+        private IDonationService _donationService { get; set; }
+        
         public PaymentController(IConfiguration p_configuration, IAbonementService p_abonementService, IDonationService p_donationService)
         {
-            _payPalPaymentProvider = new PayPalPaymentService(p_configuration);
+            _payPalPaymentService = new PayPalPaymentService(p_configuration);
             _abonementService = p_abonementService;
-            _donationService =p_donationService;
+            _donationService = p_donationService;
 
         }
 
         [HttpPost]
         public async Task<IActionResult> CreatePayment([FromBody] double p_amount)
         {
-            PayPal.v1.Payments.Payment result = await _payPalPaymentProvider.CreatePayment(p_amount);
+            PayPal.v1.Payments.Payment result = await _payPalPaymentService.CreatePayment(p_amount);
             string approvalUrl = result.Links.FirstOrDefault(p_link => p_link.Rel.Equals("approval_url")).Href;
             return Ok(approvalUrl);
         }
@@ -35,7 +36,7 @@ namespace RepositoryNotifier.Controllers
         [HttpGet]
         public async Task<IActionResult> SuccessPayment([FromQuery(Name = "paymentID")]string p_paymentID, string p_token, [FromQuery(Name = "payerID")] string p_payerID)
         {
-            PayPal.v1.Payments.Payment result = await _payPalPaymentProvider.ExecutePayment(p_paymentID, p_payerID);
+            PayPal.v1.Payments.Payment result = await _payPalPaymentService.ExecutePayment(p_paymentID, p_payerID);
 
             if (result != null)
             {
@@ -56,38 +57,40 @@ namespace RepositoryNotifier.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateSubscription([FromBody] double p_amount)
         {
-            Plan subscription = await _payPalPaymentProvider.CreateBillingPlan(p_amount);
+            Plan subscription = await _payPalPaymentService.CreateBillingPlan(p_amount);
 
-            Plan activatedSubscription =  await _payPalPaymentProvider.ActivateBillingPlan(subscription);
-            if (activatedSubscription.State.Equals("ACTIVE")){
-                    Agreement agreement = await _payPalPaymentProvider.CreateAgreement(activatedSubscription);
+            Plan activatedSubscription = await _payPalPaymentService.ActivateBillingPlan(subscription);
+            if (activatedSubscription.State.Equals("ACTIVE"))
+            {
+                Agreement agreement = await _payPalPaymentService.CreateAgreement(activatedSubscription);
 
-                    if(agreement != null){
-                                 string approvalUrl = agreement.Links.FirstOrDefault(p_link => p_link.Rel.Equals("approval_url")).Href;
-                                    return Ok(approvalUrl);
-                    }
+                if (agreement != null)
+                {
+                    string approvalUrl = agreement.Links.FirstOrDefault(p_link => p_link.Rel.Equals("approval_url")).Href;
+                    return Ok(approvalUrl);
+                }
             }
 
             return BadRequest();
         }
 
-        
+
         [HttpGet]
         public async Task<IActionResult> SuccessSubscription([FromQuery(Name = "token")]string p_token)
         {
-            Agreement agreement = await _payPalPaymentProvider.ExecuteAgreement(p_token);
-            Plan plan = await _payPalPaymentProvider.GetBillingPlan(agreement.Plan.Id);
-
-            if (agreement != null)
+            Agreement agreement = await _payPalPaymentService.ExecuteAgreement(p_token);
+            if (agreement.Plan.Id != null)
             {
-                string username = AuthHelper.GetLogin(this.HttpContext);
-                _abonementService.AddAbonement(plan, username);
-                return Redirect("/");
+                Plan plan = await _payPalPaymentService.GetBillingPlan(agreement.Plan.Id);
+                if (plan.Id != null)
+                {
+                    string username = AuthHelper.GetLogin(this.HttpContext);
+                    _abonementService.AddAbonement(plan, username);
+                    return Redirect("/");
+                }
             }
 
             return BadRequest();
         }
-
-
     }
 }

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Octokit;
@@ -13,7 +14,6 @@ using RepositoryNotifier.Service.Github;
 namespace RepositoryNotifier.Controllers
 {
     [Route("api/[controller]/[action]")]
-    [EnableCors("AllowDevOrigin")]
     public class AuthController: Controller
     {
         private IGithubApiService _githubApiAdapter { get; set; }
@@ -22,11 +22,15 @@ namespace RepositoryNotifier.Controllers
         {
             _githubApiAdapter = p_githubApiAdapter;
         }
-
-        public IActionResult Login(string returnUrl = "/")
+        
+   [HttpGet]
+        public   IActionResult Login(string returnUrl = "/")
         {
-            return Challenge(new AuthenticationProperties() { RedirectUri = returnUrl });
+                // this.HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", "*");
+            //   await HttpContext.ChallengeAsync("GitHub", new AuthenticationProperties() { RedirectUri = returnUrl });
+            return Challenge(new AuthenticationProperties() { RedirectUri = returnUrl }, "GitHub");
         }
+
 
         public async Task<IActionResult> GetUser()
         {

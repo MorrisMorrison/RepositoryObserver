@@ -20,7 +20,7 @@ export class HomeComponent {
     isAuthenticated: boolean;
     username: string;
 
-    constructor(private githubAuthService: GithubauthService, @Inject(DOCUMENT) private document: any, private alertifyService:AlertifyService) {
+    constructor(private githubAuthService: GithubauthService, @Inject(DOCUMENT) private document: any, @Inject('BASE_URL') private baseUrl: string, private alertifyService:AlertifyService) {
     }
 
     ngOnInit() {
@@ -39,10 +39,7 @@ export class HomeComponent {
     }
 
     login() {
-        this.githubAuthService.login().subscribe(response => {
-            this.document.location.href = response.url;
-            this.alertifyService.success("Logged in.");
-        });
+            this.document.location.href = "https://repositoryobserver.herokuapp.com/api/auth/login";
     }
 }
 

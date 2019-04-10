@@ -208,10 +208,14 @@ namespace RepositoryNotifier.Service.Payment
         }
 
         public async Task<Agreement> CreateAgreement(Plan p_plan){
+            DateTime now = DateTime.Now;
+            DateTime startDateTime = now.AddHours(12);
+            string startDate = startDateTime.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fff'Z'");
+
             Agreement agreement = new Agreement(){
                 Name="RO Sub",
                 Description ="RO Sub Desc",
-                StartDate = "2019-04-02T01:00:00Z",
+                StartDate = startDate,
                 Plan = new PlanWithId(){
                     Id = p_plan.Id
                 },

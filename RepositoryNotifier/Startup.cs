@@ -42,7 +42,7 @@ namespace RepositoryNotifier
             //         builder => builder.WithOrigins("https://github.com").AllowAnyHeader().AllowAnyMethod().AllowCredentials());
             //     });
             services.AddCors();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc();
 
             // services.AddMvcCore()
             // services.AddApiExplorer();
@@ -68,39 +68,30 @@ namespace RepositoryNotifier
                     p_options.UserInformationEndpoint = "https://api.github.com/user";
                     // p_options.ClaimsIssuer = "OAuth2-Github";
 
+                   p_options.ClaimActions.MapJsonKey(ClaimTypes.NameIdentifier, "id");
+                    p_options.ClaimActions.MapJsonKey(ClaimTypes.Name, "name");
+                    // TODO email not working
+                    p_options.ClaimActions.MapJsonKey(ClaimTypes.Email, "email");
+                    p_options.ClaimActions.MapJsonKey("urn:github:login", "login");
+                    p_options.ClaimActions.MapJsonKey("urn:github:url", "html_url");
+                    p_options.ClaimActions.MapJsonKey("urn:github:avatar", "avatar_url");
+
                     p_options.SaveTokens = true;
 
                     p_options.Events = new OAuthEvents
                     {
-                        // OnRedirectToAuthorizationEndpoint = async context =>
-                        // {
-                        //     context.Response.Headers.Add("Access-Control-Allow-Origin", "*");
-                         
-                        //     // context.Response.Headers.Add("Url", context.Options.);
-                        // },
-                        // OnRemoteFailure = async context => {
-                        //     context.Response.Headers.Add("Access-Control-Allow-Origin", "*");
-                        // },
 
-                        // OnTicketReceived = async context => {
-                        //      context.Response.Headers.Add("Access-Control-Allow-Origin", "*");
-                        // },
-               
                         OnCreatingTicket = async context =>
                         {
                             var request =
                                 new HttpRequestMessage(HttpMethod.Get, context.Options.UserInformationEndpoint);
                             request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                            // context.Response.Headers.Add("Access-Control-Allow-Origin", "*");
-                            // context.Request.Headers.Add("Access-Control-Allow-Origin", "*");
 
                             request.Headers.Authorization =
                                 new AuthenticationHeaderValue("Bearer", context.AccessToken);
 
 
-
-                            var response = await context.Backchannel.SendAsync(request,
-                                context.HttpContext.RequestAborted);
+                  var response = await context.Backchannel.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, context.HttpContext.RequestAborted);
                             response.EnsureSuccessStatusCode();
 
                             var user = JObject.Parse(await response.Content.ReadAsStringAsync());
@@ -109,15 +100,30 @@ namespace RepositoryNotifier
                         }
                     };
 
-                    p_options.ClaimActions.MapJsonKey(ClaimTypes.NameIdentifier, "id");
-                    p_options.ClaimActions.MapJsonKey(ClaimTypes.Name, "name");
-                    // TODO email not working
-                    p_options.ClaimActions.MapJsonKey(ClaimTypes.Email, "email");
-                    p_options.ClaimActions.MapJsonKey("urn:github:login", "login");
-                    p_options.ClaimActions.MapJsonKey("urn:github:url", "html_url");
-                    p_options.ClaimActions.MapJsonKey("urn:github:avatar", "avatar_url");
+ 
 
                 });
+
+//    services.AddAuthentication(options =>
+//             {
+//                 options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+//             })
+
+//             .AddCookie(options =>
+//             {
+//                 options.LoginPath = "/api/auth/login";
+//                 options.LogoutPath = "/api/auth/signout";
+//             })
+
+//             .AddGitHub(options =>
+//             {
+//                 options.ClientId = Configuration["GitHub:ClientId"];
+//                 options.ClientSecret = Configuration["GitHub:ClientSecret"];
+//                 options.Scope.Add("user:email");
+//             });
+        
+
+
 
             // Add Singletons
             // Inject dependencies via constructor
@@ -130,17 +136,13 @@ namespace RepositoryNotifier
             // services.AddSingleton<IPayPalPaymentProvider, PayPalPaymentProvider>();
             services.AddSingleton<IAbonementService, AbonementService>();
             services.AddSingleton<IAbonementDao, AbonementDao>();
-
-                services.AddSingleton<IDonationService, DonationService>();
+            services.AddSingleton<IDonationService, DonationService>();
             services.AddSingleton<IDonationDao, DonationDao>();
-
             services.AddSingleton<IPremiumPlanService, PremiumPlanService>();
-
-
-
+            services.AddSingleton<IDbConnectionProvider, DbConnectionProvider>();
 
             // In production, the Angular files will be served from this directory
-            services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/dist"; });
+            services.AddSpaStaticFiles(configuration => { configuration.RootPath = "wwwroot"; });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -148,6 +150,7 @@ namespace RepositoryNotifier
         {
             if (env.IsDevelopment())
             {
+                // app.UseHsts();
                 app.UseDeveloperExceptionPage();
             }
             else
@@ -162,42 +165,43 @@ namespace RepositoryNotifier
             // app.UseCors();
             app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
+            // own middleware to force CORS headers
+            // app.UseCorsMiddleware();
+
             // app.UseCors(options => options.WithOrigins("https://github.com", "http://www.github.com", "https://www.github.com", "http://www.github.com","https://localhost:5001", "http://localhost:5000", "https://localhost:44375").AllowAnyMethod().AllowAnyHeader().AllowCredentials().SetIsOriginAllowedToAllowWildcardSubdomains());
             app.UseHttpsRedirection();
             app.UseAuthentication();
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
-            // app.UseSpaStaticFiles();
+            app.UseSpaStaticFiles();
 
 
 
-            // own middleware to force CORS headers
-            // app.UseCorsMiddleware();
 
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller}/{action=Index}/{id?}");
-                    // Uncomment if SPA needs to be served by kestrel
-                    routes.MapSpaFallbackRoute(
-                        name: "spa-fallback",
-                        defaults: new {controller = "Fallback", action="Index"}
-                    );
+                // Uncomment if SPA needs to be served by kestrel
+                routes.MapSpaFallbackRoute(
+                    name: "spa-fallback",
+                    defaults: new { controller = "Fallback", action = "Index" }
+                );
             });
 
-            // app.UseSpa(spa =>
-            // {
-            //     // To learn more about options for serving an Angular SPA from ASP.NET Core,
-            //     // see https://go.microsoft.com/fwlink/?linkid=864501
-            //     spa.Options.SourcePath = "ClientApp";
-            //     // if (env.IsDevelopment())
-            //     // {
-            //     //     spa.UseAngularCliServer(npmScript: "start");
-            //     // }
-            //     // spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
-            // });
+            app.UseSpa(spa =>
+            {
+                // To learn more about options for serving an Angular SPA from ASP.NET Core,
+                // see https://go.microsoft.com/fwlink/?linkid=864501
+                spa.Options.SourcePath = "ClientApp";
+                // if (env.IsDevelopment())
+                // {
+                //     spa.UseAngularCliServer(npmScript: "start");
+                //     // spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
+                // }
+            });
         }
     }
 }
