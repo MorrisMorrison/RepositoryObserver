@@ -7,8 +7,8 @@ namespace RepositoryNotifier.Persistence
     public interface INotificationTaskDao
     {
         void AddNotificationTask(NotificationTask p_notificationTask);
-        void DeleteNotificationTask(NotificationTask p_notificationTask);
-        void DeleteNotificationTask(string p_username, Frequency p_frequency);
+        bool DeleteNotificationTask(NotificationTask p_notificationTask);
+        bool DeleteNotificationTask(string p_username, Frequency p_frequency);
         NotificationTask GetNotificationTask(string p_username);
         IEnumerable<NotificationTask> GetNotificationTaskByFrequency(Frequency p_frequency);
         IEnumerable<NotificationTask> GetNotificationTaskByUser(string p_username);
@@ -16,6 +16,6 @@ namespace RepositoryNotifier.Persistence
         IEnumerable<NotificationTask> GetAllNotificationTasks();
         void UpdateNotificationTaskStatus(NotificationTask p_notificationTask);
         void UpdateNotificationTaskLastExecuted(NotificationTask p_notificationTask);
-        void UpdateNotificationTask(NotificationTask p_notificationTask);
+        bool UpdateNotificationTask(NotificationTask p_notificationTask);
     }
 }

@@ -18,7 +18,7 @@ namespace RepositoryNotifier.Service
             _notificationTaskDao = p_notificationTaskDao;
         }
 
-        public void AddNotificationTask(AddNotificationTO p_notification)
+        public NotificationTask AddNotificationTask(AddNotificationTO p_notification)
         {
             NotificationTask notificationTask = new NotificationTask
             {
@@ -30,11 +30,13 @@ namespace RepositoryNotifier.Service
             };
 
             _notificationTaskDao.AddNotificationTask(notificationTask);
+
+            return GetNotificationTask(notificationTask.Username, notificationTask.Frequency);
         }
 
-        public void DeleteNotificationTask(NotificationTask p_notificationTask)
+        public bool DeleteNotificationTask(NotificationTask p_notificationTask)
         {
-            _notificationTaskDao.DeleteNotificationTask(p_notificationTask);
+            return _notificationTaskDao.DeleteNotificationTask(p_notificationTask);
         }
 
         public NotificationTask GetNotificationTask(string p_username)
@@ -68,9 +70,9 @@ namespace RepositoryNotifier.Service
             return _notificationTaskDao.GetNotificationTaskByUserAndFrequency(p_username, p_frequency);
         }
 
-        public void DeleteNotificationTask(string p_username, Frequency p_frequency)
+        public bool DeleteNotificationTask(string p_username, Frequency p_frequency)
         {
-            _notificationTaskDao.DeleteNotificationTask(p_username, p_frequency);
+            return _notificationTaskDao.DeleteNotificationTask(p_username, p_frequency);
         }
 
         // TODO way too expensive
@@ -117,7 +119,7 @@ namespace RepositoryNotifier.Service
             _notificationTaskDao.UpdateNotificationTaskLastExecuted(p_notificationTask);
         }
 
-        public void UpdateNotificationTask(UpdateNotificationTO p_notification){
+        public bool UpdateNotificationTask(UpdateNotificationTO p_notification){
             NotificationTask notificationTask = new NotificationTask
             {
                 Username = p_notification.Username,
@@ -126,7 +128,7 @@ namespace RepositoryNotifier.Service
                 Repositories = p_notification.Repositories,
                 SearchKeywords = p_notification.SearchKeywords,
             };
-            _notificationTaskDao.UpdateNotificationTask(notificationTask);
+            return _notificationTaskDao.UpdateNotificationTask(notificationTask);
         }
 
     }

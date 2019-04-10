@@ -55,9 +55,14 @@ export class NotificationsComponent implements OnInit {
     this.alertifyService.confirm("Delete Notification", "Are you sure you want to delete this notification?", () => {
       let selectedNotifications = this.getSelectedNotifications();
       selectedNotifications.forEach(selectedNotification => {
-        this.taskSchedulerService.deleteNotification(selectedNotification.getNotificationTO.frequency).subscribe(() => {
-          this.notifications.splice(this.notifications.indexOf(selectedNotification));
-          this.alertifyService.success("Notification deleted.");
+        this.taskSchedulerService.deleteNotification(selectedNotification.getNotificationTO.frequency).subscribe(result => {
+          if (result.status == 201){
+            this.notifications.splice(this.notifications.indexOf(selectedNotification));
+            this.alertifyService.success("Notification deleted.");
+          }else{
+            this.alertifyService.error("An error occured.");
+          }
+
         });
       });
     });

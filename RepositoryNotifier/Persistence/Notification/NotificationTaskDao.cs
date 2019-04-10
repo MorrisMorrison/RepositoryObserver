@@ -23,10 +23,11 @@ namespace RepositoryNotifier.Persistence
             notificationsTasks.InsertOne(p_notificationTask);
         }
 
-        public void DeleteNotificationTask(NotificationTask p_notificationTask)
+        public bool DeleteNotificationTask(NotificationTask p_notificationTask)
         {
             IMongoCollection<NotificationTask> notificationsTasks = _database.GetCollection<NotificationTask>(DBConnectionConstants.NOTIFICATION_COLLECTION);
-            notificationsTasks.DeleteOne(p_item => p_item.Id.Equals(p_notificationTask.Id) || p_item.Username.Equals(p_notificationTask.Username) || p_item.Email.Equals(p_notificationTask.Username));
+            DeleteResult result = notificationsTasks.DeleteOne(p_item => p_item.Id.Equals(p_notificationTask.Id) || p_item.Username.Equals(p_notificationTask.Username) || p_item.Email.Equals(p_notificationTask.Username));
+            return result.IsAcknowledged;
         }
 
         public NotificationTask GetNotificationTask(string p_username)
@@ -66,10 +67,12 @@ namespace RepositoryNotifier.Persistence
             return taskByUserAndFrequency;
         }
 
-        public void DeleteNotificationTask(string p_username, Frequency p_frequency)
+        public bool DeleteNotificationTask(string p_username, Frequency p_frequency)
         {
             IMongoCollection<NotificationTask> notificationsTasks = _database.GetCollection<NotificationTask>(DBConnectionConstants.NOTIFICATION_COLLECTION);
-            notificationsTasks.DeleteOne(p_item => p_item.Username == p_username && p_item.Frequency == p_frequency);
+            DeleteResult result = notificationsTasks.DeleteOne(p_item => p_item.Username == p_username && p_item.Frequency == p_frequency);
+
+            return result.IsAcknowledged;
         }
 
         // https://stackoverflow.com/questions/42507640/update-specific-field-in-mongodb-document
@@ -85,12 +88,13 @@ namespace RepositoryNotifier.Persistence
             notificationsTasks.UpdateOne(p_task => p_task.Username == p_notificationTask.Username && p_task.Frequency == p_notificationTask.Frequency, updateDef);
         }
 
-      public  void UpdateNotificationTask(NotificationTask p_notificationTask){
+      public  bool UpdateNotificationTask(NotificationTask p_notificationTask){
             IMongoCollection<NotificationTask> notificationsTasks = _database.GetCollection<NotificationTask>(DBConnectionConstants.NOTIFICATION_COLLECTION);
             var updateDef = Builders<NotificationTask>.Update.Set(p_task => p_task.Repositories, p_notificationTask.Repositories)
                                                              .Set(p_task => p_task.SearchKeywords, p_notificationTask.SearchKeywords)
                                                              .Set(p_task => p_task.Email, p_notificationTask.Email);
-            notificationsTasks.UpdateOne(p_task => p_task.Username == p_notificationTask.Username && p_task.Frequency == p_notificationTask.Frequency, updateDef);
+            UpdateResult result = notificationsTasks.UpdateOne(p_task => p_task.Username == p_notificationTask.Username && p_task.Frequency == p_notificationTask.Frequency, updateDef);
+            return result.IsAcknowledged;
       }
 
         

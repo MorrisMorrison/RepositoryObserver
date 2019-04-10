@@ -85,11 +85,19 @@ export class EditNotificationComponent implements OnInit {
       notification.repositories = this.getSelectedRepositories();
 
       this.taskSchedulerService.updateNotification(notification).subscribe(result => {
-        this.alertifyService.success("Notification updated.");
 
-        this.selectedNotification.getNotificationTO.repositories = notification.repositories;
-        this.selectedNotification.getNotificationTO.email = notification.email;
-        this.selectedNotification.getNotificationTO.searchKeywords = notification.searchKeywords;
+        if (result.status == 201) {
+
+          this.selectedNotification.getNotificationTO.repositories = notification.repositories;
+          this.selectedNotification.getNotificationTO.email = notification.email;
+          this.selectedNotification.getNotificationTO.searchKeywords = notification.searchKeywords;
+
+          this.alertifyService.success("Notification updated.");
+
+        } else {
+          this.alertifyService.error("An error occured.");
+
+        }
 
         this.activeModal.close();
       });

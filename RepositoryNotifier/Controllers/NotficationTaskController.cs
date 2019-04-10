@@ -40,26 +40,27 @@ namespace RepositoryNotifier.Controllers
             if (_notificationTaskCrudService.NotificationTaskExists(p_notification.Username, p_notification.Frequency))
                 return Conflict();
 
-            _notificationTaskCrudService.AddNotificationTask(p_notification);
+            NotificationTask task = _notificationTaskCrudService.AddNotificationTask(p_notification);
 
-            if (_notificationTaskCrudService.GetNotificationTask(p_notification.Username, p_notification.Frequency) != null)
+            if (task != null && task.Id != null)
             {
-                return StatusCode(201);
+                return Ok();
             }
-            return StatusCode(400);
+
+            return BadRequest();
         }
 
         [HttpDelete]
         public IActionResult DeleteNotification([FromQuery(Name = "frequency")]Frequency p_frequency)
         {
             string username = AuthHelper.GetLogin(HttpContext);
-            _notificationTaskCrudService.DeleteNotificationTask(username, p_frequency);
+            bool success = _notificationTaskCrudService.DeleteNotificationTask(username, p_frequency);
 
-            if (_notificationTaskCrudService.GetNotificationTask(username, p_frequency) == null)
+            if (success)
             {
-                return StatusCode(201);
+                return Ok();
             }
-            return StatusCode(400);
+            return BadRequest();
         }
 
         [HttpGet]
@@ -90,8 +91,12 @@ namespace RepositoryNotifier.Controllers
 
         [HttpPut]
         public IActionResult UpdateNotification([FromBody]UpdateNotificationTO p_notification){
-            _notificationTaskCrudService.UpdateNotificationTask(p_notification);
-            return Ok();
+            bool success = _notificationTaskCrudService.UpdateNotificationTask(p_notification);
+
+            if(success){
+                return Ok();
+            }
+            return BadRequest();
         }
     }
 }

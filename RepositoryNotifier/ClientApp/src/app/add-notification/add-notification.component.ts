@@ -89,7 +89,9 @@ export class AddNotificationComponent implements OnInit, OnChanges {
                     this.notificationCreated.emit(true);
                     this.alertifyService.success("Notification created.");
                 } else if (response.status === 409) {
-                    this.alertifyService.error("Notification already exists.");
+                    this.alertifyService.warning("Notification already exists.");
+                } else{
+                    this.alertifyService.error("An Error occurred.");
                 }
                 this.clearFormData();
             });

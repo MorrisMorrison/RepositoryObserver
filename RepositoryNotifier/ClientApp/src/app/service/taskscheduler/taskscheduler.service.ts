@@ -28,16 +28,16 @@ export class TaskschedulerService {
         return this.httpClient.get<GetNotificationTO[]>(this.baseUrl + "api/notificationtask/getallnotifications");
     }
     
-    deleteNotification(frequency: number){
-        return this.httpClient.delete(this.baseUrl + "api/notificationtask/deletenotification?frequency=" + frequency);
+    deleteNotification(frequency: number):Observable<HttpResponse<string>>{
+        return this.httpClient.delete<string>(this.baseUrl + "api/notificationtask/deletenotification?frequency=" + frequency, {observe: 'response'});
     }
 
     getCommonKeywords():Observable<string[]>{
         return this.httpClient.get<string[]>(this.baseUrl + "api/notificationtask/getcommonkeywords");
     }
 
-    updateNotification(notification:UpdateNotificationTO){
-        return this.httpClient.put(this.baseUrl +"api/notificationtask/updatenotification", notification);
+    updateNotification(notification:UpdateNotificationTO):Observable<HttpResponse<string>>{
+        return this.httpClient.put<string>(this.baseUrl +"api/notificationtask/updatenotification", notification, {observe: 'response'});
     }
     
 }

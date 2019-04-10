@@ -7,9 +7,9 @@ namespace RepositoryNotifier.Service
 {
     public interface INotificationTaskCrudService
     {
-        void AddNotificationTask(AddNotificationTO p_notification);
-        void DeleteNotificationTask(NotificationTask p_notificationTask);
-        void DeleteNotificationTask(string p_username, Frequency p_frequency);
+        NotificationTask AddNotificationTask(AddNotificationTO p_notification);
+        bool DeleteNotificationTask(NotificationTask p_notificationTask);
+        bool DeleteNotificationTask(string p_username, Frequency p_frequency);
         NotificationTask GetNotificationTask(string p_username);
         IEnumerable<NotificationTask> GetNotificationTaskByFrequency(Frequency p_frequency);
         IEnumerable<NotificationTask> GetAllNotificationTasks();
@@ -19,6 +19,6 @@ namespace RepositoryNotifier.Service
         IEnumerable<string> GetCommonKeywords(int p_amount);
         void UpdateStatus(NotificationTask p_notificationTask);
         void UpdateLastExecuted(NotificationTask p_notificationTask);
-        void UpdateNotificationTask(UpdateNotificationTO p_notification);
+        bool UpdateNotificationTask(UpdateNotificationTO p_notification);
     }
 }
