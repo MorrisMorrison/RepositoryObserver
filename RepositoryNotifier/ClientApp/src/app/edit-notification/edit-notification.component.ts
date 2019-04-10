@@ -86,7 +86,7 @@ export class EditNotificationComponent implements OnInit {
 
       this.taskSchedulerService.updateNotification(notification).subscribe(result => {
 
-        if (result.status == 201) {
+        if (result.status == 200) {
 
           this.selectedNotification.getNotificationTO.repositories = notification.repositories;
           this.selectedNotification.getNotificationTO.email = notification.email;

@@ -85,7 +85,7 @@ export class AddNotificationComponent implements OnInit, OnChanges {
         this.githubAuthService.getCurrentUser().subscribe(user => {
             notification.username = user.username;
             this.taskschedulerService.createNotification(notification).subscribe(response => {
-                if (response.status === 201) {
+                if (response.status === 200) {
                     this.notificationCreated.emit(true);
                     this.alertifyService.success("Notification created.");
                 } else if (response.status === 409) {

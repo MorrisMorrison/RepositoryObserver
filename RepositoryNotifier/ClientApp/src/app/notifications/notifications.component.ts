@@ -56,7 +56,7 @@ export class NotificationsComponent implements OnInit {
       let selectedNotifications = this.getSelectedNotifications();
       selectedNotifications.forEach(selectedNotification => {
         this.taskSchedulerService.deleteNotification(selectedNotification.getNotificationTO.frequency).subscribe(result => {
-          if (result.status == 201){
+          if (result.status == 200){
             this.notifications.splice(this.notifications.indexOf(selectedNotification));
             this.alertifyService.success("Notification deleted.");
           }else{
