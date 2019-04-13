@@ -104,27 +104,6 @@ namespace RepositoryNotifier
 
                 });
 
-//    services.AddAuthentication(options =>
-//             {
-//                 options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-//             })
-
-//             .AddCookie(options =>
-//             {
-//                 options.LoginPath = "/api/auth/login";
-//                 options.LogoutPath = "/api/auth/signout";
-//             })
-
-//             .AddGitHub(options =>
-//             {
-//                 options.ClientId = Configuration["GitHub:ClientId"];
-//                 options.ClientSecret = Configuration["GitHub:ClientSecret"];
-//                 options.Scope.Add("user:email");
-//             });
-        
-
-
-
             // Add Singletons
             // Inject dependencies via constructor
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -161,23 +140,17 @@ namespace RepositoryNotifier
             }
 
             // built in cors middleware doesnt work => no headers set 
-            // app.UseCors(options => options.WithOrigins("http://www.github.com").AllowAnyMethod().AllowCredentials().AllowAnyHeader());
-            // app.UseCors();
             app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
             // own middleware to force CORS headers
             // app.UseCorsMiddleware();
 
-            // app.UseCors(options => options.WithOrigins("https://github.com", "http://www.github.com", "https://www.github.com", "http://www.github.com","https://localhost:5001", "http://localhost:5000", "https://localhost:44375").AllowAnyMethod().AllowAnyHeader().AllowCredentials().SetIsOriginAllowedToAllowWildcardSubdomains());
             app.UseHttpsRedirection();
             app.UseAuthentication();
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
-
-
-
 
             app.UseMvc(routes =>
             {
