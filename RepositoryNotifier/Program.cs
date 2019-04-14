@@ -5,7 +5,10 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using RepositoryNotifier.TaskScheduler;
+using Serilog;
+using Serilog.Events;
 
 namespace RepositoryNotifier
 {
@@ -23,6 +26,9 @@ namespace RepositoryNotifier
                 // start notification scheduler
                 INotificationTaskScheduler notificationTaskScheduler = services.GetService<INotificationTaskScheduler>();
                 //    notificationTaskScheduler.Run();
+
+                ILogger<Program> logger = services.GetService<ILogger<Program>>();
+                logger.LogInformation("Startup Application.");
             }
             catch (Exception ex)
             {
@@ -31,10 +37,16 @@ namespace RepositoryNotifier
 
             host.Run();
 
+
+
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+                .UseStartup<Startup>()
+                   .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
+	.ReadFrom.Configuration(hostingContext.Configuration)
+	.Enrich.FromLogContext()
+	.WriteTo.Console());
     }
 }

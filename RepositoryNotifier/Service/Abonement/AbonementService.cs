@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Microsoft.Extensions.Logging;
 using RepositoryNotifier.Helper;
 using RepositoryNotifier.Persistence;
 
@@ -11,10 +12,13 @@ namespace RepositoryNotifier.Service
         private IAbonementDao _abonementDao{get;set;}
         private IPremiumPlanService _premiumPlanService {get;set;}
 
-        public AbonementService(IAbonementDao p_abonementDao, IPremiumPlanService p_premiumPlanService)
+        private ILogger<AbonementService> _logger {get;set;}
+
+        public AbonementService(IAbonementDao p_abonementDao, IPremiumPlanService p_premiumPlanService, ILogger<AbonementService> p_logger)
         {
             _abonementDao = p_abonementDao;
             _premiumPlanService = p_premiumPlanService;
+            _logger = p_logger;
         }
 
         public bool AbonementExists(string p_username)
@@ -48,7 +52,6 @@ namespace RepositoryNotifier.Service
                 Username = p_username,
                 PremiumPlan = premiumPlan,
             };
-
             _abonementDao.AddAbonement(abonement);
         }
 
