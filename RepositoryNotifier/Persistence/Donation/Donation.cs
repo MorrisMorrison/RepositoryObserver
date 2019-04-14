@@ -9,6 +9,9 @@ namespace RepositoryNotifier.Persistence
         [BsonId]
         public ObjectId Id { get; set; }
 
+        [BsonElement("username")]
+        public string Username{get;set;}
+
         [BsonElement("amount")]
         public double Amount { get; set; }
 

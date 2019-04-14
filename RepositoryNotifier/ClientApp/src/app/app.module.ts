@@ -15,6 +15,7 @@ import { AlertifyService } from './service/alertify/alertify.service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { EditNotificationComponent } from './edit-notification/edit-notification.component';
 import { AbonementComponent } from './abonement/abonement.component';
+import { PaymentsComponent } from './payments/payments.component';
 
 const config: ExtraOptions = {
   onSameUrlNavigation: 'reload'
@@ -29,6 +30,7 @@ const config: ExtraOptions = {
     FooterComponent,
     EditNotificationComponent,
     AbonementComponent,
+    PaymentsComponent,
   ],
   exports: [],
   entryComponents: [EditNotificationComponent],

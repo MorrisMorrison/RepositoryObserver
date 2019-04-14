@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -6,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using PayPal.v1.BillingAgreements;
 using PayPal.v1.BillingPlans;
 using RepositoryNotifier.Helper;
+using RepositoryNotifier.Persistence;
 using RepositoryNotifier.Service;
 using RepositoryNotifier.Service.Payment;
 
@@ -50,7 +52,7 @@ namespace RepositoryNotifier.Controllers
             if (result != null)
             {
                 string username = AuthHelper.GetLogin(this.HttpContext);
-                _donationService.AddDonation(result);
+                _donationService.AddDonation(result, username);
 
                 _logger.LogInformation("Execute Payment successful. Result: {Result} PaymentID: {PaymentID} Token: {Token} PayerID: {PayerID} User: {User}", result, p_paymentID,p_token, p_payerID, AuthHelper.GetUsername(HttpContext));
                 return Redirect("/");
@@ -116,6 +118,31 @@ namespace RepositoryNotifier.Controllers
 
             _logger.LogError("Could not execute Agreement. Agreement: {Agreement} User: {User}", agreement, AuthHelper.GetUsername(HttpContext));
             return BadRequest();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAbonement(){
+            string username = AuthHelper.GetUsername(HttpContext);
+            Abonement abonement = _abonementService.GetAbonement(username);
+
+            if (abonement != null){
+                return Ok(abonement);
+            }
+
+            return BadRequest();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllDonations(){
+            string username = AuthHelper.GetUsername(HttpContext);
+            IList<Donation> donations = _donationService.GetAllDonations(username);
+
+            if (donations != null && donations.Count > 1){
+                return Ok(donations);
+            }
+
+            return BadRequest();
+
         }
     }
 }

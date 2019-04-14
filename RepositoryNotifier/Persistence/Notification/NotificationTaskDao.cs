@@ -110,7 +110,6 @@ namespace RepositoryNotifier.Persistence
             
             if (!result.IsAcknowledged) _logger.LogError("Could not update NotificationTask: {NotificationTask} Result: {Result}", p_notificationTask, result);
 
-            
             return result.IsAcknowledged;
       }
 

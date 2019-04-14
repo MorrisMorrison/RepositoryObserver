@@ -1,0 +1,41 @@
+<app-nav-menu [isAuthenticated]="isAuthenticated" [username]="username"></app-nav-menu>
+<div class="container paymentsMain">
+    <div class="card text-white bg-primary">
+        <div class="card-body">
+            <h1 class="card-title" style="padding-top:10px; padding-bottom:10px;">My Premium Plans:</h1>
+            <p class="card-text">You can only have only NotificationTask per Frequency, so your maximum number of tasks
+                equals the maximum number
+                of
+                frequencies available.</p>
+            <div *ngIf="abonement == null">
+                <p class="text-info">You haven't bought any premium plans yet.</p>
+            </div>
+        </div>
+    </div>
+    <div class="card text-white bg-primary">
+        <div class="card-body">
+            <h1 class="card-title" style="padding-top:10px; padding-bottom:10px;">My Payments:</h1>
+            <p class="card-text">You can only have only NotificationTask per Frequency, so your maximum number of tasks
+                equals the maximum number
+                of
+                frequencies available.</p>
+            <div *ngIf="abonement== null || abonement.premiumPlan.payments.length < 1">
+                <p class="text-info">You haven't created any payments yet.</p>
+            </div>
+        </div>
+    </div>
+    <div class="card text-white bg-primary">
+        <div class="card-body">
+            <h1 class="card-title" style="padding-top:10px; padding-bottom:10px;">My Donations:</h1>
+            <p class="card-text">You can only have only NotificationTask per Frequency, so your maximum number of tasks
+                equals the maximum number
+                of
+                frequencies available.</p>
+            <div *ngIf="donations.length < 1">
+                <p class="text-info">You haven't created any donations yet.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>
+

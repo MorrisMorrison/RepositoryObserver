@@ -124,7 +124,7 @@ namespace RepositoryNotifier
             services.AddSingleton<IDbConnectionProvider, DbConnectionProvider>();
 
             // In production, the Angular files will be served from this directory
-            services.AddSpaStaticFiles(configuration => { configuration.RootPath = "wwwroot"; });
+            // services.AddSpaStaticFiles(configuration => { configuration.RootPath = "wwwroot"; });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -153,7 +153,10 @@ namespace RepositoryNotifier
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
-            app.UseSpaStaticFiles();
+
+            // is used when spa is served by kestrel
+
+            // app.UseSpaStaticFiles();
 
             app.UseMvc(routes =>
             {
@@ -161,10 +164,10 @@ namespace RepositoryNotifier
                     name: "default",
                     template: "{controller}/{action=Index}/{id?}");
                 // Uncomment if SPA needs to be served by kestrel
-                routes.MapSpaFallbackRoute(
-                    name: "spa-fallback",
-                    defaults: new { controller = "Fallback", action = "Index" }
-                );
+                // routes.MapSpaFallbackRoute(
+                //     name: "spa-fallback",
+                //     defaults: new { controller = "Fallback", action = "Index" }
+                // );
             });
 
             app.UseSpa(spa =>
@@ -172,11 +175,13 @@ namespace RepositoryNotifier
                 // To learn more about options for serving an Angular SPA from ASP.NET Core,
                 // see https://go.microsoft.com/fwlink/?linkid=864501
                 spa.Options.SourcePath = "ClientApp";
-                // if (env.IsDevelopment())
-                // {
-                //     spa.UseAngularCliServer(npmScript: "start");
-                //     // spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
-                // }
+                if (env.IsDevelopment())
+                {
+                    spa.UseAngularCliServer(npmScript: "start");
+
+                    // not used atm
+                    // spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
+                }
             });
         }
     }
