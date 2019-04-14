@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BraintreeHttp;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using PayPal.Core;
 using PayPal.v1.BillingAgreements;
 using PayPal.v1.BillingPlans;
@@ -20,13 +21,15 @@ namespace RepositoryNotifier.Service.Payment
         public SandboxEnvironment Environment { get; set; }
         public PayPalHttpClient Client { get; set; }
         public PayPalConfig PayPalConfig { get; set; }
+        private ILogger<PayPalPaymentService> _logger {get;set;}
 
-        public PayPalPaymentService(IConfiguration p_configuration)
+        public PayPalPaymentService(IConfiguration p_configuration, ILogger<PayPalPaymentService> p_logger)
         {
             PayPalConfig = new PayPalConfig(p_configuration);
             Environment = new SandboxEnvironment(PayPalConfig.CLIENT_ID,
                 PayPalConfig.CLIENT_SECRET);
             Client = new PayPalHttpClient(Environment);
+            _logger = p_logger;
         }
 
 

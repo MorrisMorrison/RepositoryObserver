@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using RepositoryNotifier.DTO;
 using RepositoryNotifier.Helper;
 using RepositoryNotifier.Persistence;
@@ -17,10 +18,11 @@ namespace RepositoryNotifier.Controllers
     {
 
         private INotificationTaskCrudService _notificationTaskCrudService { get; }
-
-        public NotificationTaskController(INotificationTaskCrudService p_notificationTaskCrudService)
+        private ILogger<NotificationTaskController> _logger {get;set;}
+        public NotificationTaskController(INotificationTaskCrudService p_notificationTaskCrudService, ILogger<NotificationTaskController> p_logger)
         {
             _notificationTaskCrudService = p_notificationTaskCrudService;
+            _logger = p_logger;
         }
 
         [HttpGet]
@@ -47,6 +49,7 @@ namespace RepositoryNotifier.Controllers
                 return Ok();
             }
 
+            _logger.LogError("Could not add Notification: {Notification} for User: {User}", p_notification, AuthHelper.GetLogin(HttpContext));
             return BadRequest();
         }
 
@@ -60,6 +63,8 @@ namespace RepositoryNotifier.Controllers
             {
                 return Ok();
             }
+
+            _logger.LogError("Could not delete Notification with Frequency: {Frequency} for User: {User}", p_frequency, AuthHelper.GetLogin(HttpContext));
             return BadRequest();
         }
 
@@ -73,6 +78,7 @@ namespace RepositoryNotifier.Controllers
                 return Ok(notificationTasksByUser);
             }
 
+            _logger.LogError("Could not get all Notifications for User: {User}", AuthHelper.GetLogin(HttpContext));
             return BadRequest();
         }
 
@@ -96,6 +102,8 @@ namespace RepositoryNotifier.Controllers
             if(success){
                 return Ok();
             }
+
+            _logger.LogError("Could not update Notification {Notification} for User: {User}", p_notification, AuthHelper.GetLogin(HttpContext));
             return BadRequest();
         }
     }

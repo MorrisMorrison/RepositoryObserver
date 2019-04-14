@@ -18,15 +18,13 @@ namespace RepositoryNotifier.Controllers
     public class AuthController: Controller
     {
         private IGithubApiService _githubApiAdapter { get; set; }
-        private ILogger<AuthController> _logger {get;set;}
-        public AuthController(IGithubApiService p_githubApiAdapter, ILogger<AuthController> p_logger)
+        public AuthController(IGithubApiService p_githubApiAdapter)
         {
             _githubApiAdapter = p_githubApiAdapter;
-            _logger = p_logger;
         }
         
-   [HttpGet]
-        public   IActionResult Login(string returnUrl = "/")
+        [HttpGet]
+        public IActionResult Login(string returnUrl = "/")
         {
             return Challenge(new AuthenticationProperties() { RedirectUri = returnUrl }, "GitHub");
         }

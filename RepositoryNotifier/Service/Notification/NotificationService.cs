@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Http.Connections;
+using Microsoft.Extensions.Logging;
 using RepositoryNotifier.DTO;
 using RepositoryNotifier.Persistence;
 using RepositoryNotifier.TaskScheduler;
@@ -12,10 +13,12 @@ namespace RepositoryNotifier.Service
     public class NotificationTaskCrudService : INotificationTaskCrudService
     {
         private INotificationTaskDao _notificationTaskDao { get; }
+        private ILogger<NotificationTaskCrudService> _logger {get;set;}
 
-        public NotificationTaskCrudService(INotificationTaskDao p_notificationTaskDao)
+        public NotificationTaskCrudService(INotificationTaskDao p_notificationTaskDao, ILogger<NotificationTaskCrudService> p_logger)
         {
             _notificationTaskDao = p_notificationTaskDao;
+            _logger = p_logger;
         }
 
         public NotificationTask AddNotificationTask(AddNotificationTO p_notification)

@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Timers;
+using Microsoft.Extensions.Logging;
 using Octokit;
 using RepositoryNotifier.Persistence;
 using RepositoryNotifier.Service;
@@ -16,22 +17,22 @@ namespace RepositoryNotifier.TaskScheduler
     {
         private INotificationTaskCrudService _notificationTaskCrudService { get; }
         private IFrequencyService _frequencyService { get;  }
-        private IGithubApiService _githubApiAdapter { get; }
-        private IEmailManager _emailManager { get; }
+        private IGithubApiService _githubApiService { get; }
+        private IEmailService _emailService { get; }
         private IList<Frequency> _frequencies { get; set; }
         private bool _initRunDone { get; set; }
-//        private ILogger _logger { get; }
+       private ILogger<NotificationTaskScheduler> _logger { get; set; }
         private IList<Timer> _timers { get; set; }
         private Timer _initTimer { get; set; }
 
-        public NotificationTaskScheduler(INotificationTaskCrudService p_notificationTaskCrudService, IGithubApiService p_githubApiAdapter, IFrequencyService p_frequencyService, IEmailManager p_emailManager)
+        public NotificationTaskScheduler(INotificationTaskCrudService p_notificationTaskCrudService, IGithubApiService p_githubApiService, IFrequencyService p_frequencyService, IEmailService p_emailService, ILogger<NotificationTaskScheduler> p_logger)
         {
             _notificationTaskCrudService = p_notificationTaskCrudService;
             _frequencyService = p_frequencyService;
-            _githubApiAdapter = p_githubApiAdapter;
+            _githubApiService = p_githubApiService;
             _frequencies = _frequencyService.GetFrequencies();
-            _emailManager = p_emailManager;
-//            _logger = p_logger;
+            _emailService = p_emailService;
+           _logger = p_logger;
         }
 
         
@@ -41,22 +42,29 @@ namespace RepositoryNotifier.TaskScheduler
             // execute all tasks at first startup
             // if no tasks have been found, create a Timer set to the smallest frequency
             // and look for tasks again
+
+           _logger.LogInformation("Initialize NotificationTaskScheduler Run().");
+
+
             IList<NotificationTask> notifications = _notificationTaskCrudService.GetAllNotificationTasks().ToList();
             if (notifications == null || notifications.Count < 1)
             {
                 if (_initTimer == null)
                 {
-                    Debug.Print("---------- Initialize NotificationTask ----------");
-                    Timer initTimer = new Timer((long) _frequencies.First() * 30000);
+                    double interval = (long) _frequencies.First() * 30000;
+                    Timer initTimer = new Timer(interval);
                     initTimer.Elapsed += async (sender, e) => await Run();
                     initTimer.AutoReset = false;
                     _initTimer = initTimer;
                     _initTimer.Enabled = true;
+
+                   _logger.LogInformation("No NotificationTasks found. Setting up InitTimer {InitTimer} to run in {Interverl} s.", initTimer, interval/30000 );
                 }
                 return;
             }
             if (!_initRunDone)
             {
+                _logger.LogInformation("NotificationTaskScheduler starting init run.");
                 foreach (NotificationTask p_notification in notifications)
                 {
                     ExecuteNotificationTask(p_notification);
@@ -87,18 +95,19 @@ namespace RepositoryNotifier.TaskScheduler
             }
         }
         
-
         public async Task ExecuteNotificationTask(NotificationTask p_notificationTask)
         {
-            Debug.Print("---------- Execute Task ----------");
-            IList<SearchCodeResult> searchResults = await _githubApiAdapter.FindPasswords(p_notificationTask);
-//            _logger.Log(Log Level.Information, "Execute Task | Find Search Passwords ", searchResults);
+            IList<SearchCodeResult> searchResults = await _githubApiService.FindPasswords(p_notificationTask);
             
             if (searchResults == null || searchResults.Count < 1) return;
+
+            _logger.LogInformation("Found Keyword for NotificationTask: {NotificationTask} SearchResult{SearchResult}", p_notificationTask, searchResults);
+
+
             p_notificationTask.Status = RepositoryNotifier.Constants.Status.OK;
             _notificationTaskCrudService.UpdateStatus(p_notificationTask);
             _notificationTaskCrudService.UpdateLastExecuted(p_notificationTask);
-            _emailManager.SendNotificationMail(p_notificationTask.Username, p_notificationTask.Email, searchResults);
+            _emailService.SendNotificationMail(p_notificationTask.Username, p_notificationTask.Email, searchResults);
         }
         
     }

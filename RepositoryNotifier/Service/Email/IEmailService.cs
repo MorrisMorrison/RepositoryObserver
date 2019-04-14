@@ -3,7 +3,7 @@ using Octokit;
 
 namespace RepositoryNotifier.TaskScheduler
 {
-    public interface IEmailManager
+    public interface IEmailService
     {
         void SendNotificationMail(string p_userName, string p_userEmail, IList<SearchCodeResult> p_searchResults);
     }

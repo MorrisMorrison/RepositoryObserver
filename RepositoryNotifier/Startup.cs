@@ -19,6 +19,7 @@ using RepositoryNotifier.Persistence;
 using RepositoryNotifier.Service;
 using RepositoryNotifier.TaskScheduler;
 using RepositoryNotifier.Service.Github;
+using RepositoryNotifier.Service.Payment;
 
 namespace RepositoryNotifier
 {
@@ -114,7 +115,7 @@ namespace RepositoryNotifier
             services.AddSingleton<INotificationTaskDao, NotificationTaskDao>();
             services.AddSingleton<INotificationTaskCrudService, NotificationTaskCrudService>();
             services.AddSingleton<IFrequencyService, FrequencyService>();
-            // services.AddSingleton<IPayPalPaymentProvider, PayPalPaymentProvider>();
+            services.AddSingleton<IPayPalPaymentService, PayPalPaymentService>();
             services.AddSingleton<IAbonementService, AbonementService>();
             services.AddSingleton<IAbonementDao, AbonementDao>();
             services.AddSingleton<IDonationService, DonationService>();
