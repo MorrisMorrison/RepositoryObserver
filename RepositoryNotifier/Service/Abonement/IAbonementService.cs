@@ -11,5 +11,7 @@ namespace RepositoryNotifier.Service
          void UpdateAbonement(Abonement p_abonement);
 
          bool AbonementExists(string p_username);
+
+         bool ActivateAbonement(string p_username);
     }
 }

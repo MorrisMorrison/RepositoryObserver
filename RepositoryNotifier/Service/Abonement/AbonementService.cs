@@ -51,6 +51,7 @@ namespace RepositoryNotifier.Service
             Abonement abonement = new Abonement(){
                 Username = p_username,
                 PremiumPlan = premiumPlan,
+                Active = false
             };
             _abonementDao.AddAbonement(abonement);
         }
@@ -63,6 +64,13 @@ namespace RepositoryNotifier.Service
         public void UpdateAbonement(Abonement p_abonement)
         {
             _abonementDao.UpdateAbonement(p_abonement);
+        }
+
+        public bool ActivateAbonement(string p_username)
+        {
+            Abonement abonement = _abonementDao.GetAbonement(p_username);
+            abonement.Active = true;
+            return _abonementDao.UpdateAbonement(abonement);
         }
     }
 }

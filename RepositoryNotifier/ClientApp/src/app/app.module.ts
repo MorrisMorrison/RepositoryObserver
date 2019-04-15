@@ -44,6 +44,7 @@ const config: ExtraOptions = {
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
       { path: 'notifications', component: NotificationsComponent },
+      { path: 'payments', component: PaymentsComponent },
     ], config)
   ],
   providers: [GithubauthService, TaskschedulerService, AlertifyService],

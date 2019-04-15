@@ -9,7 +9,7 @@ namespace RepositoryNotifier.Persistence
     {
 
         private IMongoDatabase _database { get; set; }
-        private ILogger<AbonementDao> _logger {get;set;}
+        private ILogger<AbonementDao> _logger { get; set; }
         public AbonementDao(IDbConnectionProvider p_dbConnectionProvider, ILogger<AbonementDao> p_logger)
         {
             _database = p_dbConnectionProvider.GetDatabaseConnection();
@@ -26,7 +26,7 @@ namespace RepositoryNotifier.Persistence
         {
             IMongoCollection<Abonement> abonements = _database.GetCollection<Abonement>(DBConnectionConstants.ABONEMENT_COLLECTION);
             DeleteResult result = abonements.DeleteOne(p_item => p_item.Id.Equals(p_abonement.Id) || p_item.Username.Equals(p_abonement.Username));
-        
+
             if (!result.IsAcknowledged) _logger.LogError("Could not delete Abonement: {Abonement} Result: {Result}", p_abonement, result);
         }
         public void DeleteByPremiumPlanType(string p_username, string p_premiumPlanType)
@@ -46,12 +46,17 @@ namespace RepositoryNotifier.Persistence
             return abonement;
         }
 
-        public void UpdateAbonement(Abonement p_abonement)
+        public bool UpdateAbonement(Abonement p_abonement)
         {
             IMongoCollection<Abonement> abonements = _database.GetCollection<Abonement>(DBConnectionConstants.ABONEMENT_COLLECTION);
-            var updateDef = Builders<Abonement>.Update.Set(abonement => abonement.PremiumPlan, p_abonement.PremiumPlan);
+            var updateDef = Builders<Abonement>.Update.Set(abonement => abonement.PremiumPlan, p_abonement.PremiumPlan).Set(abonement => abonement.Active , p_abonement.Active);
             UpdateResult result = abonements.UpdateOne(abonement => abonement.Username == p_abonement.Username, updateDef);
-            if (!result.IsAcknowledged) _logger.LogError("Could not update Abonement: {Abonement} Result: {Result}", p_abonement, result);
+            if (result.IsAcknowledged)
+            {
+                return true;
+            }
+            _logger.LogError("Could not update Abonement: {Abonement} Result: {Result}", p_abonement, result);
+            return false;
         }
     }
 }

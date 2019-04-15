@@ -1,6 +1,7 @@
 export class Abonement{
     username:string;
     premiumPlan:PremiumPlan;
+    active:boolean;
 }
 
 export class PremiumPlan{

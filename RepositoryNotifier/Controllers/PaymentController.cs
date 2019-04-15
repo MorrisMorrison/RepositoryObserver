@@ -85,6 +85,9 @@ namespace RepositoryNotifier.Controllers
                          _logger.LogError("Could not create Agreement. Agreement: {Agreement} ActivatedSubscription: {ActivatedSubscription} ApprovalUrl: {ApprovalUrl} User: {User}", agreement, activatedSubscription, approvalUrl, AuthHelper.GetUsername(HttpContext));
                     }
 
+                    string username = AuthHelper.GetLogin(HttpContext);
+                    _abonementService.AddAbonement(subscription, username);
+
                     _logger.LogInformation("Create Agreement successful. Agreement: {Agreement} Amount: {Amount} User: {User}", agreement, p_amount ,AuthHelper.GetUsername(HttpContext));
                     return Ok(approvalUrl);
                 }else{
@@ -101,28 +104,21 @@ namespace RepositoryNotifier.Controllers
         public async Task<IActionResult> SuccessSubscription([FromQuery(Name = "token")]string p_token)
         {
             Agreement agreement = await _payPalPaymentService.ExecuteAgreement(p_token);
-            if (agreement.Plan.Id != null)
+            if (agreement.Id != null)
             {
-                Plan plan = await _payPalPaymentService.GetBillingPlan(agreement.Plan.Id);
-                if (plan.Id != null)
-                {
                     string username = AuthHelper.GetLogin(this.HttpContext);
-                    _abonementService.AddAbonement(plan, username);
-
-                    _logger.LogInformation("Create Subscription successful. Agreement: {Agreement} Plan: {Plan} User: {User}", agreement, plan ,username);
+                    _abonementService.ActivateAbonement(username);
+                    _logger.LogInformation("Create Subscription successful. Agreement: {Agreement} User: {User}", agreement ,username);
                     return Redirect("/");
-                }else{
-                    _logger.LogError("Could not get BillingPlan after executing Agreement. Agreement: {Agreement} BillingPlan: {Plan} User: {User}", agreement, plan, AuthHelper.GetUsername(HttpContext));
-                }
             }
 
-            _logger.LogError("Could not execute Agreement. Agreement: {Agreement} User: {User}", agreement, AuthHelper.GetUsername(HttpContext));
+            _logger.LogError("Could not execute Agreement. Agreement: {Agreement} User: {User}", agreement, AuthHelper.GetLogin(HttpContext));
             return BadRequest();
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAbonement(){
-            string username = AuthHelper.GetUsername(HttpContext);
+            string username = AuthHelper.GetLogin(HttpContext);
             Abonement abonement = _abonementService.GetAbonement(username);
 
             if (abonement != null){
@@ -134,10 +130,10 @@ namespace RepositoryNotifier.Controllers
 
         [HttpGet]
         public async Task<IActionResult> GetAllDonations(){
-            string username = AuthHelper.GetUsername(HttpContext);
+            string username = AuthHelper.GetLogin(HttpContext);
             IList<Donation> donations = _donationService.GetAllDonations(username);
 
-            if (donations != null && donations.Count > 1){
+            if (donations != null && donations.Count > 0){
                 return Ok(donations);
             }
 

@@ -10,7 +10,7 @@ namespace RepositoryNotifier.Persistence
         Abonement GetAbonement(string p_username);
         Abonement GetAbonement(Abonement p_abonement);
 
-        void UpdateAbonement(Abonement p_abonement);
+        bool UpdateAbonement(Abonement p_abonement);
 
     }
 }

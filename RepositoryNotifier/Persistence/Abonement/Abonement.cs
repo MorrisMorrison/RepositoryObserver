@@ -17,5 +17,8 @@ namespace RepositoryNotifier.Persistence
         [BsonElement("premium_plans")]
         public PremiumPlan PremiumPlan {get;set;}
 
+        [BsonElement("active")]
+        public bool Active {get;set;}
+
     }
 }

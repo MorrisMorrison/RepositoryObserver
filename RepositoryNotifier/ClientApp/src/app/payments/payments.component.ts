@@ -42,7 +42,6 @@ export class PaymentsComponent implements OnInit {
     this.paymentService.getAllDonations().subscribe(donations => {
       this.donations = donations;
     });
-
   }
 
 }
