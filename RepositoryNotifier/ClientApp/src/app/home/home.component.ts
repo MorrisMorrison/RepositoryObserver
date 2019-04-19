@@ -39,7 +39,7 @@ export class HomeComponent {
     }
 
     login() {
-            this.document.location.href = "https://localhost:5001/api/auth/login";
+            this.document.location.href =  this.baseUrl + "api/auth/login";
     }
 }
 

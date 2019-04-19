@@ -34,7 +34,7 @@ namespace RepositoryNotifier.Service.Payment
         }
 
 
-        public async Task<PayPal.v1.Payments.Payment> CreatePayment(double p_amount)
+        public async Task<PayPal.v1.Payments.Payment> CreatePayment(double p_amount, string p_baseUrl)
         {
 
             PayPal.v1.Payments.Payment payment = new PayPal.v1.Payments.Payment()
@@ -53,8 +53,8 @@ namespace RepositoryNotifier.Service.Payment
                 },
                 RedirectUrls = new RedirectUrls()
                 {
-                    CancelUrl = "https://localhost:5001/api/payment/cancelpayment",
-                    ReturnUrl = "https://localhost:5001/api/payment/successpayment"
+                    CancelUrl =  "http://" + p_baseUrl + "/api/payment/cancelpayment",
+                    ReturnUrl =  "http://" + p_baseUrl + "/api/payment/successpayment"
                 },
                 Payer = new PayPal.v1.Payments.Payer()
                 {
@@ -112,7 +112,7 @@ namespace RepositoryNotifier.Service.Payment
 
 
 
-        public async Task<Plan> CreateBillingPlan(double p_amount)
+        public async Task<Plan> CreateBillingPlan(double p_amount, string p_baseUrl)
         {
             Plan billingPlan = new Plan()
             {
@@ -135,8 +135,8 @@ namespace RepositoryNotifier.Service.Payment
 
                 MerchantPreferences = new PayPal.v1.BillingPlans.MerchantPreferences()
                 {
-                    ReturnUrl = "https://localhost:5001/api/payment/successsubscription",
-                    CancelUrl = "https://localhost:5001/api/payment/cancelsubscription",
+                    ReturnUrl =  "http://" + p_baseUrl + "/api/payment/successsubscription",
+                    CancelUrl =  "http://" + p_baseUrl + "/api/payment/cancelsubscription",
                     AutoBillAmount = "YES",
                     InitialFailAmountAction = "CONTINUE",
                     MaxFailAttempts = "0"

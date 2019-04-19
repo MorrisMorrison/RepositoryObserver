@@ -15,7 +15,7 @@ export class NavMenuComponent {
 
   isExpanded = false;
 
-  constructor(private githubAuthService: GithubauthService, @Inject(DOCUMENT) private document: any, private router: Router, private alertifyService: AlertifyService) {
+  constructor(private githubAuthService: GithubauthService, @Inject(DOCUMENT) private document: any, private router: Router, private alertifyService: AlertifyService ,@Inject('BASE_URL') private baseUrl: string) {
   }
   @Input() isAuthenticated: boolean;
   @Input() username: string;
@@ -40,7 +40,8 @@ export class NavMenuComponent {
   }
 
   login() {
-    this.document.location.href = "https://repositoryobserver.herokuapp.com/api/auth/login";
+    
+    this.document.location.href = this.baseUrl + "api/auth/login";
 }
 
 
