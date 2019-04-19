@@ -155,7 +155,6 @@ namespace RepositoryNotifier
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
-
             // is used when spa is served by kestrel
 
             // app.UseSpaStaticFiles();
