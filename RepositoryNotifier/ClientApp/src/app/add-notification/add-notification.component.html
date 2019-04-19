@@ -20,9 +20,14 @@
           <div class="col">
             <div class="form-group">
               <label for="email"><b>Email address</b></label>
+              <div class="input-group">
+              <div class="input-group-prepend">
+                  <span class="input-group-text">@</span>
+                </div>
               <input class="form-control" id="email" name="email" type="email" [(ngModel)]="notificationModel.email"
                 #emailValidatior="ngModel" [ngClass]="{ 'is-invalid': notificationValidator.submitted && emailValidation?.invalid }"
                 aria-describedby="emailHelp" placeholder="Enter email" required email>
+              </div>
               <div *ngIf="notificationValidator.submitted && emailValidatior.invalid" class="invalid-feedback">
                 <div *ngIf="emailValidatior?.errors.required">Email is required</div>
                 <div *ngIf="emailValidatior?.errors.email">Email must be a valid email address</div>

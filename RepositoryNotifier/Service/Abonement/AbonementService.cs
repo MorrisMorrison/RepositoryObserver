@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
+using Microsoft.Extensions.Logging;
 using RepositoryNotifier.Helper;
-using RepositoryNotifier.Persistence;
+using RepositoryNotifier.Persistence.Abonement;
 
 namespace RepositoryNotifier.Service
 {
@@ -11,10 +12,13 @@ namespace RepositoryNotifier.Service
         private IAbonementDao _abonementDao{get;set;}
         private IPremiumPlanService _premiumPlanService {get;set;}
 
-        public AbonementService(IAbonementDao p_abonementDao, IPremiumPlanService p_premiumPlanService)
+        private ILogger<AbonementService> _logger {get;set;}
+
+        public AbonementService(IAbonementDao p_abonementDao, IPremiumPlanService p_premiumPlanService, ILogger<AbonementService> p_logger)
         {
             _abonementDao = p_abonementDao;
             _premiumPlanService = p_premiumPlanService;
+            _logger = p_logger;
         }
 
         public bool AbonementExists(string p_username)
@@ -24,11 +28,12 @@ namespace RepositoryNotifier.Service
             return false;
         }
 
-        public void AddAbonement(PayPal.v1.BillingPlans.Plan p_plan, string p_username){
+        public void AddAbonement(PayPal.v1.BillingPlans.Plan p_plan, BillingAddress p_billingAddress, string p_username){
             double amount = double.Parse(p_plan.PaymentDefinitions[0].Amount.Value);
             Persistence.Payment payment = new Persistence.Payment(){
                 Amount = amount,
-                PaymentDate = DateTime.Now
+                PaymentDate = DateTime.Now,
+                PaymentType ="PayPal"
             };
 
             IList<Persistence.Payment> payments = new List<Persistence.Payment>();
@@ -47,8 +52,9 @@ namespace RepositoryNotifier.Service
             Abonement abonement = new Abonement(){
                 Username = p_username,
                 PremiumPlan = premiumPlan,
+                Active = false,
+                BillingAddress = p_billingAddress
             };
-
             _abonementDao.AddAbonement(abonement);
         }
 
@@ -60,6 +66,13 @@ namespace RepositoryNotifier.Service
         public void UpdateAbonement(Abonement p_abonement)
         {
             _abonementDao.UpdateAbonement(p_abonement);
+        }
+
+        public bool ActivateAbonement(string p_username)
+        {
+            Abonement abonement = _abonementDao.GetAbonement(p_username);
+            abonement.Active = true;
+            return _abonementDao.UpdateAbonement(abonement);
         }
     }
 }

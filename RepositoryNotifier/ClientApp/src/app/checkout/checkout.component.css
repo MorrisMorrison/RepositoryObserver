@@ -1,0 +1,14 @@
+.container {
+    max-width: 960px;
+  }
+  
+  .lh-condensed { line-height: 1.25; }
+  
+
+  .paymentsMain{
+    padding-bottom: 20px;
+}
+.region{
+    padding-top: 30px;
+    padding-bottom: 10px;
+}

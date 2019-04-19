@@ -4,12 +4,13 @@ using System.Diagnostics;
 using System.Net;
 using System.Net.Mail;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Octokit;
 using RepositoryNotifier.Constants;
 
 namespace RepositoryNotifier.TaskScheduler
 {
-    public class EmailManager:IEmailManager
+    public class EmailService:IEmailService
     {
 
         private MailAddress _sender { get; set; } 
@@ -19,8 +20,9 @@ namespace RepositoryNotifier.TaskScheduler
         private string _senderUsername { get; set; } 
         private string _senderPassword { get; set; } 
         private EmailConfig _emailConfig { get; set; }
+        private ILogger<IEmailService> _logger  {get;set;}
 
-        public EmailManager(IConfiguration p_configuration)
+        public EmailService(IConfiguration p_configuration, ILogger<IEmailService> p_logger)
         {
             _emailConfig = new EmailConfig(p_configuration);
             _sender = new MailAddress(_emailConfig.SENDER_ADDRESS, _emailConfig.SENDER_DISPLAY_NAME);
@@ -29,6 +31,7 @@ namespace RepositoryNotifier.TaskScheduler
             _subject = _emailConfig.SUBJECT;
             _senderUsername = _emailConfig.SENDER_USERNAME;
             _senderPassword = _emailConfig.SENDER_PASSWORD;
+            _logger = p_logger;
         }
 
         public void SendNotificationMail(string p_userName, string p_userEmail, IList<SearchCodeResult> p_searchResults)
@@ -61,14 +64,16 @@ namespace RepositoryNotifier.TaskScheduler
                 }
             }
             
-            mail.Body = string.Format(EmailTemplates.BODY_TEMPLATE, p_userEmail,
+                mail.Body = string.Format(EmailTemplates.BODY_TEMPLATE, p_userEmail,
                 string.Join("\n", items));
             try
             {
                 client.Send(mail);
+                _logger.LogInformation("Sending Email {Email}", mail);
             }catch (Exception ex)
             {
                 Debug.Print(ex.StackTrace);
+                _logger.LogError(ex, "Could not send Email.");
             }
         }
     }

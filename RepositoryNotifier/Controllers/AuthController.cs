@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Octokit;
 using RepositoryNotifier.DTO;
 using RepositoryNotifier.Helper;
@@ -17,17 +18,14 @@ namespace RepositoryNotifier.Controllers
     public class AuthController: Controller
     {
         private IGithubApiService _githubApiAdapter { get; set; }
-
         public AuthController(IGithubApiService p_githubApiAdapter)
         {
             _githubApiAdapter = p_githubApiAdapter;
         }
         
-   [HttpGet]
-        public   IActionResult Login(string returnUrl = "/")
+        [HttpGet]
+        public IActionResult Login(string returnUrl = "/")
         {
-                // this.HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", "*");
-            //   await HttpContext.ChallengeAsync("GitHub", new AuthenticationProperties() { RedirectUri = returnUrl });
             return Challenge(new AuthenticationProperties() { RedirectUri = returnUrl }, "GitHub");
         }
 

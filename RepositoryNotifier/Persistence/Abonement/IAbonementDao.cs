@@ -1,6 +1,6 @@
 using MongoDB.Driver;
 
-namespace RepositoryNotifier.Persistence
+namespace RepositoryNotifier.Persistence.Abonement
 {
     public interface IAbonementDao
     {
@@ -10,7 +10,7 @@ namespace RepositoryNotifier.Persistence
         Abonement GetAbonement(string p_username);
         Abonement GetAbonement(Abonement p_abonement);
 
-        void UpdateAbonement(Abonement p_abonement);
+        bool UpdateAbonement(Abonement p_abonement);
 
     }
 }

@@ -14,14 +14,18 @@
           <li *ngIf="isAuthenticated" class="nav-item" [routerLinkActive]='["link-active"]'>
             <a class="nav-link text-white" [routerLink]='["/notifications"]'><i class="fa fa-th-list"></i> My Notifications</a>
           </li>
-          <li *ngIf="isAuthenticated" class="nav-item">
-            <a class="nav-link text-white" [routerLink]='["/fetch-data"]'><i class="fa fa-github"></i> Hello {{username}}</a>
-          </li>
-          <li *ngIf="isAuthenticated" class="nav-item">
-            <button class="btn btn-link" (click)="logout()"><i class="fa fa-sign-out"></i> Logout</button>
-          </li>
           <li *ngIf="!isAuthenticated" class="nav-item">
             <button class="btn btn-link" (click)="login()"><i class="fa fa-github"></i> Sign In</button>
+          </li>
+          <li *ngIf="isAuthenticated"  class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle"  href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-github"></i> {{username}}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="btn btn-link" [routerLink]='["/payments"]'><i class="fa fa-dollar"></i> Payments</a>
+              <div class="dropdown-divider"></div>
+              <button class="btn btn-link" (click)="logout()"><i class="fa fa-sign-out"></i> Logout</button>
+            </div>
           </li>
         </ul>
       </div>

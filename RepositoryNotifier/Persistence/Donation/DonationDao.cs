@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using MongoDB.Driver;
 using RepositoryNotifier.Constants;
 using RepositoryNotifier.Helper;
@@ -22,5 +23,11 @@ namespace RepositoryNotifier.Persistence
             donations.InsertOne(p_donation);
         }
 
+        public IList<Donation> GetAllDonations(string p_username)
+        {
+            IMongoCollection<Donation> donationsCollection = _database.GetCollection<Donation>(DBConnectionConstants.DONATION_COLLECTION);
+            IList<Donation> donations = donationsCollection.Find(p_donation => p_donation.Username == p_username).ToList();
+            return donations;
+        }
     }
 }

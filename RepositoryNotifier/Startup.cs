@@ -19,6 +19,8 @@ using RepositoryNotifier.Persistence;
 using RepositoryNotifier.Service;
 using RepositoryNotifier.TaskScheduler;
 using RepositoryNotifier.Service.Github;
+using RepositoryNotifier.Service.Payment;
+using RepositoryNotifier.Persistence.Abonement;
 
 namespace RepositoryNotifier
 {
@@ -41,6 +43,8 @@ namespace RepositoryNotifier
             //         options.AddPolicy("AllowDevOrigin",
             //         builder => builder.WithOrigins("https://github.com").AllowAnyHeader().AllowAnyMethod().AllowCredentials());
             //     });
+
+            
             services.AddCors();
             services.AddMvc();
 
@@ -112,7 +116,7 @@ namespace RepositoryNotifier
             services.AddSingleton<INotificationTaskDao, NotificationTaskDao>();
             services.AddSingleton<INotificationTaskCrudService, NotificationTaskCrudService>();
             services.AddSingleton<IFrequencyService, FrequencyService>();
-            // services.AddSingleton<IPayPalPaymentProvider, PayPalPaymentProvider>();
+            services.AddSingleton<IPayPalPaymentService, PayPalPaymentService>();
             services.AddSingleton<IAbonementService, AbonementService>();
             services.AddSingleton<IAbonementDao, AbonementDao>();
             services.AddSingleton<IDonationService, DonationService>();
@@ -121,7 +125,7 @@ namespace RepositoryNotifier
             services.AddSingleton<IDbConnectionProvider, DbConnectionProvider>();
 
             // In production, the Angular files will be served from this directory
-            services.AddSpaStaticFiles(configuration => { configuration.RootPath = "wwwroot"; });
+            // services.AddSpaStaticFiles(configuration => { configuration.RootPath = "wwwroot"; });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -150,7 +154,11 @@ namespace RepositoryNotifier
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
-            app.UseSpaStaticFiles();
+
+
+            // is used when spa is served by kestrel
+
+            // app.UseSpaStaticFiles();
 
             app.UseMvc(routes =>
             {
@@ -158,10 +166,10 @@ namespace RepositoryNotifier
                     name: "default",
                     template: "{controller}/{action=Index}/{id?}");
                 // Uncomment if SPA needs to be served by kestrel
-                routes.MapSpaFallbackRoute(
-                    name: "spa-fallback",
-                    defaults: new { controller = "Fallback", action = "Index" }
-                );
+                // routes.MapSpaFallbackRoute(
+                //     name: "spa-fallback",
+                //     defaults: new { controller = "Fallback", action = "Index" }
+                // );
             });
 
             app.UseSpa(spa =>
@@ -169,11 +177,13 @@ namespace RepositoryNotifier
                 // To learn more about options for serving an Angular SPA from ASP.NET Core,
                 // see https://go.microsoft.com/fwlink/?linkid=864501
                 spa.Options.SourcePath = "ClientApp";
-                // if (env.IsDevelopment())
-                // {
-                //     spa.UseAngularCliServer(npmScript: "start");
-                //     // spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
-                // }
+                if (env.IsDevelopment())
+                {
+                    spa.UseAngularCliServer(npmScript: "start");
+
+                    // not used atm
+                    // spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
+                }
             });
         }
     }

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace RepositoryNotifier.Persistence
+namespace RepositoryNotifier.Persistence.Abonement
 {
     public class PremiumPlan{
 
