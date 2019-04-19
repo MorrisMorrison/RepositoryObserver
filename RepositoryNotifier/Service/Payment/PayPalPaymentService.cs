@@ -53,8 +53,8 @@ namespace RepositoryNotifier.Service.Payment
                 },
                 RedirectUrls = new RedirectUrls()
                 {
-                    CancelUrl =  "http://" + p_baseUrl + "/api/payment/cancelpayment",
-                    ReturnUrl =  "http://" + p_baseUrl + "/api/payment/successpayment"
+                    CancelUrl =  p_baseUrl + "/api/payment/cancelpayment",
+                    ReturnUrl =  p_baseUrl + "/api/payment/successpayment"
                 },
                 Payer = new PayPal.v1.Payments.Payer()
                 {
@@ -135,8 +135,8 @@ namespace RepositoryNotifier.Service.Payment
 
                 MerchantPreferences = new PayPal.v1.BillingPlans.MerchantPreferences()
                 {
-                    ReturnUrl =  "http://" + p_baseUrl + "/api/payment/successsubscription",
-                    CancelUrl =  "http://" + p_baseUrl + "/api/payment/cancelsubscription",
+                    ReturnUrl =  p_baseUrl + "/api/payment/successsubscription",
+                    CancelUrl =  p_baseUrl + "/api/payment/cancelsubscription",
                     AutoBillAmount = "YES",
                     InitialFailAmountAction = "CONTINUE",
                     MaxFailAttempts = "0"

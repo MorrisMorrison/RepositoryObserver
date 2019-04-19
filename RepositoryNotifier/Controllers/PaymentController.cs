@@ -35,7 +35,9 @@ namespace RepositoryNotifier.Controllers
         [HttpPost]
         public async Task<IActionResult> CreatePayment([FromBody] double p_amount)
         {
-            PayPal.v1.Payments.Payment result = await _payPalPaymentService.CreatePayment(p_amount, this.Request.Host.ToString());
+            string baseUrl = Request.Scheme + "://" + Request.Host.Value;
+
+            PayPal.v1.Payments.Payment result = await _payPalPaymentService.CreatePayment(p_amount, baseUrl);
             string approvalUrl = result.Links.FirstOrDefault(p_link => p_link.Rel.Equals("approval_url")).Href;
 
             if (string.IsNullOrEmpty(approvalUrl) || string.IsNullOrEmpty(result.Id)) {
@@ -72,7 +74,9 @@ namespace RepositoryNotifier.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateSubscription([FromBody] CreateAbonementTO p_createAbonementTO)
         {
-            Plan subscription = await _payPalPaymentService.CreateBillingPlan(p_createAbonementTO.Amount, this.Request.Host.ToString());
+            string baseUrl = Request.Scheme + "://" + Request.Host.Value;
+
+            Plan subscription = await _payPalPaymentService.CreateBillingPlan(p_createAbonementTO.Amount, baseUrl);
 
             Plan activatedSubscription = await _payPalPaymentService.ActivateBillingPlan(subscription);
             if (activatedSubscription.State.Equals("ACTIVE"))
