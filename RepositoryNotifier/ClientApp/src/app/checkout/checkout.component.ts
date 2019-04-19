@@ -14,7 +14,7 @@ export class CheckoutComponent implements OnInit {
 
     isAuthenticated: boolean;
     username: string;
-    billingAddress: BillingAddressModel;
+    billingAddress: BillingAddressModel = new BillingAddressModel();
 
     constructor(private githubAuthService: GithubauthService, private paymentService: PaymentService, @Inject(DOCUMENT) private document:any) {
     }
