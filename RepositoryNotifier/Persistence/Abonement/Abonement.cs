@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace RepositoryNotifier.Persistence
+namespace RepositoryNotifier.Persistence.Abonement
 {
     public class Abonement
     {
@@ -17,8 +17,12 @@ namespace RepositoryNotifier.Persistence
         [BsonElement("premium_plans")]
         public PremiumPlan PremiumPlan {get;set;}
 
+        [BsonElement("billing_address")]
+        public BillingAddress BillingAddress {get;set;}
+
         [BsonElement("active")]
         public bool Active {get;set;}
+
 
     }
 }

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
 using RepositoryNotifier.Helper;
-using RepositoryNotifier.Persistence;
+using RepositoryNotifier.Persistence.Abonement;
 
 namespace RepositoryNotifier.Service
 {
@@ -28,11 +28,12 @@ namespace RepositoryNotifier.Service
             return false;
         }
 
-        public void AddAbonement(PayPal.v1.BillingPlans.Plan p_plan, string p_username){
+        public void AddAbonement(PayPal.v1.BillingPlans.Plan p_plan, BillingAddress p_billingAddress, string p_username){
             double amount = double.Parse(p_plan.PaymentDefinitions[0].Amount.Value);
             Persistence.Payment payment = new Persistence.Payment(){
                 Amount = amount,
-                PaymentDate = DateTime.Now
+                PaymentDate = DateTime.Now,
+                PaymentType ="PayPal"
             };
 
             IList<Persistence.Payment> payments = new List<Persistence.Payment>();
@@ -51,7 +52,8 @@ namespace RepositoryNotifier.Service
             Abonement abonement = new Abonement(){
                 Username = p_username,
                 PremiumPlan = premiumPlan,
-                Active = false
+                Active = false,
+                BillingAddress = p_billingAddress
             };
             _abonementDao.AddAbonement(abonement);
         }

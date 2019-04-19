@@ -18,6 +18,7 @@ namespace RepositoryNotifier.Service
             Donation donation = new Donation(){
                 Username = p_username,
                 Amount = double.Parse(p_payment.Transactions.FirstOrDefault().Amount.Total),
+                PaymentType ="PayPal",
                 CreatedAt = DateTime.Now
             };
 

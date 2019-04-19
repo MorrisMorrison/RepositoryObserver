@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Abonement } from 'src/app/dto/abonementTO';
+import { Abonement, CreateAbonementTO } from 'src/app/dto/abonementTO';
 import { Donation } from 'src/app/dto/donationTO';
 
 @Injectable({
@@ -21,8 +21,8 @@ export class PaymentService {
     return this.httpClient.post<string>(this.baseUrl +"api/payment/createpayment", amount, {responseType: 'text' as 'json'});
   }
 
-  createSubscription(amount: number):Observable<string>{
-    return this.httpClient.post<string>(this.baseUrl + "api/payment/createsubscription", amount, {responseType: 'text' as 'json'})
+  createSubscription(createAbonementTO: CreateAbonementTO):Observable<string>{
+    return this.httpClient.post<string>(this.baseUrl + "api/payment/createsubscription", createAbonementTO, {responseType: 'text' as 'json'})
   }
 
   getAbonement():Observable<Abonement>{

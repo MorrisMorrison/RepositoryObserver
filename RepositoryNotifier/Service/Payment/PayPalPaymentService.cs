@@ -10,6 +10,7 @@ using PayPal.v1.BillingAgreements;
 using PayPal.v1.BillingPlans;
 using PayPal.v1.Payments;
 using RepositoryNotifier.Constants;
+using RepositoryNotifier.Persistence.Abonement;
 
 // https://github.com/paypal/PayPal-NET-SDK
 // https://medium.com/@pmareke/using-paypal-sdk-with-net-core-full-explanation-66aab76cef66
@@ -210,7 +211,7 @@ namespace RepositoryNotifier.Service.Payment
             return p_plan;
         }
 
-        public async Task<Agreement> CreateAgreement(Plan p_plan){
+        public async Task<Agreement> CreateAgreement(Plan p_plan, BillingAddress p_billingAddress){
             DateTime now = DateTime.Now;
             DateTime startDateTime = now.AddHours(12);
             string startDate = startDateTime.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fff'Z'");
@@ -226,12 +227,12 @@ namespace RepositoryNotifier.Service.Payment
                     PaymentMethod ="paypal"
                 },
                 ShippingAddress = new PayPal.v1.BillingAgreements.SimplePostalAddress(){
-                    Line1 ="Line1",
-                    Line2 ="Line2",
-                    City ="City",
+                    Line1 =p_billingAddress.Address,
+                    Line2 =p_billingAddress.AddressAddition,
+                    City =p_billingAddress.City,
                     CountryCode ="DE",
-                    PostalCode ="66111",
-                    State ="State"
+                    PostalCode =p_billingAddress.PostalCode.ToString(),
+                    State ="Germany",
                 }
             };
 

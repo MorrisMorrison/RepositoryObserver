@@ -3,7 +3,7 @@ using MongoDB.Driver;
 using RepositoryNotifier.Constants;
 using RepositoryNotifier.Helper;
 
-namespace RepositoryNotifier.Persistence
+namespace RepositoryNotifier.Persistence.Abonement
 {
     public class AbonementDao : IAbonementDao
     {

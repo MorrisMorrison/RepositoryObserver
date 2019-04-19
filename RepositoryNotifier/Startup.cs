@@ -20,6 +20,7 @@ using RepositoryNotifier.Service;
 using RepositoryNotifier.TaskScheduler;
 using RepositoryNotifier.Service.Github;
 using RepositoryNotifier.Service.Payment;
+using RepositoryNotifier.Persistence.Abonement;
 
 namespace RepositoryNotifier
 {

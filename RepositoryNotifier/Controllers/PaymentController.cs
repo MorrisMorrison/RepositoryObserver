@@ -6,8 +6,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using PayPal.v1.BillingAgreements;
 using PayPal.v1.BillingPlans;
+using RepositoryNotifier.DTO;
 using RepositoryNotifier.Helper;
 using RepositoryNotifier.Persistence;
+using RepositoryNotifier.Persistence.Abonement;
 using RepositoryNotifier.Service;
 using RepositoryNotifier.Service.Payment;
 
@@ -68,14 +70,14 @@ namespace RepositoryNotifier.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateSubscription([FromBody] double p_amount)
+        public async Task<IActionResult> CreateSubscription([FromBody] CreateAbonementTO p_createAbonementTO)
         {
-            Plan subscription = await _payPalPaymentService.CreateBillingPlan(p_amount);
+            Plan subscription = await _payPalPaymentService.CreateBillingPlan(p_createAbonementTO.Amount);
 
             Plan activatedSubscription = await _payPalPaymentService.ActivateBillingPlan(subscription);
             if (activatedSubscription.State.Equals("ACTIVE"))
             {
-                Agreement agreement = await _payPalPaymentService.CreateAgreement(activatedSubscription);
+                Agreement agreement = await _payPalPaymentService.CreateAgreement(activatedSubscription, p_createAbonementTO.BillingAddress);
 
                 if (agreement != null)
                 {
@@ -86,9 +88,9 @@ namespace RepositoryNotifier.Controllers
                     }
 
                     string username = AuthHelper.GetLogin(HttpContext);
-                    _abonementService.AddAbonement(subscription, username);
+                    _abonementService.AddAbonement(subscription, p_createAbonementTO.BillingAddress, username);
 
-                    _logger.LogInformation("Create Agreement successful. Agreement: {Agreement} Amount: {Amount} User: {User}", agreement, p_amount ,AuthHelper.GetUsername(HttpContext));
+                    _logger.LogInformation("Create Agreement successful. Agreement: {Agreement} Amount: {Amount} User: {User}", agreement, p_createAbonementTO.Amount ,AuthHelper.GetUsername(HttpContext));
                     return Ok(approvalUrl);
                 }else{
                         _logger.LogError("Could not create Agreement. Agreement: {Agreement} ActivatedSubscription: {ActivatedSubscription} User: {User}", agreement, activatedSubscription, AuthHelper.GetUsername(HttpContext));

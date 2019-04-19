@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using PayPal.v1.BillingAgreements;
 using PayPal.v1.BillingPlans;
+using RepositoryNotifier.Persistence.Abonement;
 
 namespace RepositoryNotifier.Service.Payment
 {
@@ -11,7 +12,7 @@ namespace RepositoryNotifier.Service.Payment
           Task<Plan> CreateBillingPlan(double p_amount);
           Task<Plan> GetBillingPlan(string p_planId);
           Task<Plan> ActivateBillingPlan(PayPal.v1.BillingPlans.Plan p_plan);
-           Task<Agreement> CreateAgreement(PayPal.v1.BillingPlans.Plan p_plan);
+           Task<Agreement> CreateAgreement(PayPal.v1.BillingPlans.Plan p_plan, BillingAddress p_billingAddress);
            Task<Agreement> ExecuteAgreement(string p_token);
            void Cancel();
     }

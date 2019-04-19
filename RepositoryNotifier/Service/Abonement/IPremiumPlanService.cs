@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using RepositoryNotifier.Persistence;
+using RepositoryNotifier.Persistence.Abonement;
 
 namespace RepositoryNotifier.Service
 {

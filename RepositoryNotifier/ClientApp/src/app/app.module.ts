@@ -16,6 +16,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { EditNotificationComponent } from './edit-notification/edit-notification.component';
 import { AbonementComponent } from './abonement/abonement.component';
 import { PaymentsComponent } from './payments/payments.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 const config: ExtraOptions = {
   onSameUrlNavigation: 'reload'
@@ -31,6 +32,7 @@ const config: ExtraOptions = {
     EditNotificationComponent,
     AbonementComponent,
     PaymentsComponent,
+    CheckoutComponent,
   ],
   exports: [],
   entryComponents: [EditNotificationComponent],
@@ -45,6 +47,7 @@ const config: ExtraOptions = {
       { path: 'home', component: HomeComponent },
       { path: 'notifications', component: NotificationsComponent },
       { path: 'payments', component: PaymentsComponent },
+      { path: 'checkout', component: CheckoutComponent },
     ], config)
   ],
   providers: [GithubauthService, TaskschedulerService, AlertifyService],
