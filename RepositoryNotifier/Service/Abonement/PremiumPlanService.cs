@@ -14,7 +14,7 @@ namespace RepositoryNotifier.Service
 
         public IDictionary<string, double> GetPremiumPlanTypes(){
             return new Dictionary<string, double>(){ 
-                {"PRO", 1.0},
+                {"PRO", 10.0},
                 {"PREMIUM", 2.0}
             };
         }
