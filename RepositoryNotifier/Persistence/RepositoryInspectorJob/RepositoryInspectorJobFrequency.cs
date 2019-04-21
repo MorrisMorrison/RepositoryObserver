@@ -1,6 +1,6 @@
-namespace RepositoryNotifier.TaskScheduler
+namespace RepositoryNotifier.Persistence.RepositoryInspectorJob
 {
-    public enum Frequency: long
+    public enum RepositoryInspectorJobFrequency: long
     {
         // available frequencies in minutes
         ONE_MINUTE = 1,

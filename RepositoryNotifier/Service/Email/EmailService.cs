@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 using Octokit;
 using RepositoryNotifier.Constants;
 
-namespace RepositoryNotifier.TaskScheduler
+namespace RepositoryNotifier.Service.Email
 {
     public class EmailService:IEmailService
     {

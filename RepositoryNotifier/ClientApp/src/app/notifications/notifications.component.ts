@@ -62,7 +62,6 @@ export class NotificationsComponent implements OnInit {
           }else{
             this.alertifyService.error("An error occured.");
           }
-
         });
       });
     });

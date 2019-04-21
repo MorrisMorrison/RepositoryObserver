@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Octokit;
 
-namespace RepositoryNotifier.TaskScheduler
+namespace RepositoryNotifier.Service.Email
 {
     public interface IEmailService
     {

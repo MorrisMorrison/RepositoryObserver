@@ -17,10 +17,12 @@ using Newtonsoft.Json.Linq;
 using RepositoryNotifier.Constants;
 using RepositoryNotifier.Persistence;
 using RepositoryNotifier.Service;
-using RepositoryNotifier.TaskScheduler;
 using RepositoryNotifier.Service.Github;
 using RepositoryNotifier.Service.Payment;
 using RepositoryNotifier.Persistence.Abonement;
+using RepositoryNotifier.Persistence.RepositoryInspectorJob;
+using RepositoryNotifier.RepositoryInspectorJobScheduler;
+using RepositoryNotifier.Service.RepositoryInspector;
 
 namespace RepositoryNotifier
 {
@@ -111,10 +113,10 @@ namespace RepositoryNotifier
             // Inject dependencies via constructor
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IGithubApiService, GithubApiService>();
-            services.AddSingleton<INotificationTaskScheduler, NotificationTaskScheduler>();
-            services.AddSingleton<INotificationTaskDao, NotificationTaskDao>();
-            services.AddSingleton<INotificationTaskCrudService, NotificationTaskCrudService>();
-            services.AddSingleton<IFrequencyService, FrequencyService>();
+            services.AddSingleton<IRepositoryInspectorJobScheduler, RepositoryInspectorJobScheduler.RepositoryInspectorJobScheduler>();
+            services.AddSingleton<IRepositoryInspectorJobDao, RepositoryInspectorJobDao>();
+            services.AddSingleton<IRepositoryInspectorJobService, RepositoryInspectorJobService>();
+            services.AddSingleton<IRepositoryInspectorJobFrequencyService, RepositoryInspectorJobFrequencyService>();
             services.AddSingleton<IPayPalPaymentService, PayPalPaymentService>();
             services.AddSingleton<IAbonementService, AbonementService>();
             services.AddSingleton<IAbonementDao, AbonementDao>();

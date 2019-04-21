@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using RepositoryNotifier.TaskScheduler;
+using RepositoryNotifier.RepositoryInspectorJobScheduler;
 using Serilog;
 using Serilog.Events;
 
@@ -24,7 +24,7 @@ namespace RepositoryNotifier
             try
             {
                 // start notification scheduler
-                INotificationTaskScheduler notificationTaskScheduler = services.GetService<INotificationTaskScheduler>();
+                IRepositoryInspectorJobScheduler notificationTaskScheduler = services.GetService<IRepositoryInspectorJobScheduler>();
                 //    notificationTaskScheduler.Run();
 
                 ILogger<Program> logger = services.GetService<ILogger<Program>>();

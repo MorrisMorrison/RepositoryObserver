@@ -21,23 +21,23 @@ export class TaskschedulerService {
     }
     
     createNotification(notification:AddNotificationTO):Observable<HttpResponse<string>>{
-        return this.httpClient.post<string>(this.baseUrl + "api/notificationtask/addnotification", notification, {observe: 'response'});
+        return this.httpClient.post<string>(this.baseUrl + "api/repositoryinspectorjob/createrepositoryinspectorjob", notification, {observe: 'response'});
     }
 
     getNotifications():Observable<GetNotificationTO[]>{
-        return this.httpClient.get<GetNotificationTO[]>(this.baseUrl + "api/notificationtask/getallnotifications");
+        return this.httpClient.get<GetNotificationTO[]>(this.baseUrl + "api/repositoryinspectorjob/getallrepositoryinspectorjobs");
     }
     
     deleteNotification(frequency: number):Observable<HttpResponse<string>>{
-        return this.httpClient.delete<string>(this.baseUrl + "api/notificationtask/deletenotification?frequency=" + frequency, {observe: 'response'});
+        return this.httpClient.delete<string>(this.baseUrl + "api/repositoryinspectorjob/deleterepositoryinspectorjob?frequency=" + frequency, {observe: 'response'});
     }
 
     getCommonKeywords():Observable<string[]>{
-        return this.httpClient.get<string[]>(this.baseUrl + "api/notificationtask/getcommonkeywords");
+        return this.httpClient.get<string[]>(this.baseUrl + "api/repositoryinspectorjob/getcommonkeywords");
     }
 
     updateNotification(notification:UpdateNotificationTO):Observable<HttpResponse<string>>{
-        return this.httpClient.put<string>(this.baseUrl +"api/notificationtask/updatenotification", notification, {observe: 'response'});
+        return this.httpClient.put<string>(this.baseUrl +"api/repositoryinspectorjob/updaterepositoryinspectorjob", notification, {observe: 'response'});
     }
     
 }
