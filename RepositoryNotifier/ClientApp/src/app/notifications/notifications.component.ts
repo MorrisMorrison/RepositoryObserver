@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskschedulerService } from "../service/taskscheduler/taskscheduler.service";
-import { GetNotificationTO, Notification, AddNotificationTO } from "../dto/notificationTO";
+import { GetNotificationTO, Notification, AddNotificationTO, NotificationResultTO } from "../dto/notificationTO";
 import { GithubauthService } from '../service/githubauth/githubauth.service';
 import { AlertifyService } from '../service/alertify/alertify.service';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -16,10 +16,14 @@ import { EditNotificationComponent } from '../edit-notification/edit-notificatio
 export class NotificationsComponent implements OnInit {
 
   notifications: Notification[] = [];
+  notificationResults: { [key: string]: NotificationResultTO[]; } = {};
   notificationTos: GetNotificationTO[] = [];
+  keys: string[] = [];
+  notificationResultTos: NotificationResultTO[] = [];
   selectedNotification: Notification;
   username: string;
   isAuthenticated: boolean;
+  collapseControl: { [key: string]: boolean;} = {};
 
   constructor(private taskSchedulerService: TaskschedulerService,
     private githubAuthService: GithubauthService,
@@ -37,9 +41,13 @@ export class NotificationsComponent implements OnInit {
         this.githubAuthService.getCurrentUser().subscribe(currentUser => {
           this.username = currentUser.username;
         });
-        this.getAllNotifications();
+        this.initData();
       }
     });
+  }
+
+  initData(){
+    this.getAllNotifications();
   }
 
   getAllNotifications() {
@@ -48,7 +56,28 @@ export class NotificationsComponent implements OnInit {
       this.notificationTos.forEach(notificationTO => {
         this.notifications.push(new Notification(notificationTO, false))
       })
+      if (this.notifications.length >= 1){
+        this.getNotificationResults(this.notifications[0].getNotificationTO.frequency);
+      }    
     })
+  }
+
+  getNotificationResults(frequency: number){
+    this.taskSchedulerService.getNotificationResults(frequency).subscribe(notificationResultTos => {
+      this.notificationResultTos = notificationResultTos;
+      this.notificationResultTos.forEach(resultTO => {
+        if (this.notificationResults[resultTO.name + "|" + resultTO.path] == null || this.notificationResults[resultTO.name + "|" + resultTO.path].length < 1){
+          let results :NotificationResultTO[] = [];
+          results.push(resultTO);
+          this.notificationResults[resultTO.name + "|" + resultTO.path]= results;
+          this.keys.push(resultTO.name + "|" + resultTO.path);
+          this.collapseControl[resultTO.name + "|" + resultTO.path]  = true;
+        }else{
+          this.notificationResults[resultTO.name + "|" + resultTO.path].push(resultTO);
+        }
+      })
+      console.log(this.keys);
+    });
   }
 
   deleteNotifications() {

@@ -9,6 +9,7 @@ namespace RepositoryNotifier.Persistence.RepositoryInspectorJob
     {
         [BsonId]
         public ObjectId Id { get; set; }
+        
         [BsonElement("username")]
         public string Username { get; set; }
 
@@ -25,11 +26,17 @@ namespace RepositoryNotifier.Persistence.RepositoryInspectorJob
 
         [BsonElement("createdAt")]
         public DateTime CreatedAt { get; set; }
+
         [BsonElement("updatedAt")]
         public DateTime UpdatedAt { get; set; }
+
         [BsonElement("lastExecutedAt")]
         public DateTime LastExecutedAt { get; set; }
+
         [BsonElement("status")]
         public string Status { get; set; }
+        [BsonElement("result")]
+        public IList<RepositoryInspectorJobResult> Results {get;set;}
+        
     }
 }

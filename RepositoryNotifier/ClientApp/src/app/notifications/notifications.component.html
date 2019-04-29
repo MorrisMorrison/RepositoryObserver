@@ -11,7 +11,7 @@
                 <p class="text-info">You haven't created any notifications yet.</p>
             </div>
             <div *ngIf="notifications.length > 0">
-                <table class="table table-striped">
+                <table class="table table-hover">
                     <thead class="thead table-success">
                         <tr>
                             <th scope="col">Select</th>
@@ -26,13 +26,14 @@
                     </thead>
                     <tbody>
                         <tr class="table-light" *ngFor="let notification of notifications; let i = index"
-                            [attr.data-index]="i">
+                            [attr.data-index]="i"
+                            (click)="getNotificationResults(notification.getNotificationTO.frequency)">
                             <td>
                                 <input id="test" name="{{notification.getNotificationTO.id}}" type="checkbox"
                                     value="{{notification.getNotificationTO.id}}" [(ngModel)]="notification.selected">
                                 <label for="test"></label>
                             </td>
-                            <th scope="row">{{i+1}}</th>
+                            <td scope="row">{{i+1}}</td>
                             <td>{{notification.getNotificationTO.email}}</td>
                             <td>{{notification.getNotificationTO.frequency}} minutes</td>
                             <td>
@@ -63,10 +64,58 @@
             </div>
         </div>
     </div>
+    <div *ngIf="notifications.length > 0" class="region">
+        <div class="card text-white bg-primary">
+            <div class="card-body">
+                <h1 class="card-title" style="padding-top:10px; padding-bottom:10px;">Results:</h1>
+                <p class="card-text">By clicking a NotificationTask in the table above you can see its results below.
+                    Click on a result to see its details.
+                </p>
+                <div *ngIf="notificationResults == null">
+                    <p class="text-info">No results have been found for the selected NotificationTask.</p>
+                </div>
+                <table style="table-layout: fixed; width:100%" *ngIf="notificationResults != null" id="resultTable"
+                    class="table table-hover">
+                    <thead class="thead table-success">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">RepositoryName</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Path</th>
+                            <th scope="col">Url</th>
+                            <th scope="col">CreatedAt</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr (click)="collapseControl[key] = !collapseControl[key]"  [attr.aria-expanded]="!collapseControl[key]" aria-controls="key" *ngFor="let key of keys; let i = index" [attr.data-index]="i" class="table-light">
+                            <td class="col-1">#</td>
+                            <td class="col-1">{{notificationResults[key][0].repositoryName}}</td>
+                            <td class="col-1">{{notificationResults[key][0].name}}</td>
+                            <td class="col-1">{{notificationResults[key][0].path}}</td>
+                            <td class="col-8"><a href="{{notificationResults[key][0].url}}">Go to GitHub</a></td>
+                            <td class="col-1">{{notificationResults[key][0].createdAt}}</td>
+                        </tr>
+                        <ng-template  ngFor let-key [ngForOf]="keys" let-keyIndex="index">
+                            <ng-template ngFor let-result [ngForOf]="notificationResults[key]" let-resultIndex="index">
+                                    <tr class="table-light" [ngbCollapse]="collapseControl[key]">
+                                        <td class="col-1">{{resultIndex+1}}</td>
+                                        <td class="col-1">{{result.repositoryName}}</td>
+                                        <td class="col-1">{{result.name}}</td>
+                                        <td class="col-1">{{result.path}}</td>
+                                        <td class="col-8"><a href="{{result.url}}">Go to GitHub</a></td>
+                                        <td class="col-1">{{result.createdAt}}</td>
+                                    </tr>
+                            </ng-template>
+                        </ng-template>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
     <div class="region">
         <app-add-notification [isAuthenticated]="isAuthenticated" [username]="username"
             (notificationCreated)="notificationCreated($event)"></app-add-notification>
     </div>
 </div>
 <app-footer></app-footer>
-

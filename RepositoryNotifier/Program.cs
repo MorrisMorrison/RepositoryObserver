@@ -23,9 +23,9 @@ namespace RepositoryNotifier
 
             try
             {
-                // start notification scheduler
-                IRepositoryInspectorJobScheduler notificationTaskScheduler = services.GetService<IRepositoryInspectorJobScheduler>();
-                //    notificationTaskScheduler.Run();
+                // start job scheduler
+                // IRepositoryInspectorJobScheduler repositroryInspectorJobScheduler = services.GetService<IRepositoryInspectorJobScheduler>();
+                // repositroryInspectorJobScheduler.Run();
 
                 ILogger<Program> logger = services.GetService<ILogger<Program>>();
                 logger.LogInformation("Startup Application.");
@@ -45,8 +45,8 @@ namespace RepositoryNotifier
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
                    .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
-	.ReadFrom.Configuration(hostingContext.Configuration)
-	.Enrich.FromLogContext()
-	.WriteTo.Console());
+    .ReadFrom.Configuration(hostingContext.Configuration)
+    .Enrich.FromLogContext()
+    .WriteTo.Console());
     }
 }

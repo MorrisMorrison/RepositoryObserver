@@ -23,6 +23,7 @@ using RepositoryNotifier.Persistence.Abonement;
 using RepositoryNotifier.Persistence.RepositoryInspectorJob;
 using RepositoryNotifier.RepositoryInspectorJobScheduler;
 using RepositoryNotifier.Service.RepositoryInspector;
+using RepositoryNotifier.Service.Email;
 
 namespace RepositoryNotifier
 {
@@ -81,6 +82,7 @@ namespace RepositoryNotifier
                     p_options.ClaimActions.MapJsonKey("urn:github:url", "html_url");
                     p_options.ClaimActions.MapJsonKey("urn:github:avatar", "avatar_url");
 
+
                     p_options.SaveTokens = true;
 
                     p_options.Events = new OAuthEvents
@@ -124,6 +126,7 @@ namespace RepositoryNotifier
             services.AddSingleton<IDonationDao, DonationDao>();
             services.AddSingleton<IPremiumPlanService, PremiumPlanService>();
             services.AddSingleton<IDbConnectionProvider, DbConnectionProvider>();
+            services.AddSingleton<IEmailService, EmailService>();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration => { configuration.RootPath = "wwwroot"; });

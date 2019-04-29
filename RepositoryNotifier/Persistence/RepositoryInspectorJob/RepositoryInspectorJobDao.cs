@@ -19,7 +19,7 @@ namespace RepositoryNotifier.Persistence.RepositoryInspectorJob
         }
 
 
-        public void CreateRepositoryInspectorJob(RepositoryInspectorJob p_repositoryInspectorJob)
+        public void AddRepositoryInspectorJob(RepositoryInspectorJob p_repositoryInspectorJob)
         {
             IMongoCollection<RepositoryInspectorJob> repositoryInspectorJobs = _database.GetCollection<RepositoryInspectorJob>(DBConnectionConstants.REPOSITORY_INSPECTOR_JOB_COLLECTION);
             repositoryInspectorJobs.InsertOne(p_repositoryInspectorJob);
@@ -61,6 +61,7 @@ namespace RepositoryNotifier.Persistence.RepositoryInspectorJob
                                                                    .Set(p_task => p_task.SearchKeywords, p_repositoryInspectorJob.SearchKeywords)
                                                                    .Set(p_task => p_task.LastExecutedAt, p_repositoryInspectorJob.LastExecutedAt)
                                                                    .Set(p_task => p_task.Status, p_repositoryInspectorJob.Status)
+                                                                   .Set(p_task => p_task.Results, p_repositoryInspectorJob.Results)
                                                                    .Set(p_task => p_task.UpdatedAt, p_repositoryInspectorJob.UpdatedAt);
 
             UpdateResult result = repositoryInspectorJobs.UpdateOne(p_task => p_task.Username == p_repositoryInspectorJob.Username && p_task.Frequency == p_repositoryInspectorJob.Frequency, updateDef);

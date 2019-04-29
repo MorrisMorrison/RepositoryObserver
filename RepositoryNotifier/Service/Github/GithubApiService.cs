@@ -48,6 +48,7 @@ namespace RepositoryNotifier.Service.Github
         public async Task<IList<SearchCodeResult>> FindPasswords(RepositoryInspectorJob p_repositoryInspectorJob)
         {
             IList<SearchCodeResult> searchResults = new List<SearchCodeResult>();
+
             if (string.IsNullOrEmpty(_accessToken)) return searchResults;
 
             GitHubClient github = new GitHubClient(new ProductHeaderValue("GithubPasswordNotifier"), new InMemoryCredentialStore(new Credentials(_accessToken)));

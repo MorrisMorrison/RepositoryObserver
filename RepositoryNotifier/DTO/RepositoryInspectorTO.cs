@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using RepositoryNotifier.Persistence.RepositoryInspectorJob;
 
@@ -18,5 +19,13 @@ namespace RepositoryNotifier.DTO
         public IList<string> Repositories { get; set; }
         public RepositoryInspectorJobFrequency Frequency { get; set; }
         public IList<string> SearchKeywords{get;set;}
+    }
+
+    public class RepositoryInspectorJobResultTO{
+        public string Name {get;set;}
+        public string Path {get;set;}
+        public string Url {get;set;}
+        public string RepositoryName {get;set;}
+        public DateTime CreatedAt {get;set;}
     }
 }

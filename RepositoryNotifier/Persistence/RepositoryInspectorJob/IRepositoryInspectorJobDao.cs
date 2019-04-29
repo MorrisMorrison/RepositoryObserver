@@ -6,7 +6,7 @@ namespace RepositoryNotifier.Persistence.RepositoryInspectorJob
     public interface IRepositoryInspectorJobDao
     {
         // CRUD
-        void CreateRepositoryInspectorJob(RepositoryInspectorJob p_repositoryInspectorJob);
+        void AddRepositoryInspectorJob(RepositoryInspectorJob p_repositoryInspectorJob);
 
         RepositoryInspectorJob GetRepositoryInspectorJob(string p_username, RepositoryInspectorJobFrequency p_frequency);
 

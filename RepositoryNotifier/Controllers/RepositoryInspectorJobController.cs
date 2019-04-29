@@ -19,7 +19,7 @@ namespace RepositoryNotifier.Controllers
     {
 
         private IRepositoryInspectorJobService _repositoryInspectorService { get; }
-        private ILogger<RepositoryInspectorJobController> _logger {get;set;}
+        private ILogger<RepositoryInspectorJobController> _logger { get; set; }
         public RepositoryInspectorJobController(IRepositoryInspectorJobService p_RepositoryInspectorCrudService, ILogger<RepositoryInspectorJobController> p_logger)
         {
             _repositoryInspectorService = p_RepositoryInspectorCrudService;
@@ -97,14 +97,41 @@ namespace RepositoryNotifier.Controllers
         }
 
         [HttpPut]
-        public IActionResult UpdateRepositoryInspectorJob([FromBody]UpdateRepositoryInspectorJobTO p_repositoryInspectorJob){
+        public IActionResult UpdateRepositoryInspectorJob([FromBody]UpdateRepositoryInspectorJobTO p_repositoryInspectorJob)
+        {
             bool success = _repositoryInspectorService.UpdateRepositoryInspectorJob(p_repositoryInspectorJob);
 
-            if(success){
+            if (success)
+            {
                 return Ok();
             }
 
             _logger.LogError("Could not update RepositoryInspectorJobs {RepositoryInspectorJob} for User: {User}", p_repositoryInspectorJob, AuthHelper.GetLogin(HttpContext));
+            return BadRequest();
+        }
+
+        [HttpGet]
+        public IActionResult GetRepositoryInspectorJobResults([FromQuery(Name = "frequency")] RepositoryInspectorJobFrequency p_frequency)
+        {
+            string username = AuthHelper.GetLogin(HttpContext);
+            IList<RepositoryInspectorJobResult> results = _repositoryInspectorService.GetRepositoryInspectorJobResults(username, p_frequency);
+            IList<RepositoryInspectorJobResultTO> resultTOs = results.Select<RepositoryInspectorJobResult, RepositoryInspectorJobResultTO>(result =>
+            {
+                return new RepositoryInspectorJobResultTO()
+                {
+                    Name = result.Name,
+                    CreatedAt = result.CreatedAt,
+                    Path = result.Path,
+                    Url = result.HtmlUrl,
+                    RepositoryName = result.Repository.Name
+                };
+            }).ToList();
+
+            if (resultTOs != null && resultTOs.Count > 0)
+            {
+                return Ok(resultTOs);
+            }
+
             return BadRequest();
         }
     }

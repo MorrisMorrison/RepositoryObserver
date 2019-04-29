@@ -17,5 +17,7 @@ namespace RepositoryNotifier.Service.RepositoryInspector
         bool UpdateRepositoryInspectorJob(UpdateRepositoryInspectorJobTO p_repositoryInspectorJob);
         bool UpdateRepositoryInspectorJob(RepositoryInspectorJob p_repositoryInspectorJob);
 
+        IList<RepositoryInspectorJobResult> GetRepositoryInspectorJobResults(string username, RepositoryInspectorJobFrequency p_frequency);
+
     }
 }

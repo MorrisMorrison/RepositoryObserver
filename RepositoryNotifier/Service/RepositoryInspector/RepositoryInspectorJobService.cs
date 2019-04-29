@@ -36,7 +36,7 @@ namespace RepositoryNotifier.Service.RepositoryInspector
             };
 
 
-                _repositoryInspectorJobDao.CreateRepositoryInspectorJob(job);
+                _repositoryInspectorJobDao.AddRepositoryInspectorJob(job);
 
 
 
@@ -120,6 +120,11 @@ namespace RepositoryNotifier.Service.RepositoryInspector
         public bool UpdateRepositoryInspectorJob(RepositoryInspectorJob p_repositoryInspectorJob)
         {
             return _repositoryInspectorJobDao.UpdateRepositoryInspectorJob(p_repositoryInspectorJob);
+        }
+
+        public IList<RepositoryInspectorJobResult> GetRepositoryInspectorJobResults(string username, RepositoryInspectorJobFrequency p_frequency)
+        {
+            return _repositoryInspectorJobDao.GetRepositoryInspectorJob(username, p_frequency).Results;
         }
     }
 }

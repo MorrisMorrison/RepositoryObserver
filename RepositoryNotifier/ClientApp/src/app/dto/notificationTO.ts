@@ -37,3 +37,11 @@ export class DeleteNotificationTO{
     email: string;
     frequency: number;
 }
+
+export class NotificationResultTO{
+    name:string;
+    path:string;
+    url:string;
+    repositoryName:string;
+    createdAt: Date;
+}

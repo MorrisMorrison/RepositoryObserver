@@ -1,7 +1,7 @@
 import {Inject, Injectable} from "@angular/core";
 import {HttpClient, HttpResponse} from "@angular/common/http";
 import {Observable} from "rxjs/index";
-import {GetNotificationTO, AddNotificationTO, UpdateNotificationTO} from "../../dto/notificationTO";
+import {GetNotificationTO, AddNotificationTO, UpdateNotificationTO, NotificationResultTO} from "../../dto/notificationTO";
 
 @Injectable({
   providedIn: 'root'
@@ -39,7 +39,10 @@ export class TaskschedulerService {
     updateNotification(notification:UpdateNotificationTO):Observable<HttpResponse<string>>{
         return this.httpClient.put<string>(this.baseUrl +"api/repositoryinspectorjob/updaterepositoryinspectorjob", notification, {observe: 'response'});
     }
-    
+
+    getNotificationResults(frequency:number):Observable<NotificationResultTO[]>{
+        return this.httpClient.get<NotificationResultTO[]>(this.baseUrl + "api/repositoryinspectorjob/getrepositoryinspectorjobresults?frequency=" + frequency);
+    }
 }
 
 
