@@ -12,6 +12,7 @@
             </div>
             <div *ngIf="notifications.length > 0">
                 <table class="table table-hover">
+                        <caption class="text-secondary"> See results below by clicking on a row.</caption>
                     <thead class="thead table-success">
                         <tr>
                             <th scope="col">Select</th>
@@ -49,7 +50,7 @@
                                 </ul>
                             </td>
                             <td *ngIf="notification.getNotificationTO.status != 'INIT'; else showNever">
-                                {{notification.getNotificationTO.lastExecutedAt.toLocaleString()}}</td>
+                                {{notification.getNotificationTO.lastExecutedAt | date:'dd.MM.yyyy HH:mm'}}</td>
                             <ng-template #showNever>
                                 <td>Never</td>
                             </ng-template>
@@ -68,14 +69,14 @@
         <div class="card text-white bg-primary">
             <div class="card-body">
                 <h1 class="card-title" style="padding-top:10px; padding-bottom:10px;">Results:</h1>
-                <p class="card-text">By clicking a NotificationTask in the table above you can see its results below.
-                    Click on a result to see its details.
+                <p class="card-text">Below you can see all results for a selected Task.
                 </p>
                 <div *ngIf="notificationResults == null">
                     <p class="text-info">No results have been found for the selected NotificationTask.</p>
                 </div>
                 <table style="table-layout: fixed; width:100%" *ngIf="notificationResults != null" id="resultTable"
                     class="table table-hover">
+                    <caption class="text-secondary"> See details by clicking on a row.</caption>
                     <thead class="thead table-success">
                         <tr>
                             <th scope="col">#</th>
@@ -88,22 +89,22 @@
                     </thead>
                     <tbody>
                         <tr (click)="collapseControl[key] = !collapseControl[key]"  [attr.aria-expanded]="!collapseControl[key]" aria-controls="key" *ngFor="let key of keys; let i = index" [attr.data-index]="i" class="table-light">
-                            <td class="col-1">#</td>
-                            <td class="col-1">{{notificationResults[key][0].repositoryName}}</td>
-                            <td class="col-1">{{notificationResults[key][0].name}}</td>
-                            <td class="col-1">{{notificationResults[key][0].path}}</td>
-                            <td class="col-8"><a href="{{notificationResults[key][0].url}}">Go to GitHub</a></td>
-                            <td class="col-1">{{notificationResults[key][0].createdAt}}</td>
+                            <td >#</td>
+                            <td >{{notificationResults[key][0].repositoryName}}</td>
+                            <td >{{notificationResults[key][0].name}}</td>
+                            <td >{{notificationResults[key][0].path}}</td>
+                            <td ><a href="{{notificationResults[key][0].url}}">Go to GitHub</a></td>
+                            <td >{{notificationResults[key][0].createdAt | date:'dd.MM.yyyy HH:mm'}}</td>
                         </tr>
                         <ng-template  ngFor let-key [ngForOf]="keys" let-keyIndex="index">
                             <ng-template ngFor let-result [ngForOf]="notificationResults[key]" let-resultIndex="index">
                                     <tr class="table-light" [ngbCollapse]="collapseControl[key]">
-                                        <td class="col-1">{{resultIndex+1}}</td>
-                                        <td class="col-1">{{result.repositoryName}}</td>
-                                        <td class="col-1">{{result.name}}</td>
-                                        <td class="col-1">{{result.path}}</td>
-                                        <td class="col-8"><a href="{{result.url}}">Go to GitHub</a></td>
-                                        <td class="col-1">{{result.createdAt}}</td>
+                                        <td >{{resultIndex+1}}</td>
+                                        <td >{{result.repositoryName}}</td>
+                                        <td >{{result.name}}</td>
+                                        <td >{{result.path}}</td>
+                                        <td ><a href="{{result.url}}">Go to GitHub</a></td>
+                                        <td >{{result.createdAt | date:'dd.MM.yyyy HH:mm'}}</td>
                                     </tr>
                             </ng-template>
                         </ng-template>

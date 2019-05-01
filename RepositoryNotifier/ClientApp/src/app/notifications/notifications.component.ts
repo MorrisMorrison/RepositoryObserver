@@ -7,11 +7,14 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { RepositoryTO } from '../dto/repositoryTO';
 import { forEach } from '@angular/router/src/utils/collection';
 import { EditNotificationComponent } from '../edit-notification/edit-notification.component';
+import { DatePipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-notifications',
   templateUrl: './notifications.component.html',
-  styleUrls: ['./notifications.component.css']
+  styleUrls: ['./notifications.component.css'],
+  providers: [DatePipe]
 })
 export class NotificationsComponent implements OnInit {
 

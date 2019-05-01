@@ -3,11 +3,13 @@ import { GithubauthService } from '../service/githubauth/githubauth.service';
 import { PaymentService } from '../service/payment/payment.service';
 import { Abonement } from '../dto/abonementTO';
 import { Donation } from '../dto/donationTO';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-payments',
   templateUrl: './payments.component.html',
-  styleUrls: ['./payments.component.css']
+  styleUrls: ['./payments.component.css'],
+  providers: [DatePipe]
 })
 export class PaymentsComponent implements OnInit {
 

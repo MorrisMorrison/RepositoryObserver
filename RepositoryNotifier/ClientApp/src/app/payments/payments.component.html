@@ -21,7 +21,7 @@
                                 Buying Date
                             </h4>
                             <div class="card-body">
-                                <span>{{abonement.premiumPlan.buyingDate}}</span>
+                                <span>{{abonement.premiumPlan.buyingDate | date:'dd.MM.yyyy HH:mm'}}</span>
                             </div>
                         </div>
                     </div>
@@ -31,7 +31,7 @@
                                 Last Payed
                             </h4>
                             <div class="card-body">
-                                <span>{{abonement.premiumPlan.buyingDate}}</span>
+                                <span>{{abonement.premiumPlan.buyingDate | date:'dd.MM.yyyy HH:mm'}}</span>
                             </div>
                         </div>
                     </div>
@@ -83,7 +83,7 @@
                                 <th scope="row">{{i+1}}</th>
                                 <td>{{payment.amount}} €</td>
                                 <td>{{payment.paymentType}}</td>
-                                <td>{{payment.paymentDate.toLocaleString()}}</td>
+                                <td>{{payment.paymentDate | date:'dd.MM.yyyy HH:mm'}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -113,7 +113,7 @@
                                     <th scope="row">{{i+1}}</th>
                                     <td>{{donation.amount}} €</td>
                                     <td>{{donation.paymentType}}</td>
-                                    <td>{{donation.createdAt.toLocaleString()}}</td>
+                                    <td>{{donation.createdAt | date:'dd.MM.yyyy HH:mm'}}</td>
                                 </tr>
                             </tbody>
                         </table>
