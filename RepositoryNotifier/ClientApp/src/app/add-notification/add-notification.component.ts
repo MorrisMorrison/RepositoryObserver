@@ -6,7 +6,7 @@ import { AddNotificationTO } from "../dto/notificationTO";
 import { UserTO } from "../dto/userTO";
 import { FormsModule, Validators } from '@angular/forms';
 import { AlertifyService } from '../service/alertify/alertify.service';
-import { NotificationModel } from '../model/notification-model';
+import { AddNotificationModel } from '../model/notification-model';
 
 
 @Component({
@@ -16,17 +16,7 @@ import { NotificationModel } from '../model/notification-model';
 })
 export class AddNotificationComponent implements OnInit, OnChanges {
 
-
-    // public repositories: string[];
-    // public repositoryTos: RepositoryTO[] = [];
-    // public frequencies: number[];
-    // public selectedFrequency: number;
-    // public email: string;
-    // public searchKeywords: string[] = [];
-    // public searchKeywordToAdd: string;
-    // public commonKeywords: string[] = [];
-
-    notificationModel: NotificationModel = new NotificationModel();
+    notificationModel: AddNotificationModel = new AddNotificationModel();
 
     formIsInvalid: boolean;
 

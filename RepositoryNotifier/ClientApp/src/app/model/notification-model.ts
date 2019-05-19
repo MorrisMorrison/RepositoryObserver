@@ -1,6 +1,6 @@
 import { RepositoryTO } from "../dto/repositoryTO";
 
-export class NotificationModel{
+export class AddNotificationModel{
     public email: string;
     public repositories: string[] = [];
     public repositoryTos: RepositoryTO[] = [];

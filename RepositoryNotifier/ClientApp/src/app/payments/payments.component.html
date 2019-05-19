@@ -1,57 +1,45 @@
 <app-nav-menu [isAuthenticated]="isAuthenticated" [username]="username"></app-nav-menu>
 <div class="container paymentsMain">
     <div class="region">
-        <div class="card text-white bg-primary">
+        <div class="card border-0">
             <div class="card-body">
                 <h1 class="card-title" style="padding-top:10px; padding-bottom:10px;">My Premium Plan:</h1>
                 <div class="row" *ngIf="abonement != null">
-                    <div class="col-3">
-                        <div class="card text-white bg-warning">
-                            <h4 style="padding-top:10px; padding-bottom:10px; padding-left: 15px;">
-                                Type
-                            </h4>
-                            <div class="card-body">
-                                <span>{{abonement.premiumPlan.name}}</span>
+                    <!-- https://www.bootdey.com/snippets/view/Gradients-dashboard-cards#css -->
+                    <div class="col-md-4 col-xl-4">
+                        <div class="card bg-primary order-card">
+                            <div class="card-block">
+                                <h6 class="m-b-20">PremiumPlan</h6>
+                                <h2 class="text-right"><i class="fa fa-star f-left"></i><span>{{abonement.premiumPlan.name}}</span></h2>
+                                <p class="m-b-0">Payment Method<span class="f-right">{{abonement.premiumPlan.payments[0].paymentType}}</span></p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-3">
-                        <div class="card text-white bg-info">
-                            <h4 class="card-title" style="padding-top:10px; padding-bottom:10px; padding-left: 15px;">
-                                Buying Date
-                            </h4>
-                            <div class="card-body">
-                                <span>{{abonement.premiumPlan.buyingDate | date:'dd.MM.yyyy HH:mm'}}</span>
+                    <div class="col-md-4 col-xl-4">
+                        <div class="card bg-info order-card">
+                                <div class="card-block">
+                                    <h6 class="m-b-20">Last Payed</h6>
+                                    <h2 class="text-right"><i class="fa fa-calendar f-left"></i><span>{{abonement.premiumPlan.buyingDate | date:'dd.MM.yyyy'}}</span></h2>
+                                    <p class="m-b-0">Buying Date<span class="f-right">{{abonement.premiumPlan.buyingDate | date:'dd.MM.yyyy'}}</span></p>
+                                </div>
                             </div>
-                        </div>
                     </div>
-                    <div class="col-3">
-                        <div class="card text-white bg-secondary">
-                            <h4 class="card-title" style="padding-top:10px; padding-bottom:10px; padding-left: 15px;">
-                                Last Payed
-                            </h4>
-                            <div class="card-body">
-                                <span>{{abonement.premiumPlan.buyingDate | date:'dd.MM.yyyy HH:mm'}}</span>
+                    <div class="col-md-4 col-xl-4">
+                        <div *ngIf="abonement.active" class="card bg-success order-card">
+                                <div class="card-block">
+                                    <h6 class="m-b-20">Status</h6>
+                                    <h2 class="text-right"><i class="fa fa-check f-left"></i><span>Active</span></h2>
+                                    <p class="m-b-0">Expires<span class="f-right">12m</span></p>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div *ngIf="abonement.active" class="card text-white bg-success">
-                            <h4 class="card-title" style="padding-top:10px; padding-bottom:10px; padding-left: 15px;">
-                                Status
-                            </h4>
-                            <div class="card-body">
-                                <span>Active</span>
-                            </div>
-                        </div>
-                        <div *ngIf="!abonement.active" class="card text-white bg-danger">
-                            <h4 class="card-title" style="padding-top:10px; padding-bottom:10px;">
-                                Status
-                            </h4>
-                            <div class="card-body">
-                                <span *ngIf="abonement.active">Inactive</span>
-                            </div>
-                        </div>
+
+                            <div *ngIf="!abonement.active" class="card bg-danger order-card">
+                                    <div class="card-block">
+                                        <h6 class="m-b-20">Status</h6>
+                                        <h2 class="text-right"><i class="fa fa-times f-left"></i><span>Inactive</span></h2>
+                                        <p class="m-b-0">Expires<span class="f-right">Expired</span></p>
+                                    </div>
+                                </div>
                     </div>
                 </div>
 
@@ -62,7 +50,7 @@
         </div>
     </div>
     <div *ngIf="abonement != null" class="region">
-        <div class="card text-white bg-primary">
+        <div class="card border-0">
             <div class="card-body">
             <h2 class="card-title" style="padding-top:10px; padding-bottom:10px;">My Payments:</h2>
             <div class="row">
@@ -78,7 +66,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="table table-light" *ngFor="let payment of abonement.premiumPlan.payments; let i = index"
+                            <tr *ngFor="let payment of abonement.premiumPlan.payments; let i = index"
                                 [attr.data-index]="i">
                                 <th scope="row">{{i+1}}</th>
                                 <td>{{payment.amount}} €</td>
@@ -93,7 +81,7 @@
         </div>
     </div>
     <div class="region">
-        <div class="card text-white bg-secondary">
+        <div class="card border-0">
             <div class="card-body">
                 <h2 class="card-title" style="padding-top:10px; padding-bottom:10px;">My Donations:</h2>
                 <div class="row">
@@ -109,7 +97,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="table-light" *ngFor="let donation of donations; let i = index" [attr.data-index]="i">
+                                <tr *ngFor="let donation of donations; let i = index" [attr.data-index]="i">
                                     <th scope="row">{{i+1}}</th>
                                     <td>{{donation.amount}} €</td>
                                     <td>{{donation.paymentType}}</td>

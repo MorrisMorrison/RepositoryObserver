@@ -1,5 +1,5 @@
 <div class="addNotificationMain" *ngIf="isAuthenticated">
-  <div class="card text-white bg-primary mb-3">
+  <div class="card border-0 mb-3">
     <div class="card-body">
       <h2 class="card-title">Notify me!</h2>
       <p>To get notified when a password is found in one of your specified repositories simply subscribe with your
@@ -67,7 +67,7 @@
             <div *ngIf="notificationModel.commonKeywords.length > 0; else showNoKeywordsYet">
               <span name="commonKeyword" *ngFor="let commonKeyword of notificationModel.commonKeywords">{{commonKeyword}}<button
                   class="btn" style="background-color:transparent" (click)="addSearchKeyword(commonKeyword)"><i
-                    class="fa fa-plus-circle" style="color:white"></i></button></span>
+                    class="fa fa-plus-circle"></i></button></span>
             </div>
             <ng-template #showNoKeywordsYet>
               <div>
@@ -85,7 +85,7 @@
               <ul name="searchKeywords" id="searchKeywords">
                 <li *ngFor="let searchKeyword of notificationModel.searchKeywords">{{searchKeyword}} <button class="btn"
                     style="background-color:transparent" (click)="removeSearchKeyword(searchKeyword)"><i
-                      class="fa fa-minus-circle" style="color:white"></i></button></li>
+                      class="fa fa-minus-circle"></i></button></li>
               </ul>
             </div>
           </div>
@@ -104,7 +104,7 @@
           </div>
         </div>
         <div class="form-group">
-          <button type="submit" class="btn btn-success">Submit</button>
+          <button type="submit" class="btn btn-success btn-lg">Submit</button>
         </div>
       </form>
     </div>

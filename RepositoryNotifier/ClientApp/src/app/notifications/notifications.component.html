@@ -1,6 +1,6 @@
 <app-nav-menu [isAuthenticated]="isAuthenticated" [username]="username"></app-nav-menu>
 <div class="container notificationsMain">
-    <div class="card text-white bg-primary">
+    <div class="card border-0">
         <div class="card-body">
             <h1 class="card-title" style="padding-top:10px; padding-bottom:10px;">My Notifications:</h1>
             <p class="card-text">You can only have only NotificationTask per Frequency, so your maximum number of tasks
@@ -13,7 +13,7 @@
             <div *ngIf="notifications.length > 0">
                 <table class="table table-hover">
                         <caption class="text-secondary"> See results below by clicking on a row.</caption>
-                    <thead class="thead table-success">
+                    <thead class="thead table-primary">
                         <tr>
                             <th scope="col">Select</th>
                             <th scope="col">#</th>
@@ -26,7 +26,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="table-light" *ngFor="let notification of notifications; let i = index"
+                        <tr *ngFor="let notification of notifications; let i = index"
                             [attr.data-index]="i"
                             (click)="getNotificationResults(notification.getNotificationTO.frequency)">
                             <td>
@@ -66,10 +66,10 @@
         </div>
     </div>
     <div *ngIf="notifications.length > 0" class="region">
-        <div class="card text-white bg-primary">
+        <div class="card border-0">
             <div class="card-body">
                 <h1 class="card-title" style="padding-top:10px; padding-bottom:10px;">Results:</h1>
-                <p class="card-text">Below you can see all results for a selected Task.
+                <p class="card-text">All results for a selected Task are provided below.
                 </p>
                 <div *ngIf="notificationResults == null">
                     <p class="text-info">No results have been found for the selected NotificationTask.</p>
@@ -88,7 +88,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr (click)="collapseControl[key] = !collapseControl[key]"  [attr.aria-expanded]="!collapseControl[key]" aria-controls="key" *ngFor="let key of keys; let i = index" [attr.data-index]="i" class="table-light">
+                        <tr (click)="collapseControl[key] = !collapseControl[key]"  [attr.aria-expanded]="!collapseControl[key]" aria-controls="key" *ngFor="let key of keys; let i = index" [attr.data-index]="i">
                             <td >#</td>
                             <td >{{notificationResults[key][0].repositoryName}}</td>
                             <td >{{notificationResults[key][0].name}}</td>

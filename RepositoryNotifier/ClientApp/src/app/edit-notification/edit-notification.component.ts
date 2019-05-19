@@ -5,7 +5,7 @@ import { GetNotificationTO, Notification, AddNotificationTO } from "../dto/notif
 import { TaskschedulerService } from '../service/taskscheduler/taskscheduler.service';
 import { GithubauthService } from '../service/githubauth/githubauth.service';
 import { AlertifyService } from '../service/alertify/alertify.service';
-import { NotificationModel } from '../model/notification-model';
+import { AddNotificationModel } from '../model/notification-model';
 
 
 @Component({
@@ -18,7 +18,7 @@ export class EditNotificationComponent implements OnInit {
   @Input() selectedNotification: Notification;
   @Input() username: string;
 
-  notificationModel: NotificationModel = new NotificationModel();
+  notificationModel: AddNotificationModel = new AddNotificationModel();
 
   constructor(private taskSchedulerService: TaskschedulerService,
     private githubAuthService: GithubauthService,
