@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using Octokit;
 
-namespace RepositoryNotifier.Persistence.RepositoryInspectorJob
+namespace RepositoryNotifier.Persistence.Job
 {
-    public class RepositoryInspectorJobResult
+    public class JobResult
     {
         public string Name {get;set;}
         public string Path {get;set;}

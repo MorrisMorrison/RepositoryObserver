@@ -20,9 +20,9 @@ using RepositoryNotifier.Service;
 using RepositoryNotifier.Service.Github;
 using RepositoryNotifier.Service.Payment;
 using RepositoryNotifier.Persistence.Abonement;
-using RepositoryNotifier.Persistence.RepositoryInspectorJob;
-using RepositoryNotifier.RepositoryInspectorJobScheduler;
-using RepositoryNotifier.Service.RepositoryInspector;
+using RepositoryNotifier.Persistence.Job;
+using RepositoryNotifier.JobScheduler;
+using RepositoryNotifier.Service.Job;
 using RepositoryNotifier.Service.Email;
 
 namespace RepositoryNotifier
@@ -115,10 +115,10 @@ namespace RepositoryNotifier
             // Inject dependencies via constructor
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IGithubApiService, GithubApiService>();
-            services.AddSingleton<IRepositoryInspectorJobScheduler, RepositoryInspectorJobScheduler.RepositoryInspectorJobScheduler>();
-            services.AddSingleton<IRepositoryInspectorJobDao, RepositoryInspectorJobDao>();
-            services.AddSingleton<IRepositoryInspectorJobService, RepositoryInspectorJobService>();
-            services.AddSingleton<IRepositoryInspectorJobFrequencyService, RepositoryInspectorJobFrequencyService>();
+            services.AddSingleton<IJobScheduler, JobScheduler.JobScheduler>();
+            services.AddSingleton<IJobDao, JobDao>();
+            services.AddSingleton<IJobService, JobService>();
+            services.AddSingleton<IJobFrequencyService, JobFrequencyService>();
             services.AddSingleton<IPayPalPaymentService, PayPalPaymentService>();
             services.AddSingleton<IAbonementService, AbonementService>();
             services.AddSingleton<IAbonementDao, AbonementDao>();

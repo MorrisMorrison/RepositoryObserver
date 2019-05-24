@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace RepositoryNotifier.Persistence.RepositoryInspectorJob
+namespace RepositoryNotifier.Persistence.Job
 {
-    public class RepositoryInspectorJob
+    public class Job
     {
         [BsonId]
         public ObjectId Id { get; set; }
@@ -19,7 +19,7 @@ namespace RepositoryNotifier.Persistence.RepositoryInspectorJob
         public IList<string> Repositories { get; set; }
 
         [BsonElement("frequency")]
-        public RepositoryInspectorJobFrequency Frequency { get; set; }
+        public JobFrequency Frequency { get; set; }
 
         [BsonElement("searchKeywords")]
         public IList<string> SearchKeywords { get; set; }
@@ -36,7 +36,7 @@ namespace RepositoryNotifier.Persistence.RepositoryInspectorJob
         [BsonElement("status")]
         public string Status { get; set; }
         [BsonElement("result")]
-        public IList<RepositoryInspectorJobResult> Results {get;set;}
+        public IList<JobResult> Results {get;set;}
         
     }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
-import { TaskschedulerService } from "../service/taskscheduler/taskscheduler.service";
+import { JobService } from "../service/job/job.service";
 import { GithubauthService } from "../service/githubauth/githubauth.service";
 import { RepositoryTO } from "../dto/repositoryTO";
 import { AddNotificationTO } from "../dto/notificationTO";
@@ -20,7 +20,7 @@ export class AddNotificationComponent implements OnInit, OnChanges {
 
     formIsInvalid: boolean;
 
-    constructor(private githubAuthService: GithubauthService, private taskschedulerService: TaskschedulerService, private alertifyService: AlertifyService) { }
+    constructor(private githubAuthService: GithubauthService, private jobService: JobService, private alertifyService: AlertifyService) { }
 
     @Input() username: string;
     @Input() isAuthenticated: boolean;
@@ -53,14 +53,14 @@ export class AddNotificationComponent implements OnInit, OnChanges {
     }
 
     getFrequencies() {
-        this.taskschedulerService.getFrequencies().subscribe(frequencies => {
+        this.jobService.getFrequencies().subscribe(frequencies => {
             this.notificationModel.frequencies = frequencies;
             this.notificationModel.selectedFrequency = this.notificationModel.frequencies[0];
         });
     }
 
     getCommonKeywords() {
-        this.taskschedulerService.getCommonKeywords().subscribe(commonKeywords => this.notificationModel.commonKeywords = commonKeywords);
+        this.jobService.getCommonKeywords().subscribe(commonKeywords => this.notificationModel.commonKeywords = commonKeywords);
     }
 
     createNotification() {
@@ -74,7 +74,7 @@ export class AddNotificationComponent implements OnInit, OnChanges {
 
         this.githubAuthService.getCurrentUser().subscribe(user => {
             notification.username = user.username;
-            this.taskschedulerService.createNotification(notification).subscribe(response => {
+            this.jobService.createNotification(notification).subscribe(response => {
                 if (response.status === 200) {
                     this.notificationCreated.emit(true);
                     this.alertifyService.success("Notification created.");

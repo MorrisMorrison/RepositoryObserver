@@ -2,7 +2,6 @@ import { Component, Inject, ViewChild } from '@angular/core';
 import { GithubauthService } from "../service/githubauth/githubauth.service";
 import { Router } from '@angular/router';
 import { DOCUMENT } from "@angular/common";
-import { TaskschedulerService } from "../service/taskscheduler/taskscheduler.service";
 import { AddNotificationComponent } from '../add-notification/add-notification.component';
 import { NavMenuComponent } from '../nav-menu/nav-menu.component';
 import { AlertifyService } from '../service/alertify/alertify.service';

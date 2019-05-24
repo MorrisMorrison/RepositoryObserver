@@ -1,1 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+/* CARD HEADER */
+
+.ro-card-header{
+    display:flex;
+    justify-content: space-between;
+    background-color: var(--primary);
+    color: white;
+}
+
+.ro-card-header span{
+    display: inline-block;
+    margin-bottom: -0.4%;
+}
+.ro-card-header i{
+    display: inline;
+    margin-right:10px;
+}
+.ro-card-header h5{
+    display: inline; 
+}
+
+.ro-card-header a{
+    color:white;
+}
+
+/* BASIC LAYOUT COMPONENTS */
+
+.region{
+    padding-top: 30px;
+}

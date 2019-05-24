@@ -33,10 +33,10 @@ namespace RepositoryNotifier.Persistence
 
             // TODO check if collection exists
             // this always returns true
-            bool collectionExists = _database.GetCollection<Persistence.RepositoryInspectorJob.RepositoryInspectorJob>(DBConnectionConstants.REPOSITORY_INSPECTOR_JOB_COLLECTION) != null;
+            bool collectionExists = _database.GetCollection<Persistence.Job.Job>(DBConnectionConstants.JOB_COLLECTION) != null;
             if (!collectionExists)
             {
-                _database.CreateCollection(DBConnectionConstants.REPOSITORY_INSPECTOR_JOB_COLLECTION);
+                _database.CreateCollection(DBConnectionConstants.JOB_COLLECTION);
             }
             
             return _database;

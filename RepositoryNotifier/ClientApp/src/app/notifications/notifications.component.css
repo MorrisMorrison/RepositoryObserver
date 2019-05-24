@@ -2,7 +2,7 @@
     padding-top: 10px;
     padding-bottom: 20px;
 }
-.region{
-    padding-top: 30px;
-    padding-bottom: 10px;
+
+.button-group{
+    display:flex; justify-content:flex-end;
 }

@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { RepositoryTO } from '../dto/repositoryTO';
 import { NgbModalRef, NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { GetNotificationTO, Notification, AddNotificationTO } from "../dto/notificationTO";
-import { TaskschedulerService } from '../service/taskscheduler/taskscheduler.service';
+import { JobService } from '../service/job/job.service';
 import { GithubauthService } from '../service/githubauth/githubauth.service';
 import { AlertifyService } from '../service/alertify/alertify.service';
 import { AddNotificationModel } from '../model/notification-model';
@@ -20,7 +20,7 @@ export class EditNotificationComponent implements OnInit {
 
   notificationModel: AddNotificationModel = new AddNotificationModel();
 
-  constructor(private taskSchedulerService: TaskschedulerService,
+  constructor(private jobService: JobService,
     private githubAuthService: GithubauthService,
     private alertifyService: AlertifyService,
     public activeModal: NgbActiveModal) { }
@@ -53,14 +53,14 @@ export class EditNotificationComponent implements OnInit {
   }
 
   getFrequencies() {
-    this.taskSchedulerService.getFrequencies().subscribe(frequencies => {
+    this.jobService.getFrequencies().subscribe(frequencies => {
       this.notificationModel.frequencies = frequencies;
       this.notificationModel.selectedFrequency = this.notificationModel.frequencies[0];
     });
   }
 
   getCommonKeywords() {
-    this.taskSchedulerService.getCommonKeywords().subscribe(commonKeywords => this.notificationModel.commonKeywords = commonKeywords);
+    this.jobService.getCommonKeywords().subscribe(commonKeywords => this.notificationModel.commonKeywords = commonKeywords);
   }
 
   addSearchKeyword(searchKeywordToAdd: string) {
@@ -84,7 +84,7 @@ export class EditNotificationComponent implements OnInit {
       notification.frequency = this.selectedNotification.getNotificationTO.frequency;
       notification.repositories = this.getSelectedRepositories();
 
-      this.taskSchedulerService.updateNotification(notification).subscribe(result => {
+      this.jobService.updateNotification(notification).subscribe(result => {
 
         if (result.status == 200) {
 

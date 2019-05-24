@@ -8,29 +8,29 @@ using System.Timers;
 using Microsoft.Extensions.Logging;
 using Octokit;
 using RepositoryNotifier.Persistence;
-using RepositoryNotifier.Persistence.RepositoryInspectorJob;
+using RepositoryNotifier.Persistence.Job;
 using RepositoryNotifier.Service;
 using RepositoryNotifier.Service.Email;
 using RepositoryNotifier.Service.Github;
-using RepositoryNotifier.Service.RepositoryInspector;
+using RepositoryNotifier.Service.Job;
 
-namespace RepositoryNotifier.RepositoryInspectorJobScheduler
+namespace RepositoryNotifier.JobScheduler
 {
-    public class RepositoryInspectorJobScheduler : IRepositoryInspectorJobScheduler
+    public class JobScheduler : IJobScheduler
     {
-        private IRepositoryInspectorJobService _repositoryInspectorService { get; }
-        private IRepositoryInspectorJobFrequencyService _frequencyService { get; }
+        private IJobService Service { get; }
+        private IJobFrequencyService _frequencyService { get; }
         private IGithubApiService _githubApiService { get; }
         private IEmailService _emailService { get; }
-        private IList<RepositoryInspectorJobFrequency> _frequencies { get; set; }
+        private IList<JobFrequency> _frequencies { get; set; }
         private bool _initRunDone { get; set; }
-        private ILogger<RepositoryInspectorJobScheduler> _logger { get; set; }
+        private ILogger<JobScheduler> _logger { get; set; }
         private IList<Timer> _timers { get; set; }
         private Timer _initTimer { get; set; }
 
-        public RepositoryInspectorJobScheduler(IRepositoryInspectorJobService p_notificationTaskCrudService, IGithubApiService p_githubApiService, IRepositoryInspectorJobFrequencyService p_frequencyService, IEmailService p_emailService, ILogger<RepositoryInspectorJobScheduler> p_logger)
+        public JobScheduler(IJobService p_notificationTaskCrudService, IGithubApiService p_githubApiService, IJobFrequencyService p_frequencyService, IEmailService p_emailService, ILogger<JobScheduler> p_logger)
         {
-            _repositoryInspectorService = p_notificationTaskCrudService;
+            Service = p_notificationTaskCrudService;
             _frequencyService = p_frequencyService;
             _githubApiService = p_githubApiService;
             _frequencies = _frequencyService.GetFrequencies();
@@ -49,7 +49,7 @@ namespace RepositoryNotifier.RepositoryInspectorJobScheduler
             _logger.LogInformation("Initialize RepositoryInspectorJobScheduler Run().");
 
 
-            IList<RepositoryInspectorJob> repositoryInspectorJobs = _repositoryInspectorService.GetAllRepositoryInspectorJobs().ToList();
+            IList<Job> repositoryInspectorJobs = Service.GetAllJobs().ToList();
             if (repositoryInspectorJobs == null || repositoryInspectorJobs.Count < 1)
             {
                 if (_initTimer == null)
@@ -68,51 +68,51 @@ namespace RepositoryNotifier.RepositoryInspectorJobScheduler
             if (!_initRunDone)
             {
                 _logger.LogInformation("RepositoryInspectorJobScheduler starting init run.");
-                foreach (RepositoryInspectorJob p_repositoryInspectorJob in repositoryInspectorJobs)
+                foreach (Job p_repositoryInspectorJob in repositoryInspectorJobs)
                 {
-                    ExecuteRepositoryInspectorJob(p_repositoryInspectorJob);
+                    ExecuteJob(p_repositoryInspectorJob);
                 }
                 _initRunDone = true;
             }
 
             _initTimer = null;
 
-            foreach (RepositoryInspectorJobFrequency frequency in _frequencies)
+            foreach (JobFrequency frequency in _frequencies)
             {
                 // create a Timer for every frequency and bind Handler to it
                 Timer timer = new Timer((long)frequency * 60000);
-                timer.Elapsed += async (sender, e) => await ExecuteRepositoryInspectorJobs(frequency);
+                timer.Elapsed += async (sender, e) => await ExecuteJobs(frequency);
                 timer.AutoReset = true;
                 timer.Enabled = true;
             }
         }
 
 
-        public async Task ExecuteRepositoryInspectorJobs(RepositoryInspectorJobFrequency p_frequency)
+        public async Task ExecuteJobs(JobFrequency p_frequency)
         {
-            IList<RepositoryInspectorJob> repositoryInspectorJobs = _repositoryInspectorService.GetAllRepositoryInspectorJobs(p_frequency).ToList();
+            IList<Job> repositoryInspectorJobs = Service.GetAllJobs(p_frequency).ToList();
 
-            foreach (RepositoryInspectorJob job in repositoryInspectorJobs)
+            foreach (Job job in repositoryInspectorJobs)
             {
-                await ExecuteRepositoryInspectorJob(job);
+                await ExecuteJob(job);
             }
         }
 
-        public async Task ExecuteRepositoryInspectorJob(RepositoryInspectorJob p_repositoryInspectorJob)
+        public async Task ExecuteJob(Job p_job)
         {
-            IList<SearchCodeResult> searchResults = await _githubApiService.FindPasswords(p_repositoryInspectorJob);
+            IList<SearchCodeResult> searchResults = await _githubApiService.FindPasswords(p_job);
 
             if (searchResults == null || searchResults.Count < 1) return;
 
-            _logger.LogInformation("Found Keyword for RepositoryInspectorJob: {RepositoryInspectorJob} SearchResult{SearchResult}", p_repositoryInspectorJob, searchResults);
+            _logger.LogInformation("Found Keyword for RepositoryInspectorJob: {RepositoryInspectorJob} SearchResult{SearchResult}", p_job, searchResults);
 
 
-            p_repositoryInspectorJob.Status = RepositoryNotifier.Constants.Status.OK;
-            p_repositoryInspectorJob.LastExecutedAt = DateTime.Now;
+            p_job.Status = RepositoryNotifier.Constants.Status.OK;
+            p_job.LastExecutedAt = DateTime.Now;
 
             foreach (SearchCodeResult searchCodeResult in searchResults)
             {
-                Persistence.RepositoryInspectorJob.Repository repository = new Persistence.RepositoryInspectorJob.Repository
+                Persistence.Job.Repository repository = new Persistence.Job.Repository
                 {
                     Id = searchCodeResult.Items.FirstOrDefault().Repository.Id,
                     Name = searchCodeResult.Items.FirstOrDefault().Repository.Name,
@@ -121,7 +121,7 @@ namespace RepositoryNotifier.RepositoryInspectorJobScheduler
 
                 foreach (SearchCode searchCode in searchCodeResult.Items)
                 {
-                    RepositoryInspectorJobResult result = new RepositoryInspectorJobResult()
+                    JobResult result = new JobResult()
                     {
                         Name = searchCode.Name,
                         HtmlUrl = searchCode.HtmlUrl,
@@ -132,15 +132,15 @@ namespace RepositoryNotifier.RepositoryInspectorJobScheduler
                         CreatedAt = DateTime.Now
                     };
 
-                    if (p_repositoryInspectorJob.Results == null){
-                        p_repositoryInspectorJob.Results = new List<RepositoryInspectorJobResult>();
+                    if (p_job.Results == null){
+                        p_job.Results = new List<JobResult>();
                     }
-                    p_repositoryInspectorJob.Results.Add(result);
+                    p_job.Results.Add(result);
                 }
             }
-            _repositoryInspectorService.UpdateRepositoryInspectorJob(p_repositoryInspectorJob);
+            Service.UpdateJob(p_job);
 
-            _emailService.SendNotificationMail(p_repositoryInspectorJob.Username, p_repositoryInspectorJob.Email, searchResults);
+            _emailService.SendNotificationMail(p_job.Username, p_job.Email, searchResults);
         }
 
     }

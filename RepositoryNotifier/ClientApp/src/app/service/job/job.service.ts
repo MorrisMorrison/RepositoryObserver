@@ -6,7 +6,7 @@ import {GetNotificationTO, AddNotificationTO, UpdateNotificationTO, Notification
 @Injectable({
   providedIn: 'root'
 })
-export class TaskschedulerService {
+export class JobService {
 
     public baseUrl;
     public httpClient:HttpClient;
@@ -21,27 +21,27 @@ export class TaskschedulerService {
     }
     
     createNotification(notification:AddNotificationTO):Observable<HttpResponse<string>>{
-        return this.httpClient.post<string>(this.baseUrl + "api/repositoryinspectorjob/createrepositoryinspectorjob", notification, {observe: 'response'});
+        return this.httpClient.post<string>(this.baseUrl + "api/job/createjob", notification, {observe: 'response'});
     }
 
     getNotifications():Observable<GetNotificationTO[]>{
-        return this.httpClient.get<GetNotificationTO[]>(this.baseUrl + "api/repositoryinspectorjob/getallrepositoryinspectorjobs");
+        return this.httpClient.get<GetNotificationTO[]>(this.baseUrl + "api/job/getalljobs");
     }
     
     deleteNotification(frequency: number):Observable<HttpResponse<string>>{
-        return this.httpClient.delete<string>(this.baseUrl + "api/repositoryinspectorjob/deleterepositoryinspectorjob?frequency=" + frequency, {observe: 'response'});
+        return this.httpClient.delete<string>(this.baseUrl + "api/job/deletejob?frequency=" + frequency, {observe: 'response'});
     }
 
     getCommonKeywords():Observable<string[]>{
-        return this.httpClient.get<string[]>(this.baseUrl + "api/repositoryinspectorjob/getcommonkeywords");
+        return this.httpClient.get<string[]>(this.baseUrl + "api/job/getcommonkeywords");
     }
 
     updateNotification(notification:UpdateNotificationTO):Observable<HttpResponse<string>>{
-        return this.httpClient.put<string>(this.baseUrl +"api/repositoryinspectorjob/updaterepositoryinspectorjob", notification, {observe: 'response'});
+        return this.httpClient.put<string>(this.baseUrl +"api/job/updatejob", notification, {observe: 'response'});
     }
 
     getNotificationResults(frequency:number):Observable<NotificationResultTO[]>{
-        return this.httpClient.get<NotificationResultTO[]>(this.baseUrl + "api/repositoryinspectorjob/getrepositoryinspectorjobresults?frequency=" + frequency);
+        return this.httpClient.get<NotificationResultTO[]>(this.baseUrl + "api/job/getjobresults?frequency=" + frequency);
     }
 }
 

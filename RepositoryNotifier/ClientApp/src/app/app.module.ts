@@ -10,7 +10,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { AddNotificationComponent } from './add-notification/add-notification.component';
 import { GithubauthService } from './service/githubauth/githubauth.service';
 import { FooterComponent } from './footer/footer.component';
-import { TaskschedulerService } from './service/taskscheduler/taskscheduler.service';
+import { JobService } from './service/job/job.service';
 import { AlertifyService } from './service/alertify/alertify.service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { EditNotificationComponent } from './edit-notification/edit-notification.component';
@@ -50,7 +50,7 @@ const config: ExtraOptions = {
       { path: 'checkout', component: CheckoutComponent },
     ], config)
   ],
-  providers: [GithubauthService, TaskschedulerService, AlertifyService],
+  providers: [GithubauthService, JobService, AlertifyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

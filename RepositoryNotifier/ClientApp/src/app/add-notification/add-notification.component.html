@@ -1,8 +1,18 @@
 <div class="addNotificationMain" *ngIf="isAuthenticated">
   <div class="card border-0 mb-3">
-    <div class="card-body">
-      <h2 class="card-title">Notify me!</h2>
-      <p>To get notified when a password is found in one of your specified repositories simply subscribe with your
+    <div class="card-header ro-card-header">
+      <span>
+        <i class="fa fa-bell"></i>
+        <h5>Notify Me!</h5>
+      </span>
+      <a data-toggle="collapse" href="#collapseAddNotification" role="button" aria-expanded="false"
+        aria-controls="collapseAddNotification">
+        <i class="fa fa-chevron-down "></i>
+      </a>
+    </div>
+    <div class="card-body collapse show" id="collapseAddNotification">
+      <h5>EMail Notification</h5>
+      <p>To get notified when vulnerable data was leaked in one of your repositories, simply subscribe with your
         email down below.</p>
       <!-- <div *ngIf="success" class="alert alert-success" role="alert">
         Your notification has successfully been created.
@@ -13,20 +23,20 @@
       <div *ngIf="formIsInvalid" class="alert alert-warning" role="alert">
         The information you provided are invalid. Please check again.
       </div> -->
-      <form name="notificationForm" (ngSubmit)="notificationValidator.form.valid && createNotification()" #notificationValidator="ngForm">
-        <!-- <h5 class="card-subtitle">Enter your Email:</h5> -->
-        <!-- <div class="form-group"> -->
+      <form name="notificationForm" (ngSubmit)="notificationValidator.form.valid && createNotification()"
+        #notificationValidator="ngForm">
         <div class="row">
           <div class="col">
             <div class="form-group">
               <label for="email"><b>Email address</b></label>
               <div class="input-group">
-              <div class="input-group-prepend">
+                <div class="input-group-prepend">
                   <span class="input-group-text">@</span>
                 </div>
-              <input class="form-control" id="email" name="email" type="email" [(ngModel)]="notificationModel.email"
-                #emailValidatior="ngModel" [ngClass]="{ 'is-invalid': notificationValidator.submitted && emailValidation?.invalid }"
-                aria-describedby="emailHelp" placeholder="Enter email" required email>
+                <input class="form-control" id="email" name="email" type="email" [(ngModel)]="notificationModel.email"
+                  #emailValidatior="ngModel"
+                  [ngClass]="{ 'is-invalid': notificationValidator.submitted && emailValidation?.invalid }"
+                  aria-describedby="emailHelp" placeholder="Enter email" required email>
               </div>
               <div *ngIf="notificationValidator.submitted && emailValidatior.invalid" class="invalid-feedback">
                 <div *ngIf="emailValidatior?.errors.required">Email is required</div>
@@ -38,35 +48,36 @@
           </div>
           <div class="col">
             <label for="frequency"><b>Frequency</b></label>
-            <select  [(ngModel)]="notificationModel.selectedFrequency" class="form-control" id="frequency" name="frequency" #frequencyValidator="ngModel" [ngClass]="{ 'is-invalid': notificationValidator.submitted && frequencyValidator?.invalid }" required>  
-              <option *ngFor="let frequency of notificationModel.frequencies;" [ngValue]="frequency">{{frequency}}</option>
+            <select [(ngModel)]="notificationModel.selectedFrequency" class="form-control" id="frequency"
+              name="frequency" #frequencyValidator="ngModel"
+              [ngClass]="{ 'is-invalid': notificationValidator.submitted && frequencyValidator?.invalid }" required>
+              <option *ngFor="let frequency of notificationModel.frequencies;" [ngValue]="frequency">{{frequency}}
+              </option>
             </select>
             <div *ngIf="notificationValidator.submitted && frequencyValidator.invalid" class="invalid-feedback">
-                <div *ngIf="frequencyValidator?.errors.required">Frequency is required</div>
-              </div>
+              <div *ngIf="frequencyValidator?.errors.required">Frequency is required</div>
+            </div>
             <small id="frequencyHelp" class="form-text text-muted">In minutes.</small>
           </div>
         </div>
-        <!-- </div> -->
         <div class="row" style="padding-top:2%">
           <div class="col">
-            <!-- <h6 class="card-subtitle">Add Search Keywords:</h6> -->
             <label for="searchKeywordToAdd"><b>Add Search Keywords</b></label>
             <div class="input-group">
               <input class="form-control" type="text" placeholder="Add Search Keyword" id="searchKeywordToAdd"
                 name="searchKeywordToAdd" [(ngModel)]="notificationModel.searchKeywordToAdd">
               <div class="input-group-append">
-                <button class="btn btn-success" type="button"
+                <button  class="btn btn-success" type="button"
                   (click)="addSearchKeyword(notificationModel.searchKeywordToAdd)">Add</button>
               </div>
             </div>
           </div>
           <div class="col">
-            <!-- <h6 class="card-subtitle">Common keywords:</h6> -->
             <label for="commonKeyword"><b>Common keywords</b></label>
             <div *ngIf="notificationModel.commonKeywords.length > 0; else showNoKeywordsYet">
-              <span name="commonKeyword" *ngFor="let commonKeyword of notificationModel.commonKeywords">{{commonKeyword}}<button
-                  class="btn" style="background-color:transparent" (click)="addSearchKeyword(commonKeyword)"><i
+              <span name="commonKeyword"
+                *ngFor="let commonKeyword of notificationModel.commonKeywords">{{commonKeyword}}<button class="btn"
+                  style="background-color:transparent" (click)="addSearchKeyword(commonKeyword)"><i
                     class="fa fa-plus-circle"></i></button></span>
             </div>
             <ng-template #showNoKeywordsYet>
@@ -78,7 +89,6 @@
         </div>
         <div class="row" style="padding-top: 2%">
           <div class="col">
-            <!-- <h6 class="card-subtitle">Search Keywords:</h6> -->
             <div class="form-group">
               <label for="searchKeywords"><b>SearchKeywords</b></label>
               <p *ngIf="notificationModel.searchKeywords.length == 0">No Search Keywords added yet.</p>
@@ -91,9 +101,7 @@
           </div>
           <div class="col">
             <label for="repository"><b>Repositories</b></label>
-
             <div class="form-group">
-              <!-- <h5 class="card-subtitle">Select Repositories:</h5> -->
               <div style="padding-top: 5px; padding-left:4%;" *ngFor="let repository of notificationModel.repositoryTos"
                 class="form-check">
                 <input type="checkbox" name="repository" class="form-check-input" value="{{repository.name}}"
@@ -107,6 +115,7 @@
           <button type="submit" class="btn btn-success btn-lg">Submit</button>
         </div>
       </form>
+      <h5>SMS Notification</h5>
     </div>
   </div>
 </div>

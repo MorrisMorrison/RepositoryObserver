@@ -1,13 +1,13 @@
 <app-nav-menu [isAuthenticated]="isAuthenticated" [username]="username"></app-nav-menu>
 <div class="container homeMain">
     <div class="region">
-    <div class="jumbotron bg-primary text-white">
+    <div class="jumbotron bg-primary text-white" style="margin-bottom: -5px">
         <h1 class="display-4" *ngIf="isAuthenticated; else showNotAnonymousGreeting">Hello, {{username}}!</h1>
         <ng-template #showNotAnonymousGreeting>
             <h1>Hello, there!</h1>
         </ng-template>
         <p class="lead">Welcome to RepositoryObserver, a simple service to observe your github repositories.</p>
-        <hr class="my-4">
+        <hr class="my-4 bg-white">
         <!-- <p>RepositoryObserver was built using:</p>
         <ul>
             <li><a href='https://get.asp.net/'>ASP.NET Core</a> and <a
@@ -28,7 +28,7 @@
                             Simply authenticate with your Github account and select the <code>repositories</code> you
                             want to be
                             observed.<br>
-                            The service allows you to specify search keywords by yourself and you can select the frequency of a search process.
+                            The service allows you to specify search keywords and select the frequency of a search process.
                         </p>
             <button style="margin-bottom:-3%;" *ngIf="isAuthenticated" type="button" class="btn btn-success btn-lg" (click)="login()"><i class="fa fa-github"></i> Sign Up</button>
                         
@@ -36,11 +36,11 @@
         </div>
     </div>
 </div>
-    <!-- <div class="region">
+    <div class="region">
         <div class="row">
             <div class="col-sm-6">
                 <div class="card border-0 mb-3 h-100" >
-                    <div class="card-body">
+                    <div class="card-body bg-success text-white">
                         <h2 class="card-title">RepositoryObserver</h2>
                         <p class="card-text">
                             <strong>RepositoryObserver</strong> offers a service to observe your
@@ -64,7 +64,7 @@
             </div>
             <div class="col-sm-6">
                 <div class="card border-0 mb-3 h-100">
-                    <div class="card-body">
+                    <div class="card-body bg-primary text-white">
                         <h2 class="card-title">Inspect SourceCode</h2>
                         <p class="card-text">This project is open source and its source code can be reviewed <a
                                 href="https://github.com/MorrisMorrison/scrapi">here</a></p>
@@ -76,16 +76,16 @@
             </div>
         </div>
 
-    </div> -->
+    </div>
 
     <div class="region">
             <app-abonement></app-abonement>
         </div>
     
 
-    <div class="region">
+    <!-- <div class="region">
         <app-add-notification [isAuthenticated]="isAuthenticated" [username]="username"></app-add-notification>
-    </div>
+    </div> -->
 
 </div>
 <app-footer>

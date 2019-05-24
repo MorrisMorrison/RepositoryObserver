@@ -1,4 +1,4 @@
-namespace RepositoryNotifier.Persistence.RepositoryInspectorJob
+namespace RepositoryNotifier.Persistence.Job
 {
     public class Repository
     {

@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using RepositoryNotifier.Persistence.RepositoryInspectorJob;
+using RepositoryNotifier.Persistence.Job;
 
 namespace RepositoryNotifier.DTO
 {
@@ -9,7 +9,7 @@ namespace RepositoryNotifier.DTO
         public string Username { get; set; }
         public string Email { get; set; }
         public IList<string> Repositories { get; set; }
-        public RepositoryInspectorJobFrequency Frequency { get; set; }
+        public JobFrequency Frequency { get; set; }
         public IList<string> SearchKeywords{get;set;}
     }
 
@@ -17,7 +17,7 @@ namespace RepositoryNotifier.DTO
         public string Username { get; set; }
         public string Email { get; set; }
         public IList<string> Repositories { get; set; }
-        public RepositoryInspectorJobFrequency Frequency { get; set; }
+        public JobFrequency Frequency { get; set; }
         public IList<string> SearchKeywords{get;set;}
     }
 

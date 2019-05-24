@@ -1,54 +1,58 @@
 <div class="abonementMain">
-  <div class="container">
-    <div style="padding-bottom:10px">
-      <h2 >Abonements</h2>
-      <p>All provided Abonements are just simple PayPal donations to learn interacting with the PayPal API.</p>
-    </div>
-    <div class="card-deck mb-3 text-center">
-      <div class="card mb-4 shadow-sm">
-        <div class="card-header">
-          <h4 class="my-0 font-weight-normal">Free</h4>
+  <div class="card border-0 mb-3">
+    <div class="card-body">
+      <h1 class="card-title">Abonements</h1>
+      <p>All non free abonements lead to a sandbox paypal account, no real product is sold.</p>
+      <div class="card-deck mb-3 text-center">
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Free</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">$0 <small class="text-muted">/ mo</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>1 user only</li>
+              <li>1 notification per frequency</li>
+              <li>Email support</li>
+              <li>Nothing else</li>
+              <li></li>
+            </ul>
+            <button type="button" class="btn btn-lg btn-block btn-outline-success" (click)="login()">Sign up for
+              free</button>
+          </div>
         </div>
-        <div class="card-body">
-          <h1 class="card-title pricing-card-title">$0 <small class="text-muted">/ mo</small></h1>
-          <ul class="list-unstyled mt-3 mb-4">
-            <li>1 user only</li>
-            <li>1 notification per frequency</li>
-            <li>Email support</li>
-            <li></li>
-          </ul>
-          <button type="button" class="btn btn-lg btn-block btn-outline-primary" (click)="login()">Sign up for free</button>
-        </div>
-      </div>
-      <div class="card mb-4 shadow-sm">
-        <div class="card-header">
-          <h4 class="my-0 font-weight-normal">Pro</h4>
-        </div>
-        <div class="card-body">
-          <h1 class="card-title pricing-card-title">$1 <small class="text-muted">/ mo</small></h1>
-          <ul class="list-unstyled mt-3 mb-4">
-            <li>3 users included</li>
-            <li>2 notifications per frequency</li>
-            <li>Priority email support</li>
-            <li>Help center access</li>
-          </ul>
-          <button type="button" class="btn btn-lg btn-block btn-primary"  [routerLink]='["/checkout"]'><i class="fa fa-paypal"></i> Buy now</button>
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Pro</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">$1 <small class="text-muted">/ mo</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>3 users included</li>
+              <li>2 notifications per frequency</li>
+              <li>Priority email support</li>
+              <li>Help center access</li>
+            </ul>
+            <button type="button" class="btn btn-lg btn-block btn-primary" [routerLink]='["/checkout"]'><i
+                class="fa fa-paypal"></i> Buy now</button>
 
+          </div>
         </div>
-      </div>
-      <div class="card mb-4 shadow-sm">
-        <div class="card-header">
-          <h4 class="my-0 font-weight-normal">Enterprise</h4>
-        </div>
-        <div class="card-body">
-          <h1 class="card-title pricing-card-title">$2 <small class="text-muted">/ mo</small></h1>
-          <ul class="list-unstyled mt-3 mb-4">
-            <li>unlimited users</li>
-            <li>unlimited notifications</li>
-            <li>Phone and email support</li>
-            <li>Help center access</li>
-          </ul>
-          <button type="button" class="btn btn-lg btn-block btn-primary" (click)="createBusinessSubscription()"><i class="fa fa-file-contract"></i> Contact us</button>
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Enterprise</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">$2 <small class="text-muted">/ mo</small></h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>unlimited users</li>
+              <li>unlimited notifications</li>
+              <li>Phone and email support</li>
+              <li>Help center access</li>
+            </ul>
+            <button type="button" class="btn btn-lg btn-block btn-success" (click)="createBusinessSubscription()"><i
+                class="fa fa-file-contract"></i> Contact us</button>
+          </div>
         </div>
       </div>
     </div>

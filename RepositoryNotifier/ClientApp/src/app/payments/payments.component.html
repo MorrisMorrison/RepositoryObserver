@@ -2,8 +2,16 @@
 <div class="container paymentsMain">
     <div class="region">
         <div class="card border-0">
-            <div class="card-body">
-                <h1 class="card-title" style="padding-top:10px; padding-bottom:10px;">My Premium Plan:</h1>
+        <div class="card-header ro-card-header">
+            <span>
+            <i class="fa fa-credit-card"></i>
+            <h5>My Premium Plan</h5>
+        </span>
+            <a data-toggle="collapse" href="#collapsePremiumPlan" role="button" aria-expanded="false" aria-controls="collapsePremiumPlan">
+                    <i  class="fa fa-chevron-down "></i>
+                </a>
+        </div>
+            <div class="card-body collapse show" id="collapsePremiumPlan">
                 <div class="row" *ngIf="abonement != null">
                     <!-- https://www.bootdey.com/snippets/view/Gradients-dashboard-cards#css -->
                     <div class="col-md-4 col-xl-4">
@@ -51,13 +59,24 @@
     </div>
     <div *ngIf="abonement != null" class="region">
         <div class="card border-0">
-            <div class="card-body">
-            <h2 class="card-title" style="padding-top:10px; padding-bottom:10px;">My Payments:</h2>
+                <div class="card-header ro-card-header" >
+                    <span>
+
+                        <i class="fa fa-dollar"></i>
+                        <h5 style="margin-bottom:-0.4%;">My Payments</h5>
+
+
+                    </span>
+                        <a   data-toggle="collapse" href="#collapsePayments" role="button" aria-expanded="false" aria-controls="collapsePayments">
+                                <i  class="fa fa-chevron-down "></i>
+                            </a>
+            </div>
+            <div class="card-body collapse show" id="collapsePayments">
             <div class="row">
                 <div class="col-12">
-                    <table *ngIf="abonement != null" class="table table-hover">
+                    <table *ngIf="abonement != null" class="table table-sm table-hover ">
                             <caption class="text-success"> List of payments</caption>
-                        <thead class="thead table-success">
+                        <thead class="thead  table-success rounded">
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Amount</th>
@@ -82,13 +101,22 @@
     </div>
     <div class="region">
         <div class="card border-0">
-            <div class="card-body">
-                <h2 class="card-title" style="padding-top:10px; padding-bottom:10px;">My Donations:</h2>
+                <div class="card-header ro-card-header" >
+                    <span>
+                        <i class="fa fa-heart"></i>
+                        <h5 >My Donations</h5>
+                   
+                        </span>
+                        <a   data-toggle="collapse" href="#collapseDonations" role="button" aria-expanded="false" aria-controls="collapseDonations">
+                                <i  class="fa fa-chevron-down "></i>
+                            </a>
+                </div>
+            <div class="card-body collapse show" id="collapseDonations">
                 <div class="row">
                     <div class="col-12">
-                        <table *ngIf="donations.length > 0" class="table table-hover">
+                        <table *ngIf="donations.length > 0" class="table table-sm table-hover">
                             <caption class="text-primary"> List of donations</caption>
-                            <thead class="thead table-primary">
+                            <thead class="thead table-success">
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Amount</th>

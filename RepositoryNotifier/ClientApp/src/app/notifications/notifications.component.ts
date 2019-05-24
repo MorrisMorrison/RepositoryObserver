@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TaskschedulerService } from "../service/taskscheduler/taskscheduler.service";
+import { JobService } from "../service/job/job.service";
 import { GetNotificationTO, Notification, AddNotificationTO, NotificationResultTO } from "../dto/notificationTO";
 import { GithubauthService } from '../service/githubauth/githubauth.service';
 import { AlertifyService } from '../service/alertify/alertify.service';
@@ -27,8 +27,9 @@ export class NotificationsComponent implements OnInit {
   username: string;
   isAuthenticated: boolean;
   collapseControl: { [key: string]: boolean;} = {};
+  public isCollapsedNotifications:boolean = false;
 
-  constructor(private taskSchedulerService: TaskschedulerService,
+  constructor(private jobService: JobService,
     private githubAuthService: GithubauthService,
     private alertifyService: AlertifyService,
     private modalService: NgbModal) { }
@@ -54,7 +55,7 @@ export class NotificationsComponent implements OnInit {
   }
 
   getAllNotifications() {
-    this.taskSchedulerService.getNotifications().subscribe(notificationTos => {
+    this.jobService.getNotifications().subscribe(notificationTos => {
       this.notificationTos = notificationTos;
       this.notificationTos.forEach(notificationTO => {
         this.notifications.push(new Notification(notificationTO, false))
@@ -66,7 +67,7 @@ export class NotificationsComponent implements OnInit {
   }
 
   getNotificationResults(frequency: number){
-    this.taskSchedulerService.getNotificationResults(frequency).subscribe(notificationResultTos => {
+    this.jobService.getNotificationResults(frequency).subscribe(notificationResultTos => {
       this.notificationResultTos = notificationResultTos;
       this.notificationResultTos.forEach(resultTO => {
         if (this.notificationResults[resultTO.name + "|" + resultTO.path] == null || this.notificationResults[resultTO.name + "|" + resultTO.path].length < 1){
@@ -87,7 +88,7 @@ export class NotificationsComponent implements OnInit {
     this.alertifyService.confirm("Delete Notification", "Are you sure you want to delete this notification?", () => {
       let selectedNotifications = this.getSelectedNotifications();
       selectedNotifications.forEach(selectedNotification => {
-        this.taskSchedulerService.deleteNotification(selectedNotification.getNotificationTO.frequency).subscribe(result => {
+        this.jobService.deleteNotification(selectedNotification.getNotificationTO.frequency).subscribe(result => {
           if (result.status == 200){
             this.notifications.splice(this.notifications.indexOf(selectedNotification));
             this.alertifyService.success("Notification deleted.");

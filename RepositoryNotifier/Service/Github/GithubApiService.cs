@@ -7,7 +7,7 @@ using Octokit;
 using Octokit.Internal;
 using RepositoryNotifier.Constants;
 using RepositoryNotifier.Helper;
-using RepositoryNotifier.Persistence.RepositoryInspectorJob;
+using RepositoryNotifier.Persistence.Job;
 
 // https://octokitnet.readthedocs.io/en/latest/search/
 namespace RepositoryNotifier.Service.Github
@@ -45,7 +45,7 @@ namespace RepositoryNotifier.Service.Github
         }
 
 
-        public async Task<IList<SearchCodeResult>> FindPasswords(RepositoryInspectorJob p_repositoryInspectorJob)
+        public async Task<IList<SearchCodeResult>> FindPasswords(Persistence.Job.Job p_job)
         {
             IList<SearchCodeResult> searchResults = new List<SearchCodeResult>();
 
@@ -54,14 +54,14 @@ namespace RepositoryNotifier.Service.Github
             GitHubClient github = new GitHubClient(new ProductHeaderValue("GithubPasswordNotifier"), new InMemoryCredentialStore(new Credentials(_accessToken)));
 
             string searchKeys ="";
-            foreach(string searchKeyword in p_repositoryInspectorJob.SearchKeywords){
+            foreach(string searchKeyword in p_job.SearchKeywords){
                 searchKeys += searchKeyword + "+";
             }
 
 
-            foreach (string p_repository in p_repositoryInspectorJob.Repositories)
+            foreach (string p_repository in p_job.Repositories)
             {
-                string searchQuery = string.Format("{0}repo:{1}/{2}", searchKeys, p_repositoryInspectorJob.Username, p_repository);
+                string searchQuery = string.Format("{0}repo:{1}/{2}", searchKeys, p_job.Username, p_repository);
                 SearchCodeRequest searchCodeRequest = new SearchCodeRequest(searchQuery);
                 SearchCodeResult searchCodeResult = await github.Search.SearchCode(searchCodeRequest);
                 searchResults.Add(searchCodeResult);
@@ -70,14 +70,14 @@ namespace RepositoryNotifier.Service.Github
             return searchResults;
         }
         
-        public async Task<bool> FindPassword(RepositoryInspectorJob p_repositoryInspectorJob)
+        public async Task<bool> FindPassword(Persistence.Job.Job p_job)
         {
             bool foundPassword = false;
             GitHubClient github = new GitHubClient(new ProductHeaderValue("GithubPasswordNotifier"), new InMemoryCredentialStore(new Credentials(_accessToken)));
             
-            foreach (string p_repository in p_repositoryInspectorJob.Repositories)
+            foreach (string p_repository in p_job.Repositories)
             {
-                SearchCodeRequest searchCodeRequest = new SearchCodeRequest("password", p_repository, p_repositoryInspectorJob.Username);
+                SearchCodeRequest searchCodeRequest = new SearchCodeRequest("password", p_repository, p_job.Username);
                 SearchCodeResult searchCodeResult = await github.Search.SearchCode(searchCodeRequest);
                 // TODO might not work
                 if (searchCodeResult.TotalCount > 0)

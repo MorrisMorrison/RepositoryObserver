@@ -1,9 +1,18 @@
 <app-nav-menu [isAuthenticated]="isAuthenticated" [username]="username"></app-nav-menu>
 <div class="container notificationsMain">
     <div class="card border-0">
-        <div class="card-body">
-            <h1 class="card-title" style="padding-top:10px; padding-bottom:10px;">My Notifications:</h1>
-            <p class="card-text">You can only have only NotificationTask per Frequency, so your maximum number of tasks
+        <div class="card-header ro-card-header">
+            <span>
+                <i class="fa fa-th-list"></i>
+                <h5>My Notifications</h5>
+            </span>
+            <a data-toggle="collapse" href="#isCollapsedNotifications" role="button" aria-expanded="false"
+                aria-controls="isCollapsedNotifications">
+                <i class="fa fa-chevron-down "></i>
+            </a>
+        </div>
+        <div class="card-body collapse show" id="isCollapsedNotifications">
+            <p class="card-text">You can only have one NotificationTask per Frequency, so your maximum number of tasks
                 equals the maximum number
                 of
                 frequencies available.</p>
@@ -11,9 +20,9 @@
                 <p class="text-info">You haven't created any notifications yet.</p>
             </div>
             <div *ngIf="notifications.length > 0">
-                <table class="table table-hover">
-                        <caption class="text-secondary"> See results below by clicking on a row.</caption>
-                    <thead class="thead table-primary">
+                <table class="table table-sm table-hover">
+                    <caption class="text-secondary"> See results below by clicking on a row.</caption>
+                    <thead class="thead bg-success text-white">
                         <tr>
                             <th scope="col">Select</th>
                             <th scope="col">#</th>
@@ -26,8 +35,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let notification of notifications; let i = index"
-                            [attr.data-index]="i"
+                        <tr *ngFor="let notification of notifications; let i = index" [attr.data-index]="i"
                             (click)="getNotificationResults(notification.getNotificationTO.frequency)">
                             <td>
                                 <input id="test" name="{{notification.getNotificationTO.id}}" type="checkbox"
@@ -67,15 +75,24 @@
     </div>
     <div *ngIf="notifications.length > 0" class="region">
         <div class="card border-0">
-            <div class="card-body">
-                <h1 class="card-title" style="padding-top:10px; padding-bottom:10px;">Results:</h1>
+            <div class="card-header ro-card-header">
+                <span>
+                    <i class="fa fa-columns"></i>
+                    <h5>Results</h5>
+                </span>
+                <a data-toggle="collapse" href="#collapseResults" role="button" aria-expanded="false"
+                    aria-controls="collapseResults">
+                    <i class="fa fa-chevron-down "></i>
+                </a>
+            </div>
+            <div class="card-body collapse show" id="collapseResults">
                 <p class="card-text">All results for a selected Task are provided below.
                 </p>
-                <div *ngIf="notificationResults == null">
-                    <p class="text-info">No results have been found for the selected NotificationTask.</p>
+                <div *ngIf="notificationResultTos.length < 1">
+                    <p class="text-info">No results found for the selected NotificationTask.</p>
                 </div>
-                <table style="table-layout: fixed; width:100%" *ngIf="notificationResults != null" id="resultTable"
-                    class="table table-hover">
+                <table style="table-layout: fixed; width:100%" *ngIf="notificationResultTos.length > 0" id="resultTable"
+                    class="table table-sm table-hover">
                     <caption class="text-secondary"> See details by clicking on a row.</caption>
                     <thead class="thead table-success">
                         <tr>
@@ -88,24 +105,26 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr (click)="collapseControl[key] = !collapseControl[key]"  [attr.aria-expanded]="!collapseControl[key]" aria-controls="key" *ngFor="let key of keys; let i = index" [attr.data-index]="i">
-                            <td >#</td>
-                            <td >{{notificationResults[key][0].repositoryName}}</td>
-                            <td >{{notificationResults[key][0].name}}</td>
-                            <td >{{notificationResults[key][0].path}}</td>
-                            <td ><a href="{{notificationResults[key][0].url}}">Go to GitHub</a></td>
-                            <td >{{notificationResults[key][0].createdAt | date:'dd.MM.yyyy HH:mm'}}</td>
+                        <tr (click)="collapseControl[key] = !collapseControl[key]"
+                            [attr.aria-expanded]="!collapseControl[key]" aria-controls="key"
+                            *ngFor="let key of keys; let i = index" [attr.data-index]="i">
+                            <td>#</td>
+                            <td>{{notificationResults[key][0].repositoryName}}</td>
+                            <td>{{notificationResults[key][0].name}}</td>
+                            <td>{{notificationResults[key][0].path}}</td>
+                            <td><a href="{{notificationResults[key][0].url}}">Go to GitHub</a></td>
+                            <td>{{notificationResults[key][0].createdAt | date:'dd.MM.yyyy HH:mm'}}</td>
                         </tr>
-                        <ng-template  ngFor let-key [ngForOf]="keys" let-keyIndex="index">
+                        <ng-template ngFor let-key [ngForOf]="keys" let-keyIndex="index">
                             <ng-template ngFor let-result [ngForOf]="notificationResults[key]" let-resultIndex="index">
-                                    <tr class="table-light" [ngbCollapse]="collapseControl[key]">
-                                        <td >{{resultIndex+1}}</td>
-                                        <td >{{result.repositoryName}}</td>
-                                        <td >{{result.name}}</td>
-                                        <td >{{result.path}}</td>
-                                        <td ><a href="{{result.url}}">Go to GitHub</a></td>
-                                        <td >{{result.createdAt | date:'dd.MM.yyyy HH:mm'}}</td>
-                                    </tr>
+                                <tr [ngbCollapse]="collapseControl[key]">
+                                    <td>{{resultIndex+1}}</td>
+                                    <td>{{result.repositoryName}}</td>
+                                    <td>{{result.name}}</td>
+                                    <td>{{result.path}}</td>
+                                    <td><a href="{{result.url}}">Go to GitHub</a></td>
+                                    <td>{{result.createdAt | date:'dd.MM.yyyy HH:mm'}}</td>
+                                </tr>
                             </ng-template>
                         </ng-template>
                     </tbody>
