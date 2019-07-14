@@ -140,7 +140,7 @@ namespace RepositoryNotifier.Service.Github
             if (string.IsNullOrEmpty(_accessToken)) return;
 
             IReadOnlyDictionary<string, string> config = new Dictionary<string, string>(){
-                {"url", "https://localhost.com/webhook/handle"},
+                {"url", "http://repositoryobserver.herokuapp.com/webhook/handle"},
                 {"content_type", "json"},
                 {"secret", _accessToken},
             };
