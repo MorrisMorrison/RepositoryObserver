@@ -21,21 +21,21 @@
       <div *ngIf="formIsInvalid" class="alert alert-warning" role="alert">
         The information you provided are invalid. Please check again.
       </div> -->
-      <form name="notificationForm" (ngSubmit)="createNotification()"
+      <form name="notificationForm" (ngSubmit)="printModel()"
         #notificationValidator="ngForm">
         <h5>Type</h5>
-        <p>You can choose between creating a scheduled job or a repositoryhook.</p>
+        <p>You can choose between creating a scheduled job or a repository hook.</p>
         <div class="row">
           <div class="col">
               <div class="form-group" >
-            <input type="radio" name="schedulerEnabled" value="{{schedulerEnabled}}"
-            [(ngModel)]="schedulerEnabled">
+            <input type="radio" name="schedulerEnabled" (change)="schedulerEnabledChanged()"
+             [checked]="schedulerEnabled">
             Scheduled Job
             </div>
           </div>
           <div class="col">
             <div class="form-group">
-            <input type="radio" name="schedulerEnabled">
+            <input type="radio" name="schedulerEnabled" [checked]="!schedulerEnabled" (change)="schedulerEnabledChanged()">
           Repository Hook
           </div>
         </div>
@@ -53,13 +53,11 @@
                   <span class="input-group-text">@</span>
                 </div>
                 <input class="form-control" id="email" name="email" type="email" [(ngModel)]="notificationModel.email"
-                  #emailValidatior="ngModel"
-                  [ngClass]="{ 'is-invalid': notificationValidator.submitted && emailValidation?.invalid }"
-                  aria-describedby="emailHelp" placeholder="Enter email" required email>
+                  #email="ngModel" aria-describedby="emailHelp" placeholder="Enter email" required email>
               </div>
-              <div *ngIf="notificationValidator.submitted && emailValidatior.invalid" class="invalid-feedback">
-                <div *ngIf="emailValidatior?.errors.required">Email is required</div>
-                <div *ngIf="emailValidatior?.errors.email">Email must be a valid email address</div>
+              <div *ngIf="email.invalid && (email.dirty || email.touched)">
+                <div class="text-danger" *ngIf="email?.errors.required"><small>Email is required</small></div>
+                <div class="text-danger" *ngIf="email?.errors.email"><small>Email must be a valid email address</small></div>
               </div>
               <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.
               </small>
@@ -67,15 +65,16 @@
           </div>
           <div class="col">
             <label for="frequency"><b>Frequency</b></label>
-            <select [(ngModel)]="notificationModel.selectedFrequency" class="form-control" id="frequency"
-              name="frequency" #frequencyValidator="ngModel"
-              [ngClass]="{ 'is-invalid': notificationValidator.submitted && frequencyValidator?.invalid }" required>
+            <select *ngIf="schedulerEnabled" [(ngModel)]="notificationModel.selectedFrequency" class="form-control" id="frequency"
+              name="frequency" required>
               <option *ngFor="let frequency of notificationModel.frequencies;" [ngValue]="frequency">{{frequency}}
               </option>
             </select>
-            <div *ngIf="notificationValidator.submitted && frequencyValidator.invalid" class="invalid-feedback">
-              <div *ngIf="frequencyValidator?.errors.required">Frequency is required</div>
-            </div>
+            <select *ngIf="!schedulerEnabled" [(ngModel)]="notificationModel.selectedFrequency" class="form-control" id="frequency"
+            name="frequency" disabled>
+            <option *ngFor="let frequency of notificationModel.frequencies;" [ngValue]="frequency">{{frequency}}
+            </option>
+          </select>
             <small id="frequencyHelp" class="form-text text-muted">In minutes.</small>
           </div>
         </div>
@@ -83,7 +82,7 @@
           <div class="col">
             <label for="searchKeywordToAdd"><b>Add Search Keywords</b></label>
             <div class="input-group">
-              <input class="form-control" type="text" placeholder="Add Search Keyword" id="searchKeywordToAdd"
+              <input #searchKeywordToAdd="ngModel" class="form-control" type="text" placeholder="Add Search Keyword" id="searchKeywordToAdd"
                 name="searchKeywordToAdd" [(ngModel)]="notificationModel.searchKeywordToAdd">
               <div class="input-group-append">
                 <button  class="btn btn-success" type="button"
@@ -110,7 +109,10 @@
           <div class="col">
             <div class="form-group">
               <label for="searchKeywords"><b>SearchKeywords</b></label>
-              <p *ngIf="notificationModel.searchKeywords.length == 0">No Search Keywords added yet.</p>
+              <div>
+              <div *ngIf="notificationModel.searchKeywords.length == 0 && searchKeywordToAdd.touched" class="text-danger"><small>Search Keywords are required.</small></div>
+              <p *ngIf="notificationModel.searchKeywords.length == 0 && !searchKeywordToAdd.touched">No Search Keywords added yet.</p>
+            </div>
               <ul name="searchKeywords" id="searchKeywords">
                 <li *ngFor="let searchKeyword of notificationModel.searchKeywords">{{searchKeyword}} <button class="btn"
                     style="background-color:transparent" (click)="removeSearchKeyword(searchKeyword)"><i
@@ -128,6 +130,9 @@
                 {{repository.name}}
               </div>
             </div>
+            <div *ngIf="this.getSelectedRepositories().length < 1">
+                <div class="text-danger"><small>Selecting at least one Repository is required.</small></div>
+              </div>
           </div>
           
         </div>
@@ -143,8 +148,11 @@
                   <span class="input-group-text">@</span>
                 </div>
                 <input class="form-control" id="phoneNumber" name="phoneNumber" type="tel" [(ngModel)]="notificationModel.phoneNumber"
-                       aria-describedby="phoneNumberHelp" placeholder="Enter Phone Number" required email>
+                       aria-describedby="phoneNumberHelp" placeholder="Enter Phone Number" >
               </div>
+              <div *ngIf="!this.notificationModel.phoneNumber  && (this.notificationModel.whatsappNotificationEnabled || this.notificationModel.smsNotificationEnabled)">
+                  <div class="text-danger"><small>Providing a Phone Number is required.</small></div>
+                </div>
             </div>
             
             

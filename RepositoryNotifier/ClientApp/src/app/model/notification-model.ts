@@ -10,10 +10,10 @@ export class AddNotificationModel{
     public searchKeywords: string[] = [];
     public searchKeywordToAdd: string;
     public smsNotificationEnabled: boolean;
-    public whatsappNotificationEnabled: boolean;
-    public emailNotificationEnabled: boolean;
-    public phoneNumber: string;
-    public schedulerEnabled: boolean;
+    public whatsappNotificationEnabled: boolean = false;
+    public emailNotificationEnabled: boolean = false;
+    public phoneNumber: string = "";
+    public schedulerEnabled: boolean = true;
 
     constructor(){
 

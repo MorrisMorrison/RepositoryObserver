@@ -6,7 +6,7 @@ namespace RepositoryNotifier.Service.Job
 {
     public interface IJobService
     {
-        Persistence.Job.Job CreateJob(RepositoryInspectorJobTO p_repositoryInspectorJob);
+        Persistence.Job.Job CreateJob(CreateJobTO p_repositoryInspectorJob);
         bool DeleteJob(string p_username, JobFrequency p_frequency);
         IEnumerable<Persistence.Job.Job> GetAllJobs(string p_username);
         IEnumerable<Persistence.Job.Job> GetAllJobs();
@@ -19,7 +19,7 @@ namespace RepositoryNotifier.Service.Job
         Persistence.Job.Job GetJob(string p_username, JobFrequency p_frequency);
         bool JobExists(string p_username, JobFrequency p_frequency);
         IEnumerable<string> GetCommonKeywords(int p_amount);
-        bool UpdateJob(RepositoryInspectorJobTO p_repositoryInspectorJob);
+        bool UpdateJob(CreateJobTO p_repositoryInspectorJob);
         bool UpdateJob(Persistence.Job.Job p_job);
 
         IList<JobResult> GetJobResults(string username, JobFrequency p_frequency);

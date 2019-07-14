@@ -30,7 +30,7 @@
                             observed.<br>
                             The service allows you to specify search keywords and select the frequency of a search process.
                         </p>
-            <button style="margin-bottom:-3%;" *ngIf="isAuthenticated" type="button" class="btn btn-success btn-lg" (click)="login()"><i class="fa fa-github"></i> Sign Up</button>
+            <button style="margin-bottom:-3%;" *ngIf="!isAuthenticated" type="button" class="btn btn-success btn-lg" (click)="login()"><i class="fa fa-github"></i> Sign Up</button>
                         
         <div>
         </div>

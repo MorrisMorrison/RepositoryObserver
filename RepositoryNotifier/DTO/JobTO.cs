@@ -4,7 +4,7 @@ using RepositoryNotifier.Persistence.Job;
 
 namespace RepositoryNotifier.DTO
 {
-    public class RepositoryInspectorJobTO
+    public class CreateJobTO
     {
         public string Username { get; set; }
         public string Email { get; set; }
@@ -20,7 +20,7 @@ namespace RepositoryNotifier.DTO
     }
 
 
-    public class RepositoryInspectorJobResultTO{
+    public class JobResultTO{
         public string Name {get;set;}
         public string Path {get;set;}
         public string Url {get;set;}

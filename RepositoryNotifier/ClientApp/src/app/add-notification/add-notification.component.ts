@@ -26,7 +26,7 @@ export class AddNotificationComponent implements OnInit, OnChanges {
     @Input() isAuthenticated: boolean;
     @Output() notificationCreated = new EventEmitter<boolean>();
 
-    schedulerEnabled: boolean;
+    schedulerEnabled: boolean = true;
 
 
     ngOnInit() {
@@ -81,6 +81,7 @@ export class AddNotificationComponent implements OnInit, OnChanges {
         this.githubAuthService.getCurrentUser().subscribe(user => {
             notification.username = user.username;
             this.jobService.createNotification(notification).subscribe(response => {
+                console.log(response.status);
                 if (response.status === 200) {
                     this.notificationCreated.emit(true);
                     this.alertifyService.success("Notification created.");
@@ -131,4 +132,17 @@ export class AddNotificationComponent implements OnInit, OnChanges {
         this.notificationModel.searchKeywords = this.notificationModel.searchKeywords.filter(searchKeyword => searchKeyword != searchKeywordToDelete);
     }
 
+
+    schedulerEnabledChanged(){
+        this.schedulerEnabled = !this.schedulerEnabled;
+    }
+
+    printModel(){
+        console.log(this.notificationModel);
+        console.log(this.schedulerEnabled);
+    }
+
+    phoneNumberRequired(): boolean{
+        return this.notificationModel.phoneNumber.length < 1 && (this.notificationModel.whatsappNotificationEnabled || this.notificationModel.smsNotificationEnabled);
+    }
 }

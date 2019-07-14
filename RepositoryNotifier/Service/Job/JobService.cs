@@ -20,7 +20,7 @@ namespace RepositoryNotifier.Service.Job
             _logger = p_logger;
         }
 
-        public Persistence.Job.Job CreateJob(RepositoryInspectorJobTO p_repositoryInspectorJob)
+        public Persistence.Job.Job CreateJob(CreateJobTO p_repositoryInspectorJob)
         {
 
             Persistence.Job.Job job = new Persistence.Job.Job()
@@ -87,7 +87,7 @@ namespace RepositoryNotifier.Service.Job
             return commonKeywords;
         }
 
-        public bool UpdateJob(RepositoryInspectorJobTO p_repositoryInspectorJob)
+        public bool UpdateJob(CreateJobTO p_repositoryInspectorJob)
         {
             Persistence.Job.Job job = JobDao.GetJob(p_repositoryInspectorJob.Username, p_repositoryInspectorJob.Frequency);
             job.Repositories = p_repositoryInspectorJob.Repositories;

@@ -16,12 +16,7 @@ export class AlertifyService {
         okCallback();
       } else {
       }
-    }, function(e){
-      if (e){
-       
-      }
-    }
-    )
+    });
   }
 
   success(message: string) {

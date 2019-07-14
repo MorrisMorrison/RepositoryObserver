@@ -41,8 +41,10 @@ namespace RepositoryNotifier.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateJob([FromBody] RepositoryInspectorJobTO p_repositoryInspectorJob)
+        public IActionResult CreateJob([FromBody] CreateJobTO p_repositoryInspectorJob)
         {
+            if (!ValidationHelper.IsValid(p_repositoryInspectorJob)) return BadRequest();
+
             if (_jobService.JobExists(p_repositoryInspectorJob.Username, p_repositoryInspectorJob.Frequency))
                 return Conflict();
 
@@ -107,7 +109,7 @@ namespace RepositoryNotifier.Controllers
         }
 
         [HttpPut]
-        public IActionResult UpdateJob([FromBody]RepositoryInspectorJobTO p_repositoryInspectorJob)
+        public IActionResult UpdateJob([FromBody]CreateJobTO p_repositoryInspectorJob)
         {
             bool success = _jobService.UpdateJob(p_repositoryInspectorJob);
 
@@ -128,9 +130,9 @@ namespace RepositoryNotifier.Controllers
             
             if (results == null || results.Count < 1) return Ok();
 
-            IList<RepositoryInspectorJobResultTO> resultTOs = results.Select<JobResult, RepositoryInspectorJobResultTO>(result =>
+            IList<JobResultTO> resultTOs = results.Select<JobResult, JobResultTO>(result =>
             {
-                return new RepositoryInspectorJobResultTO()
+                return new JobResultTO()
                 {
                     Name = result.Name,
                     CreatedAt = result.CreatedAt,
