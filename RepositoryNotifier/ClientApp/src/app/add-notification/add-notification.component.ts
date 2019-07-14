@@ -26,9 +26,10 @@ export class AddNotificationComponent implements OnInit, OnChanges {
     @Input() isAuthenticated: boolean;
     @Output() notificationCreated = new EventEmitter<boolean>();
 
+    schedulerEnabled: boolean;
+
 
     ngOnInit() {
-
     }
 
     ngOnChanges() {
@@ -68,7 +69,12 @@ export class AddNotificationComponent implements OnInit, OnChanges {
         notification.email = this.notificationModel.email;
         notification.frequency = this.notificationModel.selectedFrequency;
         notification.searchKeywords = this.notificationModel.searchKeywords;
-
+        notification.emailNotificationEnabled = true;
+        notification.smsNotificationEnabled = this.notificationModel.smsNotificationEnabled;
+        notification.whatsappNotificationEnabled = this.notificationModel.whatsappNotificationEnabled;
+        notification.phoneNumber = this.notificationModel.phoneNumber;
+        notification.schedulerEnabled = this.schedulerEnabled;
+        
         let repositories: string[] = this.getSelectedRepositories();
         notification.repositories = repositories;
 
@@ -102,6 +108,10 @@ export class AddNotificationComponent implements OnInit, OnChanges {
         this.notificationModel.selectedFrequency = this.notificationModel.frequencies[0];
         this.notificationModel.repositoryTos.forEach(repository => repository.selected = false);
         this.notificationModel.searchKeywords = [];
+        this.notificationModel.phoneNumber ="";
+        this.notificationModel.whatsappNotificationEnabled = false;
+        this.notificationModel.smsNotificationEnabled = false;
+        this.notificationModel.schedulerEnabled = false;
     }
 
     getSelectedRepositories(): string[] {

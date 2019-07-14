@@ -43,6 +43,7 @@ export class JobService {
     getNotificationResults(frequency:number):Observable<NotificationResultTO[]>{
         return this.httpClient.get<NotificationResultTO[]>(this.baseUrl + "api/job/getjobresults?frequency=" + frequency);
     }
+
 }
 
 

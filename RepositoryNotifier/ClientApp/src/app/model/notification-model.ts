@@ -9,6 +9,11 @@ export class AddNotificationModel{
     public commonKeywords: string[] = [];
     public searchKeywords: string[] = [];
     public searchKeywordToAdd: string;
+    public smsNotificationEnabled: boolean;
+    public whatsappNotificationEnabled: boolean;
+    public emailNotificationEnabled: boolean;
+    public phoneNumber: string;
+    public schedulerEnabled: boolean;
 
     constructor(){
 

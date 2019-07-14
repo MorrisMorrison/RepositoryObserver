@@ -24,6 +24,7 @@ using RepositoryNotifier.Persistence.Job;
 using RepositoryNotifier.JobScheduler;
 using RepositoryNotifier.Service.Job;
 using RepositoryNotifier.Service.Email;
+using RepositoryNotifier.Service.SMS;
 
 namespace RepositoryNotifier
 {
@@ -82,6 +83,7 @@ namespace RepositoryNotifier
                     p_options.ClaimActions.MapJsonKey("urn:github:url", "html_url");
                     p_options.ClaimActions.MapJsonKey("urn:github:avatar", "avatar_url");
 
+                    p_options.Scope.Add("admin:repo_hook");
 
                     p_options.SaveTokens = true;
 
@@ -97,8 +99,7 @@ namespace RepositoryNotifier
                             request.Headers.Authorization =
                                 new AuthenticationHeaderValue("Bearer", context.AccessToken);
 
-
-                  var response = await context.Backchannel.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, context.HttpContext.RequestAborted);
+                            var response = await context.Backchannel.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, context.HttpContext.RequestAborted);
                             response.EnsureSuccessStatusCode();
 
                             var user = JObject.Parse(await response.Content.ReadAsStringAsync());
@@ -127,6 +128,8 @@ namespace RepositoryNotifier
             services.AddSingleton<IPremiumPlanService, PremiumPlanService>();
             services.AddSingleton<IDbConnectionProvider, DbConnectionProvider>();
             services.AddSingleton<IEmailService, EmailService>();
+            services.AddSingleton<IMobileNotificationServiceProvider, TwilioMobileNotificationServiceProvider>();
+            services.AddSingleton<IMobileNotificationService, MobileNotificationService>();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration => { configuration.RootPath = "wwwroot"; });

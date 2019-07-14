@@ -10,7 +10,10 @@ namespace RepositoryNotifier.Service.Github
     public interface IGithubApiService
     {
         Task<GithubUser> GetGithubUser();
-        Task<bool> FindPassword(Persistence.Job.Job p_job);
-        Task<IList<SearchCodeResult>> FindPasswords(Persistence.Job.Job p_job);
+        Task<bool> FindKeyword(Persistence.Job.Job p_job);
+        Task<IList<SearchCodeResult>> FindKeywordsInRepository(Persistence.Job.Job p_job);
+        Task<IList<SearchCodeResult>> FindKeywordsInCommit(Persistence.Job.Job p_job, string p_newstCommitId);
+        void CreateWebhook(string p_username, string p_repositoryName);
+
     }
 }

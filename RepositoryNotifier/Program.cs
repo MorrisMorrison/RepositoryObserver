@@ -24,8 +24,8 @@ namespace RepositoryNotifier
             try
             {
                 // start job scheduler
-                // IRepositoryInspectorJobScheduler repositroryInspectorJobScheduler = services.GetService<IRepositoryInspectorJobScheduler>();
-                // repositroryInspectorJobScheduler.Run();
+                IJobScheduler jobScheduler = services.GetService<IJobScheduler>();
+                // jobScheduler.Run();
 
                 ILogger<Program> logger = services.GetService<ILogger<Program>>();
                 logger.LogInformation("Startup Application.");

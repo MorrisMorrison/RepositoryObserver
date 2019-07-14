@@ -7,39 +7,47 @@ using System.Threading.Tasks;
 using System.Timers;
 using Microsoft.Extensions.Logging;
 using Octokit;
+using RepositoryNotifier.Constants;
 using RepositoryNotifier.Persistence;
 using RepositoryNotifier.Persistence.Job;
 using RepositoryNotifier.Service;
 using RepositoryNotifier.Service.Email;
 using RepositoryNotifier.Service.Github;
 using RepositoryNotifier.Service.Job;
+using RepositoryNotifier.Service.SMS;
 
 namespace RepositoryNotifier.JobScheduler
 {
     public class JobScheduler : IJobScheduler
     {
-        private IJobService Service { get; }
+        private IJobService _jobService { get; }
         private IJobFrequencyService _frequencyService { get; }
         private IGithubApiService _githubApiService { get; }
         private IEmailService _emailService { get; }
+        private IMobileNotificationService _mobileNotificationService { get; set; }
         private IList<JobFrequency> _frequencies { get; set; }
         private bool _initRunDone { get; set; }
         private ILogger<JobScheduler> _logger { get; set; }
         private IList<Timer> _timers { get; set; }
         private Timer _initTimer { get; set; }
 
-        public JobScheduler(IJobService p_notificationTaskCrudService, IGithubApiService p_githubApiService, IJobFrequencyService p_frequencyService, IEmailService p_emailService, ILogger<JobScheduler> p_logger)
+        public JobScheduler(IJobService p_jobService,
+            IGithubApiService p_githubApiService,
+            IJobFrequencyService p_frequencyService,
+            IEmailService p_emailService,
+            IMobileNotificationService p_mobileNotificationService,
+            ILogger<JobScheduler> p_logger)
         {
-            Service = p_notificationTaskCrudService;
+            _jobService = p_jobService;
             _frequencyService = p_frequencyService;
             _githubApiService = p_githubApiService;
             _frequencies = _frequencyService.GetFrequencies();
             _emailService = p_emailService;
             _logger = p_logger;
+            _mobileNotificationService = p_mobileNotificationService;
         }
 
 
-        // TODO implement logging 
         public async Task Run()
         {
             // execute all tasks at first startup
@@ -49,7 +57,7 @@ namespace RepositoryNotifier.JobScheduler
             _logger.LogInformation("Initialize RepositoryInspectorJobScheduler Run().");
 
 
-            IList<Job> repositoryInspectorJobs = Service.GetAllJobs().ToList();
+            IList<Job> repositoryInspectorJobs = _jobService.GetAllSchedulerJobs().ToList();
             if (repositoryInspectorJobs == null || repositoryInspectorJobs.Count < 1)
             {
                 if (_initTimer == null)
@@ -90,7 +98,7 @@ namespace RepositoryNotifier.JobScheduler
 
         public async Task ExecuteJobs(JobFrequency p_frequency)
         {
-            IList<Job> repositoryInspectorJobs = Service.GetAllJobs(p_frequency).ToList();
+            IList<Job> repositoryInspectorJobs = _jobService.GetAllJobs(p_frequency).ToList();
 
             foreach (Job job in repositoryInspectorJobs)
             {
@@ -100,7 +108,9 @@ namespace RepositoryNotifier.JobScheduler
 
         public async Task ExecuteJob(Job p_job)
         {
-            IList<SearchCodeResult> searchResults = await _githubApiService.FindPasswords(p_job);
+            IList<SearchCodeResult> searchResults = new List<SearchCodeResult>();
+
+            searchResults = await _githubApiService.FindKeywordsInRepository(p_job);
 
             if (searchResults == null || searchResults.Count < 1) return;
 
@@ -112,6 +122,8 @@ namespace RepositoryNotifier.JobScheduler
 
             foreach (SearchCodeResult searchCodeResult in searchResults)
             {
+                if (searchCodeResult.Items.Count < 1) continue;
+                
                 Persistence.Job.Repository repository = new Persistence.Job.Repository
                 {
                     Id = searchCodeResult.Items.FirstOrDefault().Repository.Id,
@@ -138,9 +150,24 @@ namespace RepositoryNotifier.JobScheduler
                     p_job.Results.Add(result);
                 }
             }
-            Service.UpdateJob(p_job);
+            _jobService.UpdateJob(p_job);
 
-            _emailService.SendNotificationMail(p_job.Username, p_job.Email, searchResults);
+            if (p_job.EmailNotificationEnabled)
+            {
+                _emailService.SendNotificationMail(p_job.Username, p_job.Email, searchResults);
+            }
+
+            if (p_job.SmsNotificationEnabled)
+            {
+//                await _mobileNotificationService.CreateSMSNotification("+4917647106363", MobileNotificationConstants.NOTIFICATION_TEMPLATE, null);
+            }
+
+            if (p_job.WhatsappNotificationEnabled)
+            {
+//                await _mobileNotificationService.CreateWhatsappNotification("+4917647106363", MobileNotificationConstants.NOTIFICATION_TEMPLATE, null);
+
+            }
+            
         }
 
     }

@@ -9,6 +9,7 @@ using RepositoryNotifier.Helper;
 using RepositoryNotifier.Persistence;
 using RepositoryNotifier.Persistence.Job;
 using RepositoryNotifier.Service;
+using RepositoryNotifier.Service.Github;
 using RepositoryNotifier.Service.Job;
 
 namespace RepositoryNotifier.Controllers
@@ -18,11 +19,13 @@ namespace RepositoryNotifier.Controllers
     public class JobController : Controller
     {
 
-        private IJobService Service { get; }
+        private IJobService _jobService { get; }
+        private IGithubApiService _githubApiService {get;}
         private ILogger<JobController> _logger { get; set; }
-        public JobController(IJobService p_crudService, ILogger<JobController> p_logger)
+        public JobController(IJobService p_crudService, IGithubApiService p_githubApiService, ILogger<JobController> p_logger)
         {
-            Service = p_crudService;
+            _jobService = p_crudService;
+            _githubApiService = p_githubApiService;
             _logger = p_logger;
         }
 
@@ -30,7 +33,7 @@ namespace RepositoryNotifier.Controllers
         public IActionResult AlreadyCreated([FromQuery(Name = "frequency")] JobFrequency p_frequency)
         {
             bool alreadyCreated =
-                Service.GetJob(HttpContext.User.FindFirst(c => c.Type == ClaimTypes.Name)
+                _jobService.GetJob(HttpContext.User.FindFirst(c => c.Type == ClaimTypes.Name)
                     ?.Value, p_frequency) != null;
 
             if (alreadyCreated) return Ok();
@@ -38,12 +41,19 @@ namespace RepositoryNotifier.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateJob([FromBody] CreateRepositoryInspectorJobTO p_repositoryInspectorJob)
+        public IActionResult CreateJob([FromBody] RepositoryInspectorJobTO p_repositoryInspectorJob)
         {
-            if (Service.JobExists(p_repositoryInspectorJob.Username, p_repositoryInspectorJob.Frequency))
+            if (_jobService.JobExists(p_repositoryInspectorJob.Username, p_repositoryInspectorJob.Frequency))
                 return Conflict();
 
-            Job job = Service.CreateJob(p_repositoryInspectorJob);
+
+            if (!p_repositoryInspectorJob.SchedulerEnabled){
+                foreach (string repository in p_repositoryInspectorJob.Repositories){
+                    _githubApiService.CreateWebhook(AuthHelper.GetLogin(HttpContext), repository);
+                }
+            }
+
+            Job job = _jobService.CreateJob(p_repositoryInspectorJob);
 
             if (job != null && job.Id != null)
             {
@@ -58,7 +68,7 @@ namespace RepositoryNotifier.Controllers
         public IActionResult DeleteJob([FromQuery(Name = "frequency")]JobFrequency p_frequency)
         {
             string username = AuthHelper.GetLogin(HttpContext);
-            bool success = Service.DeleteJob(username, p_frequency);
+            bool success = _jobService.DeleteJob(username, p_frequency);
 
             if (success)
             {
@@ -73,7 +83,7 @@ namespace RepositoryNotifier.Controllers
         public IActionResult GetAllJobs()
         {
             string username = AuthHelper.GetLogin(HttpContext);
-            IList<Job> repositoryInspectorJobs = Service.GetAllJobs(username).ToList();
+            IList<Job> repositoryInspectorJobs = _jobService.GetAllJobs(username).ToList();
             if (repositoryInspectorJobs != null && repositoryInspectorJobs.Count > 0)
             {
                 return Ok(repositoryInspectorJobs);
@@ -86,7 +96,7 @@ namespace RepositoryNotifier.Controllers
         [HttpGet]
         public IActionResult GetCommonKeywords()
         {
-            IList<string> commonKeywords = Service.GetCommonKeywords(5).ToList();
+            IList<string> commonKeywords = _jobService.GetCommonKeywords(5).ToList();
 
             if (commonKeywords != null && commonKeywords.Count > 1)
             {
@@ -97,9 +107,9 @@ namespace RepositoryNotifier.Controllers
         }
 
         [HttpPut]
-        public IActionResult UpdateJob([FromBody]UpdateRepositoryInspectorJobTO p_repositoryInspectorJob)
+        public IActionResult UpdateJob([FromBody]RepositoryInspectorJobTO p_repositoryInspectorJob)
         {
-            bool success = Service.UpdateJob(p_repositoryInspectorJob);
+            bool success = _jobService.UpdateJob(p_repositoryInspectorJob);
 
             if (success)
             {
@@ -114,7 +124,10 @@ namespace RepositoryNotifier.Controllers
         public IActionResult GetJobResults([FromQuery(Name = "frequency")] JobFrequency p_frequency)
         {
             string username = AuthHelper.GetLogin(HttpContext);
-            IList<JobResult> results = Service.GetJobResults(username, p_frequency);
+            IList<JobResult> results = _jobService.GetJobResults(username, p_frequency);
+            
+            if (results == null || results.Count < 1) return Ok();
+
             IList<RepositoryInspectorJobResultTO> resultTOs = results.Select<JobResult, RepositoryInspectorJobResultTO>(result =>
             {
                 return new RepositoryInspectorJobResultTO()

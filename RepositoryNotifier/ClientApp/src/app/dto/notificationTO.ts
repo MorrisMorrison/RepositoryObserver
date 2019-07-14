@@ -4,6 +4,11 @@ export class AddNotificationTO{
     repositories: string[];
     frequency: number;
     searchKeywords: string[];
+    phoneNumber:string;
+    emailNotificationEnabled:boolean;
+    smsNotificationEnabled:boolean;
+    whatsappNotificationEnabled:boolean;
+    schedulerEnabled:boolean;
 }
 
 export class UpdateNotificationTO{

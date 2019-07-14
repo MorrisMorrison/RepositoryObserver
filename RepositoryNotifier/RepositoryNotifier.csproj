@@ -46,8 +46,6 @@
     <Content Include="ClientApp\src\app\service\githubauth\githubauth.service.ts" />
     <None Remove="$(SpaRoot)**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
-    <None Include="ClientApp\src\app\service\taskscheduler\taskscheduler.service.spec.ts" />
-    <None Include="ClientApp\src\app\service\taskscheduler\taskscheduler.service.ts" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ClientApp\src\assets" />

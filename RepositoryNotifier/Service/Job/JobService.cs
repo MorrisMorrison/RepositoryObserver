@@ -20,7 +20,7 @@ namespace RepositoryNotifier.Service.Job
             _logger = p_logger;
         }
 
-        public Persistence.Job.Job CreateJob(CreateRepositoryInspectorJobTO p_repositoryInspectorJob)
+        public Persistence.Job.Job CreateJob(RepositoryInspectorJobTO p_repositoryInspectorJob)
         {
 
             Persistence.Job.Job job = new Persistence.Job.Job()
@@ -32,11 +32,16 @@ namespace RepositoryNotifier.Service.Job
                 UpdatedAt = DateTime.Now,
                 Status = Constants.Status.INIT,
                 Email = p_repositoryInspectorJob.Email,
-                Username = p_repositoryInspectorJob.Username
+                Username = p_repositoryInspectorJob.Username,
+                PhoneNumber = p_repositoryInspectorJob.PhoneNumber,
+                EmailNotificationEnabled = p_repositoryInspectorJob.EmailNotificationEnabled,
+                SmsNotificationEnabled = p_repositoryInspectorJob.SmsNotificationEnabled,
+                WhatsappNotificationEnabled = p_repositoryInspectorJob.WhatsappNotificationEnabled,
+                SchedulerEnabled = p_repositoryInspectorJob.SchedulerEnabled
             };
 
 
-                JobDao.AddJob(job);
+            JobDao.AddJob(job);
 
 
 
@@ -82,19 +87,26 @@ namespace RepositoryNotifier.Service.Job
             return commonKeywords;
         }
 
-        public bool UpdateJob(UpdateRepositoryInspectorJobTO p_repositoryInspectorJob)
+        public bool UpdateJob(RepositoryInspectorJobTO p_repositoryInspectorJob)
         {
             Persistence.Job.Job job = JobDao.GetJob(p_repositoryInspectorJob.Username, p_repositoryInspectorJob.Frequency);
             job.Repositories = p_repositoryInspectorJob.Repositories;
             job.SearchKeywords = p_repositoryInspectorJob.SearchKeywords;
             job.Email = p_repositoryInspectorJob.Email;
+            job.PhoneNumber = p_repositoryInspectorJob.PhoneNumber;
             job.UpdatedAt = DateTime.Now;
+            job.PhoneNumber = p_repositoryInspectorJob.PhoneNumber;
+            job.EmailNotificationEnabled = p_repositoryInspectorJob.EmailNotificationEnabled;
+            job.SmsNotificationEnabled = p_repositoryInspectorJob.SmsNotificationEnabled;
+            job.WhatsappNotificationEnabled = p_repositoryInspectorJob.WhatsappNotificationEnabled;
+            job.SchedulerEnabled = p_repositoryInspectorJob.SchedulerEnabled;
 
             return JobDao.UpdateJob(job);
         }
 
         public Persistence.Job.Job GetJob(string p_username, JobFrequency p_frequency)
-        {           return JobDao.GetJob(p_username, p_frequency);
+        {
+            return JobDao.GetJob(p_username, p_frequency);
         }
 
         public bool JobExists(string p_username, JobFrequency p_frequency)
@@ -104,7 +116,7 @@ namespace RepositoryNotifier.Service.Job
 
         public IEnumerable<Persistence.Job.Job> GetAllJobs(JobFrequency p_frequency)
         {
-            return JobDao.GetAllJobs().Where(p_job => p_job.Frequency == p_frequency);
+            return JobDao.GetAllJobs().Where(p_job => p_job.Frequency == p_frequency && p_job.SchedulerEnabled);
         }
 
         public IEnumerable<Persistence.Job.Job> GetAllJobs(string p_username)
@@ -115,6 +127,14 @@ namespace RepositoryNotifier.Service.Job
         public IEnumerable<Persistence.Job.Job> GetAllJobs()
         {
             return JobDao.GetAllJobs();
+        }
+        public IEnumerable<Persistence.Job.Job> GetAllSchedulerJobs()
+        {
+            return JobDao.GetAllJobs().Where(p_job => p_job.SchedulerEnabled);
+        }
+        public IEnumerable<Persistence.Job.Job> GetAllHookJobs()
+        {
+            return JobDao.GetAllJobs().Where(p_job => !p_job.SchedulerEnabled);
         }
 
         public bool UpdateJob(Persistence.Job.Job p_job)

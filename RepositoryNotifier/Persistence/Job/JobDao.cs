@@ -62,7 +62,12 @@ namespace RepositoryNotifier.Persistence.Job
                                                                    .Set(p_task => p_task.LastExecutedAt, p_job.LastExecutedAt)
                                                                    .Set(p_task => p_task.Status, p_job.Status)
                                                                    .Set(p_task => p_task.Results, p_job.Results)
-                                                                   .Set(p_task => p_task.UpdatedAt, p_job.UpdatedAt);
+                                                                   .Set(p_task => p_task.PhoneNumber, p_job.PhoneNumber)
+                                                                   .Set(p_task => p_task.EmailNotificationEnabled, p_job.EmailNotificationEnabled)
+                                                                   .Set(p_task => p_task.SmsNotificationEnabled, p_job.SmsNotificationEnabled)
+                                                                   .Set(p_task => p_task.WhatsappNotificationEnabled, p_job.WhatsappNotificationEnabled)
+                                                                   .Set(p_task => p_task.UpdatedAt, p_job.UpdatedAt)
+                                                                   .Set(p_task => p_task.SchedulerEnabled, p_job.SchedulerEnabled);
 
             UpdateResult result = repositoryInspectorJobs.UpdateOne(p_task => p_task.Username == p_job.Username && p_task.Frequency == p_job.Frequency, updateDef);
 
