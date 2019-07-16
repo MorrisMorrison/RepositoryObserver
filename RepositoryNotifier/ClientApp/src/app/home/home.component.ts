@@ -2,7 +2,7 @@ import { Component, Inject, ViewChild } from '@angular/core';
 import { GithubauthService } from "../service/githubauth/githubauth.service";
 import { Router } from '@angular/router';
 import { DOCUMENT } from "@angular/common";
-import { AddNotificationComponent } from '../add-notification/add-notification.component';
+import { AddJobComponent } from '../add-job/add-job.component';
 import { NavMenuComponent } from '../nav-menu/nav-menu.component';
 import { AlertifyService } from '../service/alertify/alertify.service';
 
@@ -14,7 +14,7 @@ import { AlertifyService } from '../service/alertify/alertify.service';
 export class HomeComponent {
 
     @ViewChild(NavMenuComponent) navMenuComponent: NavMenuComponent;
-    @ViewChild(AddNotificationComponent) addNotificationComponent: AddNotificationComponent;
+    @ViewChild(AddJobComponent) addJobComponent: AddJobComponent;
 
     isAuthenticated: boolean;
     username: string;

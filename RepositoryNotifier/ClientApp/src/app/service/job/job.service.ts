@@ -1,7 +1,7 @@
 import {Inject, Injectable} from "@angular/core";
 import {HttpClient, HttpResponse} from "@angular/common/http";
 import {Observable} from "rxjs/index";
-import {GetNotificationTO, AddNotificationTO, UpdateNotificationTO, NotificationResultTO} from "../../dto/notificationTO";
+import {GetJobTO, AddJobTO, UpdateJobTO, JobResultTO} from "../../dto/jobTO";
 
 @Injectable({
   providedIn: 'root'
@@ -20,15 +20,15 @@ export class JobService {
         return this.httpClient.get<number[]>(this.baseUrl + "api/frequency/getfrequencies");
     }
     
-    createNotification(notification:AddNotificationTO):Observable<HttpResponse<string>>{
-        return this.httpClient.post<string>(this.baseUrl + "api/job/createjob", notification, {observe: 'response'});
+    createJob(job:AddJobTO):Observable<HttpResponse<string>>{
+        return this.httpClient.post<string>(this.baseUrl + "api/job/createjob", job, {observe: 'response'});
     }
 
-    getNotifications():Observable<GetNotificationTO[]>{
-        return this.httpClient.get<GetNotificationTO[]>(this.baseUrl + "api/job/getalljobs");
+    getJobs():Observable<GetJobTO[]>{
+        return this.httpClient.get<GetJobTO[]>(this.baseUrl + "api/job/getalljobs");
     }
     
-    deleteNotification(frequency: number):Observable<HttpResponse<string>>{
+    deleteJob(frequency: number):Observable<HttpResponse<string>>{
         return this.httpClient.delete<string>(this.baseUrl + "api/job/deletejob?frequency=" + frequency, {observe: 'response'});
     }
 
@@ -36,12 +36,12 @@ export class JobService {
         return this.httpClient.get<string[]>(this.baseUrl + "api/job/getcommonkeywords");
     }
 
-    updateNotification(notification:UpdateNotificationTO):Observable<HttpResponse<string>>{
-        return this.httpClient.put<string>(this.baseUrl +"api/job/updatejob", notification, {observe: 'response'});
+    updateJob(job:UpdateJobTO):Observable<HttpResponse<string>>{
+        return this.httpClient.put<string>(this.baseUrl +"api/job/updatejob", job, {observe: 'response'});
     }
 
-    getNotificationResults(frequency:number):Observable<NotificationResultTO[]>{
-        return this.httpClient.get<NotificationResultTO[]>(this.baseUrl + "api/job/getjobresults?frequency=" + frequency);
+    getJobResults(frequency:number):Observable<JobResultTO[]>{
+        return this.httpClient.get<JobResultTO[]>(this.baseUrl + "api/job/getjobresults?frequency=" + frequency);
     }
 
 }

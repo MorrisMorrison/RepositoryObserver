@@ -6,14 +6,14 @@ import { RouterModule, ExtraOptions } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { NotificationsComponent } from './notifications/notifications.component';
-import { AddNotificationComponent } from './add-notification/add-notification.component';
+import { JobsComponent } from './jobs/jobs.component';
+import { AddJobComponent } from './add-job/add-job.component';
 import { GithubauthService } from './service/githubauth/githubauth.service';
 import { FooterComponent } from './footer/footer.component';
 import { JobService } from './service/job/job.service';
 import { AlertifyService } from './service/alertify/alertify.service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { EditNotificationComponent } from './edit-notification/edit-notification.component';
+import { EditJobComponent } from './edit-job/edit-job.component';
 import { AbonementComponent } from './abonement/abonement.component';
 import { PaymentsComponent } from './payments/payments.component';
 import { CheckoutComponent } from './checkout/checkout.component';
@@ -26,16 +26,16 @@ const config: ExtraOptions = {
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    NotificationsComponent,
-    AddNotificationComponent,
+    JobsComponent,
+    AddJobComponent,
     FooterComponent,
-    EditNotificationComponent,
+    EditJobComponent,
     AbonementComponent,
     PaymentsComponent,
     CheckoutComponent,
   ],
   exports: [],
-  entryComponents: [EditNotificationComponent],
+  entryComponents: [EditJobComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
@@ -45,7 +45,7 @@ const config: ExtraOptions = {
     RouterModule.forRoot([
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
-      { path: 'notifications', component: NotificationsComponent },
+      { path: 'notifications', component: JobsComponent },
       { path: 'payments', component: PaymentsComponent },
       { path: 'checkout', component: CheckoutComponent },
     ], config)

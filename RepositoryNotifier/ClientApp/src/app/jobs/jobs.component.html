@@ -1,25 +1,25 @@
 <app-nav-menu [isAuthenticated]="isAuthenticated" [username]="username"></app-nav-menu>
-<div class="container notificationsMain">
+<div class="container jobsMain">
     <div class="card border-0">
         <div class="card-header ro-card-header">
             <span>
                 <i class="fa fa-th-list"></i>
                 <h5>My Notifications</h5>
             </span>
-            <a data-toggle="collapse" href="#isCollapsedNotifications" role="button" aria-expanded="false"
-                aria-controls="isCollapsedNotifications">
+            <a data-toggle="collapse" href="#isCollapsedJobs" role="button" aria-expanded="false"
+                aria-controls="isCollapsedJobs">
                 <i class="fa fa-chevron-down "></i>
             </a>
         </div>
-        <div class="card-body collapse show" id="isCollapsedNotifications">
+        <div class="card-body collapse show" id="isCollapsedJobs">
             <p class="card-text">You can only have one NotificationTask per Frequency, so your maximum number of tasks
                 equals the maximum number
                 of
                 frequencies available.</p>
-            <div *ngIf="notifications.length < 1">
-                <p class="text-info">You haven't created any notifications yet.</p>
+            <div *ngIf="jobs.length < 1">
+                <p class="text-info">You haven't created any jobs yet.</p>
             </div>
-            <div *ngIf="notifications.length > 0">
+            <div *ngIf="jobs.length > 0">
                 <table class="table table-sm table-hover">
                     <caption class="text-secondary"> See results below by clicking on a row.</caption>
                     <thead class="thead bg-success text-white">
@@ -35,45 +35,45 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let notification of notifications; let i = index" [attr.data-index]="i"
-                            (click)="getNotificationResults(notification.getNotificationTO.frequency)">
+                        <tr *ngFor="let job of jobs; let i = index" [attr.data-index]="i"
+                            (click)="getJobResults(job.getJobTO.frequency)">
                             <td>
-                                <input id="test" name="{{notification.getNotificationTO.id}}" type="checkbox"
-                                    value="{{notification.getNotificationTO.id}}" [(ngModel)]="notification.selected">
+                                <input id="test" name="{{job.getJobTO.id}}" type="checkbox"
+                                    value="{{job.getJobTO.id}}" [(ngModel)]="job.selected">
                                 <label for="test"></label>
                             </td>
                             <td scope="row">{{i+1}}</td>
-                            <td>{{notification.getNotificationTO.email}}</td>
-                            <td>{{notification.getNotificationTO.frequency}} minutes</td>
+                            <td>{{job.getJobTO.email}}</td>
+                            <td>{{job.getJobTO.frequency}} minutes</td>
                             <td>
                                 <ul>
-                                    <li *ngFor="let repository of notification.getNotificationTO.repositories">
+                                    <li *ngFor="let repository of job.getJobTO.repositories">
                                         {{repository}}</li>
                                 </ul>
                             </td>
                             <td>
                                 <ul>
-                                    <li *ngFor="let searchKeyword of notification.getNotificationTO.searchKeywords">
+                                    <li *ngFor="let searchKeyword of job.getJobTO.searchKeywords">
                                         {{searchKeyword}}</li>
                                 </ul>
                             </td>
-                            <td *ngIf="notification.getNotificationTO.status != 'INIT'; else showNever">
-                                {{notification.getNotificationTO.lastExecutedAt | date:'dd.MM.yyyy HH:mm'}}</td>
+                            <td *ngIf="job.getJobTO.status != 'INIT'; else showNever">
+                                {{job.getJobTO.lastExecutedAt | date:'dd.MM.yyyy HH:mm'}}</td>
                             <ng-template #showNever>
                                 <td>Never</td>
                             </ng-template>
-                            <td>{{notification.getNotificationTO.status}}</td>
+                            <td>{{job.getJobTO.status}}</td>
                         </tr>
                     </tbody>
                 </table>
                 <button style="margin-right: 1%; width:10%;" type="button" class="btn btn-success"
-                    (click)="editNotification()">Edit</button>
-                <button type="button" style="width:10%;" (click)="deleteNotifications()"
+                    (click)="editJob()">Edit</button>
+                <button type="button" style="width:10%;" (click)="deleteJobs()"
                     class="btn btn-info">Delete</button>
             </div>
         </div>
     </div>
-    <div *ngIf="notifications.length > 0" class="region">
+    <div *ngIf="jobs.length > 0" class="region">
         <div class="card border-0">
             <div class="card-header ro-card-header">
                 <span>
@@ -88,10 +88,10 @@
             <div class="card-body collapse show" id="collapseResults">
                 <p class="card-text">All results for a selected Task are provided below.
                 </p>
-                <div *ngIf="notificationResultTos.length < 1">
+                <div *ngIf="jobResultTos.length < 1">
                     <p class="text-info">No results found for the selected NotificationTask.</p>
                 </div>
-                <table style="table-layout: fixed; width:100%" *ngIf="notificationResultTos.length > 0" id="resultTable"
+                <table style="table-layout: fixed; width:100%" *ngIf="jobResultTos.length > 0" id="resultTable"
                     class="table table-sm table-hover">
                     <caption class="text-secondary"> See details by clicking on a row.</caption>
                     <thead class="thead table-success">
@@ -109,14 +109,14 @@
                             [attr.aria-expanded]="!collapseControl[key]" aria-controls="key"
                             *ngFor="let key of keys; let i = index" [attr.data-index]="i">
                             <td>#</td>
-                            <td>{{notificationResults[key][0].repositoryName}}</td>
-                            <td>{{notificationResults[key][0].name}}</td>
-                            <td>{{notificationResults[key][0].path}}</td>
-                            <td><a href="{{notificationResults[key][0].url}}">Go to GitHub</a></td>
-                            <td>{{notificationResults[key][0].createdAt | date:'dd.MM.yyyy HH:mm'}}</td>
+                            <td>{{jobResults[key][0].repositoryName}}</td>
+                            <td>{{jobResults[key][0].name}}</td>
+                            <td>{{jobResults[key][0].path}}</td>
+                            <td><a href="{{jobResults[key][0].url}}">Go to GitHub</a></td>
+                            <td>{{jobResults[key][0].createdAt | date:'dd.MM.yyyy HH:mm'}}</td>
                         </tr>
                         <ng-template ngFor let-key [ngForOf]="keys" let-keyIndex="index">
-                            <ng-template ngFor let-result [ngForOf]="notificationResults[key]" let-resultIndex="index">
+                            <ng-template ngFor let-result [ngForOf]="jobResults[key]" let-resultIndex="index">
                                 <tr [ngbCollapse]="collapseControl[key]">
                                     <td>{{resultIndex+1}}</td>
                                     <td>{{result.repositoryName}}</td>
@@ -134,8 +134,8 @@
 
     </div>
     <div class="region">
-        <app-add-notification [isAuthenticated]="isAuthenticated" [username]="username"
-            (notificationCreated)="notificationCreated($event)"></app-add-notification>
+        <app-add-job [isAuthenticated]="isAuthenticated" [username]="username"
+            (jobCreated)="jobCreated($event)"></app-add-job>
     </div>
 </div>
 <app-footer></app-footer>

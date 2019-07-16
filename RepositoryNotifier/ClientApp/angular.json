@@ -15,7 +15,7 @@
           "options": {
             "progress": true,
             "extractCss": true,
-            "outputPath": "../repositoryobserver/wwwroot",
+            "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",

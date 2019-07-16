@@ -1,6 +1,6 @@
 import { RepositoryTO } from "../dto/repositoryTO";
 
-export class AddNotificationModel{
+export class AddJobModel{
     public email: string;
     public repositories: string[] = [];
     public repositoryTos: RepositoryTO[] = [];

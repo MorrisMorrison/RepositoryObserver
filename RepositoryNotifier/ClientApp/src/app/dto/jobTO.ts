@@ -1,4 +1,4 @@
-export class AddNotificationTO{
+export class AddJobTO{
     username: string;
     email: string;
     repositories: string[];
@@ -11,7 +11,7 @@ export class AddNotificationTO{
     schedulerEnabled:boolean;
 }
 
-export class UpdateNotificationTO{
+export class UpdateJobTO{
     username: string;
     email: string;
     repositories: string[];
@@ -19,7 +19,7 @@ export class UpdateNotificationTO{
     searchKeywords: string[];
 }
 
-export class GetNotificationTO extends AddNotificationTO{
+export class GetJobTO extends AddJobTO{
     id: number;
     createdAt: Date;
     updatedAt: Date;
@@ -27,23 +27,23 @@ export class GetNotificationTO extends AddNotificationTO{
     status: string;
 }
 
-export class Notification{
-    getNotificationTO: GetNotificationTO;
+export class Job{
+    getJobTO: GetJobTO;
     selected: boolean;
 
 
-    constructor(getNotificationTO: GetNotificationTO, selected: boolean) {
-        this.getNotificationTO = getNotificationTO;
+    constructor(getJobTO: GetJobTO, selected: boolean) {
+        this.getJobTO = getJobTO;
         this.selected = selected;
     }
 }
 
-export class DeleteNotificationTO{
+export class DeleteJobTO{
     email: string;
     frequency: number;
 }
 
-export class NotificationResultTO{
+export class JobResultTO{
     name:string;
     path:string;
     url:string;
