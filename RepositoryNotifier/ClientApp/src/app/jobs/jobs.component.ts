@@ -105,13 +105,14 @@ export class JobsComponent implements OnInit {
 
   editJob() {
     const modalRef = this.modalService.open(EditJobComponent);
-    modalRef.componentInstance.selectedNotification = this.getSelectedJob();
+    modalRef.componentInstance.selectedJob = this.getSelectedJob();
     modalRef.componentInstance.username = this.username;
   }
 
   getSelectedJobs(): Job[] {
     return this.jobs.filter(notification => notification.selected == true);
   }
+
   getSelectedJob(): Job {
     let selectedJobs: Job[] = this.getSelectedJobs();
     if (selectedJobs != null) {

@@ -154,7 +154,7 @@ namespace RepositoryNotifier.JobScheduler
 
             if (p_job.EmailNotificationEnabled)
             {
-                _emailService.SendNotificationMail(p_job.Username, p_job.Email, searchResults);
+                // _emailService.SendNotificationMail(p_job.Username, p_job.Email, searchResults);
             }
 
             if (p_job.SmsNotificationEnabled)
