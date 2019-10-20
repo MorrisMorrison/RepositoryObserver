@@ -4,6 +4,7 @@ import { DOCUMENT } from '@angular/common';
 import { ContactService } from '../service/contact/contact.service';
 import { ContactModel } from '../model/contact-model';
 import { AddContactTO } from '../dto/contactTO';
+import { AlertifyService } from '../service/alertify/alertify.service';
 
 @Component({
   selector: 'app-contact',
@@ -17,7 +18,10 @@ export class ContactComponent implements OnInit {
   username: string;
   contactModel:ContactModel = new ContactModel();
 
-  constructor(private contactService:ContactService, private githubAuthService: GithubauthService, @Inject(DOCUMENT) private document:any) {
+  constructor(private contactService:ContactService,
+    private githubAuthService: GithubauthService,
+    @Inject(DOCUMENT) private document:any,
+    private alertifyService:AlertifyService) {
 
   }
 
@@ -45,7 +49,22 @@ export class ContactComponent implements OnInit {
 
     console.log(contactMessage);
 
-    this.contactService.addContact(contactMessage).subscribe();
+    this.contactService.addContact(contactMessage).subscribe(response => {
+      console.log(response.status);
+      if (response.status === 200) {
+          this.alertifyService.success("Message created.");
+      } else{
+          this.alertifyService.error("An Error occurred.");
+      }
+      this.clearFormData();
+    
+    });
   }
 
+  clearFormData(){
+    this.contactModel.name = "";
+    this.contactModel.email ="";
+    this.contactModel.subject = "";
+    this.contactModel.message = "";
+  }
 }
