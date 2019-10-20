@@ -9,52 +9,91 @@
     </div>
     <div class="card-body" id="contactForm">
 
-
-      <label>Name:</label>
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="name-addon"><i class="fa fa-user"></i></span>
+      <div class="mb-3">
+        <label>Name:</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="name-addon"><i class="fa fa-user"></i></span>
+          </div>
+          <input id="name" name="name" type="text" class="form-control" placeholder="Max Patternman" aria-label="Name"
+            aria-describedby="name-addon" [(ngModel)]="contactModel.name" #name="ngModel" required name>
         </div>
-        <input type="text" class="form-control" placeholder="Max Patternman" aria-label="Name"
-          aria-describedby="name-addon" [(ngModel)]="contactModel.name">
-      </div>
-
-      <label>E-Mail:</label>
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="email-addon"><i class="fa fa-envelope"></i></span>
+        <div *ngIf="name.invalid && (name.dirty || name.touched)">
+          <div class="text-danger" *ngIf="name?.errors.required"><small>Name is required</small></div>
         </div>
-        <input type="email" class="form-control" placeholder="maxpatternman@gmail.com" aria-label="E-Mail"
-          aria-describedby="email-addon" [(ngModel)]="contactModel.email">
       </div>
 
 
 
-      <label>Subject:</label>
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="subject-addon"><i class="fa fa-bolt"></i></span>
+      <div class="mb-3">
+
+        <label>E-Mail:</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="email-addon"><i class="fa fa-envelope"></i></span>
+          </div>
+          <input id="email" name="email" type="email" class="form-control" placeholder="maxpatternman@gmail.com"
+            aria-label="E-Mail" aria-describedby="email-addon" [(ngModel)]="contactModel.email" #email="ngModel"
+            required email>
+
         </div>
-        <input type="text" class="form-control" placeholder="I hate this product" aria-label="Subject"
-          aria-describedby="subject-addon" [(ngModel)]="contactModel.subject">
+        <div *ngIf="email.invalid && (email.dirty || email.touched)">
+          <div class="text-danger" *ngIf="email?.errors.required"><small>Email is required</small></div>
+          <div class="text-danger" *ngIf="email?.errors.email"><small>Email must be a valid email address</small></div>
+        </div>
       </div>
 
-      <label>Your Message:</label>
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="basic-addon1"><i class="fa fa-pencil"></i></span>
+      <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.
+      </small> -->
+
+
+      <div class="mb-3">
+
+        <label>Subject:</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="subject-addon"><i class="fa fa-bolt"></i></span>
+          </div>
+          <input id="subject" name="subject" type="text" class="form-control" placeholder="I hate this product"
+            aria-label="Subject" aria-describedby="subject-addon" [(ngModel)]="contactModel.subject" #subject="ngModel"
+            required subject>
         </div>
-        <textarea class="form-control" rows="10" placeholder="Write your message down here ..." [(ngModel)]="contactModel.message"></textarea>
+        <div *ngIf="subject.invalid && (subject.dirty || subject.touched)">
+          <div class="text-danger" *ngIf="subject?.errors.required"><small>Subject is required</small></div>
+        </div>
+
+
       </div>
-      <div class="text-center" >
+
+
+      <div class="mb-3">
+
+        <label>Your Message:</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="fa fa-pencil"></i></span>
+          </div>
+          <textarea id="message" name="message" class="form-control" rows="10"
+            placeholder="Write your message down here ..." [(ngModel)]="contactModel.message" #message="ngModel"
+            required message></textarea>
+        </div>
+
+        <div *ngIf="message.invalid && (message.dirty || message.touched)">
+          <div class="text-danger" *ngIf="message?.errors.required"><small>Message is required</small></div>
+        </div>
+      </div>
+
+      <div class="text-center">
         <button class="btn btn-success btn-block py-2" (click)="sendMessage()">Submit</button>
       </div>
     </div>
 
+
+
   </div>
 </div>
 
-<div class="container" style="padding-top:5px;">
+<div class="container mt-3 mb-3">
   <div class="card">
     <div class="mb-4">
     </div>

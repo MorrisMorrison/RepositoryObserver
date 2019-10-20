@@ -17,6 +17,7 @@ export class ContactComponent implements OnInit {
   isAuthenticated: boolean;
   username: string;
   contactModel:ContactModel = new ContactModel();
+  formIsInvalid:boolean;
 
   constructor(private contactService:ContactService,
     private githubAuthService: GithubauthService,
@@ -41,13 +42,17 @@ export class ContactComponent implements OnInit {
   }
 
   sendMessage(){
+    if (this.checkFormIsInvalid()){
+      this.alertifyService.error("Please provide all necessary information.");
+      return;
+    }
+
     var contactMessage:AddContactTO = new AddContactTO();
     contactMessage.name = this.contactModel.name;
     contactMessage.email = this.contactModel.email;
     contactMessage.subject = this.contactModel.subject;
     contactMessage.message = this.contactModel.message;
 
-    console.log(contactMessage);
 
     this.contactService.addContact(contactMessage).subscribe(response => {
       console.log(response.status);
@@ -67,4 +72,16 @@ export class ContactComponent implements OnInit {
     this.contactModel.subject = "";
     this.contactModel.message = "";
   }
+
+
+
+  checkFormIsInvalid(): boolean {
+    let formIsInvalid: boolean = (this.contactModel.email.length < 4 || this.contactModel.name.length < 4 || this.contactModel.subject.length < 4 || this.contactModel.message.length < 20);
+    if (formIsInvalid) {
+        this.formIsInvalid = true;
+        return true;
+    }
+    return false;
+}
+
 }

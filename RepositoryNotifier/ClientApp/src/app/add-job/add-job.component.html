@@ -11,16 +11,6 @@
       </a>
     </div>
     <div class="card-body collapse show" id="collapseAddNotification">
-     
-      <!-- <div *ngIf="success" class="alert alert-success" role="alert">
-        Your notification has successfully been created.
-      </div>
-      <div *ngIf="alreadyCreated" class="alert alert-warning" role="alert">
-        You already created a notification for this frequency.
-      </div>
-      <div *ngIf="formIsInvalid" class="alert alert-warning" role="alert">
-        The information you provided are invalid. Please check again.
-      </div> -->
       <form name="notificationForm" (ngSubmit)="createJob()"
         #notificationValidator="ngForm">
         <h5>Type</h5>
@@ -134,7 +124,6 @@
                 <div class="text-danger"><small>Selecting at least one Repository is required.</small></div>
               </div>
           </div>
-          
         </div>
         <hr class="my-2">
         <div style="padding-top: 10px;">
@@ -154,43 +143,28 @@
                   <div class="text-danger"><small>Providing a Phone Number is required.</small></div>
                 </div>
             </div>
-            
-            
           </div>
           <div class="col">
             <div style="display:flex; flex-direction:column;">
-              
             <label><b>Type</b></label>
-
-<!--            <div class="row">-->
               <div class="form-check form-check-inline">
-<!--                <label for="smsNotificationEnabled"><b>SMS Notification</b></label>-->
                 <input id="smsNotificationEnabled" name="smsNotificationEnabled" type="checkbox" [(ngModel)]="jobModel.smsNotificationEnabled"
                        aria-describedby="smsNotificationEnabledHelp">
                 <span style="padding-left:10px;">SMS</span>
               </div>
-<!--            </div>-->
-<!--            <div class="row">-->
               <div class="form-check form-check-inline">
                 <input id="whatsappNotificationEnabled" name="whatsappNotificationEnabled" type="checkbox" [(ngModel)]="jobModel.whatsappNotificationEnabled"
                         aria-describedby="whatsappNotificationEnabledHelp">
-<!--                <label for="whatsappNotificationEnabled"><b>WhatsApp Notification</b></label>-->
                 <span style="padding-left:10px;">WhatsApp</span>
               </div>
-<!--            </div>-->
             </div>
-
-
           </div>
         </div>
-       
         <div class="form-group" style="padding-top:10px;">
           <button type="submit" class="btn btn-success btn-lg">Submit</button>
         </div>
         </div>
       </form>
- 
     </div>
-    
   </div>
 </div>

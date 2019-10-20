@@ -17,16 +17,14 @@ export class AbonementComponent implements OnInit {
   constructor(private githubAuthService: GithubauthService,
     @Inject(DOCUMENT) private document: any,
     private alertifyService: AlertifyService,
-    private paymentService: PaymentService) { }
+    private paymentService: PaymentService,
+    @Inject('BASE_URL') private baseUrl: string) { }
 
   ngOnInit() {
   }
 
   login() {
-    this.githubAuthService.login().subscribe(response => {
-      this.document.location.href = response.url;
-      this.alertifyService.success("Logged in.");
-    });
+    this.document.location.href = this.baseUrl + "api/auth/login";  
   }
 
 
