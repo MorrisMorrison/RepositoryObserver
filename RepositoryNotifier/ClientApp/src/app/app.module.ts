@@ -17,6 +17,7 @@ import { EditJobComponent } from './edit-job/edit-job.component';
 import { AbonementComponent } from './abonement/abonement.component';
 import { PaymentsComponent } from './payments/payments.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { ContactComponent } from './contact/contact.component';
 
 const config: ExtraOptions = {
   onSameUrlNavigation: 'reload'
@@ -33,6 +34,7 @@ const config: ExtraOptions = {
     AbonementComponent,
     PaymentsComponent,
     CheckoutComponent,
+    ContactComponent,
   ],
   exports: [],
   entryComponents: [EditJobComponent],
@@ -48,6 +50,7 @@ const config: ExtraOptions = {
       { path: 'notifications', component: JobsComponent },
       { path: 'payments', component: PaymentsComponent },
       { path: 'checkout', component: CheckoutComponent },
+      { path: 'contact', component: ContactComponent },
     ], config)
   ],
   providers: [GithubauthService, JobService, AlertifyService],

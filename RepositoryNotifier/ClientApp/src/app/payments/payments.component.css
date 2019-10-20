@@ -35,6 +35,10 @@
     font-size: 26px;
 }
 
+.order-card:hover{
+    filter: brightness(120%)
+}
+
 .f-left {
     float: left;
 }
