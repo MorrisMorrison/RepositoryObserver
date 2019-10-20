@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { GithubauthService } from '../service/githubauth/githubauth.service';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-contact',
@@ -7,9 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactComponent implements OnInit {
 
-  constructor() { }
+
+  isAuthenticated: boolean;
+  username: string;
+
+  constructor(private githubAuthService: GithubauthService, @Inject(DOCUMENT) private document:any) {
+
+  }
 
   ngOnInit() {
+      this.loggedIn();
   }
+
+  loggedIn() {
+      this.githubAuthService.isAuthenticated().subscribe(response => {
+          if (response.status == 200) {
+              this.isAuthenticated = true;
+              this.githubAuthService.getCurrentUser().subscribe(username => {
+                  this.username = username.username
+              });
+          }
+      });
+  }
+
 
 }
