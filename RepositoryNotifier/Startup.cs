@@ -131,6 +131,11 @@ namespace RepositoryNotifier
             services.AddSingleton<IMobileNotificationServiceProvider, TwilioMobileNotificationServiceProvider>();
             services.AddSingleton<IMobileNotificationService, MobileNotificationService>();
 
+            services.AddSingleton<IContactDao, ContactDao>();
+            services.AddSingleton<IContactService, ContactService>();
+
+
+
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration => { configuration.RootPath = "wwwroot"; });
         }

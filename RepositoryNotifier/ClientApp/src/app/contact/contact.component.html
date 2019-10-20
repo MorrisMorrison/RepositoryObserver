@@ -21,7 +21,7 @@
           <span class="input-group-text" id="name-addon"><i class="fa fa-user"></i></span>
         </div>
         <input type="text" class="form-control" placeholder="Max Patternman" aria-label="Name"
-          aria-describedby="name-addon">
+          aria-describedby="name-addon" [(ngModel)]="contactModel.name">
       </div>
 
       <label>E-Mail:</label>
@@ -30,7 +30,7 @@
           <span class="input-group-text" id="email-addon"><i class="fa fa-envelope"></i></span>
         </div>
         <input type="text" class="form-control" placeholder="maxpatternman@gmail.com" aria-label="E-Mail"
-          aria-describedby="email-addon">
+          aria-describedby="email-addon" [(ngModel)]="contactModel.email">
       </div>
 
       <label>Subject:</label>
@@ -40,7 +40,7 @@
           <span class="input-group-text" id="subject-addon"><i class="fa fa-bolt"></i></span>
         </div>
         <input type="text" class="form-control" placeholder="I hate this product" aria-label="Subject"
-          aria-describedby="subject-addon">
+          aria-describedby="subject-addon" [(ngModel)]="contactModel.subject">
       </div>
 
 
@@ -50,11 +50,11 @@
         <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1"><i class="fa fa-pencil"></i></span>
         </div>
-        <textarea class="form-control" rows="8" placeholder="Write your message down here ..."></textarea>
+        <textarea class="form-control" rows="8" placeholder="Write your message down here ..." [(ngModel)]="contactModel.message"></textarea>
       </div>
 
       <div class="text-center">
-        <button class="btn btn-success btn-block rounded-0 py-2">Submit</button>
+        <button class="btn btn-success btn-block rounded-0 py-2" (click)="sendMessage()">Submit</button>
       </div>
 
     </div>

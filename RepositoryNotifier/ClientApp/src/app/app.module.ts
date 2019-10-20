@@ -18,6 +18,7 @@ import { AbonementComponent } from './abonement/abonement.component';
 import { PaymentsComponent } from './payments/payments.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ContactComponent } from './contact/contact.component';
+import { ContactService } from './service/contact/contact.service';
 
 const config: ExtraOptions = {
   onSameUrlNavigation: 'reload'
@@ -53,7 +54,7 @@ const config: ExtraOptions = {
       { path: 'contact', component: ContactComponent },
     ], config)
   ],
-  providers: [GithubauthService, JobService, AlertifyService],
+  providers: [GithubauthService, JobService, AlertifyService, ContactService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

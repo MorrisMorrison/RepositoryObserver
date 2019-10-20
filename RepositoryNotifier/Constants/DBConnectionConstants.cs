@@ -5,5 +5,7 @@ namespace RepositoryNotifier.Constants
         public const string JOB_COLLECTION = "jobs";
         public const string ABONEMENT_COLLECTION = "abonements";
         public const string DONATION_COLLECTION = "donations";
+        public const string CONTACT_COLLECTION = "contact";
+
     }
 }
