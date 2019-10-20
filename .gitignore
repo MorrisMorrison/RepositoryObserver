@@ -1,0 +1,14 @@
+.idea/
+.vscode/
+package-lock.json
+RepositoryNotifier/appsettings.Development.json
+RepositoryNotifier/appsettings.json
+RepositoryNotifier/bin/
+RepositoryNotifier/obj/
+RepositoryNotifier/ClientApp/node_modules/
+RepositoryNotifier/ClientApp/dist/
+commands
+RepositoryNotifier/wwwroot/
+RepositoryNotifier/data
+logs/
+prepare_prod_build.py

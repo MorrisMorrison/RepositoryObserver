@@ -88,7 +88,7 @@
             <div class="card-body collapse show" id="collapseResults">
                 <p class="card-text">All results for a selected Task are provided below.
                 </p>
-                <div *ngIf="jobResultTos.length < 1">
+                <div *ngIf="jobResultTos === null">
                     <p class="text-info">No results found for the selected NotificationTask.</p>
                 </div>
                 <table style="table-layout: fixed; width:100%" *ngIf="jobResultTos.length > 0" id="resultTable"

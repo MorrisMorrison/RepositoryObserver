@@ -21,7 +21,7 @@
       <div *ngIf="formIsInvalid" class="alert alert-warning" role="alert">
         The information you provided are invalid. Please check again.
       </div> -->
-      <form name="notificationForm" (ngSubmit)="printModel()"
+      <form name="notificationForm" (ngSubmit)="createJob()"
         #notificationValidator="ngForm">
         <h5>Type</h5>
         <p>You can choose between creating a scheduled job or a repository hook.</p>

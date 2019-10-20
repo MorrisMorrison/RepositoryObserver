@@ -11,11 +11,12 @@ export class AlertifyService {
   }
 
   confirm(title: string, message: string, okCallback: () => any) {
-    alertify.confirm(title, message, function (e) {
+    alertify.confirm(message, title, function (e) {
       if (e) {
         okCallback();
       } else {
       }
+    },  function (e) {
     });
   }
 

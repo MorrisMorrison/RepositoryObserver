@@ -69,6 +69,9 @@ export class JobsComponent implements OnInit {
   getJobResults(frequency: number){
     this.jobService.getJobResults(frequency).subscribe(jobResultsTos => {
       this.jobResultTos = jobResultsTos;
+      if(this.jobResultTos== null){
+        this.jobResultTos = [];
+      }
       this.jobResultTos.forEach(resultTO => {
         if (this.jobResults[resultTO.name + "|" + resultTO.path] == null || this.jobResults[resultTO.name + "|" + resultTO.path].length < 1){
           let results :JobResultTO[] = [];
