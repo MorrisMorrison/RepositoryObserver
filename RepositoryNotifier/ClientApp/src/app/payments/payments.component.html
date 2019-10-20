@@ -76,26 +76,22 @@
             <div class="card-body collapse show" id="collapsePayments">
             <div class="row">
                 <div class="col-12">
-                    <table *ngIf="abonement != null" class="table table-sm table-hover ">
-                            <caption class="text-success"> List of payments</caption>
-                        <thead class="thead  table-success rounded">
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Amount</th>
-                                <th scope="col">Payment Type</th>
-                                <th scope="col">Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let payment of abonement.premiumPlan.payments; let i = index"
-                                [attr.data-index]="i">
-                                <th scope="row">{{i+1}}</th>
-                                <td>{{payment.amount}} €</td>
-                                <td>{{payment.paymentType}}</td>
-                                <td>{{payment.paymentDate | date:'dd.MM.yyyy HH:mm'}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+
+                        <div class="media  pt-3 data-row" *ngFor="let payment of abonement.premiumPlan.payments; let i = index"
+                        [attr.data-index]="i">
+                                <!-- <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#007bff"></rect><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg> -->
+                                <span class="mr-2"  width="32" height="32"><i class="fa fa-paypal"></i></span>
+                                <div class="media-body pb-3 mb-0 lh-125 border-bottom border-gray">
+                                  <div class="text-muted d-flex justify-content-between align-items-center w-100">
+                                    <strong class="text-gray-dark">{{payment.paymentType}}</strong>
+                                    <a href="#"><i class="fa fa-ellipsis-v"></i></a>
+                                  </div>
+                                  <div class =" text-muted d-flex justify-content-between align-items-center w-100">
+                                          <span class="d-block">{{payment.amount}} €</span>
+                                          <span class="d-block">{{payment.paymentDate | date:'dd.MM.yyyy HH:mm'}}</span>
+                                  </div>
+                                </div>
+                              </div>
                 </div>
             </div>
         </div>
@@ -116,25 +112,20 @@
             <div class="card-body collapse show" id="collapseDonations">
                 <div class="row">
                     <div class="col-12">
-                        <table *ngIf="donations.length > 0" class="table table-sm table-hover">
-                            <caption class="text-primary"> List of donations</caption>
-                            <thead class="thead table-success">
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Amount</th>
-                                    <th scope="col">Payment Type</th>
-                                    <th scope="col">Date</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let donation of donations; let i = index" [attr.data-index]="i">
-                                    <th scope="row">{{i+1}}</th>
-                                    <td>{{donation.amount}} €</td>
-                                    <td>{{donation.paymentType}}</td>
-                                    <td>{{donation.createdAt | date:'dd.MM.yyyy HH:mm'}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                <div class="media  pt-3 data-row" *ngFor="let donation of donations; let i = index" [attr.data-index]="i">
+                                  <!-- <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#007bff"></rect><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg> -->
+                                  <span class="mr-2"  width="32" height="32"><i class="fa fa-paypal"></i></span>
+                                  <div class="media-body pb-3 mb-0 lh-125 border-bottom border-gray">
+                                    <div class="text-muted d-flex justify-content-between align-items-center w-100">
+                                      <strong class="text-gray-dark">{{donation.paymentType}}</strong>
+                                      <a href="#"><i class="fa fa-ellipsis-v"></i></a>
+                                    </div>
+                                    <div class =" text-muted d-flex justify-content-between align-items-center w-100">
+                                            <span class="d-block">{{donation.amount}} €</span>
+                                            <span class="d-block">{{donation.createdAt | date:'dd.MM.yyyy HH:mm'}}</span>
+                                    </div>
+                                  </div>
+                                </div>
                     </div>
                 </div>
                 <div *ngIf="donations.length < 1">
