@@ -32,5 +32,17 @@ with fileinput.FileInput(startup_path, inplace=True, backup='.bak') as file:
 
 
 
+config_file_path = '../RepositoryNotifier/appsettings.Development.json'
+with open(config_file_path, 'r') as config_file:
+    data = json.load(config_file)
+    data['Mongo']['ConnectionString'] = 'mongodb://localhost:27017/repositoryobserver'
+    data['Mongo']['Database'] = 'repositoryobserver'
 
+    data['Serilog']['WriteTo'][1]['Args']['databaseUrl'] = 'mongodb://localhost:27017/repositoryobserver'
+    data['Serilog']['WriteTo'][1]['Args']['collectionName'] = 'log'
+
+
+os.remove(config_file_path)
+with open(config_file_path, 'w') as f:
+    json.dump(data, f, indent=4)
 

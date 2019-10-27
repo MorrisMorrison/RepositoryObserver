@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using PayPal.v1.BillingAgreements;
 using PayPal.v1.BillingPlans;
-using RepositoryNotifier.Persistence.Abonement;
+using RepositoryNotifier.Persistence.Subscription;
 
 namespace RepositoryNotifier.Service.Payment
 {

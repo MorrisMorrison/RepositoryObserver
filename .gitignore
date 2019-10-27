@@ -11,4 +11,5 @@ commands
 RepositoryNotifier/wwwroot/
 RepositoryNotifier/data
 logs/
-prepare_prod_build.py
+Deployment/switch_to_dev.py
+Deployment/switch_to_prod.py

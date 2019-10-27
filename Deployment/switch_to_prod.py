@@ -30,4 +30,19 @@ with fileinput.FileInput(startup_path, inplace=True, backup='.bak') as file:
         print(line.replace(text_to_search, replacement_text), end='')
 
 
+config_file_path = '../RepositoryNotifier/appsettings.Development.json'
+with open(config_file_path, 'r') as config_file:
+    data = json.load(config_file)
+    data['Mongo']['ConnectionString'] = 'mongodb://heroku_3jjpqjns:2d48lnsc4s2fr6tmc2k575i891@ds135786.mlab.com:35786/heroku_3jjpqjns'
+    data['Mongo']['Database'] = 'heroku_3jjpqjns'
+
+    data['Serilog']['WriteTo'][1]['Args']['databaseUrl'] = 'mongodb://heroku_3jjpqjns:2d48lnsc4s2fr6tmc2k575i891@ds135786.mlab.com:35786/heroku_3jjpqjns'
+    data['Serilog']['WriteTo'][1]['Args']['collectionName'] = 'log'
+
+
+os.remove(config_file_path)
+with open(config_file_path, 'w') as f:
+    json.dump(data, f, indent=4)
+
+
 

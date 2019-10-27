@@ -1,4 +1,4 @@
-using RepositoryNotifier.Persistence.Abonement;
+using RepositoryNotifier.Persistence.Subscription;
 
 namespace RepositoryNotifier.DTO
 {

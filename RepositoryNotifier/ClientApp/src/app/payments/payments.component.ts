@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { GithubauthService } from '../service/githubauth/githubauth.service';
 import { PaymentService } from '../service/payment/payment.service';
-import { Abonement } from '../dto/abonementTO';
+import { Abonement, Payment } from '../dto/abonementTO';
 import { Donation } from '../dto/donationTO';
 import { DatePipe } from '@angular/common';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { EditJobComponent } from '../edit-job/edit-job.component';
+import { PaymentDetailsComponent } from '../payment-details/payment-details.component';
 
 @Component({
   selector: 'app-payments',
@@ -18,7 +21,7 @@ export class PaymentsComponent implements OnInit {
   abonement:Abonement;
   donations:Donation[] = [];
 
-  constructor(private githubAuthService: GithubauthService, private paymentService: PaymentService) { }
+  constructor(private githubAuthService: GithubauthService, private paymentService: PaymentService, private modalService: NgbModal) { }
 
   ngOnInit() {
     this.loggedIn();
@@ -38,12 +41,17 @@ export class PaymentsComponent implements OnInit {
   }
 
   getAllPayments(){
-    this.paymentService.getAbonement().subscribe(abonement => {
+    this.paymentService.getAllAbonements().subscribe(abonement => {
       this.abonement = abonement;
     });
     this.paymentService.getAllDonations().subscribe(donations => {
       this.donations = donations;
     });
+  }
+
+  viewPaymentDetails(payment: Payment){
+      const modalRef = this.modalService.open(PaymentDetailsComponent);
+      modalRef.componentInstance.payment = payment;
   }
 
 }

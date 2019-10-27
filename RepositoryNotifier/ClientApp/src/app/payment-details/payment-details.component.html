@@ -1,0 +1,50 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">View Payment</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+    <div class="container">
+      <div class="row">
+          <div class="col-md-8 order-md-1">
+            <h4 class="mb-3">Billing address</h4>
+            <form class="needs-validation" novalidate>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="firstName">First name</label>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="lastName">Last name</label>
+                </div>
+              </div>
+      
+              <div class="mb-3">
+                <label for="email">Email</label>
+              </div>
+      
+              <div class="mb-3">
+                <label for="address">Address</label>
+              </div>
+              <div class="mb-3">
+                <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
+              </div>
+              <div class="row">
+                <div class="col-md-5 mb-3">
+                  <label for="country">Country</label>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="state">City</label>
+                </div>
+                <div class="col-md-3 mb-3">
+                  <label for="zip">Zip</label>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+</div>
+<div class="modal-footer">
+  <button type="button" ngbAutofocus class="btn btn-outline-dark" (click)="activeModal.close('Ok click')">Go Back</button>
+</div>

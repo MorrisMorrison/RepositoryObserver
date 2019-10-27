@@ -2,15 +2,16 @@
 <div class="container paymentsMain">
     <div class="region">
         <div class="card border-0">
-        <div class="card-header ro-card-header">
-            <span>
-            <i class="fa fa-credit-card"></i>
-            <h5>My Premium Plan</h5>
-        </span>
-            <a data-toggle="collapse" href="#collapsePremiumPlan" role="button" aria-expanded="false" aria-controls="collapsePremiumPlan">
-                    <i  class="fa fa-chevron-down "></i>
+            <div class="card-header ro-card-header">
+                <span>
+                    <i class="fa fa-credit-card"></i>
+                    <h5>My Premium Plan</h5>
+                </span>
+                <a data-toggle="collapse" href="#collapsePremiumPlan" role="button" aria-expanded="false"
+                    aria-controls="collapsePremiumPlan">
+                    <i class="fa fa-chevron-down "></i>
                 </a>
-        </div>
+            </div>
             <div class="card-body collapse show" id="collapsePremiumPlan">
                 <div class="row" *ngIf="abonement != null">
                     <!-- https://www.bootdey.com/snippets/view/Gradients-dashboard-cards#css -->
@@ -18,38 +19,44 @@
                         <div class="card bg-primary order-card">
                             <div class="card-block">
                                 <h6 class="m-b-20">PremiumPlan</h6>
-                                <h2 class="text-right"><i class="fa fa-star f-left"></i><span>{{abonement.premiumPlan.name}}</span></h2>
-                                <p class="m-b-0">Payment Method<span class="f-right">{{abonement.premiumPlan.payments[0].paymentType}}</span></p>
+                                <h2 class="text-right"><i
+                                        class="fa fa-star f-left"></i><span>{{abonement.premiumPlan.name}}</span></h2>
+                                <p class="m-b-0">Payment Method<span
+                                        class="f-right">{{abonement.premiumPlan.payments[0].paymentType}}</span></p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4 col-xl-4">
                         <div class="card bg-info order-card">
-                                <div class="card-block">
-                                    <h6 class="m-b-20">Last Payed</h6>
-                                    <h2 class="text-right"><i class="fa fa-calendar f-left"></i><span>{{abonement.premiumPlan.buyingDate | date:'dd.MM.yyyy'}}</span></h2>
-                                    <p class="m-b-0">Buying Date<span class="f-right">{{abonement.premiumPlan.buyingDate | date:'dd.MM.yyyy'}}</span></p>
-                                </div>
+                            <div class="card-block">
+                                <h6 class="m-b-20">Last Payed</h6>
+                                <h2 class="text-right"><i
+                                        class="fa fa-calendar f-left"></i><span>{{abonement.premiumPlan.buyingDate | date:'dd.MM.yyyy'}}</span>
+                                </h2>
+                                <p class="m-b-0">Buying Date<span
+                                        class="f-right">{{abonement.premiumPlan.buyingDate | date:'dd.MM.yyyy'}}</span>
+                                </p>
                             </div>
+                        </div>
                     </div>
                     <div class="col-md-4 col-xl-4">
                         <div *ngIf="abonement.active" class="card bg-success order-card">
-                                <div class="card-block">
-                                    <h6 class="m-b-20">Status</h6>
-                                    <h2 class="text-right"><i class="fa fa-check f-left"></i><span>Active</span></h2>
-                                    <p class="m-b-0">Expires<span class="f-right">12 months</span></p>
-                                </div>
+                            <div class="card-block">
+                                <h6 class="m-b-20">Status</h6>
+                                <h2 class="text-right"><i class="fa fa-check f-left"></i><span>Active</span></h2>
+                                <p class="m-b-0">Expires<span class="f-right">12 months</span></p>
                             </div>
+                        </div>
 
-                            <div *ngIf="!abonement.active" class="card bg-danger order-card">
-                                    <div class="card-block">
-                                        <h6 class="m-b-20">Status</h6>
-                                        <h2 class="text-right"><i class="fa fa-times f-left"></i><span>Inactive</span></h2>
-                                        <p class="m-b-0">Expires<span class="f-right">Expired</span></p>
-                                    </div>
-                                </div>
+                        <div *ngIf="!abonement.active" class="card bg-danger order-card">
+                            <div class="card-block">
+                                <h6 class="m-b-20">Status</h6>
+                                <h2 class="text-right"><i class="fa fa-times f-left"></i><span>Inactive</span></h2>
+                                <p class="m-b-0">Expires<span class="f-right">Expired</span></p>
+                            </div>
+                        </div>
 
-                                
+
                     </div>
                 </div>
 
@@ -61,71 +68,92 @@
     </div>
     <div *ngIf="abonement != null" class="region">
         <div class="card border-0">
-                <div class="card-header ro-card-header" >
-                    <span>
+            <div class="card-header ro-card-header">
+                <span>
 
-                        <i class="fa fa-dollar"></i>
-                        <h5 style="margin-bottom:-0.4%;">My Payments</h5>
-
-
-                    </span>
-                        <a   data-toggle="collapse" href="#collapsePayments" role="button" aria-expanded="false" aria-controls="collapsePayments">
-                                <i  class="fa fa-chevron-down "></i>
-                            </a>
+                    <i class="fa fa-dollar"></i>
+                    <h5 style="margin-bottom:-0.4%;">My Payments</h5>
+                </span>
+                <a data-toggle="collapse" href="#collapsePayments" role="button" aria-expanded="false"
+                    aria-controls="collapsePayments">
+                    <i class="fa fa-chevron-down "></i>
+                </a>
             </div>
             <div class="card-body collapse show" id="collapsePayments">
-            <div class="row">
-                <div class="col-12">
+                <div class="row">
+                    <div class="col-12">
 
-                        <div class="media  pt-3 data-row" *ngFor="let payment of abonement.premiumPlan.payments; let i = index"
-                        [attr.data-index]="i">
-                                <!-- <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#007bff"></rect><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg> -->
-                                <span class="mr-2"  width="32" height="32"><i class="fa fa-paypal"></i></span>
-                                <div class="media-body pb-3 mb-0 lh-125 border-bottom border-gray">
-                                  <div class="text-muted d-flex justify-content-between align-items-center w-100">
+                        <div class="media  pt-3" *ngFor="let payment of abonement.premiumPlan.payments; let i = index"
+                            [attr.data-index]="i">
+                            <!-- <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#007bff"></rect><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg> -->
+                            <span class="mr-2" width="32" height="32"><i class="fa fa-paypal"></i></span>
+                            <div class="media-body pb-3 mb-0 lh-125 border-bottom border-gray">
+                                <div class="text-muted d-flex justify-content-between align-items-center w-100">
                                     <strong class="text-gray-dark">{{payment.paymentType}}</strong>
-                                    <a href="#"><i class="fa fa-ellipsis-v"></i></a>
-                                  </div>
-                                  <div class =" text-muted d-flex justify-content-between align-items-center w-100">
-                                          <span class="d-block">{{payment.amount}} €</span>
-                                          <span class="d-block">{{payment.paymentDate | date:'dd.MM.yyyy HH:mm'}}</span>
-                                  </div>
+                                    <a id="payment_dropdown_{{i}}" href="#" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                                    <div class="dropdown-menu">
+                                        <!-- <a class="dropdown-item" href="#" (click)="deletePayment(payment)"><i class="fa fa-trash" ></i> <span style="padding-left:10%">Delete</span></a> -->
+                                        <a class="dropdown-item" (click)="viewPaymentDetails(payment)"><i
+                                                class="fa fa-info-circle"></i><span
+                                                style="padding-left:10%">Details</span></a>
+                                        <a class="dropdown-item" [routerLink]='["/contact"]' style="color:black"><i
+                                                class="fa fa-question"></i><span
+                                                style="padding-left:10%">Support</span></a>
+                                    </div>
                                 </div>
-                              </div>
+                                <div class=" text-muted d-flex justify-content-between align-items-center w-100">
+                                    <span class="d-block">{{payment.amount}} €</span>
+                                    <span class="d-block">{{payment.paymentDate | date:'dd.MM.yyyy HH:mm'}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
         </div>
     </div>
     <div class="region">
         <div class="card border-0">
-                <div class="card-header ro-card-header" >
-                    <span>
-                        <i class="fa fa-heart"></i>
-                        <h5 >My Donations</h5>
-                   
-                        </span>
-                        <a   data-toggle="collapse" href="#collapseDonations" role="button" aria-expanded="false" aria-controls="collapseDonations">
-                                <i  class="fa fa-chevron-down "></i>
-                            </a>
-                </div>
+            <div class="card-header ro-card-header">
+                <span>
+                    <i class="fa fa-heart"></i>
+                    <h5>My Donations</h5>
+
+                </span>
+                <a data-toggle="collapse" href="#collapseDonations" role="button" aria-expanded="false"
+                    aria-controls="collapseDonations">
+                    <i class="fa fa-chevron-down "></i>
+                </a>
+            </div>
             <div class="card-body collapse show" id="collapseDonations">
                 <div class="row">
                     <div class="col-12">
-                                <div class="media  pt-3 data-row" *ngFor="let donation of donations; let i = index" [attr.data-index]="i">
-                                  <!-- <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#007bff"></rect><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg> -->
-                                  <span class="mr-2"  width="32" height="32"><i class="fa fa-paypal"></i></span>
-                                  <div class="media-body pb-3 mb-0 lh-125 border-bottom border-gray">
-                                    <div class="text-muted d-flex justify-content-between align-items-center w-100">
-                                      <strong class="text-gray-dark">{{donation.paymentType}}</strong>
-                                      <a href="#"><i class="fa fa-ellipsis-v"></i></a>
+                        <div class="media  pt-3 data-row" *ngFor="let donation of donations; let i = index"
+                            [attr.data-index]="i">
+                            <!-- <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#007bff"></rect><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg> -->
+                            <span class="mr-2" width="32" height="32"><i class="fa fa-paypal"></i></span>
+                            <div class="media-body pb-3 mb-0 lh-125 border-bottom border-gray">
+                                <div class="text-muted d-flex justify-content-between align-items-center w-100">
+                                    <strong class="text-gray-dark">{{donation.paymentType}}</strong>
+                                    <a id="donation_dropdown_{{i}}" href="#" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                                    <div class="dropdown-menu">
+                                        <!-- <a class="dropdown-item" href="#" (click)="deletePayment(payment)"><i class="fa fa-trash" ></i> <span style="padding-left:10%">Delete</span></a> -->
+                                        <a class="dropdown-item" (click)="viewDonationDetails(payment)"><i
+                                                class="fa fa-info-circle"></i><span
+                                                style="padding-left:10%">Details</span></a>
+                                        <a class="dropdown-item" [routerLink]='["/contact"]' style="color:black"><i
+                                                class="fa fa-question"></i><span
+                                                style="padding-left:10%">Support</span></a>
                                     </div>
-                                    <div class =" text-muted d-flex justify-content-between align-items-center w-100">
-                                            <span class="d-block">{{donation.amount}} €</span>
-                                            <span class="d-block">{{donation.createdAt | date:'dd.MM.yyyy HH:mm'}}</span>
-                                    </div>
-                                  </div>
                                 </div>
+                                <div class=" text-muted d-flex justify-content-between align-items-center w-100">
+                                    <span class="d-block">{{donation.amount}} €</span>
+                                    <span class="d-block">{{donation.createdAt | date:'dd.MM.yyyy HH:mm'}}</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div *ngIf="donations.length < 1">

@@ -29,6 +29,10 @@ export class PaymentService {
     return this.httpClient.get<Abonement>(this.baseUrl + "api/payment/getabonement");
   }
 
+  getAllAbonements():Observable<Abonement>{
+    return this.httpClient.get<Abonement>(this.baseUrl + "api/payment/getallabonements");
+  }
+
   getAllDonations():Observable<Donation[]>{
     return this.httpClient.get<Donation[]>(this.baseUrl + "api/payment/getalldonations");
   }

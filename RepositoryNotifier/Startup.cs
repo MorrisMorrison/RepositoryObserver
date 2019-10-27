@@ -19,7 +19,7 @@ using RepositoryNotifier.Persistence;
 using RepositoryNotifier.Service;
 using RepositoryNotifier.Service.Github;
 using RepositoryNotifier.Service.Payment;
-using RepositoryNotifier.Persistence.Abonement;
+using RepositoryNotifier.Persistence.Subscription;
 using RepositoryNotifier.Persistence.Job;
 using RepositoryNotifier.JobScheduler;
 using RepositoryNotifier.Service.Job;
@@ -121,8 +121,8 @@ namespace RepositoryNotifier
             services.AddSingleton<IJobService, JobService>();
             services.AddSingleton<IJobFrequencyService, JobFrequencyService>();
             services.AddSingleton<IPayPalPaymentService, PayPalPaymentService>();
-            services.AddSingleton<IAbonementService, AbonementService>();
-            services.AddSingleton<IAbonementDao, AbonementDao>();
+            services.AddSingleton<ISubscriptionService, SubscriptionService>();
+            services.AddSingleton<ISubscriptionDao, SubscriptionDao>();
             services.AddSingleton<IDonationService, DonationService>();
             services.AddSingleton<IDonationDao, DonationDao>();
             services.AddSingleton<IPremiumPlanService, PremiumPlanService>();
@@ -159,14 +159,14 @@ namespace RepositoryNotifier
             // own middleware to force CORS headers
             // app.UseCorsMiddleware();
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
             app.UseAuthentication();
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
             // is used when spa is served by kestrel
-            app.UseSpaStaticFiles();
+            // // // app.UseSpaStaticFiles();
 
             app.UseMvc(routes =>
             {
@@ -174,7 +174,7 @@ namespace RepositoryNotifier
                     name: "default",
                     template: "{controller}/{action=Index}/{id?}");
                 // Uncomment if SPA needs to be served by kestrel
-                routes.MapSpaFallbackRoute(name: "spa-fallback", defaults: new { controller = "Fallback", action = "Index" });
+                // // // routes.MapSpaFallbackRoute(name: "spa-fallback", defaults: new { controller = "Fallback", action = "Index" });
             });
 
             app.UseSpa(spa =>

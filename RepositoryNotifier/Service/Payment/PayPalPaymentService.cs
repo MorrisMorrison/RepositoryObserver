@@ -10,7 +10,7 @@ using PayPal.v1.BillingAgreements;
 using PayPal.v1.BillingPlans;
 using PayPal.v1.Payments;
 using RepositoryNotifier.Constants;
-using RepositoryNotifier.Persistence.Abonement;
+using RepositoryNotifier.Persistence.Subscription;
 
 // https://github.com/paypal/PayPal-NET-SDK
 // https://medium.com/@pmareke/using-paypal-sdk-with-net-core-full-explanation-66aab76cef66

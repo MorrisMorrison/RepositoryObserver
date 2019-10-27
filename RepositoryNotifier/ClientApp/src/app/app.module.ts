@@ -19,6 +19,7 @@ import { PaymentsComponent } from './payments/payments.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ContactComponent } from './contact/contact.component';
 import { ContactService } from './service/contact/contact.service';
+import { PaymentDetailsComponent } from './payment-details/payment-details.component';
 
 const config: ExtraOptions = {
   onSameUrlNavigation: 'reload'
@@ -36,9 +37,10 @@ const config: ExtraOptions = {
     PaymentsComponent,
     CheckoutComponent,
     ContactComponent,
+    PaymentDetailsComponent,
   ],
   exports: [],
-  entryComponents: [EditJobComponent],
+  entryComponents: [EditJobComponent, PaymentDetailsComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
