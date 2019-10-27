@@ -17,9 +17,6 @@ namespace RepositoryNotifier.Persistence.Subscription
         [BsonElement("premium_plans")]
         public PremiumPlan PremiumPlan {get;set;}
 
-        [BsonElement("billing_address")]
-        public BillingAddress BillingAddress {get;set;}
-
         [BsonElement("active")]
         public bool Active {get;set;}
 

@@ -18,7 +18,7 @@ export class PaymentsComponent implements OnInit {
 
   username: string;
   isAuthenticated: boolean;
-  abonement:Subscription;
+  subscription:Subscription;
   donations:Donation[] = [];
 
   constructor(private githubAuthService: GithubauthService, private paymentService: PaymentService, private modalService: NgbModal) { }
@@ -41,8 +41,9 @@ export class PaymentsComponent implements OnInit {
   }
 
   getAllPayments(){
-    this.paymentService.getAllSubscriptions().subscribe(abonement => {
-      this.abonement = abonement;
+    this.paymentService.getAllSubscriptions().subscribe(subscription => {
+      this.subscription = subscription;
+
     });
     this.paymentService.getAllDonations().subscribe(donations => {
       this.donations = donations;

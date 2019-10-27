@@ -22,4 +22,5 @@ export class Payment{
     amount:number;
     paymentDate:Date;
     paymentType:string;
+    billingAddress: BillingAddressModel;
 }

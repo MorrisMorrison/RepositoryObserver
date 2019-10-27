@@ -1,7 +1,7 @@
 export class BillingAddressModel{
     firstName: string;
     lastName: string;
-    email: string;
+    eMail: string;
     address:string;
     addressAddition:string;
     country:string;

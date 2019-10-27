@@ -9,7 +9,7 @@ namespace RepositoryNotifier.Persistence
         public double Amount {get; set;}
         public DateTime PaymentDate {get; set;}
         public string PaymentType {get;set;}
-
+        public BillingAddress BillingAddress {get;set;}
     }
 
 

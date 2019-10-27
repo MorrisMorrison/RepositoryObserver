@@ -33,7 +33,8 @@ namespace RepositoryNotifier.Service
             Persistence.Payment payment = new Persistence.Payment(){
                 Amount = amount,
                 PaymentDate = DateTime.Now,
-                PaymentType ="PayPal"
+                PaymentType ="PayPal",
+                BillingAddress = p_billingAddress
             };
 
             IList<Persistence.Payment> payments = new List<Persistence.Payment>();
@@ -53,7 +54,6 @@ namespace RepositoryNotifier.Service
                 Username = p_username,
                 PremiumPlan = premiumPlan,
                 Active = false,
-                BillingAddress = p_billingAddress
             };
             _subscriptionDao.AddSubscription(subscription);
         }
