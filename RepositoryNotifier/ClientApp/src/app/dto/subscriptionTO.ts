@@ -1,12 +1,12 @@
 import { BillingAddressModel } from "../model/billingaddress-model";
 
-export class Abonement{
+export class Subscription{
     username:string;
     premiumPlan:PremiumPlan;
     active:boolean;
 }
 
-export class CreateAbonementTO{
+export class CreateSusbcriptionTO{
     amount:number;
     billingAddress: BillingAddressModel;
 }

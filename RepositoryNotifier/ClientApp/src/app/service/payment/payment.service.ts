@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Abonement, CreateAbonementTO } from 'src/app/dto/abonementTO';
+import { Subscription, CreateSusbcriptionTO } from 'src/app/dto/subscriptionTO';
 import { Donation } from 'src/app/dto/donationTO';
 
 @Injectable({
@@ -21,16 +21,16 @@ export class PaymentService {
     return this.httpClient.post<string>(this.baseUrl +"api/payment/createpayment", amount, {responseType: 'text' as 'json'});
   }
 
-  createSubscription(createAbonementTO: CreateAbonementTO):Observable<string>{
-    return this.httpClient.post<string>(this.baseUrl + "api/payment/createsubscription", createAbonementTO, {responseType: 'text' as 'json'})
+  createSubscription(createSubscriptionTO: CreateSusbcriptionTO):Observable<string>{
+    return this.httpClient.post<string>(this.baseUrl + "api/payment/createsubscription", createSubscriptionTO, {responseType: 'text' as 'json'})
   }
 
-  getAbonement():Observable<Abonement>{
-    return this.httpClient.get<Abonement>(this.baseUrl + "api/payment/getabonement");
+  getSubscription():Observable<Subscription>{
+    return this.httpClient.get<Subscription>(this.baseUrl + "api/payment/getsubscription");
   }
 
-  getAllAbonements():Observable<Abonement>{
-    return this.httpClient.get<Abonement>(this.baseUrl + "api/payment/getallabonements");
+  getAllSubscriptions():Observable<Subscription>{
+    return this.httpClient.get<Subscription>(this.baseUrl + "api/payment/getallsubscriptions");
   }
 
   getAllDonations():Observable<Donation[]>{

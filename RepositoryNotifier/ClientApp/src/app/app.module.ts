@@ -14,7 +14,7 @@ import { JobService } from './service/job/job.service';
 import { AlertifyService } from './service/alertify/alertify.service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { EditJobComponent } from './edit-job/edit-job.component';
-import { AbonementComponent } from './abonement/abonement.component';
+import { SubscriptionComponent } from './subscription/subscription.component';
 import { PaymentsComponent } from './payments/payments.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ContactComponent } from './contact/contact.component';
@@ -33,7 +33,7 @@ const config: ExtraOptions = {
     AddJobComponent,
     FooterComponent,
     EditJobComponent,
-    AbonementComponent,
+    SubscriptionComponent,
     PaymentsComponent,
     CheckoutComponent,
     ContactComponent,

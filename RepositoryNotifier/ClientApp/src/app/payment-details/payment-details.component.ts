@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Payment } from '../dto/abonementTO';
+import { Payment } from '../dto/subscriptionTO';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({

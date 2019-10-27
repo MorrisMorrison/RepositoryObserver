@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GithubauthService } from '../service/githubauth/githubauth.service';
 import { PaymentService } from '../service/payment/payment.service';
-import { Abonement, Payment } from '../dto/abonementTO';
+import { Subscription, Payment } from '../dto/subscriptionTO';
 import { Donation } from '../dto/donationTO';
 import { DatePipe } from '@angular/common';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -18,7 +18,7 @@ export class PaymentsComponent implements OnInit {
 
   username: string;
   isAuthenticated: boolean;
-  abonement:Abonement;
+  abonement:Subscription;
   donations:Donation[] = [];
 
   constructor(private githubAuthService: GithubauthService, private paymentService: PaymentService, private modalService: NgbModal) { }
@@ -41,7 +41,7 @@ export class PaymentsComponent implements OnInit {
   }
 
   getAllPayments(){
-    this.paymentService.getAllAbonements().subscribe(abonement => {
+    this.paymentService.getAllSubscriptions().subscribe(abonement => {
       this.abonement = abonement;
     });
     this.paymentService.getAllDonations().subscribe(donations => {

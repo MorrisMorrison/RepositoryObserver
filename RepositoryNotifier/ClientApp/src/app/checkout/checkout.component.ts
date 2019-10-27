@@ -3,7 +3,7 @@ import { GithubauthService } from '../service/githubauth/githubauth.service';
 import { PaymentService } from '../service/payment/payment.service';
 import { BillingAddressModel } from '../model/billingaddress-model';
 import { DOCUMENT } from '@angular/common';
-import { CreateAbonementTO } from '../dto/abonementTO';
+import { CreateSusbcriptionTO } from '../dto/subscriptionTO';
 
 @Component({
   selector: 'app-checkout',
@@ -37,7 +37,7 @@ export class CheckoutComponent implements OnInit {
 
 
     checkout(){
-      let createAbonementTO: CreateAbonementTO = new CreateAbonementTO();
+      let createAbonementTO: CreateSusbcriptionTO = new CreateSusbcriptionTO();
       createAbonementTO.amount = 10;
       createAbonementTO.billingAddress = this.billingAddress;
 

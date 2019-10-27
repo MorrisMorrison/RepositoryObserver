@@ -5,11 +5,11 @@ import { AlertifyService } from '../service/alertify/alertify.service';
 import { PaymentService } from '../service/payment/payment.service';
 
 @Component({
-  selector: 'app-abonement',
-  templateUrl: './abonement.component.html',
-  styleUrls: ['./abonement.component.css']
+  selector: 'app-subscription',
+  templateUrl: './subscription.component.html',
+  styleUrls: ['./subscription.component.css']
 })
-export class AbonementComponent implements OnInit {
+export class SubscriptionComponent implements OnInit {
 
   private proSubscriptionPrice: number = 1;
   private businessSubscriptionPrice: number = 2;
