@@ -1,50 +1,84 @@
 <div class="modal-header">
-  <h4 class="modal-title" id="modal-basic-title">View Payment</h4>
+  <h4 class="modal-title" id="modal-basic-title"><i class="fa fa-info"></i><span class="ml-1">View Payment</span></h4>
   <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
 <div class="modal-body">
-    <div class="container">
-      <div class="row">
-          <div class="col-md-8 order-md-1">
-            <h4 class="mb-3">Billing address</h4>
-            <form class="needs-validation" novalidate>
-              <div class="row">
-                <div class="col-md-6 mb-3">
-                  <label for="firstName">First name</label>
-                </div>
-                <div class="col-md-6 mb-3">
-                  <label for="lastName">Last name</label>
-                </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 order-md-1">
+        <h4 class="mb-3"><i class="fa fa-dollar"></i> General</h4>
+        <div class="row">
+            <div class="col-md-4 mb-3 payment-details-item">
+                <span>Payment Type</span>
+                <span><i class="fa fa-paypal"></i> {{payment.paymentType}}</span>
               </div>
-      
-              <div class="mb-3">
-                <label for="email">Email</label>
-              </div>
-      
-              <div class="mb-3">
-                <label for="address">Address</label>
-              </div>
-              <div class="mb-3">
-                <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
-              </div>
-              <div class="row">
-                <div class="col-md-5 mb-3">
-                  <label for="country">Country</label>
+              <div class="col-md-4 mb-3 payment-details-item">
+                  <span>Amount</span>
+                  <span>{{payment.amount}} €</span>
                 </div>
-                <div class="col-md-4 mb-3">
-                  <label for="state">City</label>
-                </div>
-                <div class="col-md-3 mb-3">
-                  <label for="zip">Zip</label>
-                </div>
+              <div class="col-md-4 mb-3 payment-details-item">
+                <span>Date</span>
+                <span>{{payment.paymentDate | date:'dd.MM.yyyy HH:mm'}}</span>
               </div>
-            </form>
+          </div>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-12 order-md-1">
+        <h4 class="mb-3"><i class="fa fa-address-card"></i> Billing Address</h4>
+        <div class="row">
+          <div class="col-md-6 mb-3 payment-details-item">
+            <span>First Name</span>
+            <span>{{payment.billingAddress.firstName}}</span>
+          </div>
+          <div class="col-md-6 mb-3 payment-details-item">
+            <span >Last Name</span>
+            <span>{{payment.billingAddress.lastName}}</span>
+          </div>
+        </div>
+        <div class="row">
+
+          <div class="col mb-3 payment-details-item">
+            <span>E-Mail</span>
+            <span id="email">{{payment.billingAddress.eMail}}</span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col mb-3 payment-details-item">
+            <span >Address </span>
+            <span>{{payment.billingAddress.address}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col mb-3 payment-details-item">
+            <span >Address 2</span>
+            <span>{{payment.billingAddress.addressAddition}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 mb-3 payment-details-item">
+            <span >Country</span>
+            <span>{{payment.billingAddress.country}}</span>
+          </div>
+          <div class="col-md-4 mb-3 payment-details-item">
+            <span >City</span>
+            <span>{{payment.billingAddress.city}}</span>
+          </div>
+          <div class="col-md-4 mb-3 payment-details-item">
+            <span >Zip</span>
+            <span>{{payment.billingAddress.postalCode}}</span>
+
           </div>
         </div>
       </div>
+    </div>
+  </div>
 </div>
 <div class="modal-footer">
-  <button type="button" ngbAutofocus class="btn btn-outline-dark" (click)="activeModal.close('Ok click')">Go Back</button>
+  <button type="button" ngbAutofocus class="btn btn-outline-dark" (click)="activeModal.close('Ok click')">Go
+    Back</button>
 </div>

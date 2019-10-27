@@ -10,7 +10,6 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class PaymentDetailsComponent implements OnInit {
 
   @Input() payment: Payment;
-  
 
   constructor(public activeModal: NgbActiveModal) { }
 
