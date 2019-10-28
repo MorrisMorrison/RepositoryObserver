@@ -40,4 +40,16 @@ export class SettingsComponent implements OnInit {
   });
   }
 
+  cancelSubscription(){
+    this.paymentService.cancelSubscription().subscribe(response => {
+      if (response.status == 200) {
+        this.isAuthenticated = true;
+        this.githubAuthService.getCurrentUser().subscribe(username => {
+            this.username = username.username
+        });
+        this.getAllPayments();
+    }
+    });
+  }
+
 }

@@ -159,5 +159,18 @@ namespace RepositoryNotifier.Controllers
             return BadRequest();
 
         }
+
+
+                [HttpGet]
+        public async Task<IActionResult> CancelSubscription(){
+            string username = AuthHelper.GetLogin(HttpContext);
+            bool result = _subscriptionService.CancelSubscription(username);
+
+            if (result){
+                return Ok();
+            }
+
+            return BadRequest();
+        }
     }
 }

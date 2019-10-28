@@ -15,17 +15,27 @@
         <h3>1. What is this all about?</h3>
         <p class="ml-1">This service helps you not leaking any vulnerable information when pushing to public repos.</p>
       </div>
-
       <div class="question">
         <h3>2. How does it work?</h3>
-        <p class="ml-1">The service either scans your repositories every x minutes of it creates a repositoryhook and checks your repository every time any changes happen.</p>
+        <p class="ml-1">The service either scans your repositories every x minutes or it creates a repositoryhook and checks your repository every time any changes happen.
+          When one of the specied keywords is found, a notification gets sent to you either via E-Mail, WhatsApp or SMS.
+          Mobile messages are sent using Twilio.
+        </p>
       </div>
-
-
       <div class="question">
-        <h3>3. Are you going to collect my data?</h3>
-        <p class="ml-1">Yes</p>
+        <h3>3. Why does the app need permissions for GitHub?</h3>
+        <p class="ml-1">Creating webhooks for repositories is only possible with full access to the account.
+          Creating scheduled jobs only uses the public GitHub API and therefore is possible without full access.
+        </p>
       </div>
+      <div class="question">
+        <h3>4. Why is this shit so slow?</h3>
+        <p class="ml-1">It is hosted on a free heroku dyno.</p>
+      </div>
+      <div class="question">
+          <h3>5. Are you going to collect my data?</h3>
+          <p class="ml-1">Yes.<br>You can get a full dump of your data on the <a [routerLink]='["/settings"]'>settings</a> page.</p>
+        </div>
 
     </div>
   

@@ -75,5 +75,12 @@ namespace RepositoryNotifier.Service
             subscription.Active = true;
             return _subscriptionDao.UpdateSubscription(subscription);
         }
+
+        public bool CancelSubscription(string p_username)
+        {
+            Subscription subscription = _subscriptionDao.GetSubscription(p_username);
+            subscription.Active = false;
+            return _subscriptionDao.UpdateSubscription(subscription);
+        }
     }
 }

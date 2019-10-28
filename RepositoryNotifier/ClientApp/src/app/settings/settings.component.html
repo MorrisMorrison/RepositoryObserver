@@ -31,10 +31,29 @@
         <!-- content -->
         <div class="col-md-9">
           <div *ngIf="accountViewActive">
-            <span>Connect to another GitHub account</span>
-            <button class="ml-3 btn btn-primary">
-              Connect
-            </button>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                  <span>Connect to another GitHub account</span>
+              </div>
+              <div class="col-md-6 mb-3">
+                  <button class="ml-3 btn btn-primary">
+                      Connect
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <span>Get data dump</span>
+                </div>
+                <div class="col-md-6">
+                    <button class="ml-3 btn btn-secondary">
+                        Download
+                      </button>
+                  </div>
+            </div>
+            
+
+
           </div>
           <div *ngIf="!accountViewActive">
               <h4 class="mb-3">Susbcription</h4>
@@ -43,7 +62,7 @@
                 <span><strong>Cancel Subscription</strong></span>
               </div>
               <div class ="col-md-6 mb-3">
-                <button class="btn btn-danger">Cancel</button>
+                <button class="btn btn-danger" (click)="cancelSubscription()">Cancel</button>
               </div>
             </div>
             <div class="row">

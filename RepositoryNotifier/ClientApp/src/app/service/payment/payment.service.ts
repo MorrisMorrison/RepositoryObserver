@@ -36,4 +36,8 @@ export class PaymentService {
   getAllDonations():Observable<Donation[]>{
     return this.httpClient.get<Donation[]>(this.baseUrl + "api/payment/getalldonations");
   }
+
+  cancelSubscription(){
+    return this.httpClient.get<void>(this.baseUrl +"api/payment/cancelsubscription", {observe: 'response'});
+  }
 }
