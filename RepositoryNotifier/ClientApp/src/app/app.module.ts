@@ -20,6 +20,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { ContactComponent } from './contact/contact.component';
 import { ContactService } from './service/contact/contact.service';
 import { PaymentDetailsComponent } from './payment-details/payment-details.component';
+import { FaqComponent } from './faq/faq.component';
+import { SettingsComponent } from './settings/settings.component';
 
 const config: ExtraOptions = {
   onSameUrlNavigation: 'reload'
@@ -38,6 +40,8 @@ const config: ExtraOptions = {
     CheckoutComponent,
     ContactComponent,
     PaymentDetailsComponent,
+    FaqComponent,
+    SettingsComponent,
   ],
   exports: [],
   entryComponents: [EditJobComponent, PaymentDetailsComponent],
@@ -54,6 +58,9 @@ const config: ExtraOptions = {
       { path: 'payments', component: PaymentsComponent },
       { path: 'checkout', component: CheckoutComponent },
       { path: 'contact', component: ContactComponent },
+      { path: 'settings', component: SettingsComponent },
+      { path: 'faq', component: FaqComponent },
+
     ], config)
   ],
   providers: [GithubauthService, JobService, AlertifyService, ContactService],

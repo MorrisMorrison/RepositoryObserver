@@ -47,5 +47,10 @@
     float: right;
 }
     
+.status-active:hover{
+    background: linear-gradient(45deg,#fd2448,#ff4564);
+}
 
-    
+.status-inactive:hover{
+    background-color: linear-gradient(45deg,#2ed8b6,#59e0c5);
+}

@@ -1,0 +1,8 @@
+.question{
+    display: flex;
+    flex-direction: column ;
+}
+
+.faq-main{
+    padding-bottom: 20px;
+}
