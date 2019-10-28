@@ -54,6 +54,7 @@ namespace RepositoryNotifier.Service
                 Username = p_username,
                 PremiumPlan = premiumPlan,
                 Active = false,
+                BillingAddress = p_billingAddress
             };
             _subscriptionDao.AddSubscription(subscription);
         }

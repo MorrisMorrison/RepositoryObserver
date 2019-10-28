@@ -42,7 +42,7 @@
                     </div>
                     <div class="col-md-4 col-xl-4">
                         <div *ngIf="subscription.active"
-                            class="card bg-success mb-3 order-card status-active">
+                            class="card bg-success mb-3 order-card">
                             <div  class="card-block">
                                 <h6 class="m-b-20">Status</h6>
                                 <h2 class="text-right"><i class="fa fa-check f-left"></i><span>Active</span></h2>
@@ -50,7 +50,7 @@
                             </div>
                         </div>
 
-                        <div *ngIf="!subscription.active" class="card bg-danger order-card status-inactive">
+                        <div *ngIf="!subscription.active" class="card bg-danger order-card">
                             <div class="card-block">
                                 <h6 class="m-b-20">Status</h6>
                                 <h2 class="text-right"><i class="fa fa-times f-left"></i><span>Inactive</span></h2>

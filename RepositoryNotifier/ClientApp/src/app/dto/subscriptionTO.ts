@@ -4,6 +4,7 @@ export class Subscription{
     username:string;
     premiumPlan:PremiumPlan;
     active:boolean;
+    billingAddress: BillingAddressModel;
 }
 
 export class CreateSusbcriptionTO{

@@ -20,6 +20,9 @@ namespace RepositoryNotifier.Persistence.Subscription
         [BsonElement("active")]
         public bool Active {get;set;}
 
+        [BsonElement("billing_address")]
+        public BillingAddress BillingAddress {get;set;}
+
 
     }
 }
