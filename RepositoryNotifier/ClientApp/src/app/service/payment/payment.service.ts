@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Subscription, CreateSusbcriptionTO } from 'src/app/dto/subscriptionTO';
+import { Subscription, CreateSusbcriptionTO, BillingAddressTO } from 'src/app/dto/subscriptionTO';
 import { Donation } from 'src/app/dto/donationTO';
 
 @Injectable({
@@ -37,7 +37,12 @@ export class PaymentService {
     return this.httpClient.get<Donation[]>(this.baseUrl + "api/payment/getalldonations");
   }
 
-  cancelSubscription(){
-    return this.httpClient.get<void>(this.baseUrl +"api/payment/cancelsubscription", {observe: 'response'});
+  cancelSubscription():Observable<HttpResponse<string>>{
+    return this.httpClient.put<string>(this.baseUrl +"api/payment/cancelsubscription","", {observe: 'response'});
   }
+
+  updateBillingAddress(billingAddressTO: BillingAddressTO):Observable<HttpResponse<string>>{
+    return this.httpClient.put<string>(this.baseUrl +"api/payment/updatebillingaddress", billingAddressTO, {observe: 'response'});
+  }
+
 }

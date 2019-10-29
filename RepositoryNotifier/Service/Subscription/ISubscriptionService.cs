@@ -15,5 +15,6 @@ namespace RepositoryNotifier.Service
          bool ActivateSubscription(string p_username);
 
          bool CancelSubscription(string p_username);
+         bool UpdateBillingAddress(string username, BillingAddress p_billingAddress);
     }
 }

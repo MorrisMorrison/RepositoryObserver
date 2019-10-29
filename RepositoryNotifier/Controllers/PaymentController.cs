@@ -21,7 +21,7 @@ namespace RepositoryNotifier.Controllers
         private IPayPalPaymentService _payPalPaymentService { get; set; }
         private ISubscriptionService _subscriptionService { get; set; }
         private IDonationService _donationService { get; set; }
-        private ILogger<PaymentController> _logger {get;set;}
+        private ILogger<PaymentController> _logger { get; set; }
 
         public PaymentController(IConfiguration p_configuration, IPayPalPaymentService p_payPalPaymentService, ISubscriptionService p_subscriptionService, IDonationService p_donationService, ILogger<PaymentController> p_logger)
         {
@@ -40,8 +40,9 @@ namespace RepositoryNotifier.Controllers
             PayPal.v1.Payments.Payment result = await _payPalPaymentService.CreatePayment(p_amount, baseUrl);
             string approvalUrl = result.Links.FirstOrDefault(p_link => p_link.Rel.Equals("approval_url")).Href;
 
-            if (string.IsNullOrEmpty(approvalUrl) || string.IsNullOrEmpty(result.Id)) {
-                _logger.LogError("Could not create Payment. Result: {Result} Amount: {Amount} User: {User}", result, p_amount,AuthHelper.GetUsername(HttpContext));
+            if (string.IsNullOrEmpty(approvalUrl) || string.IsNullOrEmpty(result.Id))
+            {
+                _logger.LogError("Could not create Payment. Result: {Result} Amount: {Amount} User: {User}", result, p_amount, AuthHelper.GetUsername(HttpContext));
             }
 
             _logger.LogInformation("Create Payment successful. Result: {Result} Amount: {Amount} User: {User}", result, p_amount, AuthHelper.GetUsername(HttpContext));
@@ -58,7 +59,7 @@ namespace RepositoryNotifier.Controllers
                 string username = AuthHelper.GetLogin(this.HttpContext);
                 _donationService.AddDonation(result, username);
 
-                _logger.LogInformation("Execute Payment successful. Result: {Result} PaymentID: {PaymentID} Token: {Token} PayerID: {PayerID} User: {User}", result, p_paymentID,p_token, p_payerID, AuthHelper.GetUsername(HttpContext));
+                _logger.LogInformation("Execute Payment successful. Result: {Result} PaymentID: {PaymentID} Token: {Token} PayerID: {PayerID} User: {User}", result, p_paymentID, p_token, p_payerID, AuthHelper.GetUsername(HttpContext));
                 return Redirect("/");
             }
 
@@ -87,17 +88,20 @@ namespace RepositoryNotifier.Controllers
                 {
                     string approvalUrl = agreement.Links.FirstOrDefault(p_link => p_link.Rel.Equals("approval_url")).Href;
 
-                    if (string.IsNullOrEmpty(approvalUrl)){
-                         _logger.LogError("Could not create Agreement. Agreement: {Agreement} ActivatedSubscription: {ActivatedSubscription} ApprovalUrl: {ApprovalUrl} User: {User}", agreement, activatedSubscription, approvalUrl, AuthHelper.GetUsername(HttpContext));
+                    if (string.IsNullOrEmpty(approvalUrl))
+                    {
+                        _logger.LogError("Could not create Agreement. Agreement: {Agreement} ActivatedSubscription: {ActivatedSubscription} ApprovalUrl: {ApprovalUrl} User: {User}", agreement, activatedSubscription, approvalUrl, AuthHelper.GetUsername(HttpContext));
                     }
 
                     string username = AuthHelper.GetLogin(HttpContext);
                     _subscriptionService.AddSubscription(subscription, p_createSubscriptionTO.BillingAddress, username);
 
-                    _logger.LogInformation("Create Agreement successful. Agreement: {Agreement} Amount: {Amount} User: {User}", agreement, p_createSubscriptionTO.Amount ,AuthHelper.GetUsername(HttpContext));
+                    _logger.LogInformation("Create Agreement successful. Agreement: {Agreement} Amount: {Amount} User: {User}", agreement, p_createSubscriptionTO.Amount, AuthHelper.GetUsername(HttpContext));
                     return Ok(approvalUrl);
-                }else{
-                        _logger.LogError("Could not create Agreement. Agreement: {Agreement} ActivatedSubscription: {ActivatedSubscription} User: {User}", agreement, activatedSubscription, AuthHelper.GetUsername(HttpContext));
+                }
+                else
+                {
+                    _logger.LogError("Could not create Agreement. Agreement: {Agreement} ActivatedSubscription: {ActivatedSubscription} User: {User}", agreement, activatedSubscription, AuthHelper.GetUsername(HttpContext));
                 }
             }
 
@@ -112,10 +116,10 @@ namespace RepositoryNotifier.Controllers
             Agreement agreement = await _payPalPaymentService.ExecuteAgreement(p_token);
             if (agreement.Id != null)
             {
-                    string username = AuthHelper.GetLogin(this.HttpContext);
-                    _subscriptionService.ActivateSubscription(username);
-                    _logger.LogInformation("Create Subscription successful. Agreement: {Agreement} User: {User}", agreement ,username);
-                    return Redirect("/");
+                string username = AuthHelper.GetLogin(this.HttpContext);
+                _subscriptionService.ActivateSubscription(username);
+                _logger.LogInformation("Create Subscription successful. Agreement: {Agreement} User: {User}", agreement, username);
+                return Redirect("/");
             }
 
             _logger.LogError("Could not execute Agreement. Agreement: {Agreement} User: {User}", agreement, AuthHelper.GetLogin(HttpContext));
@@ -123,11 +127,13 @@ namespace RepositoryNotifier.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllSubscriptions(){
+        public async Task<IActionResult> GetAllSubscriptions()
+        {
             string username = AuthHelper.GetLogin(HttpContext);
             Subscription subscription = _subscriptionService.GetSubscription(username);
 
-            if (subscription != null){
+            if (subscription != null)
+            {
                 return Ok(subscription);
             }
 
@@ -135,12 +141,14 @@ namespace RepositoryNotifier.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetSubscription(){
-            
+        public async Task<IActionResult> GetSubscription()
+        {
+
             string username = AuthHelper.GetLogin(HttpContext);
             Subscription subscription = _subscriptionService.GetSubscription(username);
 
-            if (subscription != null){
+            if (subscription != null)
+            {
                 return Ok(subscription);
             }
 
@@ -148,11 +156,13 @@ namespace RepositoryNotifier.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllDonations(){
+        public async Task<IActionResult> GetAllDonations()
+        {
             string username = AuthHelper.GetLogin(HttpContext);
             IList<Donation> donations = _donationService.GetAllDonations(username);
 
-            if (donations != null && donations.Count > 0){
+            if (donations != null && donations.Count > 0)
+            {
                 return Ok(donations);
             }
 
@@ -161,16 +171,34 @@ namespace RepositoryNotifier.Controllers
         }
 
 
-                [HttpGet]
-        public async Task<IActionResult> CancelSubscription(){
+        [HttpPut]
+        public async Task<IActionResult> CancelSubscription()
+        {
             string username = AuthHelper.GetLogin(HttpContext);
             bool result = _subscriptionService.CancelSubscription(username);
 
-            if (result){
+            if (result)
+            {
                 return Ok();
             }
 
             return BadRequest();
         }
+
+
+        public async Task<IActionResult> UpdateBillingAddress([FromBody] BillingAddress p_billingAddress)
+        {
+            string username = AuthHelper.GetLogin(HttpContext);
+            bool result = _subscriptionService.UpdateBillingAddress(username, p_billingAddress);
+
+            if (result)
+            {
+                return Ok();
+            }
+
+            return BadRequest();
+        }
+
+
     }
 }

@@ -7,4 +7,5 @@ namespace RepositoryNotifier.DTO
         public double Amount {get;set;}
         public BillingAddress BillingAddress {get;set;}
     }
+
 }

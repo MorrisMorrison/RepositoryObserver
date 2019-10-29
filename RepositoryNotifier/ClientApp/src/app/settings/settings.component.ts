@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GithubauthService } from '../service/githubauth/githubauth.service';
 import { PaymentService } from '../service/payment/payment.service';
 import { Subscription } from '../dto/subscriptionTO';
+import { AlertifyService } from '../service/alertify/alertify.service';
 
 @Component({
   selector: 'app-settings',
@@ -15,7 +16,7 @@ export class SettingsComponent implements OnInit {
   username: string;
   subscription:Subscription;
 
-  constructor(private paymentService:PaymentService,private githubAuthService: GithubauthService) {
+  constructor(private paymentService:PaymentService,private githubAuthService: GithubauthService , private alertifySerivce: AlertifyService) {
   }
 
   ngOnInit() {
@@ -43,13 +44,22 @@ export class SettingsComponent implements OnInit {
   cancelSubscription(){
     this.paymentService.cancelSubscription().subscribe(response => {
       if (response.status == 200) {
-        this.isAuthenticated = true;
-        this.githubAuthService.getCurrentUser().subscribe(username => {
-            this.username = username.username
-        });
-        this.getAllPayments();
+        this.alertifySerivce.success("Subscription successfully cancelled.");
+    }else{
+      this.alertifySerivce.error("An error occurred. Please contact our support team if this error persists.");
     }
     });
+  }
+
+  save(){
+    this.paymentService.updateBillingAddress(this.subscription.billingAddress).subscribe(response => {
+      if (response.status == 200) {
+        this.alertifySerivce.success("Billing Address successfully updated.");
+        this.getAllPayments();
+    }else{
+      this.alertifySerivce.error("An error occurred. Please contact our support team if this error persists.");
+    }
+    })
   }
 
 }

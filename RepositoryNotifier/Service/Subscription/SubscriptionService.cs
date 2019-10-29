@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
+using RepositoryNotifier.DTO;
 using RepositoryNotifier.Helper;
 using RepositoryNotifier.Persistence.Subscription;
 
@@ -80,6 +81,12 @@ namespace RepositoryNotifier.Service
         {
             Subscription subscription = _subscriptionDao.GetSubscription(p_username);
             subscription.Active = false;
+            return _subscriptionDao.UpdateSubscription(subscription);
+        }
+
+        public bool UpdateBillingAddress(string p_username, BillingAddress p_billingAddress){
+            Subscription subscription = _subscriptionDao.GetSubscription(p_username);
+            subscription.BillingAddress = p_billingAddress;
             return _subscriptionDao.UpdateSubscription(subscription);
         }
     }

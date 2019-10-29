@@ -25,3 +25,14 @@ export class Payment{
     paymentType:string;
     billingAddress: BillingAddressModel;
 }
+
+export class BillingAddressTO{
+    firstName: string;
+    lastName: string;
+    eMail: string;
+    address:string;
+    addressAddition:string;
+    country:string;
+    city:string;
+    postalCode:number;
+}
