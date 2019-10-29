@@ -52,6 +52,7 @@ export class SettingsComponent implements OnInit {
   }
 
   save(){
+    console.log(this.subscription.billingAddress);
     this.paymentService.updateBillingAddress(this.subscription.billingAddress).subscribe(response => {
       if (response.status == 200) {
         this.alertifySerivce.success("Billing Address successfully updated.");

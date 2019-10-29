@@ -186,6 +186,7 @@ namespace RepositoryNotifier.Controllers
         }
 
 
+        [HttpPut]
         public async Task<IActionResult> UpdateBillingAddress([FromBody] BillingAddress p_billingAddress)
         {
             string username = AuthHelper.GetLogin(HttpContext);

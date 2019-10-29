@@ -49,7 +49,10 @@ namespace RepositoryNotifier.Persistence.Subscription
         public bool UpdateSubscription(Subscription p_subscription)
         {
             IMongoCollection<Subscription> subscriptions = _database.GetCollection<Subscription>(DBConnectionConstants.SUBSCRIPTION_COLLECTION);
-            var updateDef = Builders<Subscription>.Update.Set(subscription => subscription.PremiumPlan, p_subscription.PremiumPlan).Set(subscription => subscription.Active , p_subscription.Active);
+            var updateDef = Builders<Subscription>.Update
+            .Set(subscription => subscription.PremiumPlan, p_subscription.PremiumPlan)
+            .Set(subscription => subscription.Active , p_subscription.Active)
+            .Set(subscription => subscription.BillingAddress , p_subscription.BillingAddress);
             UpdateResult result = subscriptions.UpdateOne(subscription => subscription.Username == p_subscription.Username, updateDef);
             if (result.IsAcknowledged)
             {
