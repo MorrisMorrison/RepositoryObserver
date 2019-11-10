@@ -42,12 +42,14 @@ export class SettingsComponent implements OnInit {
   }
 
   cancelSubscription(){
-    this.paymentService.cancelSubscription().subscribe(response => {
-      if (response.status == 200) {
-        this.alertifySerivce.success("Subscription successfully cancelled.");
-    }else{
-      this.alertifySerivce.error("An error occurred. Please contact our support team if this error persists.");
-    }
+    this.alertifySerivce.confirm("Cancel Subscription?", "Do you really want to cancel your subscription?", () => {
+      this.paymentService.cancelSubscription().subscribe(response => {
+        if (response.status == 200) {
+          this.alertifySerivce.success("Subscription successfully cancelled.");
+      }else{
+        this.alertifySerivce.error("An error occurred. Please contact our support team if this error persists.");
+      }
+      });
     });
   }
 

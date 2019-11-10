@@ -1,0 +1,857 @@
+2019-11-09 16:28:39.641 +01:00 [Information] No database connection exists yet. Initializing new connection.
+2019-11-09 16:28:39.750 +01:00 [Information] Initialize RepositoryInspectorJobScheduler Run().
+2019-11-09 16:28:39.847 +01:00 [Information] RepositoryInspectorJobScheduler starting init run.
+2019-11-09 16:28:39.853 +01:00 [Information] Startup Application.
+2019-11-09 16:28:39.859 +01:00 [Debug] Hosting starting
+2019-11-09 16:28:39.885 +01:00 [Information] User profile is available. Using '"/home/morrismorrison/.aspnet/DataProtection-Keys"' as key repository; keys will not be encrypted at rest.
+2019-11-09 16:28:39.893 +01:00 [Debug] Reading data from file '"/home/morrismorrison/.aspnet/DataProtection-Keys/key-082815ae-49f7-4105-802a-401777056be8.xml"'.
+2019-11-09 16:28:39.912 +01:00 [Debug] Found key {082815ae-49f7-4105-802a-401777056be8}.
+2019-11-09 16:28:39.924 +01:00 [Debug] Considering key {082815ae-49f7-4105-802a-401777056be8} with expiration date 2020-01-03 00:58:56Z as default key.
+2019-11-09 16:28:39.934 +01:00 [Debug] Forwarded activator type request from "Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=3.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60" to "Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60"
+2019-11-09 16:28:39.935 +01:00 [Debug] Using managed symmetric algorithm '"System.Security.Cryptography.Aes"'.
+2019-11-09 16:28:39.935 +01:00 [Debug] Using managed keyed hash algorithm '"System.Security.Cryptography.HMACSHA256"'.
+2019-11-09 16:28:39.939 +01:00 [Debug] Using key {082815ae-49f7-4105-802a-401777056be8} as the default key.
+2019-11-09 16:28:39.940 +01:00 [Debug] Key ring with default key {082815ae-49f7-4105-802a-401777056be8} was loaded during application startup.
+2019-11-09 16:28:39.974 +01:00 [Debug] Compatibility switch "AllowInputFormatterExceptionMessages" in type "MvcJsonOptions" is using default value False
+2019-11-09 16:28:39.985 +01:00 [Debug] Compatibility switch "AllowCombiningAuthorizeFilters" in type "MvcOptions" is using default value False
+2019-11-09 16:28:39.985 +01:00 [Debug] Compatibility switch "AllowBindingHeaderValuesToNonStringModelTypes" in type "MvcOptions" is using default value False
+2019-11-09 16:28:39.985 +01:00 [Debug] Compatibility switch "AllowValidatingTopLevelNodes" in type "MvcOptions" is using default value False
+2019-11-09 16:28:39.986 +01:00 [Debug] Compatibility switch "InputFormatterExceptionPolicy" in type "MvcOptions" is using default value AllExceptions
+2019-11-09 16:28:39.986 +01:00 [Debug] Compatibility switch "SuppressBindingUndefinedValueToEnumType" in type "MvcOptions" is using default value False
+2019-11-09 16:28:39.986 +01:00 [Debug] Compatibility switch "EnableEndpointRouting" in type "MvcOptions" is using default value False
+2019-11-09 16:28:39.987 +01:00 [Debug] Compatibility switch "MaxValidationDepth" in type "MvcOptions" is using default value null
+2019-11-09 16:28:39.987 +01:00 [Debug] Compatibility switch "AllowShortCircuitingValidationWhenNoValidatorsArePresent" in type "MvcOptions" is using default value False
+2019-11-09 16:28:39.998 +01:00 [Debug] Compatibility switch "SuppressMapClientErrors" in type "ApiBehaviorOptions" is using compatibility value True for version Version_2_0
+2019-11-09 16:28:39.998 +01:00 [Debug] Compatibility switch "SuppressUseValidationProblemDetailsForInvalidModelStateResponses" in type "ApiBehaviorOptions" is using compatibility value True for version Version_2_0
+2019-11-09 16:28:39.998 +01:00 [Debug] Compatibility switch "AllowInferringBindingSourceForCollectionTypesAsFromQuery" in type "ApiBehaviorOptions" is using compatibility value True for version Version_2_0
+2019-11-09 16:28:40.002 +01:00 [Debug] Compatibility switch "AllowAreas" in type "RazorPagesOptions" is using default value False
+2019-11-09 16:28:40.002 +01:00 [Debug] Compatibility switch "AllowMappingHeadRequestsToGetHandler" in type "RazorPagesOptions" is using default value False
+2019-11-09 16:28:40.002 +01:00 [Debug] Compatibility switch "AllowDefaultHandlingForOptionsRequests" in type "RazorPagesOptions" is using default value False
+2019-11-09 16:28:40.006 +01:00 [Debug] Compatibility switch "AllowRecompilingViewsOnFileChange" in type "RazorViewEngineOptions" is using explicitly configured value True
+2019-11-09 16:28:40.026 +01:00 [Debug] Compatibility switch "SuppressTempDataAttributePrefix" in type "MvcViewOptions" is using default value False
+2019-11-09 16:28:40.026 +01:00 [Debug] Compatibility switch "AllowRenderingMaxLengthAttribute" in type "MvcViewOptions" is using default value False
+2019-11-09 16:28:40.242 +01:00 [Debug] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider", "Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider", "Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider", "Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider", "Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider", "Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider", "Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider", "Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider", "Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider", "Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider", "Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider", "Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider", "Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider", "Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider", "Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider", "Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexTypeModelBinderProvider"]
+2019-11-09 16:28:40.271 +01:00 [Information] Starting @angular/cli on port 38523...
+2019-11-09 16:28:40.314 +01:00 [Debug] Failed to locate the development https certificate at 'null'.
+2019-11-09 16:28:40.347 +01:00 [Debug] Using development certificate: "CN=localhost" (Thumbprint: "ACEE09FCF1B545DA9A02F815D344217C10B191C4")
+2019-11-09 16:28:40.362 +01:00 [Debug] Hosting started
+2019-11-09 16:28:40.362 +01:00 [Debug] Loaded hosting startup assembly "RepositoryNotifier"
+2019-11-09 16:28:42.923 +01:00 [Information] > GithubPasswordNotifier@0.0.0 start /home/morrismorrison/Development/Projects/NET/RepositoryObserver/RepositoryNotifier/ClientApp
+> ng serve "--port" "38523"
+
+** Angular Live Development Server is listening on localhost:38523, open your browser on http://localhost:38523/ **
+
+2019-11-09 16:28:46.905 +01:00 [Information] ℹ ｢wds｣: Project is running at http://localhost:38523/
+
+2019-11-09 16:28:46.905 +01:00 [Information] ℹ ｢wds｣: webpack output is served from /
+
+2019-11-09 16:28:47.022 +01:00 [Information] ℹ ｢wds｣: 404s will fallback to //index.html
+ℹ ｢wdm｣: wait until bundle finished: /
+
+2019-11-09 16:28:50.539 +01:00 [Information] Date: 2019-11-09T15:28:50.508Z
+Hash: 75886935533ccdcee8ac
+Time: 7385ms
+chunk {main} main.js, main.js.map (main) 546 kB [entry] [rendered]
+chunk {polyfills} polyfills.js, polyfills.js.map (polyfills) 594 kB [entry] [rendered]
+chunk {runtime} runtime.js, runtime.js.map (runtime) 5.22 kB [entry] [rendered]
+chunk {scripts} scripts.js, scripts.js.map (scripts) 203 kB  [rendered]
+chunk {styles} styles.css, styles.js, styles.css.map, styles.js.map (styles) 204 kB [entry] [rendered]
+chunk {vendor} vendor.js, vendor.js.map (vendor) 4.92 MB [initial] [rendered]
+ℹ ｢wdm｣: Compiled successfully.
+
+2019-11-09 16:29:41.025 +01:00 [Debug] Connection id ""0HLR556HQML2O"" started.
+2019-11-09 16:29:41.056 +01:00 [Debug] Connection id ""0HLR556HQML2P"" started.
+2019-11-09 16:29:41.144 +01:00 [Debug] Connection id ""0HLR556HQML2Q"" started.
+2019-11-09 16:29:41.145 +01:00 [Debug] Connection id ""0HLR556HQML2P"" received FIN.
+2019-11-09 16:29:41.145 +01:00 [Debug] Connection id ""0HLR556HQML2O"" received FIN.
+2019-11-09 16:29:41.150 +01:00 [Debug] Failed to authenticate HTTPS connection.
+System.Security.Authentication.AuthenticationException: Authentication failed, see inner exception. ---> Interop+OpenSsl+SslException: SSL Handshake failed with OpenSSL error - SSL_ERROR_SSL. ---> Interop+Crypto+OpenSslCryptographicException: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown
+   --- End of inner exception stack trace ---
+   at Interop.OpenSsl.DoSslHandshake(SafeSslHandle context, Byte[] recvBuf, Int32 recvOffset, Int32 recvCount, Byte[]& sendBuf, Int32& sendCount)
+   at System.Net.Security.SslStreamPal.HandshakeInternal(SafeFreeCredentials credential, SafeDeleteContext& context, SecurityBuffer inputBuffer, SecurityBuffer outputBuffer, SslAuthenticationOptions sslAuthenticationOptions)
+   --- End of inner exception stack trace ---
+   at System.Net.Security.SslState.StartSendAuthResetSignal(ProtocolToken message, AsyncProtocolRequest asyncRequest, ExceptionDispatchInfo exception)
+   at System.Net.Security.SslState.CheckCompletionBeforeNextReceive(ProtocolToken message, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartSendBlob(Byte[] incoming, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.ProcessReceivedBlob(Byte[] buffer, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartReadFrame(Byte[] buffer, Int32 readBytes, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.PartialFrameCallback(AsyncProtocolRequest asyncRequest)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Net.Security.SslState.ThrowIfExceptional()
+   at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Net.Security.SslStream.<>c.<AuthenticateAsServerAsync>b__51_1(IAsyncResult iar)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionAdapter.InnerOnConnectionAsync(ConnectionAdapterContext context)
+2019-11-09 16:29:41.150 +01:00 [Debug] Failed to authenticate HTTPS connection.
+System.Security.Authentication.AuthenticationException: Authentication failed, see inner exception. ---> Interop+OpenSsl+SslException: SSL Handshake failed with OpenSSL error - SSL_ERROR_SSL. ---> Interop+Crypto+OpenSslCryptographicException: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown
+   --- End of inner exception stack trace ---
+   at Interop.OpenSsl.DoSslHandshake(SafeSslHandle context, Byte[] recvBuf, Int32 recvOffset, Int32 recvCount, Byte[]& sendBuf, Int32& sendCount)
+   at System.Net.Security.SslStreamPal.HandshakeInternal(SafeFreeCredentials credential, SafeDeleteContext& context, SecurityBuffer inputBuffer, SecurityBuffer outputBuffer, SslAuthenticationOptions sslAuthenticationOptions)
+   --- End of inner exception stack trace ---
+   at System.Net.Security.SslState.StartSendAuthResetSignal(ProtocolToken message, AsyncProtocolRequest asyncRequest, ExceptionDispatchInfo exception)
+   at System.Net.Security.SslState.CheckCompletionBeforeNextReceive(ProtocolToken message, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartSendBlob(Byte[] incoming, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.ProcessReceivedBlob(Byte[] buffer, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartReadFrame(Byte[] buffer, Int32 readBytes, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.PartialFrameCallback(AsyncProtocolRequest asyncRequest)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Net.Security.SslState.ThrowIfExceptional()
+   at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Net.Security.SslStream.<>c.<AuthenticateAsServerAsync>b__51_1(IAsyncResult iar)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionAdapter.InnerOnConnectionAsync(ConnectionAdapterContext context)
+2019-11-09 16:29:41.179 +01:00 [Debug] Connection id ""0HLR556HQML2O"" sending FIN because: ""The client closed the connection.""
+2019-11-09 16:29:41.179 +01:00 [Debug] Connection id ""0HLR556HQML2P"" sending FIN because: ""The client closed the connection.""
+2019-11-09 16:29:41.179 +01:00 [Debug] Connection id ""0HLR556HQML2O"" disconnecting.
+2019-11-09 16:29:41.180 +01:00 [Debug] Connection id ""0HLR556HQML2P"" disconnecting.
+2019-11-09 16:29:41.192 +01:00 [Debug] Connection id ""0HLR556HQML2O"" stopped.
+2019-11-09 16:29:41.192 +01:00 [Debug] Connection id ""0HLR556HQML2P"" stopped.
+2019-11-09 16:29:41.211 +01:00 [Information] Request starting HTTP/1.1 GET https://localhost:5001/home  
+2019-11-09 16:29:41.213 +01:00 [Debug] Wildcard detected, all requests with hosts will be allowed.
+2019-11-09 16:29:41.238 +01:00 [Debug] AuthenticationScheme: "Cookies" was successfully authenticated.
+2019-11-09 16:29:41.245 +01:00 [Debug] The request path "/home" does not match a supported file type
+2019-11-09 16:29:41.252 +01:00 [Debug] The request path "" does not match the path filter
+2019-11-09 16:29:41.277 +01:00 [Debug] Request successfully matched the route with name '"default"' and template '"{controller}/{action=Index}/{id?}"'
+2019-11-09 16:29:41.279 +01:00 [Debug] No actions matched the current request. Route values: ["controller=home", "action=Index"]
+2019-11-09 16:29:41.279 +01:00 [Debug] No actions matched the current request. Route values: ["controller=home", "action=Index"]
+2019-11-09 16:29:41.280 +01:00 [Debug] Request did not match any routes
+2019-11-09 16:29:41.313 +01:00 [Debug] Connection id ""0HLR556HQML2Q"" completed keep alive response.
+2019-11-09 16:29:41.316 +01:00 [Information] Request finished in 105.3877ms 200 text/html; charset=UTF-8
+2019-11-09 16:29:41.329 +01:00 [Debug] Connection id ""0HLR556HQML2R"" started.
+2019-11-09 16:29:41.329 +01:00 [Debug] Connection id ""0HLR556HQML2S"" started.
+2019-11-09 16:29:41.330 +01:00 [Debug] Connection id ""0HLR556HQML2T"" started.
+2019-11-09 16:29:41.330 +01:00 [Debug] Connection id ""0HLR556HQML2U"" started.
+2019-11-09 16:29:41.331 +01:00 [Debug] Connection id ""0HLR556HQML2V"" started.
+2019-11-09 16:29:41.335 +01:00 [Information] Request starting HTTP/1.1 GET https://localhost:5001/styles.css  
+2019-11-09 16:29:41.336 +01:00 [Debug] AuthenticationScheme: "Cookies" was successfully authenticated.
+2019-11-09 16:29:41.338 +01:00 [Debug] Failed to authenticate HTTPS connection.
+System.Security.Authentication.AuthenticationException: Authentication failed, see inner exception. ---> Interop+OpenSsl+SslException: SSL Handshake failed with OpenSSL error - SSL_ERROR_SSL. ---> Interop+Crypto+OpenSslCryptographicException: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown
+   --- End of inner exception stack trace ---
+   at Interop.OpenSsl.DoSslHandshake(SafeSslHandle context, Byte[] recvBuf, Int32 recvOffset, Int32 recvCount, Byte[]& sendBuf, Int32& sendCount)
+   at System.Net.Security.SslStreamPal.HandshakeInternal(SafeFreeCredentials credential, SafeDeleteContext& context, SecurityBuffer inputBuffer, SecurityBuffer outputBuffer, SslAuthenticationOptions sslAuthenticationOptions)
+   --- End of inner exception stack trace ---
+   at System.Net.Security.SslState.StartSendAuthResetSignal(ProtocolToken message, AsyncProtocolRequest asyncRequest, ExceptionDispatchInfo exception)
+   at System.Net.Security.SslState.CheckCompletionBeforeNextReceive(ProtocolToken message, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartSendBlob(Byte[] incoming, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.ProcessReceivedBlob(Byte[] buffer, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartReadFrame(Byte[] buffer, Int32 readBytes, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.PartialFrameCallback(AsyncProtocolRequest asyncRequest)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Net.Security.SslState.ThrowIfExceptional()
+   at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Net.Security.SslStream.<>c.<AuthenticateAsServerAsync>b__51_1(IAsyncResult iar)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionAdapter.InnerOnConnectionAsync(ConnectionAdapterContext context)
+2019-11-09 16:29:41.338 +01:00 [Debug] Failed to authenticate HTTPS connection.
+System.Security.Authentication.AuthenticationException: Authentication failed, see inner exception. ---> Interop+OpenSsl+SslException: SSL Handshake failed with OpenSSL error - SSL_ERROR_SSL. ---> Interop+Crypto+OpenSslCryptographicException: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown
+   --- End of inner exception stack trace ---
+   at Interop.OpenSsl.DoSslHandshake(SafeSslHandle context, Byte[] recvBuf, Int32 recvOffset, Int32 recvCount, Byte[]& sendBuf, Int32& sendCount)
+   at System.Net.Security.SslStreamPal.HandshakeInternal(SafeFreeCredentials credential, SafeDeleteContext& context, SecurityBuffer inputBuffer, SecurityBuffer outputBuffer, SslAuthenticationOptions sslAuthenticationOptions)
+   --- End of inner exception stack trace ---
+   at System.Net.Security.SslState.StartSendAuthResetSignal(ProtocolToken message, AsyncProtocolRequest asyncRequest, ExceptionDispatchInfo exception)
+   at System.Net.Security.SslState.CheckCompletionBeforeNextReceive(ProtocolToken message, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartSendBlob(Byte[] incoming, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.ProcessReceivedBlob(Byte[] buffer, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartReadFrame(Byte[] buffer, Int32 readBytes, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.PartialFrameCallback(AsyncProtocolRequest asyncRequest)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Net.Security.SslState.ThrowIfExceptional()
+   at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Net.Security.SslStream.<>c.<AuthenticateAsServerAsync>b__51_1(IAsyncResult iar)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionAdapter.InnerOnConnectionAsync(ConnectionAdapterContext context)
+2019-11-09 16:29:41.339 +01:00 [Debug] Connection id ""0HLR556HQML2R"" received FIN.
+2019-11-09 16:29:41.339 +01:00 [Debug] Connection id ""0HLR556HQML30"" started.
+2019-11-09 16:29:41.339 +01:00 [Debug] The request path "/styles.css" does not match an existing file
+2019-11-09 16:29:41.339 +01:00 [Debug] Failed to authenticate HTTPS connection.
+System.Security.Authentication.AuthenticationException: Authentication failed, see inner exception. ---> Interop+OpenSsl+SslException: SSL Handshake failed with OpenSSL error - SSL_ERROR_SSL. ---> Interop+Crypto+OpenSslCryptographicException: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown
+   --- End of inner exception stack trace ---
+   at Interop.OpenSsl.DoSslHandshake(SafeSslHandle context, Byte[] recvBuf, Int32 recvOffset, Int32 recvCount, Byte[]& sendBuf, Int32& sendCount)
+   at System.Net.Security.SslStreamPal.HandshakeInternal(SafeFreeCredentials credential, SafeDeleteContext& context, SecurityBuffer inputBuffer, SecurityBuffer outputBuffer, SslAuthenticationOptions sslAuthenticationOptions)
+   --- End of inner exception stack trace ---
+   at System.Net.Security.SslState.StartSendAuthResetSignal(ProtocolToken message, AsyncProtocolRequest asyncRequest, ExceptionDispatchInfo exception)
+   at System.Net.Security.SslState.CheckCompletionBeforeNextReceive(ProtocolToken message, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartSendBlob(Byte[] incoming, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.ProcessReceivedBlob(Byte[] buffer, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartReadFrame(Byte[] buffer, Int32 readBytes, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.PartialFrameCallback(AsyncProtocolRequest asyncRequest)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Net.Security.SslState.ThrowIfExceptional()
+   at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Net.Security.SslStream.<>c.<AuthenticateAsServerAsync>b__51_1(IAsyncResult iar)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionAdapter.InnerOnConnectionAsync(ConnectionAdapterContext context)
+2019-11-09 16:29:41.340 +01:00 [Debug] Connection id ""0HLR556HQML2S"" received FIN.
+2019-11-09 16:29:41.341 +01:00 [Debug] Connection id ""0HLR556HQML2T"" received FIN.
+2019-11-09 16:29:41.341 +01:00 [Debug] Connection id ""0HLR556HQML2S"" disconnecting.
+2019-11-09 16:29:41.341 +01:00 [Debug] Connection id ""0HLR556HQML2R"" disconnecting.
+2019-11-09 16:29:41.341 +01:00 [Debug] Failed to authenticate HTTPS connection.
+System.Security.Authentication.AuthenticationException: Authentication failed, see inner exception. ---> Interop+OpenSsl+SslException: SSL Handshake failed with OpenSSL error - SSL_ERROR_SSL. ---> Interop+Crypto+OpenSslCryptographicException: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown
+   --- End of inner exception stack trace ---
+   at Interop.OpenSsl.DoSslHandshake(SafeSslHandle context, Byte[] recvBuf, Int32 recvOffset, Int32 recvCount, Byte[]& sendBuf, Int32& sendCount)
+   at System.Net.Security.SslStreamPal.HandshakeInternal(SafeFreeCredentials credential, SafeDeleteContext& context, SecurityBuffer inputBuffer, SecurityBuffer outputBuffer, SslAuthenticationOptions sslAuthenticationOptions)
+   --- End of inner exception stack trace ---
+   at System.Net.Security.SslState.StartSendAuthResetSignal(ProtocolToken message, AsyncProtocolRequest asyncRequest, ExceptionDispatchInfo exception)
+   at System.Net.Security.SslState.CheckCompletionBeforeNextReceive(ProtocolToken message, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartSendBlob(Byte[] incoming, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.ProcessReceivedBlob(Byte[] buffer, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartReadFrame(Byte[] buffer, Int32 readBytes, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.PartialFrameCallback(AsyncProtocolRequest asyncRequest)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Net.Security.SslState.ThrowIfExceptional()
+   at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Net.Security.SslStream.<>c.<AuthenticateAsServerAsync>b__51_1(IAsyncResult iar)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionAdapter.InnerOnConnectionAsync(ConnectionAdapterContext context)
+2019-11-09 16:29:41.342 +01:00 [Debug] Connection id ""0HLR556HQML2U"" received FIN.
+2019-11-09 16:29:41.342 +01:00 [Debug] Connection id ""0HLR556HQML2V"" received FIN.
+2019-11-09 16:29:41.342 +01:00 [Debug] Failed to authenticate HTTPS connection.
+System.Security.Authentication.AuthenticationException: Authentication failed, see inner exception. ---> Interop+OpenSsl+SslException: SSL Handshake failed with OpenSSL error - SSL_ERROR_SSL. ---> Interop+Crypto+OpenSslCryptographicException: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown
+   --- End of inner exception stack trace ---
+   at Interop.OpenSsl.DoSslHandshake(SafeSslHandle context, Byte[] recvBuf, Int32 recvOffset, Int32 recvCount, Byte[]& sendBuf, Int32& sendCount)
+   at System.Net.Security.SslStreamPal.HandshakeInternal(SafeFreeCredentials credential, SafeDeleteContext& context, SecurityBuffer inputBuffer, SecurityBuffer outputBuffer, SslAuthenticationOptions sslAuthenticationOptions)
+   --- End of inner exception stack trace ---
+   at System.Net.Security.SslState.StartSendAuthResetSignal(ProtocolToken message, AsyncProtocolRequest asyncRequest, ExceptionDispatchInfo exception)
+   at System.Net.Security.SslState.CheckCompletionBeforeNextReceive(ProtocolToken message, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartSendBlob(Byte[] incoming, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.ProcessReceivedBlob(Byte[] buffer, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartReadFrame(Byte[] buffer, Int32 readBytes, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.PartialFrameCallback(AsyncProtocolRequest asyncRequest)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Net.Security.SslState.ThrowIfExceptional()
+   at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Net.Security.SslStream.<>c.<AuthenticateAsServerAsync>b__51_1(IAsyncResult iar)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionAdapter.InnerOnConnectionAsync(ConnectionAdapterContext context)
+2019-11-09 16:29:41.342 +01:00 [Debug] Connection id ""0HLR556HQML31"" started.
+2019-11-09 16:29:41.342 +01:00 [Debug] The request path "" does not match the path filter
+2019-11-09 16:29:41.343 +01:00 [Debug] Connection id ""0HLR556HQML2T"" disconnecting.
+2019-11-09 16:29:41.343 +01:00 [Debug] Connection id ""0HLR556HQML2S"" sending FIN because: ""The client closed the connection.""
+2019-11-09 16:29:41.343 +01:00 [Debug] Request successfully matched the route with name '"default"' and template '"{controller}/{action=Index}/{id?}"'
+2019-11-09 16:29:41.344 +01:00 [Debug] Connection id ""0HLR556HQML2R"" sending FIN because: ""The client closed the connection.""
+2019-11-09 16:29:41.344 +01:00 [Debug] Connection id ""0HLR556HQML2V"" disconnecting.
+2019-11-09 16:29:41.345 +01:00 [Debug] Connection id ""0HLR556HQML2R"" stopped.
+2019-11-09 16:29:41.346 +01:00 [Debug] Connection id ""0HLR556HQML2U"" disconnecting.
+2019-11-09 16:29:41.346 +01:00 [Debug] Connection id ""0HLR556HQML2T"" sending FIN because: ""The client closed the connection.""
+2019-11-09 16:29:41.346 +01:00 [Debug] Connection id ""0HLR556HQML2S"" stopped.
+2019-11-09 16:29:41.346 +01:00 [Debug] Connection id ""0HLR556HQML32"" started.
+2019-11-09 16:29:41.347 +01:00 [Debug] No actions matched the current request. Route values: ["controller=styles.css", "action=Index"]
+2019-11-09 16:29:41.347 +01:00 [Debug] Connection id ""0HLR556HQML33"" started.
+2019-11-09 16:29:41.347 +01:00 [Debug] No actions matched the current request. Route values: ["controller=styles.css", "action=Index"]
+2019-11-09 16:29:41.347 +01:00 [Debug] Connection id ""0HLR556HQML34"" started.
+2019-11-09 16:29:41.348 +01:00 [Debug] Connection id ""0HLR556HQML2U"" sending FIN because: ""The Socket transport's send loop completed gracefully.""
+2019-11-09 16:29:41.348 +01:00 [Debug] Connection id ""0HLR556HQML30"" received FIN.
+2019-11-09 16:29:41.348 +01:00 [Debug] Connection id ""0HLR556HQML2T"" stopped.
+2019-11-09 16:29:41.348 +01:00 [Debug] Connection id ""0HLR556HQML2V"" sending FIN because: ""The Socket transport's send loop completed gracefully.""
+2019-11-09 16:29:41.348 +01:00 [Debug] Failed to authenticate HTTPS connection.
+System.Security.Authentication.AuthenticationException: Authentication failed, see inner exception. ---> Interop+OpenSsl+SslException: SSL Handshake failed with OpenSSL error - SSL_ERROR_SSL. ---> Interop+Crypto+OpenSslCryptographicException: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown
+   --- End of inner exception stack trace ---
+   at Interop.OpenSsl.DoSslHandshake(SafeSslHandle context, Byte[] recvBuf, Int32 recvOffset, Int32 recvCount, Byte[]& sendBuf, Int32& sendCount)
+   at System.Net.Security.SslStreamPal.HandshakeInternal(SafeFreeCredentials credential, SafeDeleteContext& context, SecurityBuffer inputBuffer, SecurityBuffer outputBuffer, SslAuthenticationOptions sslAuthenticationOptions)
+   --- End of inner exception stack trace ---
+   at System.Net.Security.SslState.StartSendAuthResetSignal(ProtocolToken message, AsyncProtocolRequest asyncRequest, ExceptionDispatchInfo exception)
+   at System.Net.Security.SslState.CheckCompletionBeforeNextReceive(ProtocolToken message, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartSendBlob(Byte[] incoming, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.ProcessReceivedBlob(Byte[] buffer, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartReadFrame(Byte[] buffer, Int32 readBytes, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.PartialFrameCallback(AsyncProtocolRequest asyncRequest)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Net.Security.SslState.ThrowIfExceptional()
+   at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Net.Security.SslStream.<>c.<AuthenticateAsServerAsync>b__51_1(IAsyncResult iar)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionAdapter.InnerOnConnectionAsync(ConnectionAdapterContext context)
+2019-11-09 16:29:41.348 +01:00 [Debug] Request did not match any routes
+2019-11-09 16:29:41.349 +01:00 [Debug] Connection id ""0HLR556HQML35"" started.
+2019-11-09 16:29:41.349 +01:00 [Debug] Connection id ""0HLR556HQML2U"" stopped.
+2019-11-09 16:29:41.349 +01:00 [Debug] Connection id ""0HLR556HQML2V"" stopped.
+2019-11-09 16:29:41.351 +01:00 [Debug] Connection id ""0HLR556HQML30"" disconnecting.
+2019-11-09 16:29:41.352 +01:00 [Debug] Connection id ""0HLR556HQML30"" sending FIN because: ""The client closed the connection.""
+2019-11-09 16:29:41.352 +01:00 [Debug] Connection id ""0HLR556HQML30"" stopped.
+2019-11-09 16:29:41.353 +01:00 [Debug] Connection id ""0HLR556HQML31"" received FIN.
+2019-11-09 16:29:41.354 +01:00 [Debug] Failed to authenticate HTTPS connection.
+System.Security.Authentication.AuthenticationException: Authentication failed, see inner exception. ---> Interop+OpenSsl+SslException: SSL Handshake failed with OpenSSL error - SSL_ERROR_SSL. ---> Interop+Crypto+OpenSslCryptographicException: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown
+   --- End of inner exception stack trace ---
+   at Interop.OpenSsl.DoSslHandshake(SafeSslHandle context, Byte[] recvBuf, Int32 recvOffset, Int32 recvCount, Byte[]& sendBuf, Int32& sendCount)
+   at System.Net.Security.SslStreamPal.HandshakeInternal(SafeFreeCredentials credential, SafeDeleteContext& context, SecurityBuffer inputBuffer, SecurityBuffer outputBuffer, SslAuthenticationOptions sslAuthenticationOptions)
+   --- End of inner exception stack trace ---
+   at System.Net.Security.SslState.StartSendAuthResetSignal(ProtocolToken message, AsyncProtocolRequest asyncRequest, ExceptionDispatchInfo exception)
+   at System.Net.Security.SslState.CheckCompletionBeforeNextReceive(ProtocolToken message, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartSendBlob(Byte[] incoming, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.ProcessReceivedBlob(Byte[] buffer, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartReadFrame(Byte[] buffer, Int32 readBytes, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.PartialFrameCallback(AsyncProtocolRequest asyncRequest)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Net.Security.SslState.ThrowIfExceptional()
+   at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Net.Security.SslStream.<>c.<AuthenticateAsServerAsync>b__51_1(IAsyncResult iar)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionAdapter.InnerOnConnectionAsync(ConnectionAdapterContext context)
+2019-11-09 16:29:41.354 +01:00 [Debug] Connection id ""0HLR556HQML36"" started.
+2019-11-09 16:29:41.354 +01:00 [Debug] Connection id ""0HLR556HQML32"" received FIN.
+2019-11-09 16:29:41.355 +01:00 [Debug] Connection id ""0HLR556HQML34"" received FIN.
+2019-11-09 16:29:41.355 +01:00 [Debug] Failed to authenticate HTTPS connection.
+System.Security.Authentication.AuthenticationException: Authentication failed, see inner exception. ---> Interop+OpenSsl+SslException: SSL Handshake failed with OpenSSL error - SSL_ERROR_SSL. ---> Interop+Crypto+OpenSslCryptographicException: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown
+   --- End of inner exception stack trace ---
+   at Interop.OpenSsl.DoSslHandshake(SafeSslHandle context, Byte[] recvBuf, Int32 recvOffset, Int32 recvCount, Byte[]& sendBuf, Int32& sendCount)
+   at System.Net.Security.SslStreamPal.HandshakeInternal(SafeFreeCredentials credential, SafeDeleteContext& context, SecurityBuffer inputBuffer, SecurityBuffer outputBuffer, SslAuthenticationOptions sslAuthenticationOptions)
+   --- End of inner exception stack trace ---
+   at System.Net.Security.SslState.StartSendAuthResetSignal(ProtocolToken message, AsyncProtocolRequest asyncRequest, ExceptionDispatchInfo exception)
+   at System.Net.Security.SslState.CheckCompletionBeforeNextReceive(ProtocolToken message, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartSendBlob(Byte[] incoming, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.ProcessReceivedBlob(Byte[] buffer, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartReadFrame(Byte[] buffer, Int32 readBytes, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.PartialFrameCallback(AsyncProtocolRequest asyncRequest)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Net.Security.SslState.ThrowIfExceptional()
+   at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Net.Security.SslStream.<>c.<AuthenticateAsServerAsync>b__51_1(IAsyncResult iar)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionAdapter.InnerOnConnectionAsync(ConnectionAdapterContext context)
+2019-11-09 16:29:41.356 +01:00 [Debug] Failed to authenticate HTTPS connection.
+System.Security.Authentication.AuthenticationException: Authentication failed, see inner exception. ---> Interop+OpenSsl+SslException: SSL Handshake failed with OpenSSL error - SSL_ERROR_SSL. ---> Interop+Crypto+OpenSslCryptographicException: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown
+   --- End of inner exception stack trace ---
+   at Interop.OpenSsl.DoSslHandshake(SafeSslHandle context, Byte[] recvBuf, Int32 recvOffset, Int32 recvCount, Byte[]& sendBuf, Int32& sendCount)
+   at System.Net.Security.SslStreamPal.HandshakeInternal(SafeFreeCredentials credential, SafeDeleteContext& context, SecurityBuffer inputBuffer, SecurityBuffer outputBuffer, SslAuthenticationOptions sslAuthenticationOptions)
+   --- End of inner exception stack trace ---
+   at System.Net.Security.SslState.StartSendAuthResetSignal(ProtocolToken message, AsyncProtocolRequest asyncRequest, ExceptionDispatchInfo exception)
+   at System.Net.Security.SslState.CheckCompletionBeforeNextReceive(ProtocolToken message, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartSendBlob(Byte[] incoming, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.ProcessReceivedBlob(Byte[] buffer, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartReadFrame(Byte[] buffer, Int32 readBytes, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.PartialFrameCallback(AsyncProtocolRequest asyncRequest)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Net.Security.SslState.ThrowIfExceptional()
+   at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Net.Security.SslStream.<>c.<AuthenticateAsServerAsync>b__51_1(IAsyncResult iar)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionAdapter.InnerOnConnectionAsync(ConnectionAdapterContext context)
+2019-11-09 16:29:41.356 +01:00 [Debug] Connection id ""0HLR556HQML31"" disconnecting.
+2019-11-09 16:29:41.357 +01:00 [Debug] Connection id ""0HLR556HQML37"" started.
+2019-11-09 16:29:41.357 +01:00 [Debug] Connection id ""0HLR556HQML33"" received FIN.
+2019-11-09 16:29:41.358 +01:00 [Debug] Failed to authenticate HTTPS connection.
+System.Security.Authentication.AuthenticationException: Authentication failed, see inner exception. ---> Interop+OpenSsl+SslException: SSL Handshake failed with OpenSSL error - SSL_ERROR_SSL. ---> Interop+Crypto+OpenSslCryptographicException: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown
+   --- End of inner exception stack trace ---
+   at Interop.OpenSsl.DoSslHandshake(SafeSslHandle context, Byte[] recvBuf, Int32 recvOffset, Int32 recvCount, Byte[]& sendBuf, Int32& sendCount)
+   at System.Net.Security.SslStreamPal.HandshakeInternal(SafeFreeCredentials credential, SafeDeleteContext& context, SecurityBuffer inputBuffer, SecurityBuffer outputBuffer, SslAuthenticationOptions sslAuthenticationOptions)
+   --- End of inner exception stack trace ---
+   at System.Net.Security.SslState.StartSendAuthResetSignal(ProtocolToken message, AsyncProtocolRequest asyncRequest, ExceptionDispatchInfo exception)
+   at System.Net.Security.SslState.CheckCompletionBeforeNextReceive(ProtocolToken message, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartSendBlob(Byte[] incoming, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.ProcessReceivedBlob(Byte[] buffer, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartReadFrame(Byte[] buffer, Int32 readBytes, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.PartialFrameCallback(AsyncProtocolRequest asyncRequest)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Net.Security.SslState.ThrowIfExceptional()
+   at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Net.Security.SslStream.<>c.<AuthenticateAsServerAsync>b__51_1(IAsyncResult iar)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionAdapter.InnerOnConnectionAsync(ConnectionAdapterContext context)
+2019-11-09 16:29:41.358 +01:00 [Debug] Connection id ""0HLR556HQML32"" disconnecting.
+2019-11-09 16:29:41.359 +01:00 [Information] Request starting HTTP/1.1 GET https://localhost:5001/vendor.js  
+2019-11-09 16:29:41.360 +01:00 [Debug] Connection id ""0HLR556HQML34"" disconnecting.
+2019-11-09 16:29:41.360 +01:00 [Debug] Connection id ""0HLR556HQML31"" sending FIN because: ""The Socket transport's send loop completed gracefully.""
+2019-11-09 16:29:41.360 +01:00 [Debug] Connection id ""0HLR556HQML38"" started.
+2019-11-09 16:29:41.360 +01:00 [Debug] Connection id ""0HLR556HQML32"" sending FIN because: ""The Socket transport's send loop completed gracefully.""
+2019-11-09 16:29:41.361 +01:00 [Debug] Connection id ""0HLR556HQML31"" stopped.
+2019-11-09 16:29:41.361 +01:00 [Debug] Connection id ""0HLR556HQML34"" sending FIN because: ""The Socket transport's send loop completed gracefully.""
+2019-11-09 16:29:41.361 +01:00 [Debug] AuthenticationScheme: "Cookies" was successfully authenticated.
+2019-11-09 16:29:41.361 +01:00 [Debug] Connection id ""0HLR556HQML34"" stopped.
+2019-11-09 16:29:41.362 +01:00 [Debug] The request path "/vendor.js" does not match an existing file
+2019-11-09 16:29:41.363 +01:00 [Debug] Connection id ""0HLR556HQML33"" disconnecting.
+2019-11-09 16:29:41.363 +01:00 [Debug] Connection id ""0HLR556HQML32"" stopped.
+2019-11-09 16:29:41.363 +01:00 [Debug] The request path "" does not match the path filter
+2019-11-09 16:29:41.364 +01:00 [Debug] Connection id ""0HLR556HQML33"" sending FIN because: ""The client closed the connection.""
+2019-11-09 16:29:41.364 +01:00 [Debug] Connection id ""0HLR556HQML39"" started.
+2019-11-09 16:29:41.364 +01:00 [Debug] Request successfully matched the route with name '"default"' and template '"{controller}/{action=Index}/{id?}"'
+2019-11-09 16:29:41.364 +01:00 [Debug] Connection id ""0HLR556HQML33"" stopped.
+2019-11-09 16:29:41.365 +01:00 [Debug] No actions matched the current request. Route values: ["controller=vendor.js", "action=Index"]
+2019-11-09 16:29:41.365 +01:00 [Debug] No actions matched the current request. Route values: ["controller=vendor.js", "action=Index"]
+2019-11-09 16:29:41.365 +01:00 [Debug] Request did not match any routes
+2019-11-09 16:29:41.371 +01:00 [Debug] Connection id ""0HLR556HQML2Q"" completed keep alive response.
+2019-11-09 16:29:41.371 +01:00 [Information] Request finished in 36.3935ms 200 text/css; charset=UTF-8
+2019-11-09 16:29:41.372 +01:00 [Information] Request starting HTTP/1.1 GET https://localhost:5001/main.js  
+2019-11-09 16:29:41.373 +01:00 [Debug] AuthenticationScheme: "Cookies" was successfully authenticated.
+2019-11-09 16:29:41.373 +01:00 [Debug] The request path "/main.js" does not match an existing file
+2019-11-09 16:29:41.373 +01:00 [Debug] The request path "" does not match the path filter
+2019-11-09 16:29:41.373 +01:00 [Information] Request starting HTTP/1.1 GET https://localhost:5001/runtime.js  
+2019-11-09 16:29:41.374 +01:00 [Debug] Request successfully matched the route with name '"default"' and template '"{controller}/{action=Index}/{id?}"'
+2019-11-09 16:29:41.374 +01:00 [Debug] AuthenticationScheme: "Cookies" was successfully authenticated.
+2019-11-09 16:29:41.374 +01:00 [Debug] No actions matched the current request. Route values: ["controller=main.js", "action=Index"]
+2019-11-09 16:29:41.375 +01:00 [Debug] The request path "/runtime.js" does not match an existing file
+2019-11-09 16:29:41.375 +01:00 [Debug] No actions matched the current request. Route values: ["controller=main.js", "action=Index"]
+2019-11-09 16:29:41.375 +01:00 [Debug] The request path "" does not match the path filter
+2019-11-09 16:29:41.375 +01:00 [Information] Request starting HTTP/1.1 GET https://localhost:5001/polyfills.js  
+2019-11-09 16:29:41.375 +01:00 [Debug] Request did not match any routes
+2019-11-09 16:29:41.376 +01:00 [Debug] Request successfully matched the route with name '"default"' and template '"{controller}/{action=Index}/{id?}"'
+2019-11-09 16:29:41.376 +01:00 [Debug] AuthenticationScheme: "Cookies" was successfully authenticated.
+2019-11-09 16:29:41.376 +01:00 [Debug] No actions matched the current request. Route values: ["controller=runtime.js", "action=Index"]
+2019-11-09 16:29:41.376 +01:00 [Debug] The request path "/polyfills.js" does not match an existing file
+2019-11-09 16:29:41.377 +01:00 [Debug] The request path "" does not match the path filter
+2019-11-09 16:29:41.377 +01:00 [Debug] No actions matched the current request. Route values: ["controller=runtime.js", "action=Index"]
+2019-11-09 16:29:41.377 +01:00 [Debug] Request successfully matched the route with name '"default"' and template '"{controller}/{action=Index}/{id?}"'
+2019-11-09 16:29:41.377 +01:00 [Information] Request starting HTTP/1.1 GET https://localhost:5001/styles.js  
+2019-11-09 16:29:41.378 +01:00 [Debug] Request did not match any routes
+2019-11-09 16:29:41.378 +01:00 [Debug] No actions matched the current request. Route values: ["controller=polyfills.js", "action=Index"]
+2019-11-09 16:29:41.378 +01:00 [Information] Request starting HTTP/1.1 GET https://localhost:5001/scripts.js  
+2019-11-09 16:29:41.379 +01:00 [Debug] AuthenticationScheme: "Cookies" was successfully authenticated.
+2019-11-09 16:29:41.379 +01:00 [Debug] No actions matched the current request. Route values: ["controller=polyfills.js", "action=Index"]
+2019-11-09 16:29:41.379 +01:00 [Debug] Connection id ""0HLR556HQML36"" completed keep alive response.
+2019-11-09 16:29:41.379 +01:00 [Debug] Request did not match any routes
+2019-11-09 16:29:41.379 +01:00 [Debug] AuthenticationScheme: "Cookies" was successfully authenticated.
+2019-11-09 16:29:41.380 +01:00 [Information] Request finished in 6.1539ms 200 application/javascript; charset=UTF-8
+2019-11-09 16:29:41.380 +01:00 [Debug] The request path "/scripts.js" does not match an existing file
+2019-11-09 16:29:41.380 +01:00 [Debug] Connection id ""0HLR556HQML2Q"" completed keep alive response.
+2019-11-09 16:29:41.380 +01:00 [Debug] The request path "/styles.js" does not match an existing file
+2019-11-09 16:29:41.382 +01:00 [Debug] The request path "" does not match the path filter
+2019-11-09 16:29:41.382 +01:00 [Debug] The request path "" does not match the path filter
+2019-11-09 16:29:41.383 +01:00 [Debug] Request successfully matched the route with name '"default"' and template '"{controller}/{action=Index}/{id?}"'
+2019-11-09 16:29:41.383 +01:00 [Information] Request finished in 10.6747ms 200 application/javascript; charset=UTF-8
+2019-11-09 16:29:41.383 +01:00 [Debug] No actions matched the current request. Route values: ["controller=scripts.js", "action=Index"]
+2019-11-09 16:29:41.384 +01:00 [Debug] No actions matched the current request. Route values: ["controller=scripts.js", "action=Index"]
+2019-11-09 16:29:41.384 +01:00 [Debug] Request successfully matched the route with name '"default"' and template '"{controller}/{action=Index}/{id?}"'
+2019-11-09 16:29:41.384 +01:00 [Debug] Request did not match any routes
+2019-11-09 16:29:41.384 +01:00 [Debug] No actions matched the current request. Route values: ["controller=styles.js", "action=Index"]
+2019-11-09 16:29:41.385 +01:00 [Debug] No actions matched the current request. Route values: ["controller=styles.js", "action=Index"]
+2019-11-09 16:29:41.385 +01:00 [Debug] Request did not match any routes
+2019-11-09 16:29:41.387 +01:00 [Debug] Connection id ""0HLR556HQML39"" completed keep alive response.
+2019-11-09 16:29:41.387 +01:00 [Information] Request finished in 9.0202ms 200 application/javascript; charset=UTF-8
+2019-11-09 16:29:41.389 +01:00 [Debug] Connection id ""0HLR556HQML35"" completed keep alive response.
+2019-11-09 16:29:41.389 +01:00 [Information] Request finished in 30.0701ms 200 application/javascript; charset=UTF-8
+2019-11-09 16:29:41.390 +01:00 [Debug] Connection id ""0HLR556HQML37"" completed keep alive response.
+2019-11-09 16:29:41.390 +01:00 [Information] Request finished in 12.65ms 200 application/javascript; charset=UTF-8
+2019-11-09 16:29:41.425 +01:00 [Debug] Connection id ""0HLR556HQML38"" completed keep alive response.
+2019-11-09 16:29:41.426 +01:00 [Information] Request finished in 50.4869ms 200 application/javascript; charset=UTF-8
+2019-11-09 16:29:42.668 +01:00 [Information] Request starting HTTP/1.1 GET https://localhost:5001/api/auth/isauthenticated  
+2019-11-09 16:29:42.669 +01:00 [Debug] AuthenticationScheme: "Cookies" was successfully authenticated.
+2019-11-09 16:29:42.669 +01:00 [Debug] The request path "/api/auth/isauthenticated" does not match a supported file type
+2019-11-09 16:29:42.669 +01:00 [Debug] The request path "" does not match the path filter
+2019-11-09 16:29:42.670 +01:00 [Debug] Request successfully matched the route with name 'null' and template '"api/Auth/IsAuthenticated"'
+2019-11-09 16:29:42.689 +01:00 [Information] Route matched with "{action = \"IsAuthenticated\", controller = \"Auth\", page = \"\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult IsAuthenticated()" on controller "RepositoryNotifier.Controllers.AuthController" ("RepositoryNotifier").
+2019-11-09 16:29:42.690 +01:00 [Debug] Execution plan of "authorization" filters (in the following order): ["None"]
+2019-11-09 16:29:42.690 +01:00 [Debug] Execution plan of "resource" filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.SaveTempDataFilter"]
+2019-11-09 16:29:42.691 +01:00 [Debug] Execution plan of "action" filters (in the following order): ["Microsoft.AspNetCore.Mvc.Internal.ControllerActionFilter (Order: -2147483648)", "Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)"]
+2019-11-09 16:29:42.691 +01:00 [Debug] Execution plan of "exception" filters (in the following order): ["None"]
+2019-11-09 16:29:42.691 +01:00 [Debug] Execution plan of "result" filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.SaveTempDataFilter"]
+2019-11-09 16:29:42.700 +01:00 [Information] Executing action method "RepositoryNotifier.Controllers.AuthController.IsAuthenticated (RepositoryNotifier)" - Validation state: Valid
+2019-11-09 16:29:42.703 +01:00 [Information] Executed action method "RepositoryNotifier.Controllers.AuthController.IsAuthenticated (RepositoryNotifier)", returned result "Microsoft.AspNetCore.Mvc.OkResult" in 0.449ms.
+2019-11-09 16:29:42.708 +01:00 [Information] Executing HttpStatusCodeResult, setting HTTP status code 200
+2019-11-09 16:29:42.711 +01:00 [Information] Executed action "RepositoryNotifier.Controllers.AuthController.IsAuthenticated (RepositoryNotifier)" in 17.2678ms
+2019-11-09 16:29:42.712 +01:00 [Debug] Connection id ""0HLR556HQML35"" completed keep alive response.
+2019-11-09 16:29:42.712 +01:00 [Information] Request finished in 43.8854ms 200 
+2019-11-09 16:29:42.760 +01:00 [Information] Request starting HTTP/1.1 GET https://localhost:5001/fontawesome-webfont.woff2?v=4.7.0  
+2019-11-09 16:29:42.761 +01:00 [Information] Request starting HTTP/1.1 GET https://localhost:5001/api/auth/getcurrentuser  
+2019-11-09 16:29:42.762 +01:00 [Debug] AuthenticationScheme: "Cookies" was successfully authenticated.
+2019-11-09 16:29:42.762 +01:00 [Debug] The request path "/api/auth/getcurrentuser" does not match a supported file type
+2019-11-09 16:29:42.762 +01:00 [Debug] The request path "" does not match the path filter
+2019-11-09 16:29:42.763 +01:00 [Debug] Request successfully matched the route with name 'null' and template '"api/Auth/GetCurrentUser"'
+2019-11-09 16:29:42.763 +01:00 [Debug] The request has an origin header: '"https://localhost:5001"'.
+2019-11-09 16:29:42.764 +01:00 [Information] CORS policy execution successful.
+2019-11-09 16:29:42.765 +01:00 [Debug] AuthenticationScheme: "Cookies" was successfully authenticated.
+2019-11-09 16:29:42.765 +01:00 [Information] Route matched with "{action = \"GetCurrentUser\", controller = \"Auth\", page = \"\"}". Executing controller action with signature "RepositoryNotifier.DTO.UserTO GetCurrentUser()" on controller "RepositoryNotifier.Controllers.AuthController" ("RepositoryNotifier").
+2019-11-09 16:29:42.765 +01:00 [Debug] The request path "/fontawesome-webfont.woff2" does not match an existing file
+2019-11-09 16:29:42.765 +01:00 [Debug] Execution plan of "authorization" filters (in the following order): ["None"]
+2019-11-09 16:29:42.766 +01:00 [Debug] The request path "" does not match the path filter
+2019-11-09 16:29:42.766 +01:00 [Debug] Execution plan of "resource" filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.SaveTempDataFilter"]
+2019-11-09 16:29:42.766 +01:00 [Debug] Request successfully matched the route with name '"default"' and template '"{controller}/{action=Index}/{id?}"'
+2019-11-09 16:29:42.766 +01:00 [Debug] Execution plan of "action" filters (in the following order): ["Microsoft.AspNetCore.Mvc.Internal.ControllerActionFilter (Order: -2147483648)", "Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)"]
+2019-11-09 16:29:42.767 +01:00 [Debug] No actions matched the current request. Route values: ["controller=fontawesome-webfont.woff2", "action=Index"]
+2019-11-09 16:29:42.767 +01:00 [Information] Request starting HTTP/1.1 GET https://localhost:5001/sockjs-node/info?t=1573313382765  
+2019-11-09 16:29:42.767 +01:00 [Information] Request starting HTTP/1.1 GET https://localhost:5001/sockjs-node/info?t=1573313382766  
+2019-11-09 16:29:42.767 +01:00 [Debug] Execution plan of "exception" filters (in the following order): ["None"]
+2019-11-09 16:29:42.768 +01:00 [Debug] No actions matched the current request. Route values: ["controller=fontawesome-webfont.woff2", "action=Index"]
+2019-11-09 16:29:42.768 +01:00 [Debug] Execution plan of "result" filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.SaveTempDataFilter"]
+2019-11-09 16:29:42.769 +01:00 [Debug] Request did not match any routes
+2019-11-09 16:29:42.769 +01:00 [Debug] AuthenticationScheme: "Cookies" was successfully authenticated.
+2019-11-09 16:29:42.769 +01:00 [Debug] AuthenticationScheme: "Cookies" was successfully authenticated.
+2019-11-09 16:29:42.769 +01:00 [Information] Executing action method "RepositoryNotifier.Controllers.AuthController.GetCurrentUser (RepositoryNotifier)" - Validation state: Valid
+2019-11-09 16:29:42.770 +01:00 [Debug] The request path "/sockjs-node/info" does not match a supported file type
+2019-11-09 16:29:42.770 +01:00 [Debug] The request path "/sockjs-node/info" does not match a supported file type
+2019-11-09 16:29:42.771 +01:00 [Debug] The request path "" does not match the path filter
+2019-11-09 16:29:42.771 +01:00 [Debug] The request path "" does not match the path filter
+2019-11-09 16:29:42.771 +01:00 [Debug] Request successfully matched the route with name '"default"' and template '"{controller}/{action=Index}/{id?}"'
+2019-11-09 16:29:42.772 +01:00 [Debug] Request successfully matched the route with name '"default"' and template '"{controller}/{action=Index}/{id?}"'
+2019-11-09 16:29:42.772 +01:00 [Debug] No actions matched the current request. Route values: ["controller=sockjs-node", "action=info"]
+2019-11-09 16:29:42.773 +01:00 [Debug] No actions matched the current request. Route values: ["controller=sockjs-node", "action=info"]
+2019-11-09 16:29:42.773 +01:00 [Debug] No actions matched the current request. Route values: ["controller=sockjs-node", "action=info"]
+2019-11-09 16:29:42.773 +01:00 [Information] Executed action method "RepositoryNotifier.Controllers.AuthController.GetCurrentUser (RepositoryNotifier)", returned result "Microsoft.AspNetCore.Mvc.ObjectResult" in 1.8933ms.
+2019-11-09 16:29:42.773 +01:00 [Debug] No actions matched the current request. Route values: ["controller=sockjs-node", "action=info"]
+2019-11-09 16:29:42.774 +01:00 [Debug] Request did not match any routes
+2019-11-09 16:29:42.774 +01:00 [Debug] Request did not match any routes
+2019-11-09 16:29:42.775 +01:00 [Debug] Connection id ""0HLR556HQML35"" completed keep alive response.
+2019-11-09 16:29:42.775 +01:00 [Information] Request finished in 14.9405ms 200 font/woff2; charset=UTF-8
+2019-11-09 16:29:42.776 +01:00 [Debug] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter", "Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter", "Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter", "Microsoft.AspNetCore.Mvc.Formatters.JsonOutputFormatter"]
+2019-11-09 16:29:42.780 +01:00 [Debug] No information found on request to perform content negotiation.
+2019-11-09 16:29:42.780 +01:00 [Debug] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2019-11-09 16:29:42.780 +01:00 [Debug] Attempting to select the first formatter in the output formatters list which can write the result.
+2019-11-09 16:29:42.780 +01:00 [Debug] Selected output formatter '"Microsoft.AspNetCore.Mvc.Formatters.JsonOutputFormatter"' and content type '"application/json"' to write the response.
+2019-11-09 16:29:42.781 +01:00 [Information] Executing ObjectResult, writing value of type '"RepositoryNotifier.DTO.UserTO"'.
+2019-11-09 16:29:42.782 +01:00 [Information] Request starting HTTP/1.1 GET https://localhost:5001/sockjs-node/info?t=1573313382779  
+2019-11-09 16:29:42.782 +01:00 [Debug] AuthenticationScheme: "Cookies" was successfully authenticated.
+2019-11-09 16:29:42.783 +01:00 [Debug] The request path "/sockjs-node/info" does not match a supported file type
+2019-11-09 16:29:42.783 +01:00 [Debug] The request path "" does not match the path filter
+2019-11-09 16:29:42.783 +01:00 [Information] Request starting HTTP/1.1 GET https://localhost:5001/sockjs-node/info?t=1573313382780  
+2019-11-09 16:29:42.784 +01:00 [Debug] Request successfully matched the route with name '"default"' and template '"{controller}/{action=Index}/{id?}"'
+2019-11-09 16:29:42.784 +01:00 [Debug] Connection id ""0HLR556HQML39"" completed keep alive response.
+2019-11-09 16:29:42.784 +01:00 [Debug] No actions matched the current request. Route values: ["controller=sockjs-node", "action=info"]
+2019-11-09 16:29:42.784 +01:00 [Debug] Connection id ""0HLR556HQML37"" completed keep alive response.
+2019-11-09 16:29:42.785 +01:00 [Debug] No actions matched the current request. Route values: ["controller=sockjs-node", "action=info"]
+2019-11-09 16:29:42.785 +01:00 [Debug] AuthenticationScheme: "Cookies" was successfully authenticated.
+2019-11-09 16:29:42.785 +01:00 [Information] Request finished in 17.8941ms 200 application/json; charset=UTF-8
+2019-11-09 16:29:42.785 +01:00 [Information] Request finished in 18.1049ms 200 application/json; charset=UTF-8
+2019-11-09 16:29:42.785 +01:00 [Debug] Request did not match any routes
+2019-11-09 16:29:42.786 +01:00 [Debug] The request path "/sockjs-node/info" does not match a supported file type
+2019-11-09 16:29:42.786 +01:00 [Debug] The request path "" does not match the path filter
+2019-11-09 16:29:42.786 +01:00 [Debug] Request successfully matched the route with name '"default"' and template '"{controller}/{action=Index}/{id?}"'
+2019-11-09 16:29:42.787 +01:00 [Debug] No actions matched the current request. Route values: ["controller=sockjs-node", "action=info"]
+2019-11-09 16:29:42.787 +01:00 [Debug] Connection id ""0HLR556HQML35"" completed keep alive response.
+2019-11-09 16:29:42.787 +01:00 [Debug] No actions matched the current request. Route values: ["controller=sockjs-node", "action=info"]
+2019-11-09 16:29:42.787 +01:00 [Information] Request finished in 5.8077ms 200 application/json; charset=UTF-8
+2019-11-09 16:29:42.788 +01:00 [Debug] Request did not match any routes
+2019-11-09 16:29:42.789 +01:00 [Debug] Connection id ""0HLR556HQML2Q"" completed keep alive response.
+2019-11-09 16:29:42.789 +01:00 [Information] Request finished in 5.9212ms 200 application/json; charset=UTF-8
+2019-11-09 16:29:42.802 +01:00 [Debug] Connection id ""0HLR556HQML3A"" started.
+2019-11-09 16:29:42.810 +01:00 [Debug] Connection id ""0HLR556HQML3A"" received FIN.
+2019-11-09 16:29:42.811 +01:00 [Debug] Failed to authenticate HTTPS connection.
+System.Security.Authentication.AuthenticationException: Authentication failed, see inner exception. ---> Interop+OpenSsl+SslException: SSL Handshake failed with OpenSSL error - SSL_ERROR_SSL. ---> Interop+Crypto+OpenSslCryptographicException: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown
+   --- End of inner exception stack trace ---
+   at Interop.OpenSsl.DoSslHandshake(SafeSslHandle context, Byte[] recvBuf, Int32 recvOffset, Int32 recvCount, Byte[]& sendBuf, Int32& sendCount)
+   at System.Net.Security.SslStreamPal.HandshakeInternal(SafeFreeCredentials credential, SafeDeleteContext& context, SecurityBuffer inputBuffer, SecurityBuffer outputBuffer, SslAuthenticationOptions sslAuthenticationOptions)
+   --- End of inner exception stack trace ---
+   at System.Net.Security.SslState.StartSendAuthResetSignal(ProtocolToken message, AsyncProtocolRequest asyncRequest, ExceptionDispatchInfo exception)
+   at System.Net.Security.SslState.CheckCompletionBeforeNextReceive(ProtocolToken message, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartSendBlob(Byte[] incoming, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.ProcessReceivedBlob(Byte[] buffer, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartReadFrame(Byte[] buffer, Int32 readBytes, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.PartialFrameCallback(AsyncProtocolRequest asyncRequest)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Net.Security.SslState.ThrowIfExceptional()
+   at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Net.Security.SslStream.<>c.<AuthenticateAsServerAsync>b__51_1(IAsyncResult iar)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionAdapter.InnerOnConnectionAsync(ConnectionAdapterContext context)
+2019-11-09 16:29:42.813 +01:00 [Debug] Connection id ""0HLR556HQML3A"" disconnecting.
+2019-11-09 16:29:42.814 +01:00 [Debug] Connection id ""0HLR556HQML3A"" sending FIN because: ""The client closed the connection.""
+2019-11-09 16:29:42.814 +01:00 [Debug] Connection id ""0HLR556HQML3A"" stopped.
+2019-11-09 16:29:42.821 +01:00 [Debug] Connection id ""0HLR556HQML3B"" started.
+2019-11-09 16:29:42.828 +01:00 [Debug] Connection id ""0HLR556HQML3B"" received FIN.
+2019-11-09 16:29:42.828 +01:00 [Debug] Failed to authenticate HTTPS connection.
+System.Security.Authentication.AuthenticationException: Authentication failed, see inner exception. ---> Interop+OpenSsl+SslException: SSL Handshake failed with OpenSSL error - SSL_ERROR_SSL. ---> Interop+Crypto+OpenSslCryptographicException: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown
+   --- End of inner exception stack trace ---
+   at Interop.OpenSsl.DoSslHandshake(SafeSslHandle context, Byte[] recvBuf, Int32 recvOffset, Int32 recvCount, Byte[]& sendBuf, Int32& sendCount)
+   at System.Net.Security.SslStreamPal.HandshakeInternal(SafeFreeCredentials credential, SafeDeleteContext& context, SecurityBuffer inputBuffer, SecurityBuffer outputBuffer, SslAuthenticationOptions sslAuthenticationOptions)
+   --- End of inner exception stack trace ---
+   at System.Net.Security.SslState.StartSendAuthResetSignal(ProtocolToken message, AsyncProtocolRequest asyncRequest, ExceptionDispatchInfo exception)
+   at System.Net.Security.SslState.CheckCompletionBeforeNextReceive(ProtocolToken message, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartSendBlob(Byte[] incoming, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.ProcessReceivedBlob(Byte[] buffer, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartReadFrame(Byte[] buffer, Int32 readBytes, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.PartialFrameCallback(AsyncProtocolRequest asyncRequest)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Net.Security.SslState.ThrowIfExceptional()
+   at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Net.Security.SslStream.<>c.<AuthenticateAsServerAsync>b__51_1(IAsyncResult iar)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionAdapter.InnerOnConnectionAsync(ConnectionAdapterContext context)
+2019-11-09 16:29:42.830 +01:00 [Debug] Connection id ""0HLR556HQML3B"" disconnecting.
+2019-11-09 16:29:42.830 +01:00 [Debug] Connection id ""0HLR556HQML3B"" sending FIN because: ""The client closed the connection.""
+2019-11-09 16:29:42.831 +01:00 [Debug] Connection id ""0HLR556HQML3B"" stopped.
+2019-11-09 16:29:42.832 +01:00 [Information] Executed action "RepositoryNotifier.Controllers.AuthController.GetCurrentUser (RepositoryNotifier)" in 63.0595ms
+2019-11-09 16:29:42.833 +01:00 [Debug] Connection id ""0HLR556HQML38"" completed keep alive response.
+2019-11-09 16:29:42.833 +01:00 [Information] Request finished in 71.7634ms 200 application/json; charset=utf-8
+2019-11-09 16:29:42.839 +01:00 [Debug] Connection id ""0HLR556HQML3C"" started.
+2019-11-09 16:29:42.849 +01:00 [Debug] Connection id ""0HLR556HQML3C"" received FIN.
+2019-11-09 16:29:42.849 +01:00 [Debug] Failed to authenticate HTTPS connection.
+System.Security.Authentication.AuthenticationException: Authentication failed, see inner exception. ---> Interop+OpenSsl+SslException: SSL Handshake failed with OpenSSL error - SSL_ERROR_SSL. ---> Interop+Crypto+OpenSslCryptographicException: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown
+   --- End of inner exception stack trace ---
+   at Interop.OpenSsl.DoSslHandshake(SafeSslHandle context, Byte[] recvBuf, Int32 recvOffset, Int32 recvCount, Byte[]& sendBuf, Int32& sendCount)
+   at System.Net.Security.SslStreamPal.HandshakeInternal(SafeFreeCredentials credential, SafeDeleteContext& context, SecurityBuffer inputBuffer, SecurityBuffer outputBuffer, SslAuthenticationOptions sslAuthenticationOptions)
+   --- End of inner exception stack trace ---
+   at System.Net.Security.SslState.StartSendAuthResetSignal(ProtocolToken message, AsyncProtocolRequest asyncRequest, ExceptionDispatchInfo exception)
+   at System.Net.Security.SslState.CheckCompletionBeforeNextReceive(ProtocolToken message, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartSendBlob(Byte[] incoming, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.ProcessReceivedBlob(Byte[] buffer, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartReadFrame(Byte[] buffer, Int32 readBytes, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.PartialFrameCallback(AsyncProtocolRequest asyncRequest)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Net.Security.SslState.ThrowIfExceptional()
+   at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Net.Security.SslStream.<>c.<AuthenticateAsServerAsync>b__51_1(IAsyncResult iar)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionAdapter.InnerOnConnectionAsync(ConnectionAdapterContext context)
+2019-11-09 16:29:42.852 +01:00 [Debug] Connection id ""0HLR556HQML3C"" disconnecting.
+2019-11-09 16:29:42.852 +01:00 [Debug] Connection id ""0HLR556HQML3C"" sending FIN because: ""The client closed the connection.""
+2019-11-09 16:29:42.852 +01:00 [Debug] Connection id ""0HLR556HQML3C"" stopped.
+2019-11-09 16:29:42.859 +01:00 [Debug] Connection id ""0HLR556HQML3D"" started.
+2019-11-09 16:29:42.865 +01:00 [Debug] Connection id ""0HLR556HQML3D"" received FIN.
+2019-11-09 16:29:42.866 +01:00 [Debug] Failed to authenticate HTTPS connection.
+System.Security.Authentication.AuthenticationException: Authentication failed, see inner exception. ---> Interop+OpenSsl+SslException: SSL Handshake failed with OpenSSL error - SSL_ERROR_SSL. ---> Interop+Crypto+OpenSslCryptographicException: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown
+   --- End of inner exception stack trace ---
+   at Interop.OpenSsl.DoSslHandshake(SafeSslHandle context, Byte[] recvBuf, Int32 recvOffset, Int32 recvCount, Byte[]& sendBuf, Int32& sendCount)
+   at System.Net.Security.SslStreamPal.HandshakeInternal(SafeFreeCredentials credential, SafeDeleteContext& context, SecurityBuffer inputBuffer, SecurityBuffer outputBuffer, SslAuthenticationOptions sslAuthenticationOptions)
+   --- End of inner exception stack trace ---
+   at System.Net.Security.SslState.StartSendAuthResetSignal(ProtocolToken message, AsyncProtocolRequest asyncRequest, ExceptionDispatchInfo exception)
+   at System.Net.Security.SslState.CheckCompletionBeforeNextReceive(ProtocolToken message, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartSendBlob(Byte[] incoming, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.ProcessReceivedBlob(Byte[] buffer, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartReadFrame(Byte[] buffer, Int32 readBytes, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.PartialFrameCallback(AsyncProtocolRequest asyncRequest)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Net.Security.SslState.ThrowIfExceptional()
+   at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Net.Security.SslStream.<>c.<AuthenticateAsServerAsync>b__51_1(IAsyncResult iar)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionAdapter.InnerOnConnectionAsync(ConnectionAdapterContext context)
+2019-11-09 16:29:42.868 +01:00 [Debug] Connection id ""0HLR556HQML3D"" disconnecting.
+2019-11-09 16:29:42.869 +01:00 [Debug] Connection id ""0HLR556HQML3D"" sending FIN because: ""The client closed the connection.""
+2019-11-09 16:29:42.869 +01:00 [Debug] Connection id ""0HLR556HQML3D"" stopped.
+2019-11-09 16:29:42.876 +01:00 [Debug] Connection id ""0HLR556HQML3E"" started.
+2019-11-09 16:29:42.885 +01:00 [Information] Request starting HTTP/1.1 GET https://localhost:5001/sockjs-node/591/pcle3yak/websocket  
+2019-11-09 16:29:42.886 +01:00 [Debug] The request has an origin header: '"https://localhost:5001"'.
+2019-11-09 16:29:42.886 +01:00 [Information] CORS policy execution successful.
+2019-11-09 16:29:42.887 +01:00 [Debug] AuthenticationScheme: "Cookies" was successfully authenticated.
+2019-11-09 16:29:42.887 +01:00 [Debug] The request path "/sockjs-node/591/pcle3yak/websocket" does not match a supported file type
+2019-11-09 16:29:42.887 +01:00 [Debug] The request path "" does not match the path filter
+2019-11-09 16:29:42.888 +01:00 [Debug] Request did not match any routes
+2019-11-09 16:29:42.918 +01:00 [Debug] Connection id ""0HLR556HQML3F"" started.
+2019-11-09 16:29:42.926 +01:00 [Information] Request starting HTTP/1.1 GET https://localhost:5001/sockjs-node/074/1ht0102h/websocket  
+2019-11-09 16:29:42.926 +01:00 [Debug] The request has an origin header: '"https://localhost:5001"'.
+2019-11-09 16:29:42.927 +01:00 [Information] CORS policy execution successful.
+2019-11-09 16:29:42.928 +01:00 [Debug] AuthenticationScheme: "Cookies" was successfully authenticated.
+2019-11-09 16:29:42.928 +01:00 [Debug] The request path "/sockjs-node/074/1ht0102h/websocket" does not match a supported file type
+2019-11-09 16:29:42.928 +01:00 [Debug] The request path "" does not match the path filter
+2019-11-09 16:29:42.929 +01:00 [Debug] Request did not match any routes
+2019-11-09 16:29:42.942 +01:00 [Debug] Connection id ""0HLR556HQML3G"" started.
+2019-11-09 16:29:42.948 +01:00 [Information] Request starting HTTP/1.1 GET https://localhost:5001/sockjs-node/976/basn3qmx/websocket  
+2019-11-09 16:29:42.949 +01:00 [Debug] The request has an origin header: '"https://localhost:5001"'.
+2019-11-09 16:29:42.949 +01:00 [Information] CORS policy execution successful.
+2019-11-09 16:29:42.949 +01:00 [Debug] AuthenticationScheme: "Cookies" was successfully authenticated.
+2019-11-09 16:29:42.949 +01:00 [Debug] The request path "/sockjs-node/976/basn3qmx/websocket" does not match a supported file type
+2019-11-09 16:29:42.950 +01:00 [Debug] The request path "" does not match the path filter
+2019-11-09 16:29:42.950 +01:00 [Debug] Request did not match any routes
+2019-11-09 16:29:42.962 +01:00 [Debug] Connection id ""0HLR556HQML3H"" started.
+2019-11-09 16:29:42.969 +01:00 [Information] Request starting HTTP/1.1 GET https://localhost:5001/sockjs-node/581/sywxe0pu/websocket  
+2019-11-09 16:29:42.969 +01:00 [Debug] The request has an origin header: '"https://localhost:5001"'.
+2019-11-09 16:29:42.969 +01:00 [Information] CORS policy execution successful.
+2019-11-09 16:29:42.970 +01:00 [Debug] AuthenticationScheme: "Cookies" was successfully authenticated.
+2019-11-09 16:29:42.970 +01:00 [Debug] The request path "/sockjs-node/581/sywxe0pu/websocket" does not match a supported file type
+2019-11-09 16:29:42.970 +01:00 [Debug] The request path "" does not match the path filter
+2019-11-09 16:29:42.971 +01:00 [Debug] Request did not match any routes
+2019-11-09 16:29:45.291 +01:00 [Information] Request starting HTTP/1.1 GET https://localhost:5001/swagger  
+2019-11-09 16:29:45.292 +01:00 [Debug] AuthenticationScheme: "Cookies" was successfully authenticated.
+2019-11-09 16:29:45.292 +01:00 [Debug] The request path "/swagger" does not match a supported file type
+2019-11-09 16:29:45.295 +01:00 [Debug] Connection id ""0HLR556HQML38"" completed keep alive response.
+2019-11-09 16:29:45.295 +01:00 [Information] Request finished in 3.9322ms 302 
+2019-11-09 16:29:45.296 +01:00 [Information] Request starting HTTP/1.1 GET https://localhost:5001/swagger/index.html  
+2019-11-09 16:29:45.297 +01:00 [Debug] AuthenticationScheme: "Cookies" was successfully authenticated.
+2019-11-09 16:29:45.297 +01:00 [Debug] The request path "/swagger/index.html" does not match an existing file
+2019-11-09 16:29:45.311 +01:00 [Debug] Connection id ""0HLR556HQML38"" completed keep alive response.
+2019-11-09 16:29:45.311 +01:00 [Information] Request finished in 14.9285ms 200 text/html; charset=utf-8
+2019-11-09 16:29:45.315 +01:00 [Debug] Connection id ""0HLR556HQML3E"" received FIN.
+2019-11-09 16:29:45.316 +01:00 [Debug] Connection id ""0HLR556HQML3F"" received FIN.
+2019-11-09 16:29:45.316 +01:00 [Debug] Connection id ""0HLR556HQML3H"" received FIN.
+2019-11-09 16:29:45.316 +01:00 [Debug] Connection id ""0HLR556HQML3G"" received FIN.
+2019-11-09 16:29:45.316 +01:00 [Debug] Connection id ""0HLR556HQML3E"" sending FIN because: ""The client closed the connection.""
+2019-11-09 16:29:45.317 +01:00 [Debug] Connection id ""0HLR556HQML3H"" sending FIN because: ""The client closed the connection.""
+2019-11-09 16:29:45.317 +01:00 [Debug] Connection id ""0HLR556HQML3G"" sending FIN because: ""The client closed the connection.""
+2019-11-09 16:29:45.317 +01:00 [Debug] Connection id ""0HLR556HQML3F"" sending FIN because: ""The client closed the connection.""
+2019-11-09 16:29:45.318 +01:00 [Debug] Connection id ""0HLR556HQML3E"" disconnecting.
+2019-11-09 16:29:45.318 +01:00 [Debug] Connection id ""0HLR556HQML3H"" disconnecting.
+2019-11-09 16:29:45.318 +01:00 [Debug] Connection id ""0HLR556HQML3G"" disconnecting.
+2019-11-09 16:29:45.319 +01:00 [Debug] Connection id ""0HLR556HQML3F"" disconnecting.
+2019-11-09 16:29:45.325 +01:00 [Information] Request starting HTTP/1.1 GET https://localhost:5001/swagger/swagger-ui.css  
+2019-11-09 16:29:45.326 +01:00 [Information] Request starting HTTP/1.1 GET https://localhost:5001/swagger/swagger-ui-standalone-preset.js  
+2019-11-09 16:29:45.326 +01:00 [Information] Request starting HTTP/1.1 GET https://localhost:5001/swagger/swagger-ui-bundle.js  
+2019-11-09 16:29:45.326 +01:00 [Debug] AuthenticationScheme: "Cookies" was successfully authenticated.
+2019-11-09 16:29:45.326 +01:00 [Debug] AuthenticationScheme: "Cookies" was successfully authenticated.
+2019-11-09 16:29:45.327 +01:00 [Debug] The request path "/swagger/swagger-ui.css" does not match an existing file
+2019-11-09 16:29:45.327 +01:00 [Debug] AuthenticationScheme: "Cookies" was successfully authenticated.
+2019-11-09 16:29:45.327 +01:00 [Debug] The request path "/swagger/swagger-ui-standalone-preset.js" does not match an existing file
+2019-11-09 16:29:45.327 +01:00 [Debug] The request path "/swagger/swagger-ui-bundle.js" does not match an existing file
+2019-11-09 16:29:45.335 +01:00 [Information] Sending file. Request path: '"/swagger-ui-standalone-preset.js"'. Physical path: '"N/A"'
+2019-11-09 16:29:45.335 +01:00 [Information] Request finished in 2408.8804ms 101 
+2019-11-09 16:29:45.335 +01:00 [Debug] Connection id ""0HLR556HQML35"" completed keep alive response.
+2019-11-09 16:29:45.336 +01:00 [Information] Request finished in 9.7623ms 200 application/javascript
+2019-11-09 16:29:45.337 +01:00 [Debug] Connection id ""0HLR556HQML3F"" stopped.
+2019-11-09 16:29:45.340 +01:00 [Information] Sending file. Request path: '"/swagger-ui.css"'. Physical path: '"N/A"'
+2019-11-09 16:29:45.340 +01:00 [Debug] Connection id ""0HLR556HQML38"" completed keep alive response.
+2019-11-09 16:29:45.341 +01:00 [Information] Request finished in 15.2087ms 200 text/css
+2019-11-09 16:29:45.342 +01:00 [Information] Sending file. Request path: '"/swagger-ui-bundle.js"'. Physical path: '"N/A"'
+2019-11-09 16:29:45.342 +01:00 [Debug] Connection id ""0HLR556HQML2Q"" completed keep alive response.
+2019-11-09 16:29:45.343 +01:00 [Information] Request finished in 16.6263ms 200 application/javascript
+2019-11-09 16:29:45.343 +01:00 [Information] Request finished in 2457.6391ms 101 
+2019-11-09 16:29:45.343 +01:00 [Debug] Connection id ""0HLR556HQML3E"" stopped.
+2019-11-09 16:29:45.359 +01:00 [Information] Request finished in 2410.7377ms 101 
+2019-11-09 16:29:45.360 +01:00 [Debug] Connection id ""0HLR556HQML3G"" stopped.
+2019-11-09 16:29:45.383 +01:00 [Information] Request finished in 2414.5841ms 101 
+2019-11-09 16:29:45.384 +01:00 [Debug] Connection id ""0HLR556HQML3H"" stopped.
+2019-11-09 16:29:45.483 +01:00 [Information] Request starting HTTP/1.1 GET https://localhost:5001/swagger/v1/swagger.json  
+2019-11-09 16:29:45.484 +01:00 [Debug] AuthenticationScheme: "Cookies" was successfully authenticated.
+2019-11-09 16:29:45.484 +01:00 [Debug] The request path "/swagger/v1/swagger.json" does not match an existing file
+2019-11-09 16:29:45.503 +01:00 [Information] Request starting HTTP/1.1 GET https://localhost:5001/swagger/favicon-32x32.png  
+2019-11-09 16:29:45.504 +01:00 [Debug] AuthenticationScheme: "Cookies" was successfully authenticated.
+2019-11-09 16:29:45.504 +01:00 [Debug] The request path "/swagger/favicon-32x32.png" does not match an existing file
+2019-11-09 16:29:45.505 +01:00 [Information] Sending file. Request path: '"/favicon-32x32.png"'. Physical path: '"N/A"'
+2019-11-09 16:29:45.505 +01:00 [Debug] Connection id ""0HLR556HQML38"" completed keep alive response.
+2019-11-09 16:29:45.506 +01:00 [Information] Request finished in 2.1508ms 200 image/png
+2019-11-09 16:29:46.107 +01:00 [Debug] Connection id ""0HLR556HQML2Q"" completed keep alive response.
+2019-11-09 16:29:46.107 +01:00 [Information] Request finished in 624.3633ms 200 application/json; charset=utf-8
+2019-11-09 16:31:43.319 +01:00 [Debug] Connection id ""0HLR556HQML36"" disconnecting.
+2019-11-09 16:31:43.319 +01:00 [Debug] Connection id ""0HLR556HQML36"" sending FIN because: ""The Socket transport's send loop completed gracefully.""
+2019-11-09 16:31:43.320 +01:00 [Debug] Connection id ""0HLR556HQML36"" stopped.
+2019-11-09 16:31:44.319 +01:00 [Debug] Connection id ""0HLR556HQML39"" disconnecting.
+2019-11-09 16:31:44.319 +01:00 [Debug] Connection id ""0HLR556HQML37"" disconnecting.
+2019-11-09 16:31:44.320 +01:00 [Debug] Connection id ""0HLR556HQML39"" sending FIN because: ""The Socket transport's send loop completed gracefully.""
+2019-11-09 16:31:44.320 +01:00 [Debug] Connection id ""0HLR556HQML37"" sending FIN because: ""The Socket transport's send loop completed gracefully.""
+2019-11-09 16:31:44.321 +01:00 [Debug] Connection id ""0HLR556HQML39"" stopped.
+2019-11-09 16:31:44.321 +01:00 [Debug] Connection id ""0HLR556HQML37"" stopped.
+2019-11-09 16:31:46.319 +01:00 [Debug] Connection id ""0HLR556HQML2Q"" disconnecting.
+2019-11-09 16:31:46.319 +01:00 [Debug] Connection id ""0HLR556HQML38"" disconnecting.
+2019-11-09 16:31:46.319 +01:00 [Debug] Connection id ""0HLR556HQML35"" disconnecting.
+2019-11-09 16:31:46.320 +01:00 [Debug] Connection id ""0HLR556HQML2Q"" sending FIN because: ""The Socket transport's send loop completed gracefully.""
+2019-11-09 16:31:46.320 +01:00 [Debug] Connection id ""0HLR556HQML38"" sending FIN because: ""The Socket transport's send loop completed gracefully.""
+2019-11-09 16:31:46.320 +01:00 [Debug] Connection id ""0HLR556HQML35"" sending FIN because: ""The Socket transport's send loop completed gracefully.""
+2019-11-09 16:31:46.322 +01:00 [Debug] Connection id ""0HLR556HQML2Q"" stopped.
+2019-11-09 16:31:46.322 +01:00 [Debug] Connection id ""0HLR556HQML38"" stopped.
+2019-11-09 16:31:46.322 +01:00 [Debug] Connection id ""0HLR556HQML35"" stopped.
+2019-11-09 16:31:50.185 +01:00 [Debug] Connection id ""0HLR556HQML3I"" started.
+2019-11-09 16:31:50.192 +01:00 [Debug] Connection id ""0HLR556HQML3I"" received FIN.
+2019-11-09 16:31:50.192 +01:00 [Debug] Failed to authenticate HTTPS connection.
+System.Security.Authentication.AuthenticationException: Authentication failed, see inner exception. ---> Interop+OpenSsl+SslException: SSL Handshake failed with OpenSSL error - SSL_ERROR_SSL. ---> Interop+Crypto+OpenSslCryptographicException: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown
+   --- End of inner exception stack trace ---
+   at Interop.OpenSsl.DoSslHandshake(SafeSslHandle context, Byte[] recvBuf, Int32 recvOffset, Int32 recvCount, Byte[]& sendBuf, Int32& sendCount)
+   at System.Net.Security.SslStreamPal.HandshakeInternal(SafeFreeCredentials credential, SafeDeleteContext& context, SecurityBuffer inputBuffer, SecurityBuffer outputBuffer, SslAuthenticationOptions sslAuthenticationOptions)
+   --- End of inner exception stack trace ---
+   at System.Net.Security.SslState.StartSendAuthResetSignal(ProtocolToken message, AsyncProtocolRequest asyncRequest, ExceptionDispatchInfo exception)
+   at System.Net.Security.SslState.CheckCompletionBeforeNextReceive(ProtocolToken message, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartSendBlob(Byte[] incoming, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.ProcessReceivedBlob(Byte[] buffer, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartReadFrame(Byte[] buffer, Int32 readBytes, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.PartialFrameCallback(AsyncProtocolRequest asyncRequest)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Net.Security.SslState.ThrowIfExceptional()
+   at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Net.Security.SslStream.<>c.<AuthenticateAsServerAsync>b__51_1(IAsyncResult iar)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionAdapter.InnerOnConnectionAsync(ConnectionAdapterContext context)
+2019-11-09 16:31:50.193 +01:00 [Debug] Connection id ""0HLR556HQML3J"" started.
+2019-11-09 16:31:50.194 +01:00 [Debug] Connection id ""0HLR556HQML3I"" disconnecting.
+2019-11-09 16:31:50.195 +01:00 [Debug] Connection id ""0HLR556HQML3I"" sending FIN because: ""The client closed the connection.""
+2019-11-09 16:31:50.195 +01:00 [Debug] Connection id ""0HLR556HQML3I"" stopped.
+2019-11-09 16:31:50.204 +01:00 [Information] Request starting HTTP/1.1 GET https://localhost:5001/api/Auth/GetUser  
+2019-11-09 16:31:50.204 +01:00 [Debug] AuthenticationScheme: "Cookies" was successfully authenticated.
+2019-11-09 16:31:50.205 +01:00 [Debug] The request path "/api/Auth/GetUser" does not match a supported file type
+2019-11-09 16:31:50.205 +01:00 [Debug] The request path "" does not match the path filter
+2019-11-09 16:31:50.205 +01:00 [Debug] Request successfully matched the route with name 'null' and template '"api/Auth/GetUser"'
+2019-11-09 16:31:50.214 +01:00 [Information] Route matched with "{action = \"GetUser\", controller = \"Auth\", page = \"\"}". Executing controller action with signature "System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUser()" on controller "RepositoryNotifier.Controllers.AuthController" ("RepositoryNotifier").
+2019-11-09 16:31:50.215 +01:00 [Debug] Execution plan of "authorization" filters (in the following order): ["None"]
+2019-11-09 16:31:50.215 +01:00 [Debug] Execution plan of "resource" filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.SaveTempDataFilter"]
+2019-11-09 16:31:50.215 +01:00 [Debug] Execution plan of "action" filters (in the following order): ["Microsoft.AspNetCore.Mvc.Internal.ControllerActionFilter (Order: -2147483648)", "Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)"]
+2019-11-09 16:31:50.216 +01:00 [Debug] Execution plan of "exception" filters (in the following order): ["None"]
+2019-11-09 16:31:50.216 +01:00 [Debug] Execution plan of "result" filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Internal.SaveTempDataFilter"]
+2019-11-09 16:31:50.216 +01:00 [Information] Executing action method "RepositoryNotifier.Controllers.AuthController.GetUser (RepositoryNotifier)" - Validation state: Valid
+2019-11-09 16:31:50.221 +01:00 [Debug] AuthenticationScheme: "Cookies" was successfully authenticated.
+2019-11-09 16:31:50.221 +01:00 [Debug] AuthenticationScheme: "GitHub" was successfully authenticated.
+2019-11-09 16:31:50.738 +01:00 [Information] Executed action method "RepositoryNotifier.Controllers.AuthController.GetUser (RepositoryNotifier)", returned result "Microsoft.AspNetCore.Mvc.NotFoundResult" in 521.8002ms.
+2019-11-09 16:31:50.742 +01:00 [Information] Executing HttpStatusCodeResult, setting HTTP status code 404
+2019-11-09 16:31:50.743 +01:00 [Information] Executed action "RepositoryNotifier.Controllers.AuthController.GetUser (RepositoryNotifier)" in 526.9654ms
+2019-11-09 16:31:50.743 +01:00 [Debug] Connection id ""0HLR556HQML3J"" completed keep alive response.
+2019-11-09 16:31:50.744 +01:00 [Information] Request finished in 540.1158ms 404 
+2019-11-09 16:32:10.298 +01:00 [Debug] Connection id ""0HLR556HQML3K"" started.
+2019-11-09 16:32:10.300 +01:00 [Information] Request starting HTTP/1.1 GET https://localhost:5001/swagger/v1/swagger.json  
+2019-11-09 16:32:10.301 +01:00 [Debug] AuthenticationScheme: "Cookies" was successfully authenticated.
+2019-11-09 16:32:10.301 +01:00 [Debug] The request path "/swagger/v1/swagger.json" does not match an existing file
+2019-11-09 16:32:10.302 +01:00 [Debug] Connection id ""0HLR556HQML3J"" completed keep alive response.
+2019-11-09 16:32:10.302 +01:00 [Information] Request finished in 1.8306ms 200 application/json; charset=utf-8
+2019-11-09 16:32:10.308 +01:00 [Debug] Connection id ""0HLR556HQML3K"" received FIN.
+2019-11-09 16:32:10.308 +01:00 [Debug] Failed to authenticate HTTPS connection.
+System.Security.Authentication.AuthenticationException: Authentication failed, see inner exception. ---> Interop+OpenSsl+SslException: SSL Handshake failed with OpenSSL error - SSL_ERROR_SSL. ---> Interop+Crypto+OpenSslCryptographicException: error:14094416:SSL routines:ssl3_read_bytes:sslv3 alert certificate unknown
+   --- End of inner exception stack trace ---
+   at Interop.OpenSsl.DoSslHandshake(SafeSslHandle context, Byte[] recvBuf, Int32 recvOffset, Int32 recvCount, Byte[]& sendBuf, Int32& sendCount)
+   at System.Net.Security.SslStreamPal.HandshakeInternal(SafeFreeCredentials credential, SafeDeleteContext& context, SecurityBuffer inputBuffer, SecurityBuffer outputBuffer, SslAuthenticationOptions sslAuthenticationOptions)
+   --- End of inner exception stack trace ---
+   at System.Net.Security.SslState.StartSendAuthResetSignal(ProtocolToken message, AsyncProtocolRequest asyncRequest, ExceptionDispatchInfo exception)
+   at System.Net.Security.SslState.CheckCompletionBeforeNextReceive(ProtocolToken message, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartSendBlob(Byte[] incoming, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.ProcessReceivedBlob(Byte[] buffer, Int32 count, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.StartReadFrame(Byte[] buffer, Int32 readBytes, AsyncProtocolRequest asyncRequest)
+   at System.Net.Security.SslState.PartialFrameCallback(AsyncProtocolRequest asyncRequest)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Net.Security.SslState.ThrowIfExceptional()
+   at System.Net.Security.SslState.InternalEndProcessAuthentication(LazyAsyncResult lazyResult)
+   at System.Net.Security.SslState.EndProcessAuthentication(IAsyncResult result)
+   at System.Net.Security.SslStream.EndAuthenticateAsServer(IAsyncResult asyncResult)
+   at System.Net.Security.SslStream.<>c.<AuthenticateAsServerAsync>b__51_1(IAsyncResult iar)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionAdapter.InnerOnConnectionAsync(ConnectionAdapterContext context)
+2019-11-09 16:32:10.310 +01:00 [Debug] Connection id ""0HLR556HQML3K"" disconnecting.
+2019-11-09 16:32:10.310 +01:00 [Debug] Connection id ""0HLR556HQML3K"" sending FIN because: ""The client closed the connection.""
+2019-11-09 16:32:10.311 +01:00 [Debug] Connection id ""0HLR556HQML3K"" stopped.
+2019-11-09 16:32:10.343 +01:00 [Information] Request starting HTTP/1.1 GET https://localhost:5001/favicon.ico  
+2019-11-09 16:32:10.344 +01:00 [Debug] AuthenticationScheme: "Cookies" was successfully authenticated.
+2019-11-09 16:32:10.344 +01:00 [Debug] The request path "/favicon.ico" does not match an existing file
+2019-11-09 16:32:10.344 +01:00 [Debug] The request path "" does not match the path filter
+2019-11-09 16:32:10.344 +01:00 [Debug] Request successfully matched the route with name '"default"' and template '"{controller}/{action=Index}/{id?}"'
+2019-11-09 16:32:10.345 +01:00 [Debug] No actions matched the current request. Route values: ["controller=favicon.ico", "action=Index"]
+2019-11-09 16:32:10.345 +01:00 [Debug] No actions matched the current request. Route values: ["controller=favicon.ico", "action=Index"]
+2019-11-09 16:32:10.345 +01:00 [Debug] Request did not match any routes
+2019-11-09 16:32:10.350 +01:00 [Debug] Connection id ""0HLR556HQML3J"" completed keep alive response.
+2019-11-09 16:32:10.350 +01:00 [Information] Request finished in 6.7249ms 404 text/html; charset=utf-8
+2019-11-09 16:34:11.319 +01:00 [Debug] Connection id ""0HLR556HQML3J"" disconnecting.
+2019-11-09 16:34:11.319 +01:00 [Debug] Connection id ""0HLR556HQML3J"" sending FIN because: ""The Socket transport's send loop completed gracefully.""
+2019-11-09 16:34:11.320 +01:00 [Debug] Connection id ""0HLR556HQML3J"" stopped.
+2019-11-09 17:28:40.398 +01:00 [Information] Found Keyword for RepositoryInspectorJob: "RepositoryNotifier.Persistence.Job.Job" SearchResult["Octokit.SearchCodeResult", "Octokit.SearchCodeResult"]
+2019-11-09 18:28:40.387 +01:00 [Information] Found Keyword for RepositoryInspectorJob: "RepositoryNotifier.Persistence.Job.Job" SearchResult["Octokit.SearchCodeResult", "Octokit.SearchCodeResult"]
+2019-11-09 19:28:40.442 +01:00 [Information] Found Keyword for RepositoryInspectorJob: "RepositoryNotifier.Persistence.Job.Job" SearchResult["Octokit.SearchCodeResult", "Octokit.SearchCodeResult"]

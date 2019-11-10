@@ -1,0 +1,20 @@
+2019-11-07 00:05:17.552 +01:00 [Debug] Connection id ""0HLR3110QIHH7"" received FIN.
+2019-11-07 00:05:17.552 +01:00 [Debug] Connection id ""0HLR3110QIHHC"" received FIN.
+2019-11-07 00:05:17.552 +01:00 [Debug] Connection id ""0HLR3110QIHHB"" received FIN.
+2019-11-07 00:05:17.552 +01:00 [Debug] Connection id ""0HLR3110QIHHA"" received FIN.
+2019-11-07 00:05:17.554 +01:00 [Debug] Connection id ""0HLR3110QIHH7"" sending FIN because: ""The client closed the connection.""
+2019-11-07 00:05:17.555 +01:00 [Debug] Connection id ""0HLR3110QIHHA"" sending FIN because: ""The client closed the connection.""
+2019-11-07 00:05:17.555 +01:00 [Debug] Connection id ""0HLR3110QIHHB"" sending FIN because: ""The client closed the connection.""
+2019-11-07 00:05:17.556 +01:00 [Debug] Connection id ""0HLR3110QIHHA"" disconnecting.
+2019-11-07 00:05:17.556 +01:00 [Debug] Connection id ""0HLR3110QIHH7"" disconnecting.
+2019-11-07 00:05:17.557 +01:00 [Debug] Connection id ""0HLR3110QIHHB"" disconnecting.
+2019-11-07 00:05:17.557 +01:00 [Debug] Connection id ""0HLR3110QIHHC"" sending FIN because: ""The client closed the connection.""
+2019-11-07 00:05:17.558 +01:00 [Debug] Connection id ""0HLR3110QIHHC"" disconnecting.
+2019-11-07 00:05:17.654 +01:00 [Information] Request finished in 1237812.4104ms 101 
+2019-11-07 00:05:17.654 +01:00 [Information] Request finished in 1237833.5134ms 101 
+2019-11-07 00:05:17.654 +01:00 [Information] Request finished in 1237920.3235ms 101 
+2019-11-07 00:05:17.654 +01:00 [Information] Request finished in 1237857.6378ms 101 
+2019-11-07 00:05:17.654 +01:00 [Debug] Connection id ""0HLR3110QIHHC"" stopped.
+2019-11-07 00:05:17.655 +01:00 [Debug] Connection id ""0HLR3110QIHHB"" stopped.
+2019-11-07 00:05:17.655 +01:00 [Debug] Connection id ""0HLR3110QIHH7"" stopped.
+2019-11-07 00:05:17.655 +01:00 [Debug] Connection id ""0HLR3110QIHHA"" stopped.

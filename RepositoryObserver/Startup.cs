@@ -75,7 +75,7 @@ namespace RepositoryNotifier
                     p_options.UserInformationEndpoint = "https://api.github.com/user";
                     // p_options.ClaimsIssuer = "OAuth2-Github";
 
-                   p_options.ClaimActions.MapJsonKey(ClaimTypes.NameIdentifier, "id");
+                    p_options.ClaimActions.MapJsonKey(ClaimTypes.NameIdentifier, "id");
                     p_options.ClaimActions.MapJsonKey(ClaimTypes.Name, "name");
                     // TODO email not working
                     p_options.ClaimActions.MapJsonKey(ClaimTypes.Email, "email");
@@ -108,11 +108,11 @@ namespace RepositoryNotifier
                         }
                     };
 
- 
+
 
                 });
 
-            // Add Singletons
+            services.AddSwaggerDocument();
             // Inject dependencies via constructor
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IGithubApiService, GithubApiService>();
@@ -130,7 +130,6 @@ namespace RepositoryNotifier
             services.AddSingleton<IEmailService, EmailService>();
             services.AddSingleton<IMobileNotificationServiceProvider, TwilioMobileNotificationServiceProvider>();
             services.AddSingleton<IMobileNotificationService, MobileNotificationService>();
-
             services.AddSingleton<IContactDao, ContactDao>();
             services.AddSingleton<IContactService, ContactService>();
 
@@ -164,6 +163,9 @@ namespace RepositoryNotifier
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
+
+            app.UseOpenApi();
+            app.UseSwaggerUi3();
 
             // is used when spa is served by kestrel
             // // // app.UseSpaStaticFiles();

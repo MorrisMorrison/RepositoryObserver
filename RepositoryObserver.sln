@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryNotifier", "RepositoryNotifier\RepositoryNotifier.csproj", "{BD894B9C-43B2-4F09-98C0-3D16D3674D64}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryObserver", "RepositoryObserver\RepositoryObserver.csproj", "{BD894B9C-43B2-4F09-98C0-3D16D3674D64}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
