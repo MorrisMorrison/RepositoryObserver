@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using BraintreeHttp;
@@ -163,8 +164,7 @@ namespace RepositoryNotifier.Service.Payment
 
          public async Task<Plan> GetBillingPlan(string p_planId)
         {
-            PlanGetRequest request = new PlanGetRequest(p_planId);
-            request.Body = "";
+            PlanGetRequest request = new PlanGetRequest(p_planId) {Body = ""};
             Plan result = new Plan();
             try
             {
@@ -188,12 +188,12 @@ namespace RepositoryNotifier.Service.Payment
             {
                 Op = "replace",
                 Path = "/",
-                Value = new Plan() { State = "ACTIVE" }
+                Value = new Plan() { State = "ACTIVE" },
             };
             request.RequestBody(new List<PayPal.v1.BillingPlans.JsonPatch<Plan>>(){
                 patch
             });
-
+            
 
             System.Net.HttpStatusCode statusCode = new System.Net.HttpStatusCode();
             try
@@ -206,6 +206,12 @@ namespace RepositoryNotifier.Service.Payment
             {
                 statusCode = httpException.StatusCode;
                 var debugId = httpException.Headers.GetValues("PayPal-Debug-Id").FirstOrDefault();
+            }
+            // TODO fix serialization exception of http response
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+                p_plan.State = "ACTIVE";
             }
 
             return p_plan;

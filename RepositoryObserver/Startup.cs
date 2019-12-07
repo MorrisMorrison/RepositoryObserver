@@ -51,9 +51,15 @@ namespace RepositoryNotifier
             services.AddCors();
             services.AddMvc();
 
+            services.AddHttpClient("HttpClientName", client => {
+// code to configure headers etc..
+            }).ConfigurePrimaryHttpMessageHandler(() => {
+                var handler = new HttpClientHandler();
+                    handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; };
+                return handler;
+            });
             // services.AddMvcCore()
             // services.AddApiExplorer();
-
 
             // https://www.jerriepelser.com/blog/authenticate-oauth-aspnet-core-2/
             services.AddAuthentication(p_options =>
@@ -142,7 +148,7 @@ namespace RepositoryNotifier
         {
             if (env.IsDevelopment())
             {
-                // app.UseHsts();
+//                app.UseHsts();
                 app.UseDeveloperExceptionPage();
             }
             else
@@ -158,7 +164,7 @@ namespace RepositoryNotifier
             // own middleware to force CORS headers
             // app.UseCorsMiddleware();
 
-            // app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
             app.UseAuthentication();
 
             app.UseDefaultFiles();

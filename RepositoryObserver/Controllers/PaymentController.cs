@@ -119,7 +119,7 @@ namespace RepositoryNotifier.Controllers
                 string username = AuthHelper.GetLogin(this.HttpContext);
                 _subscriptionService.ActivateSubscription(username);
                 _logger.LogInformation("Create Subscription successful. Agreement: {Agreement} User: {User}", agreement, username);
-                return Redirect("/");
+                return Redirect("/payments");
             }
 
             _logger.LogError("Could not execute Agreement. Agreement: {Agreement} User: {User}", agreement, AuthHelper.GetLogin(HttpContext));

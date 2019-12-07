@@ -104,7 +104,9 @@ export class JobsComponent implements OnInit {
   }
 
   editJob() {
+    // const modalRef = this.modalService.open(EditJobComponent, { size: 'lg' });
     const modalRef = this.modalService.open(EditJobComponent);
+    
     modalRef.componentInstance.selectedJob = this.getSelectedJob();
     modalRef.componentInstance.username = this.username;
   }

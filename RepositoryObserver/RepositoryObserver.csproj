@@ -1,4 +1,5 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
@@ -39,7 +40,6 @@
     <Content Include="ClientApp\src\app\add-notification\add-notification.component.html" />
     <Content Include="ClientApp\src\app\add-notification\add-notification.component.spec.ts" />
     <Content Include="ClientApp\src\app\add-notification\add-notification.component.ts" />
-    <Content Include="ClientApp\src\app\dto\notificationTO.ts" />
     <Content Include="ClientApp\src\app\dto\repositoryTO.ts" />
     <Content Include="ClientApp\src\app\dto\userTO.ts" />
     <Content Include="ClientApp\src\app\notifications\notifications.component.css" />
@@ -50,9 +50,25 @@
     <Content Include="ClientApp\src\app\service\githubauth\githubauth.service.ts" />
     <None Remove="$(SpaRoot)**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+    <None Remove="ClientApp\src\app\notifications\**" />
+    <Content Remove="ClientApp\src\app\notifications\**" />
+    <None Remove="ClientApp\src\app\add-notification\**" />
+    <Content Remove="ClientApp\src\app\add-notification\**" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="ClientApp\src\app\dto\generated" />
     <Folder Include="ClientApp\src\assets" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="ClientApp\src\app\notifications\**" />
+    <Compile Remove="ClientApp\src\app\add-notification\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="ClientApp\src\app\notifications\**" />
+    <EmbeddedResource Remove="ClientApp\src\app\add-notification\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\dto\jobTO.ts" />
   </ItemGroup>
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <Exec Command="node --version" ContinueOnError="true">
