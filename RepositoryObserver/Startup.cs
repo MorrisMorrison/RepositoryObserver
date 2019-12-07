@@ -164,7 +164,7 @@ namespace RepositoryNotifier
             // own middleware to force CORS headers
             // app.UseCorsMiddleware();
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
             app.UseAuthentication();
 
             app.UseDefaultFiles();
@@ -174,7 +174,7 @@ namespace RepositoryNotifier
             app.UseSwaggerUi3();
 
             // is used when spa is served by kestrel
-            // // // app.UseSpaStaticFiles();
+            app.UseSpaStaticFiles();
 
             app.UseMvc(routes =>
             {
@@ -182,7 +182,7 @@ namespace RepositoryNotifier
                     name: "default",
                     template: "{controller}/{action=Index}/{id?}");
                 // Uncomment if SPA needs to be served by kestrel
-                // // // routes.MapSpaFallbackRoute(name: "spa-fallback", defaults: new { controller = "Fallback", action = "Index" });
+                routes.MapSpaFallbackRoute(name: "spa-fallback", defaults: new { controller = "Fallback", action = "Index" });
             });
 
             app.UseSpa(spa =>

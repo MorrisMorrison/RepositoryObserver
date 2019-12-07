@@ -19,7 +19,7 @@ using RepositoryNotifier.Persistence;
 using RepositoryNotifier.Service;
 using RepositoryNotifier.Service.Github;
 using RepositoryNotifier.Service.Payment;
-using RepositoryNotifier.Persistence.Abonement;
+using RepositoryNotifier.Persistence.Subscription;
 using RepositoryNotifier.Persistence.Job;
 using RepositoryNotifier.JobScheduler;
 using RepositoryNotifier.Service.Job;
@@ -51,9 +51,15 @@ namespace RepositoryNotifier
             services.AddCors();
             services.AddMvc();
 
+            services.AddHttpClient("HttpClientName", client => {
+// code to configure headers etc..
+            }).ConfigurePrimaryHttpMessageHandler(() => {
+                var handler = new HttpClientHandler();
+                    handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; };
+                return handler;
+            });
             // services.AddMvcCore()
             // services.AddApiExplorer();
-
 
             // https://www.jerriepelser.com/blog/authenticate-oauth-aspnet-core-2/
             services.AddAuthentication(p_options =>
@@ -75,7 +81,7 @@ namespace RepositoryNotifier
                     p_options.UserInformationEndpoint = "https://api.github.com/user";
                     // p_options.ClaimsIssuer = "OAuth2-Github";
 
-                   p_options.ClaimActions.MapJsonKey(ClaimTypes.NameIdentifier, "id");
+                    p_options.ClaimActions.MapJsonKey(ClaimTypes.NameIdentifier, "id");
                     p_options.ClaimActions.MapJsonKey(ClaimTypes.Name, "name");
                     // TODO email not working
                     p_options.ClaimActions.MapJsonKey(ClaimTypes.Email, "email");
@@ -108,11 +114,11 @@ namespace RepositoryNotifier
                         }
                     };
 
- 
+
 
                 });
 
-            // Add Singletons
+            services.AddSwaggerDocument();
             // Inject dependencies via constructor
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IGithubApiService, GithubApiService>();
@@ -121,8 +127,8 @@ namespace RepositoryNotifier
             services.AddSingleton<IJobService, JobService>();
             services.AddSingleton<IJobFrequencyService, JobFrequencyService>();
             services.AddSingleton<IPayPalPaymentService, PayPalPaymentService>();
-            services.AddSingleton<IAbonementService, AbonementService>();
-            services.AddSingleton<IAbonementDao, AbonementDao>();
+            services.AddSingleton<ISubscriptionService, SubscriptionService>();
+            services.AddSingleton<ISubscriptionDao, SubscriptionDao>();
             services.AddSingleton<IDonationService, DonationService>();
             services.AddSingleton<IDonationDao, DonationDao>();
             services.AddSingleton<IPremiumPlanService, PremiumPlanService>();
@@ -130,7 +136,6 @@ namespace RepositoryNotifier
             services.AddSingleton<IEmailService, EmailService>();
             services.AddSingleton<IMobileNotificationServiceProvider, TwilioMobileNotificationServiceProvider>();
             services.AddSingleton<IMobileNotificationService, MobileNotificationService>();
-
             services.AddSingleton<IContactDao, ContactDao>();
             services.AddSingleton<IContactService, ContactService>();
 
@@ -143,7 +148,7 @@ namespace RepositoryNotifier
         {
             if (env.IsDevelopment())
             {
-                // app.UseHsts();
+//                app.UseHsts();
                 app.UseDeveloperExceptionPage();
             }
             else
@@ -159,14 +164,17 @@ namespace RepositoryNotifier
             // own middleware to force CORS headers
             // app.UseCorsMiddleware();
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
             app.UseAuthentication();
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
+            app.UseOpenApi();
+            app.UseSwaggerUi3();
+
             // is used when spa is served by kestrel
-            // // // app.UseSpaStaticFiles();
+            app.UseSpaStaticFiles();
 
             app.UseMvc(routes =>
             {
@@ -174,7 +182,7 @@ namespace RepositoryNotifier
                     name: "default",
                     template: "{controller}/{action=Index}/{id?}");
                 // Uncomment if SPA needs to be served by kestrel
-                // // routes.MapSpaFallbackRoute(name: "spa-fallback", defaults: new { controller = "Fallback", action = "Index" });
+                // routes.MapSpaFallbackRoute(name: "spa-fallback", defaults: new { controller = "Fallback", action = "Index" });
             });
 
             app.UseSpa(spa =>

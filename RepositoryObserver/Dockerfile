@@ -31,8 +31,8 @@ COPY ClientApp/dist wwwroot
 # CMD ASPNETCORE_URLS=https://*:$PORT ASPNETCORE_ENVIRONMENT=Development ASPNETCORE_HTTPS_PORT=$PORT dotnet RepositoryNotifier.dll
 
 
-ENV ASPNETCORE_URLS=https://*:$PORT
-ENV ASPNETCORE_ENVIRONMENT=Development
+#ENV ASPNETCORE_URLS=https://*:$PORT
+#ENV ASPNETCORE_ENVIRONMENT=Development
 
-ENTRYPOINT ["dotnet", "RepositoryNotifier.dll"]
-# CMD ASPNETCORE_URLS=http://*:$PORT ASPNETCORE_ENVIRONMENT=Development dotnet RepositoryNotifier.dll
+#ENTRYPOINT ["dotnet", "RepositoryNotifier.dll"]
+ CMD ASPNETCORE_URLS=http://*:$PORT ASPNETCORE_ENVIRONMENT=Development dotnet RepositoryObserver.dll

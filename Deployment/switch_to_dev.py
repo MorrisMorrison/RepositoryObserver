@@ -2,8 +2,8 @@ import os
 import json
 import fileinput
 
-startup_path = '../RepositoryNotifier/Startup.cs'
-angular_path = '../RepositoryNotifier/ClientApp/angular.json'
+startup_path = '../RepositoryObserver/Startup.cs'
+angular_path = '../RepositoryObserver/ClientApp/angular.json'
 
 with open(angular_path, 'r') as angular_json_file:
     data = json.load(angular_json_file)
@@ -32,7 +32,7 @@ with fileinput.FileInput(startup_path, inplace=True, backup='.bak') as file:
 
 
 
-config_file_path = '../RepositoryNotifier/appsettings.Development.json'
+config_file_path = '../RepositoryObserver/appsettings.Development.json'
 with open(config_file_path, 'r') as config_file:
     data = json.load(config_file)
     data['Mongo']['ConnectionString'] = 'mongodb://localhost:27017/repositoryobserver'

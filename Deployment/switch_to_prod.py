@@ -2,8 +2,8 @@ import os
 import json
 import fileinput
 
-startup_path = '../RepositoryNotifier/Startup.cs'
-angular_path = '../RepositoryNotifier/ClientApp/angular.json'
+startup_path = '../RepositoryObserver/Startup.cs'
+angular_path = '../RepositoryObserver/ClientApp/angular.json'
 
 with open(angular_path, 'r') as angular_json_file:
     data = json.load(angular_json_file)
@@ -30,7 +30,7 @@ with fileinput.FileInput(startup_path, inplace=True, backup='.bak') as file:
         print(line.replace(text_to_search, replacement_text), end='')
 
 
-config_file_path = '../RepositoryNotifier/appsettings.Development.json'
+config_file_path = '../RepositoryObserver/appsettings.Development.json'
 with open(config_file_path, 'r') as config_file:
     data = json.load(config_file)
     data['Mongo']['ConnectionString'] = 'mongodb://heroku_3jjpqjns:2d48lnsc4s2fr6tmc2k575i891@ds135786.mlab.com:35786/heroku_3jjpqjns'
