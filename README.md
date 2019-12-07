@@ -5,14 +5,6 @@ The user has to authenticate via Githubs API and is then able to create schedule
 ### Scheduled Jobs
 Every job is executed after a specific time the user selected.
 The system defines the frequencies the user can select.
-Predefined are:
-* 15 minutes
-* 30 minutes
-*  1 hour
-*  3 hours
-* 12 hours
-*  1 day
-*  3 days
 
 ### Webhooks
 The user can also allow the application to create webhooks for repositories that need to be observerd.
