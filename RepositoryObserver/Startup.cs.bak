@@ -174,7 +174,7 @@ namespace RepositoryNotifier
             app.UseSwaggerUi3();
 
             // is used when spa is served by kestrel
-            app.UseSpaStaticFiles();
+            // // app.UseSpaStaticFiles();
 
             app.UseMvc(routes =>
             {

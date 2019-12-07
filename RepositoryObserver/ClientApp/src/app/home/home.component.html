@@ -4,9 +4,9 @@
     <div class="jumbotron bg-primary text-white" style="margin-bottom: -5px">
         <h1 class="display-4" *ngIf="isAuthenticated; else showNotAnonymousGreeting">Hello, {{username}}!</h1>
         <ng-template #showNotAnonymousGreeting>
-            <h1>Hello, there!</h1>
+            <h1><i class="fa fa-search mr-3"></i>RepositoryObserver</h1>
         </ng-template>
-        <p class="lead">Welcome to RepositoryObserver, a simple service to observe your github repositories.</p>
+        <p class="lead">Welcome to RepositoryObserver, a simple service to observe your GitHub repositories.</p>
         <hr class="my-4 bg-white">
         <!-- <p>RepositoryObserver was built using:</p>
         <ul>
@@ -26,9 +26,8 @@
                             <code>repositories</code> for
                             accidentally leaked <code>vulnerable data</code> like passwords or api-keys.<br>
                             Simply authenticate with your Github account and select the <code>repositories</code> you
-                            want to be
-                            observed.<br>
-                            The service allows you to specify search keywords and select the frequency of a search process.
+                            want to observe.<br>
+                            The service allows you to specify different keywords and start frequent scans or scans on every commit.
                         </p>
             <button style="margin-bottom:-3%;" *ngIf="!isAuthenticated" type="button" class="btn btn-success btn-lg" (click)="login()"><i class="fa fa-github"></i> Sign Up</button>
                         
@@ -41,31 +40,22 @@
             <div class="col-sm-6">
                 <div class="card border-0 mb-3 h-100" >
                     <div class="card-body bg-success text-white">
-                        <h2 class="card-title">RepositoryObserver</h2>
+                        <h2 class="card-title">How does this work?</h2>
                         <p class="card-text">
                             <strong>RepositoryObserver</strong> offers a service to observe your
                             <code>repositories</code> for
                             accidentally leaked <code>passwords</code>.<br>
-                            Simply authenticate with your Github account and select the <code>repositories</code> you
-                            want to be
-                            observed.<br>
-                            You can choose a frequency at which the scans are started:
+                            Simply authenticate with your GitHub account and select the <code>repositories</code> you
+                            want to observe. Choose a frequency at which the scans are started or create a webhook to
+                            automatically scan on every commit.
                         </p>
-                        <ul>
-                            <li>15 minutes</li>
-                            <li>30 minutes</li>
-                            <li>1 hour</li>
-                            <li>3 hours</li>
-                            <li>12 hours</li>
-                            <li>1 day</li>
-                        </ul>
                     </div>
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="card border-0 mb-3 h-100">
                     <div class="card-body bg-primary text-white">
-                        <h2 class="card-title">Inspect SourceCode</h2>
+                        <h2 class="card-title">Open Source</h2>
                         <p class="card-text">This project is open source and its source code can be reviewed <a
                                 href="https://github.com/MorrisMorrison/RepositoryObserver">here</a></p>
                         <p>The Application stores only the username and repository names and accesses them through
