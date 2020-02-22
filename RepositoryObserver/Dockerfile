@@ -1,5 +1,5 @@
-FROM microsoft/dotnet:2.2-sdk AS build-env
-WORKDIR /app
+FROM microsoft/dotnet:2.2-sdk AS base
+WORKDIR /src
 
 # Setup NodeJs
 RUN apt-get update && \
@@ -9,30 +9,26 @@ RUN apt-get update && \
     apt-get install -y build-essential nodejs && \
     npm install -g @angular/cli
 
-# Copy csproj and restore as distinct layers
-COPY *.csproj ./
-RUN dotnet restore
-
-# Copy everything else and build
-COPY . ./
-
+COPY RepositoryObserver.csproj .
+RUN dotnet restore "RepositoryObserver.csproj"
+COPY . .
 RUN cd ClientApp && ng build
 
-# RUN dotnet build -c Release -o out
-RUN dotnet publish -c Release -o out
+RUN dotnet build "RepositoryObserver.csproj" -c Release -o /app/build
 
-# Build runtime image
-FROM microsoft/dotnet:2.2-aspnetcore-runtime
+RUN dotnet publish "RepositoryObserver.csproj" -c Release -o /app/publish
+
+
+FROM base AS final
 WORKDIR /app
-RUN ls
-COPY --from=build-env /app/out .
 RUN mkdir wwwroot
 COPY ClientApp/dist wwwroot
-# CMD ASPNETCORE_URLS=https://*:$PORT ASPNETCORE_ENVIRONMENT=Development ASPNETCORE_HTTPS_PORT=$PORT dotnet RepositoryNotifier.dll
+COPY --from=base /app/publish .
 
+ENV ASPNETCORE_URLS=http://*:$PORT
+ENV ASPNETCORE_ENVIRONMENT=Development
 
-#ENV ASPNETCORE_URLS=https://*:$PORT
-#ENV ASPNETCORE_ENVIRONMENT=Development
+ENTRYPOINT ["dotnet", "RepositoryObserver.dll"]
 
-#ENTRYPOINT ["dotnet", "RepositoryNotifier.dll"]
- CMD ASPNETCORE_URLS=http://*:$PORT ASPNETCORE_ENVIRONMENT=Development dotnet RepositoryObserver.dll
+#CMD dotnet RepositoryObserver.dll
+#CMD ASPNETCORE_URLS=http://*:$PORT ASPNETCORE_ENVIRONMENT=Development dotnet RepositoryObserver.dll

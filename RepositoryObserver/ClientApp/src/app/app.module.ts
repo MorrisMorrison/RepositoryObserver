@@ -19,6 +19,8 @@ import { PaymentsComponent } from './payments/payments.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ContactComponent } from './contact/contact.component';
 import { ContactService } from './service/contact/contact.service';
+import { SettingsService } from './service/settings/settings.service';
+
 import { PaymentDetailsComponent } from './payment-details/payment-details.component';
 import { FaqComponent } from './faq/faq.component';
 import { SettingsComponent } from './settings/settings.component';
@@ -63,7 +65,7 @@ const config: ExtraOptions = {
 
     ], config)
   ],
-  providers: [GithubauthService, JobService, AlertifyService, ContactService],
+  providers: [GithubauthService, JobService, AlertifyService, ContactService, SettingsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

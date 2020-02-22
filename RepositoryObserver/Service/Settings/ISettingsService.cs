@@ -6,8 +6,7 @@ namespace RepositoryNotifier.Service.Settings
     public interface ISettingsService
     {
 
-        void CancelSubscription();
-        DataDump GetDataDump();
+        DataDump GetDataDump(string p_username);
 
         
     }

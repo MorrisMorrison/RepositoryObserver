@@ -1,0 +1,43 @@
+2020-02-07 00:02:39.409 +01:00 [Information] Found Keyword for RepositoryInspectorJob: "RepositoryNotifier.Persistence.Job.Job" SearchResult["Octokit.SearchCodeResult", "Octokit.SearchCodeResult"]
+2020-02-07 01:02:39.471 +01:00 [Information] Found Keyword for RepositoryInspectorJob: "RepositoryNotifier.Persistence.Job.Job" SearchResult["Octokit.SearchCodeResult", "Octokit.SearchCodeResult"]
+2020-02-07 02:02:39.676 +01:00 [Information] Found Keyword for RepositoryInspectorJob: "RepositoryNotifier.Persistence.Job.Job" SearchResult["Octokit.SearchCodeResult", "Octokit.SearchCodeResult"]
+2020-02-07 03:02:39.651 +01:00 [Information] Found Keyword for RepositoryInspectorJob: "RepositoryNotifier.Persistence.Job.Job" SearchResult["Octokit.SearchCodeResult", "Octokit.SearchCodeResult"]
+2020-02-07 04:02:39.502 +01:00 [Information] Found Keyword for RepositoryInspectorJob: "RepositoryNotifier.Persistence.Job.Job" SearchResult["Octokit.SearchCodeResult", "Octokit.SearchCodeResult"]
+2020-02-07 05:02:39.487 +01:00 [Information] Found Keyword for RepositoryInspectorJob: "RepositoryNotifier.Persistence.Job.Job" SearchResult["Octokit.SearchCodeResult", "Octokit.SearchCodeResult"]
+2020-02-07 06:02:39.554 +01:00 [Information] Found Keyword for RepositoryInspectorJob: "RepositoryNotifier.Persistence.Job.Job" SearchResult["Octokit.SearchCodeResult", "Octokit.SearchCodeResult"]
+2020-02-07 07:02:39.543 +01:00 [Information] Found Keyword for RepositoryInspectorJob: "RepositoryNotifier.Persistence.Job.Job" SearchResult["Octokit.SearchCodeResult", "Octokit.SearchCodeResult"]
+2020-02-07 08:02:39.402 +01:00 [Information] Found Keyword for RepositoryInspectorJob: "RepositoryNotifier.Persistence.Job.Job" SearchResult["Octokit.SearchCodeResult", "Octokit.SearchCodeResult"]
+2020-02-07 09:02:39.514 +01:00 [Information] Found Keyword for RepositoryInspectorJob: "RepositoryNotifier.Persistence.Job.Job" SearchResult["Octokit.SearchCodeResult", "Octokit.SearchCodeResult"]
+2020-02-07 10:02:39.694 +01:00 [Information] Found Keyword for RepositoryInspectorJob: "RepositoryNotifier.Persistence.Job.Job" SearchResult["Octokit.SearchCodeResult", "Octokit.SearchCodeResult"]
+2020-02-07 11:02:39.777 +01:00 [Information] Found Keyword for RepositoryInspectorJob: "RepositoryNotifier.Persistence.Job.Job" SearchResult["Octokit.SearchCodeResult", "Octokit.SearchCodeResult"]
+2020-02-07 12:02:39.505 +01:00 [Information] Found Keyword for RepositoryInspectorJob: "RepositoryNotifier.Persistence.Job.Job" SearchResult["Octokit.SearchCodeResult", "Octokit.SearchCodeResult"]
+2020-02-07 13:02:39.439 +01:00 [Information] Found Keyword for RepositoryInspectorJob: "RepositoryNotifier.Persistence.Job.Job" SearchResult["Octokit.SearchCodeResult", "Octokit.SearchCodeResult"]
+2020-02-07 14:02:39.563 +01:00 [Information] Found Keyword for RepositoryInspectorJob: "RepositoryNotifier.Persistence.Job.Job" SearchResult["Octokit.SearchCodeResult", "Octokit.SearchCodeResult"]
+2020-02-07 15:02:39.551 +01:00 [Information] Found Keyword for RepositoryInspectorJob: "RepositoryNotifier.Persistence.Job.Job" SearchResult["Octokit.SearchCodeResult", "Octokit.SearchCodeResult"]
+2020-02-07 16:02:39.761 +01:00 [Information] Found Keyword for RepositoryInspectorJob: "RepositoryNotifier.Persistence.Job.Job" SearchResult["Octokit.SearchCodeResult", "Octokit.SearchCodeResult"]
+2020-02-07 17:02:39.556 +01:00 [Information] Found Keyword for RepositoryInspectorJob: "RepositoryNotifier.Persistence.Job.Job" SearchResult["Octokit.SearchCodeResult", "Octokit.SearchCodeResult"]
+2020-02-07 17:47:27.258 +01:00 [Debug] Connection id ""0HLTB8VJVPL06"" received FIN.
+2020-02-07 17:47:27.258 +01:00 [Debug] Connection id ""0HLTB8VJVPKVJ"" received FIN.
+2020-02-07 17:47:27.258 +01:00 [Debug] Connection id ""0HLTB8VJVPL0P"" received FIN.
+2020-02-07 17:47:27.258 +01:00 [Debug] Connection id ""0HLTB8VJVPL04"" received FIN.
+2020-02-07 17:47:27.258 +01:00 [Debug] Connection id ""0HLTB8VJVPL05"" received FIN.
+2020-02-07 17:47:27.259 +01:00 [Debug] Connection id ""0HLTB8VJVPL06"" sending FIN because: ""The client closed the connection.""
+2020-02-07 17:47:27.259 +01:00 [Debug] Connection id ""0HLTB8VJVPKV6"" received FIN.
+2020-02-07 17:47:27.262 +01:00 [Debug] Connection id ""0HLTB8VJVPL05"" sending FIN because: ""The client closed the connection.""
+2020-02-07 17:47:27.263 +01:00 [Debug] Connection id ""0HLTB8VJVPL06"" disconnecting.
+2020-02-07 17:47:27.288 +01:00 [Debug] Connection id ""0HLTB8VJVPL0P"" sending FIN because: ""The client closed the connection.""
+2020-02-07 17:47:27.289 +01:00 [Debug] Connection id ""0HLTB8VJVPL04"" sending FIN because: ""The client closed the connection.""
+2020-02-07 17:47:27.289 +01:00 [Debug] Connection id ""0HLTB8VJVPKV6"" sending FIN because: ""The client closed the connection.""
+2020-02-07 17:47:27.290 +01:00 [Debug] Connection id ""0HLTB8VJVPL05"" disconnecting.
+2020-02-07 17:47:27.290 +01:00 [Debug] Connection id ""0HLTB8VJVPKVJ"" sending FIN because: ""The client closed the connection.""
+2020-02-07 17:47:27.290 +01:00 [Debug] Connection id ""0HLTB8VJVPL06"" stopped.
+2020-02-07 17:47:27.291 +01:00 [Debug] Connection id ""0HLTB8VJVPL0P"" disconnecting.
+2020-02-07 17:47:27.291 +01:00 [Debug] Connection id ""0HLTB8VJVPL04"" disconnecting.
+2020-02-07 17:47:27.291 +01:00 [Debug] Connection id ""0HLTB8VJVPKV6"" disconnecting.
+2020-02-07 17:47:27.291 +01:00 [Debug] Connection id ""0HLTB8VJVPL05"" stopped.
+2020-02-07 17:47:27.292 +01:00 [Debug] Connection id ""0HLTB8VJVPKVJ"" disconnecting.
+2020-02-07 17:47:27.294 +01:00 [Debug] Connection id ""0HLTB8VJVPL0P"" stopped.
+2020-02-07 17:47:27.294 +01:00 [Debug] Connection id ""0HLTB8VJVPL04"" stopped.
+2020-02-07 17:47:27.294 +01:00 [Debug] Connection id ""0HLTB8VJVPKV6"" stopped.
+2020-02-07 17:47:27.295 +01:00 [Debug] Connection id ""0HLTB8VJVPKVJ"" stopped.
+2020-02-07 18:02:39.479 +01:00 [Information] Found Keyword for RepositoryInspectorJob: "RepositoryNotifier.Persistence.Job.Job" SearchResult["Octokit.SearchCodeResult", "Octokit.SearchCodeResult"]

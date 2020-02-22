@@ -24,6 +24,7 @@ using RepositoryNotifier.Persistence.Job;
 using RepositoryNotifier.JobScheduler;
 using RepositoryNotifier.Service.Job;
 using RepositoryNotifier.Service.Email;
+using RepositoryNotifier.Service.Settings;
 using RepositoryNotifier.Service.SMS;
 
 namespace RepositoryNotifier
@@ -138,6 +139,7 @@ namespace RepositoryNotifier
             services.AddSingleton<IMobileNotificationService, MobileNotificationService>();
             services.AddSingleton<IContactDao, ContactDao>();
             services.AddSingleton<IContactService, ContactService>();
+            services.AddSingleton<ISettingsService, SettingsService>();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration => { configuration.RootPath = "wwwroot"; });
@@ -174,7 +176,7 @@ namespace RepositoryNotifier
             app.UseSwaggerUi3();
 
             // is used when spa is served by kestrel
-            // // app.UseSpaStaticFiles();
+            // app.UseSpaStaticFiles();
 
             app.UseMvc(routes =>
             {
@@ -182,7 +184,7 @@ namespace RepositoryNotifier
                     name: "default",
                     template: "{controller}/{action=Index}/{id?}");
                 // Uncomment if SPA needs to be served by kestrel
-                // // routes.MapSpaFallbackRoute(name: "spa-fallback", defaults: new { controller = "Fallback", action = "Index" });
+                // routes.MapSpaFallbackRoute(name: "spa-fallback", defaults: new { controller = "Fallback", action = "Index" });
             });
 
             app.UseSpa(spa =>

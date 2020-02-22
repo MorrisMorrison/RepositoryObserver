@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import { GithubauthService } from '../service/githubauth/githubauth.service';
 import { PaymentService } from '../service/payment/payment.service';
 import { Subscription } from '../dto/subscriptionTO';
 import { AlertifyService } from '../service/alertify/alertify.service';
+import {SettingsService} from "../service/settings/settings.service";
+import {DOCUMENT} from "@angular/common";
 
 @Component({
   selector: 'app-settings',
@@ -16,7 +18,7 @@ export class SettingsComponent implements OnInit {
   username: string;
   subscription:Subscription;
 
-  constructor(private paymentService:PaymentService,private githubAuthService: GithubauthService , private alertifySerivce: AlertifyService) {
+  constructor(@Inject(DOCUMENT) private document: any, private paymentService:PaymentService,private githubAuthService: GithubauthService , private alertifySerivce: AlertifyService, private settingsService : SettingsService, @Inject('BASE_URL') private baseUrl: string) {
   }
 
   ngOnInit() {
@@ -64,5 +66,11 @@ export class SettingsComponent implements OnInit {
     }
     })
   }
+    getDataDump(){
+            // this.settingsService.getDataDump().subscribe();
+            window.location.href='this.baseUrl + "api/settings/getdatadump"';
+        this.document.location.href =  this.baseUrl + "api/settings/getdatadump"
+  }
+  
 
 }
