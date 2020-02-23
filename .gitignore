@@ -11,7 +11,6 @@ commands
 RepositoryObserver/wwwroot/
 RepositoryObserver/data
 logs/
-Deployment/switch_to_dev.py
 Deployment/switch_to_prod.py
 RepositoryObserver/..\logs*
 RepositoryObserver/repositoryobserver/wwwroot

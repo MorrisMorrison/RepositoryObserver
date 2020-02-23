@@ -78,12 +78,6 @@ export class SettingsComponent implements OnInit {
         this.document.location.href =  this.baseUrl + "api/settings/getdatadump"
   }
 
-    logoutAndLogin() {
-        this.githubAuthService.logoutAndLogin().subscribe(response => {
-            this.router.navigate(['home']);
-            this.alertifyService.success("Logged out.");
-        });
-    }
 
 
 

@@ -13,20 +13,20 @@ The system defines the frequencies the user can select.
 The user can also allow the application to create webhooks for repositories that need to be observerd.
 Every time a commit is made to that repository, the application searches for the specified keywords.
 
-### This project was built using following technologies
-#### Backend
+#### This project was built using following technologies
+##### Backend
 * .NET Core
 * MongoDB
 * Github API
 * PayPal API
 * OAuth
 
-####Frontend
+##### Frontend
 * Angular
 * Typescript
 * Bootstrap
 
-####Ops
+##### Ops
 * Github
 * Docker
 * Heroku
