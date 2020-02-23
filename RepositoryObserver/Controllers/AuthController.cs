@@ -69,6 +69,6 @@ namespace RepositoryNotifier.Controllers
             await this.HttpContext.SignOutAsync();
             return Ok();
         }
-        
+
     }
 }

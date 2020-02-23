@@ -32,7 +32,7 @@ export class GithubauthService {
     logout(){
         return this.httpClient.get<void>(this.baseUrl + "api/auth/logout",  {observe: 'response'});
     }
-    
+
     isAuthenticated(){
         return this.httpClient.get<void>(this.baseUrl + "api/auth/isauthenticated",  {observe: 'response'});
     }
