@@ -5,10 +5,11 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using RepositoryNotifier.JobScheduler;
-using Serilog;
-using Serilog.Events;
+// using Serilog;
+// using Serilog.Events;
 
 namespace RepositoryNotifier
 {
@@ -17,7 +18,7 @@ namespace RepositoryNotifier
 
         public static void Main(string[] args)
         {
-            IWebHost host = CreateWebHostBuilder(args).Build();
+            IHost host = CreateHostBuilder(args).Build();
 
             var services = host.Services;
 
@@ -41,12 +42,20 @@ namespace RepositoryNotifier
 
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                   .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
-    .ReadFrom.Configuration(hostingContext.Configuration)
-    .Enrich.FromLogContext()
-    .WriteTo.Console());
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.ConfigureKestrel(serverOptions =>
+                        {
+                            // Set properties and call methods on options
+                        })
+                        .UseStartup<Startup>();
+                });
+                // .UseStartup<Startup>()
+                //    .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
+                //     .ReadFrom.Configuration(hostingContext.Configuration)
+                //     .Enrich.FromLogContext()
+                //     .WriteTo.Console());
     }
 }

@@ -1,0 +1,16 @@
+.idea/
+.vscode/
+package-lock.json
+RepositoryObserver/appsettings.Development.json
+RepositoryObserver/appsettings.json
+RepositoryObserver/bin/
+RepositoryObserver/obj/
+RepositoryObserver/ClientApp/node_modules/
+RepositoryObserver/ClientApp/dist/
+commands
+RepositoryObserver/wwwroot/
+RepositoryObserver/data
+logs/
+Deployment/switch_to_prod.py
+RepositoryObserver/..\logs*
+RepositoryObserver/repositoryobserver/wwwroot

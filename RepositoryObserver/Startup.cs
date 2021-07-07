@@ -1,6 +1,7 @@
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Claims;
+using System.Text.Json;
 using RepositoryNotifier.Middleware;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -11,8 +12,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+// using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Linq;
 using RepositoryNotifier.Constants;
 using RepositoryNotifier.Persistence;
@@ -109,8 +112,8 @@ namespace RepositoryNotifier
                             var response = await context.Backchannel.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, context.HttpContext.RequestAborted);
                             response.EnsureSuccessStatusCode();
 
-                            var user = JObject.Parse(await response.Content.ReadAsStringAsync());
-
+                            var user = JsonDocument.Parse(await response.Content.ReadAsStringAsync()).RootElement;
+                            // TODO Parse as JsonElement from System.Text
                             context.RunClaimActions(user);
                         }
                     };
@@ -146,7 +149,7 @@ namespace RepositoryNotifier
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -178,15 +181,25 @@ namespace RepositoryNotifier
             // is used when spa is served by kestrel
             // app.UseSpaStaticFiles();
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller}/{action=Index}/{id?}");
-                // Uncomment if SPA needs to be served by kestrel
-                // routes.MapSpaFallbackRoute(name: "spa-fallback", defaults: new { controller = "Fallback", action = "Index" });
-            });
+            // app.UseMvc(routes =>
+            // {
+            //     routes.MapRoute(
+            //         name: "default",
+            //         template: "{controller}/{action=Index}/{id?}");
+            //     // Uncomment if SPA needs to be served by kestrel
+            //     // routes.MapSpaFallbackRoute(name: "spa-fallback", defaults: new { controller = "Fallback", action = "Index" });
+            // });
 
+            // app.UseRouting();
+            
+            // app.UseAuthorization();
+            // app.UseEndpoints(endpoints =>
+            // {
+            //     endpoints.MapControllers();
+            //     endpoints.MapRazorPages();
+            // });
+            
+            
             app.UseSpa(spa =>
             {
                 // To learn more about options for serving an Angular SPA from ASP.NET Core,
@@ -195,7 +208,7 @@ namespace RepositoryNotifier
                 if (env.IsDevelopment())
                 {
                     spa.UseAngularCliServer(npmScript: "start");
-
+            
                     // not used atm
                     // spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
                 }
