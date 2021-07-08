@@ -145,7 +145,7 @@ namespace RepositoryNotifier
             services.AddSingleton<ISettingsService, SettingsService>();
 
             // In production, the Angular files will be served from this directory
-            services.AddSpaStaticFiles(configuration => { configuration.RootPath = "wwwroot"; });
+            // services.AddSpaStaticFiles(configuration => { configuration.RootPath = "wwwroot"; });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -190,14 +190,14 @@ namespace RepositoryNotifier
             //     // routes.MapSpaFallbackRoute(name: "spa-fallback", defaults: new { controller = "Fallback", action = "Index" });
             // });
 
-            // app.UseRouting();
+            app.UseRouting();
             
             // app.UseAuthorization();
-            // app.UseEndpoints(endpoints =>
-            // {
-            //     endpoints.MapControllers();
-            //     endpoints.MapRazorPages();
-            // });
+             app.UseEndpoints(endpoints =>
+             {
+                 endpoints.MapControllers();
+                 endpoints.MapRazorPages();
+             });
             
             
             app.UseSpa(spa =>
@@ -214,5 +214,8 @@ namespace RepositoryNotifier
                 }
             });
         }
+        
+        
+       
     }
 }
