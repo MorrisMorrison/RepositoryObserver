@@ -1,17 +1,10 @@
-using System.Collections.Generic;
-using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using RepositoryNotifier.Helper;
 using RepositoryNotifier.Persistence.DataDump;
-using RepositoryNotifier.Service;
-using RepositoryNotifier.Service.Job;
-using RepositoryNotifier.Persistence.Job;
 using RepositoryNotifier.Service.Settings;
-using Twilio.TwiML.Voice;
 
 namespace RepositoryNotifier.Controllers
 {

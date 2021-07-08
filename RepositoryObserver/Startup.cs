@@ -2,21 +2,16 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Text.Json;
-using RepositoryNotifier.Middleware;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
-// using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Newtonsoft.Json.Linq;
 using RepositoryNotifier.Constants;
 using RepositoryNotifier.Persistence;
 using RepositoryNotifier.Service;
@@ -62,8 +57,6 @@ namespace RepositoryNotifier
                     handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; };
                 return handler;
             });
-            // services.AddMvcCore()
-            // services.AddApiExplorer();
 
             // https://www.jerriepelser.com/blog/authenticate-oauth-aspnet-core-2/
             services.AddAuthentication(p_options =>
@@ -94,9 +87,7 @@ namespace RepositoryNotifier
                     p_options.ClaimActions.MapJsonKey("urn:github:avatar", "avatar_url");
 
                     p_options.Scope.Add("admin:repo_hook");
-
                     p_options.SaveTokens = true;
-
                     p_options.Events = new OAuthEvents
                     {
 
@@ -117,9 +108,6 @@ namespace RepositoryNotifier
                             context.RunClaimActions(user);
                         }
                     };
-
-
-
                 });
 
             services.AddSwaggerDocument();
@@ -153,7 +141,6 @@ namespace RepositoryNotifier
         {
             if (env.IsDevelopment())
             {
-//                app.UseHsts();
                 app.UseDeveloperExceptionPage();
             }
             else
@@ -165,34 +152,13 @@ namespace RepositoryNotifier
 
             // built in cors middleware doesnt work => no headers set 
             app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
-
-            // own middleware to force CORS headers
-            // app.UseCorsMiddleware();
-
-            // app.UseHttpsRedirection();
             app.UseAuthentication();
-
             app.UseDefaultFiles();
             app.UseStaticFiles();
-
             app.UseOpenApi();
             app.UseSwaggerUi3();
-
-            // is used when spa is served by kestrel
-            // app.UseSpaStaticFiles();
-
-            // app.UseMvc(routes =>
-            // {
-            //     routes.MapRoute(
-            //         name: "default",
-            //         template: "{controller}/{action=Index}/{id?}");
-            //     // Uncomment if SPA needs to be served by kestrel
-            //     // routes.MapSpaFallbackRoute(name: "spa-fallback", defaults: new { controller = "Fallback", action = "Index" });
-            // });
-
             app.UseRouting();
             
-            // app.UseAuthorization();
              app.UseEndpoints(endpoints =>
              {
                  endpoints.MapControllers();
@@ -208,9 +174,6 @@ namespace RepositoryNotifier
                 if (env.IsDevelopment())
                 {
                     spa.UseAngularCliServer(npmScript: "start");
-            
-                    // not used atm
-                    // spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
                 }
             });
         }

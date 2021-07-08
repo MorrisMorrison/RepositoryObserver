@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using RepositoryNotifier.Service;
-using RepositoryNotifier.Service.Payment;
 using RepositoryNotifier.Service.SMS;
 
 namespace RepositoryNotifier.Controllers

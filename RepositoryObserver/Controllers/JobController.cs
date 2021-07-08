@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -6,9 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RepositoryNotifier.DTO;
 using RepositoryNotifier.Helper;
-using RepositoryNotifier.Persistence;
 using RepositoryNotifier.Persistence.Job;
-using RepositoryNotifier.Service;
 using RepositoryNotifier.Service.Github;
 using RepositoryNotifier.Service.Job;
 

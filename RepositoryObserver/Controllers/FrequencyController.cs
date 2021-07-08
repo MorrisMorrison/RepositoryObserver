@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using RepositoryNotifier.Service;
 using RepositoryNotifier.Service.Job;
 using RepositoryNotifier.Persistence.Job;
 
